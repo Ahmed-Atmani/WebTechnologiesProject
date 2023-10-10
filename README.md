@@ -32,3 +32,4 @@ List of features
 - Bestelgeschiedenis
 - Livechat als er iets mis gaat met bestelling
 - Profielfoto (?)
+- van taal veranderen
