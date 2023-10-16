@@ -33,3 +33,4 @@ List of features
 - Livechat als er iets mis gaat met bestelling
 - Profielfoto (?)
 - van taal veranderen
+- Report selectie voor als je problemen met bestelling hbt
