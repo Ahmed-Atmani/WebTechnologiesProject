@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
+    'OmniShopApp.apps.OmnishopappConfig',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
