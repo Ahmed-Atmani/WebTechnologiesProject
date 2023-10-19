@@ -42,6 +42,11 @@ INSTALLED_APPS = [
     'rest_framework'
 ]
 
+
+CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ORIGIN_WHITELIST = ('http://google.com') # To whitelist a specific domain
+
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

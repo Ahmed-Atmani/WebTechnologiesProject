@@ -7,6 +7,37 @@ Logo
 ![image](https://github.com/Ahmed-Atmani/WebTechnologiesProject/assets/97768435/e3b1e49f-b5da-4853-a009-b4d0ba96b5f3)
 
 
+Pages
+-----
+**Marouane = 1**  
+**Souhaila = 2**  
+**Ahmed = 3**  
+
+### To be implemented
+1. Homepage (nieuw vs tweedehands;  verkoper vs particulier) (met knop logo, zoekbalk)
+1. Login page (met wachtwoord vergeten)
+1. Account overview (met bestellingen, delete account confirmation)
+---
+
+1. Instellingen
+1. Wishlist
+1. Bestelgeschiedenis (send back)
+---
+
+1. Punten korting ...
+1. Artikel
+1. Bestelpagina (met maps om adres te kiezen)
+---
+
+1. Contact (met map)
+1. Package Tracking
+1. Shopping cart
+---
+
+### Other
+- Klachtdienst/Rapporteer
+- Chat with seller
+
 List of features
 ----------------
 
