@@ -6,6 +6,8 @@ from django.http.response import JsonResponse
 from OmniShopApp.models import Accounts, Items, Purchases
 from OmniShopApp.serializers import AccountSerializer, ItemSerializer, PurchaseSerializer
 
+from django.core.files.storage import default_storage
+
 
 #  Create your views here.
 
@@ -39,3 +41,10 @@ def accountApi(request, id=0):
         account.delete()
         return JsonResponse("Deleted successfully!", safe=False)
         
+
+@csrf_exempt
+def SaveFile(request):
+    file = request.FILES['uploadedFile']
+    file_name = default_storage.save(file.name, file)
+
+    return JsonResponse(file_name, safe=False)
