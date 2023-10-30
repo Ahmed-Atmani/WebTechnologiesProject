@@ -2,7 +2,7 @@
 echo =====================================
 echo Starting server...
 
-start python .\manage.py runserver
+start .\venv\Scripts\python.exe .\manage.py runserver
 start "" http://127.0.0.1:8000/
 
 echo Server started!
