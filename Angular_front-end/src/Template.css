@@ -45,6 +45,11 @@
   display: flex;
   list-style-type: none;
   z-index: 999;
+  justify-content: space-evenly;
+}
+
+.logo{
+  margin-left: 0;
 }
 
 .switch {
@@ -167,7 +172,21 @@
 
         }
 
-        #searchbar{
+.itemss{
+  display: flex;
+  align-items: center;
+}
+#searchbar{
           width: 30vw;
-          height: 5vh;
+          height: 4.5vh;
+          -webkit-border-radius: 60px;
+          -moz-border-radius: 60px;
+          -ms-border-radius: 60px;
+          -o-border-radius: 60px;
+          border-radius: 60px;
+          border: white solid 10px;
         }
+
+/* .profile{
+
+} */
