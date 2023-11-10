@@ -12,12 +12,7 @@ readonly PhotoUrl = "http://localhost:8000/media/"
   constructor(private http:HttpClient) { }
 
   getAccountList():Observable<any[]>{
-    console.log('===================');
-    console.log(this.APIUrl + '/account/');
-    let x: Observable<any[]> = this.http.get<any[]>(this.APIUrl + '/account/');
-    console.log(x);
-    
-    return x;
+    return this.http.get<any[]>(this.APIUrl + '/account/');
   }
 
   addAccount(val:any){

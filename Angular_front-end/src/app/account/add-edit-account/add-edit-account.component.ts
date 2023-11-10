@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-add-edit-account',
@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./add-edit-account.component.css']
 })
 export class AddEditAccountComponent {
+
+  @Input() account:any;
 
 }
