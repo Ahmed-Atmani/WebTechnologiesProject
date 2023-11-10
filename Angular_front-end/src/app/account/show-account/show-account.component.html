@@ -1,1 +1,25 @@
-<p>show-account works!</p>
+<table class=""table table-striped>
+    <thead>
+        <tr>
+            <th>AccountId</th>
+            <th>AccountFirstName</th>
+            <th>AccountLastName</th>
+            <th>Options</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let dataItem of AccountList">   
+            <td>{{dataItem.AccountId}}</td>
+            <td>{{dataItem.AccountFirstName}}</td>
+            <td>{{dataItem.AccountLastName}}</td>
+            <td>
+                <button type="button" class="btn btn-light mr-1">
+                    Edit
+                </button>
+                <button type="button" class="btn btn-light mr-1">
+                    Delete
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>

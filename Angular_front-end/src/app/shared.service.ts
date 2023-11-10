@@ -6,13 +6,18 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class SharedService {
-readonly APIUrl = "http://127.0.0.1:8000";
-readonly PhotoUrl = "http://127.0.0.1:8000/media/"
+readonly APIUrl = "http://localhost:8000";
+readonly PhotoUrl = "http://localhost:8000/media/"
 
   constructor(private http:HttpClient) { }
 
   getAccountList():Observable<any[]>{
-    return this.http.get<any[]>(this.APIUrl + '/account/');
+    console.log('===================');
+    console.log(this.APIUrl + '/account/');
+    let x: Observable<any[]> = this.http.get<any[]>(this.APIUrl + '/account/');
+    console.log(x);
+    
+    return x;
   }
 
   addAccount(val:any){
