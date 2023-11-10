@@ -217,3 +217,16 @@ body {
   margin-left: 8vw;
   margin-right: 8vw;
 }
+
+input[type=submit], .context button{
+    color: white;
+    width: 150px;
+    font-weight: bold;
+    -webkit-border-radius: 60px;
+      -moz-border-radius: 60px;
+      -ms-border-radius: 60px;
+      -o-border-radius: 60px;
+      border-radius: 60px;
+      border: #12263A solid 7px;
+      background-color: #12263A;
+  }
