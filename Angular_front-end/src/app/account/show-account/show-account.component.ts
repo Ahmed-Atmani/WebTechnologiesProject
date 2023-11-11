@@ -44,6 +44,15 @@ export class ShowAccountComponent implements OnInit {
     this.ActivateAddEditAccountComp = true;
   }
 
+  deleteClick(dataItem:any){
+    if (confirm("Are you sure?")){
+      this.service.deleteAccount(dataItem.AccountId).subscribe(data => {
+        alert(data.toString());
+        this.refreshAccountList();
+      })
+    }
+  }
+
   refreshAccountList(){
     this.service.getAccountList().subscribe(data => {
       this.AccountList = data;

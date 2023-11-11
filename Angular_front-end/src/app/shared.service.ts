@@ -24,7 +24,8 @@ readonly PhotoUrl = "http://localhost:8000/media/"
   }
   
   deleteAccount(val:any){
-    return this.http.delete(this.APIUrl + '/account/', val);
+    console.log("Deleting " + val);
+    return this.http.delete(this.APIUrl + '/account/'+ val);
   }
 
   UploadPhoto(val:any){
