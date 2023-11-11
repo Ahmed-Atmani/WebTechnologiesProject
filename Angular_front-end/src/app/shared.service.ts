@@ -6,8 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class SharedService {
-readonly APIUrl = "http://127.0.0.1:8000";
-readonly PhotoUrl = "http://127.0.0.1:8000/media/"
+readonly APIUrl = "http://localhost:8000";
+readonly PhotoUrl = "http://localhost:8000/media/"
 
   constructor(private http:HttpClient) { }
 
@@ -24,7 +24,8 @@ readonly PhotoUrl = "http://127.0.0.1:8000/media/"
   }
   
   deleteAccount(val:any){
-    return this.http.delete(this.APIUrl + '/account/', val);
+    console.log("Deleting " + val);
+    return this.http.delete(this.APIUrl + '/account/'+ val);
   }
 
   UploadPhoto(val:any){

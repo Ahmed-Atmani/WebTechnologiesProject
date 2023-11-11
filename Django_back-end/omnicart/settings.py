@@ -49,7 +49,8 @@ INSTALLED_APPS = [
 
 
 CORS_ORIGIN_ALLOW_ALL = True
-# CORS_ORIGIN_WHITELIST = ('http://google.com') # To whitelist a specific domain
+CORS_ALLOW_ALL_ORIGINS = True
+# CORS_ORIGIN_WHITELIST = ('http://localhost:4200') # To whitelist a specific domain
 
 
 MIDDLEWARE = [
@@ -60,6 +61,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'omnicart.urls'
