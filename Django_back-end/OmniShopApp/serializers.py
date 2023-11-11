@@ -6,14 +6,24 @@ class ItemSerializer(serializers.ModelSerializer):
         model = Item
         fields = ('ItemId', 
                   'ItemName')
-        
+
+
 class AccountSerializer(serializers.ModelSerializer):
     class Meta:
         model = Account
-        fields = ('AccountId', 
-                  'AccountFirstName',
-                  'AccountLastName',
-                  'AccountPicture')
+        fields = (  'AccountId', 
+                    'AccountFirstName',
+                    'AccountLastName',
+                    'AccountPicture',
+                    'AccountBirthDate',
+                    'AccountEmail',                  
+                    'AccountPassword',  
+
+                    'AccountAddressStreet',
+                    'AccountAddressCity',
+                    'AccountAddressCountry',
+                    'AccountAddressStreetNumber',
+                    'AccountAddressPostalCode')
         
 class PurchaseSerializer(serializers.ModelSerializer):
     class Meta:
