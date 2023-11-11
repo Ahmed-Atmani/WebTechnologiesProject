@@ -55,6 +55,7 @@ export class AddEditAccountComponent implements OnInit {
       AccountAddressStreetNumber: this.AccountAddressStreetNumber,
       AccountAddressPostalCode: this.AccountAddressPostalCode,
     }
+    console.log(val.AccountBirthDate);
     this.service.addAccount(val).subscribe(res => {
       alert(res.toString());
     })

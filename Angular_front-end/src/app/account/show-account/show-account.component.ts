@@ -27,7 +27,7 @@ export class ShowAccountComponent implements OnInit {
       AccountFirstName:"",
       AccountLastName:"",
       AccountPicture:"",
-      AccountBirthDate:"",
+      AccountBirthDate: new Date(2023, 1, 1),
       AccountEmail:"",
       AccountPassword:"",
       AccountAddressStreet: "", 
