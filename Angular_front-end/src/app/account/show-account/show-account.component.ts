@@ -38,6 +38,12 @@ export class ShowAccountComponent implements OnInit {
     this.refreshAccountList();
   }
 
+  editClick(dataItem:any) {
+    this.account = dataItem;
+    this.ModalTitle = "Edit Account";
+    this.ActivateAddEditAccountComp = true;
+  }
+
   refreshAccountList(){
     this.service.getAccountList().subscribe(data => {
       this.AccountList = data;
