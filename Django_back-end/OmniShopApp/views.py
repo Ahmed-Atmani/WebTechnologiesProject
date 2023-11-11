@@ -3,7 +3,7 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
 
-from OmniShopApp.models import Accounts, Items, Purchases
+from OmniShopApp.models import Account, Item, Purchase
 from OmniShopApp.serializers import AccountSerializer, ItemSerializer, PurchaseSerializer
 
 from django.core.files.storage import default_storage
