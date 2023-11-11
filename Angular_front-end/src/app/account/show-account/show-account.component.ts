@@ -26,7 +26,15 @@ export class ShowAccountComponent implements OnInit {
       AccountId:0,
       AccountFirstName:"",
       AccountLastName:"",
-      AccountPicture:""
+      AccountPicture:"",
+      AccountBirthDate:"",
+      AccountEmail:"",
+      AccountPassword:"",
+      AccountAddressStreet: "", 
+      AccountAddressCity: "", 
+      AccountAddressCountry: "",  
+      AccountAddressStreetNumber: 0, 
+      AccountAddressPostalCode: 0
     }
     this.ModalTitle = "Add Account";
     this.ActivateAddEditAccountComp = true;
