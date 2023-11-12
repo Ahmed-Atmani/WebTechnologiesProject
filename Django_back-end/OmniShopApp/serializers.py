@@ -1,23 +1,33 @@
 from rest_framework import serializers
-from OmniShopApp.models import Items, Accounts, Purchases
+from OmniShopApp.models import Item, Account, Purchase
 
 class ItemSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Items
+        model = Item
         fields = ('ItemId', 
                   'ItemName')
-        
+
+
 class AccountSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Accounts
-        fields = ('AccountId', 
-                  'AccountFirstName',
-                  'AccountLastName',
-                  'AccountPicture')
+        model = Account
+        fields = (  'AccountId', 
+                    'AccountFirstName',
+                    'AccountLastName',
+                    'AccountPicture',
+                    'AccountBirthDate',
+                    'AccountEmail',                  
+                    'AccountPassword',  
+
+                    'AccountAddressStreet',
+                    'AccountAddressCity',
+                    'AccountAddressCountry',
+                    'AccountAddressStreetNumber',
+                    'AccountAddressPostalCode')
         
 class PurchaseSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Purchases
+        model = Purchase
         fields = ('PurchaseId',
                   'ItemId',
                   'AccountId')

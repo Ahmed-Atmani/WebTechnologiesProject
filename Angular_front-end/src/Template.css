@@ -218,9 +218,14 @@ body {
   margin-right: 8vw;
 }
 
-input[type=submit], .context button{
+h2{
+    font-weight: bold;
+    color: #12263A;
+}
+
+input[type=submit], .context button, .context .button{
     color: white;
-    width: 150px;
+    width: 100%;
     font-weight: bold;
     -webkit-border-radius: 60px;
       -moz-border-radius: 60px;
@@ -229,4 +234,16 @@ input[type=submit], .context button{
       border-radius: 60px;
       border: #12263A solid 7px;
       background-color: #12263A;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow:unset;
   }
+
+input[type=submit]:hover, .context button:hover, .context .button:hover{
+    background-color: #6e8499;
+    border: #6e8499 solid 7px;
+}  
+
+.context .button{
+    text-decoration: none;
+}
