@@ -22,6 +22,7 @@
         }
 
       </style>
+      <script src="{% static 'register.ts' %}"></script>
   </head>
   <body>
 
@@ -83,7 +84,7 @@
 
     <h2>Sign up!</h2>
 
-    <form class="signup" action="index.html" method="get">
+    <form id="registerform" action="{% Django_back-end\OmniShopApp\views.py accountAPI %} " method="post">
 
       <label for="fname">First name: </label>
       <input type="text" name="fname" value="" required>
