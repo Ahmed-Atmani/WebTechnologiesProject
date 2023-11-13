@@ -18,24 +18,24 @@ def accountApi(request, id=0):
         accounts_serializer = AccountSerializer(accounts, many=True)
         return JsonResponse(accounts_serializer.data, safe=False)
     
-    # elif request.method == 'POST':
-    #     account_data = JSONParser().parse(request)
-    #     account_serializer = AccountSerializer(data=account_data)
+    elif request.method == 'POST':
+        account_data = JSONParser().parse(request)
+        account_serializer = AccountSerializer(data=account_data)
     
-    #     if account_serializer.is_valid():
-    #         account_serializer.save()
-    #         return JsonResponse("Added successfully!", safe=False)
-    #     return JsonResponse("Failed to add.", safe=False)
+        if account_serializer.is_valid():
+            account_serializer.save()
+            return JsonResponse("Added successfully!", safe=False)
+        return JsonResponse("Failed to add.", safe=False)
 
-    if request.method == 'POST':
-        form = YourModelForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('success-url')  # Replace 'success-url' with the URL where you want to redirect after successful submission
-    else:
-        form = YourModelForm()
+    # if request.method == 'POST':
+    #     form = YourModelForm(request.POST)
+    #     if form.is_valid():
+    #         form.save()
+    #         return redirect('success-url')  # Replace 'success-url' with the URL where you want to redirect after successful submission
+    # else:
+    #     form = YourModelForm()
 
-    return render(request, 'register.html', {'form': form})
+    # return render(request, 'register.html', {'form': form})
 
 
     
