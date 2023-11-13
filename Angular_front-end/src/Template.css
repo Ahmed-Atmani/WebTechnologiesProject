@@ -181,7 +181,8 @@ body {
           bottom: 2px;
           right: 2px;
           background-color: #8ABCD7;
-          -webkit- -moz-border-radius: 60px;
+          -webkit-border-radius: 60px;
+          -moz-border-radius: 60px;
           -ms-border-radius: 60px;
           -o-border-radius: 60px;
           border-radius: 60px;
