@@ -2,10 +2,30 @@ Project Web Technologies
 ========================
 
 Logo
------
+----
 
 ![image](https://github.com/Ahmed-Atmani/WebTechnologiesProject/assets/97768435/e3b1e49f-b5da-4853-a009-b4d0ba96b5f3)
 
+
+Setting up
+----------
+1. Install node.js
+1. First run this command in PowerShell:
+    ```powershell
+    Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
+    ```
+1. Install angular cli by running the following commands in PowerShell:
+    ```powershell
+    npm install -g @angular/cli
+    ```
+1. Run the following command in the Angular_front-end folder: 
+    ```powershell
+    npm install
+    ```
+
+Starting the server and front-end
+---------------------------------
+1. Execute the ```start.bat``` file
 
 Pages
 -----
