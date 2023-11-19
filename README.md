@@ -6,9 +6,24 @@ Logo
 
 ![image](https://github.com/Ahmed-Atmani/WebTechnologiesProject/assets/97768435/e3b1e49f-b5da-4853-a009-b4d0ba96b5f3)
 
+Setting up the back-end
+-----------------------
+1. Create virtual environment:
+   ```
+   python -m venv Django_back-end\venv
+   ```
+2. Activate virtual environment:
+   ```
+   .\Django_back-end\venv\Scripts\activate
+   ```
+3. Install required packages:
+   ```
+   pip install -r .\requirements.txt
+   ```
 
-Setting up
-----------
+
+Setting up the front-end
+------------------------
 1. Install node.js
 1. First run this command in PowerShell:
     ```powershell
@@ -32,6 +47,7 @@ Pages
 **Marouane = 1**  
 **Souhaila = 2**  
 **Ahmed = 3**  
+**Ruth = 3**
 
 ### To be implemented
 1. Homepage (nieuw vs tweedehands;  verkoper vs particulier) (met knop logo, zoekbalk)
@@ -55,7 +71,7 @@ Pages
 ---
 
 ### Other
-- Klachtdienst/Rapporteer
+4. Klachtdienst/Rapporteer
 - Chat with seller
 
 List of features
