@@ -248,3 +248,9 @@ input[type=submit]:hover, .context button:hover, .context .button:hover{
 .context .button{
     text-decoration: none;
 }
+
+#carouselExampleIndicators{
+    margin: auto;
+    max-width: 350px;
+    max-height: 350px;
+}
