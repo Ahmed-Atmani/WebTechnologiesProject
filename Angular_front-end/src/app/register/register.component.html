@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>OmniCart</title>
+    <script src="main.ts"></script>
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+      <link rel="stylesheet" href="register.component.css">
+      <style>
+
+        h2{
+          text-align: center;
+        }
+
+        form{
+          display: flex;
+          flex-direction: column;
+          flex-wrap: wrap;
+          justify-items: center;
+        }
+
+      </style>
+      <script src="{% static 'register.ts' %}"></script>
+  </head>
+  <body>
+
+<div class="container-fluid">
+
+<div class="navbar">
+
+<div class="logo">
+    <ul class="nav">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="https://imagecolorpicker.com/"><img src="../../assets/images/Omnipoints.png" alt="" width="70" height="70"></a>
+    </li>
+</div>
+
+<div class="searchbar">
+    <li class="nav-item">
+      <div class="topnav">
+  <input id="searchbar" type="text" placeholder="Search..">
+      </div>
+    </li>
+</div>
+
+
+<div class="navright">
+<div class="profile">
+    <li>
+    <div class="dropdown">
+          <button class="dropbtn"><svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="#FFFFFF" class="bi bi-person-circle" viewBox="0 0 16 16">
+              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+              <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+              </svg></button>
+          <div class="dropdown-content">
+              <a href="#">My Account</a>
+              <a href="#">My Orders</a>
+              <a href="#">Settings</a>
+          </div>
+      </div>
+      </li>
+</div>
+
+<div class="language">
+      <li>
+        <div class="switch">
+      <input id="language-toggle" class="check-toggle check-toggle-round-flat" type="checkbox">
+      <label for="language-toggle"></label>
+      <span class="on">NL</span>
+      <span class="off">EN</span>
+  </div></li>
+</div>
+
+</div>
+
+  </div>
+
+  </ul>
+  </div>
+
+  <div class="context">
+
+    <h2>Sign up!</h2>
+
+    <form id="registerform" action="{% Django_back-end\OmniShopApp\views.py accountAPI %} " method="post">
+
+      <label for="fname">First name: </label>
+      <input type="text" name="fname" [(ngModel)]="AccountFirstName" value="" required>
+      <label for="lname">Last name: </label>
+      <input type="text" name="lname" [(ngModel)]="AccountLastName" value="" required>
+      <br>
+      <br>
+      <label for="bdate">Birth date: </label>
+      <input type="date" name="bdate" [(ngModel)]="AccountBirthDate" value="" required>
+      <br>
+      <br>
+      <label for="email">E-mail: </label>
+      <input type="email" name="email" [(ngModel)]="AccountEmail" value="" required>
+      <br>
+      <br>
+      <label for="password">Password: </label>
+      <input id="password" type="password" name="password" [(ngModel)]="AccountPassword" value="" required minlength="8">
+      <label for="password">Confirm your password: </label>
+      <input id="password2" type="password" name="password" [(ngModel)]="AccountPassword" value="" required min="8">
+      <p id="message"></p>
+      <br>
+      <br>
+      <p><b>Adress: </b></p>
+      <br>
+      <input type="text" name="street" placeholder="Street" [(ngModel)]="AccountAddressStreet" required>
+      <input type="text" name="streetnr" placeholder="Streetnumber" [(ngModel)]="AccountAddressStreetNumber" required>
+      <br>
+      <br>
+      <input type="text" name="city" placeholder="City" [(ngModel)]="AccountAddressCity" required minlength="2">
+      <input type="number" name="postcode" placeholder="Postal code" [(ngModel)]="AccountAddressPostalCode" required min="1000" max="9999">
+      <br>
+      <br>
+      <input type="text" name="country" placeholder="Country" [(ngModel)]="AccountAddressCountry" required>
+      <br>
+      <br>
+      <input id="register_button" (click)="addAccount()" *ngIf="account.AccountId==0" type="submit" name="" value="Register" href="login.html">
+
+
+    </form>
+
+  </div>
+  </body>
+</html>

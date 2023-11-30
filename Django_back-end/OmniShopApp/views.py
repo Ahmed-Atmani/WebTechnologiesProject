@@ -27,16 +27,6 @@ def accountApi(request, id=0):
             return JsonResponse("Added successfully!", safe=False)
         return JsonResponse("Failed to add.", safe=False)
 
-    # if request.method == 'POST':
-    #     form = YourModelForm(request.POST)
-    #     if form.is_valid():
-    #         form.save()
-    #         return redirect('success-url')  # Replace 'success-url' with the URL where you want to redirect after successful submission
-    # else:
-    #     form = YourModelForm()
-
-    # return render(request, 'register.html', {'form': form})
-
 
     
     elif request.method == 'PUT':

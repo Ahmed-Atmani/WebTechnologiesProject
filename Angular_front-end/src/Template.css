@@ -205,7 +205,6 @@ body {
           transition: margin 0.2s;
       }
 
-  input.check-toggle-round-flat:checked+label {}
 
   input.check-toggle-round-flat:checked+label:after {
           margin-left: 44px;
@@ -245,6 +244,60 @@ input[type=submit]:hover, .context button:hover, .context .button:hover{
     border: #6e8499 solid 7px;
 }  
 
+.context{
+    margin-left: 0;
+}
 .context .button{
     text-decoration: none;
+}
+
+.context .catalog-bar{
+    background-color: #8ABCD7;
+    position: fixed;
+    overflow: visible;
+    z-index: 999;
+    padding: 0;
+    margin: 0;
+    
+}
+.context .catalog-bar a{
+    color: #fff;
+    text-decoration: none;
+}
+
+
+
+.context .catalog-bar ul{
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    z-index: 999;
+    justify-content: space-evenly;
+    text-align: left;
+    margin: 0;
+    padding: 0;
+    border: 1px solid #12263A;
+    left: 0;
+    height: 100%;
+}
+
+.context .catalog-bar div{
+    border-bottom: 1px solid #12263A;
+}
+
+.context .catalog-bar div:last-child{
+    border-bottom: none;
+}
+
+.context .catalog-bar ul li:hover{
+    background-color: #12263A;
+}
+
+.context .catalog-bar li a{
+    display: block;
+    width: 200px;
+}
+
+.context .catalog-bar .active{
+    background-color: #12263A;
 }
