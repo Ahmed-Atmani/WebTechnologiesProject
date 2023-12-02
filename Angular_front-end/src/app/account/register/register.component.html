@@ -84,7 +84,7 @@
 
     <h2>Sign up!</h2>
 
-    <form id="registerform" action="{% Django_back-end\OmniShopApp\views.py accountAPI %} " method="post">
+    <div class="registerform">
 
       <label for="fname">First name: </label>
       <input type="text" name="fname" [(ngModel)]="AccountFirstName" value="" required>
@@ -120,11 +120,12 @@
       <input type="text" name="country" placeholder="Country" [(ngModel)]="AccountAddressCountry" required>
       <br>
       <br>
-      <input id="register_button" (click)="addAccount()" *ngIf="account.AccountId==0" type="submit" name="" value="Register" href="login.html">
-
-
-    </form>
-
+      <a href="../../login.html">
+      <button (click)="addAccount()" *ngIf="account.AccountId==0" class="btn btn-primary"> Register </button>
+    </a>
+<br>
+</div>
+<br>
   </div>
   </body>
 </html>

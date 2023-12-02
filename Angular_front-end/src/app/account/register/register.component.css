@@ -237,6 +237,7 @@ input[type=submit], .context button, .context .button{
       white-space: nowrap;
       overflow: hidden;
       text-overflow:unset;
+      white-space: nowrap;
   }
 
 input[type=submit]:hover, .context button:hover, .context .button:hover{
