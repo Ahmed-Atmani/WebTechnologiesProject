@@ -41,7 +41,7 @@ export class RegisterComponent implements OnInit {
     
   }
 
-  addAccount(){
+  registerAccount(){
     var val = {AccountId:this.AccountId,
       AccountFirstName: this.AccountFirstName,
       AccountLastName: this.AccountLastName,
@@ -57,26 +57,6 @@ export class RegisterComponent implements OnInit {
     }
     console.log(val.AccountBirthDate);
     this.service.addAccount(val).subscribe(res => {
-      alert(res.toString());
-    })
-
-  }
-
-  updateAccount(){
-    var val = {AccountId:this.AccountId,
-      AccountFirstName: this.AccountFirstName,
-      AccountLastName: this.AccountLastName,
-      AccountPicture: this.AccountPicture,
-      AccountBirthDate: this.AccountBirthDate,
-      AccountEmail: this.AccountEmail,
-      AccountPassword: this.AccountPassword,
-      AccountAddressStreet: this.AccountAddressStreet,
-      AccountAddressCity: this.AccountAddressCity,
-      AccountAddressCountry: this.AccountAddressCountry,
-      AccountAddressStreetNumber: this.AccountAddressStreetNumber,
-      AccountAddressPostalCode: this.AccountAddressPostalCode,
-    }
-    this.service.updateAccount(val).subscribe(res => {
       alert(res.toString());
     })
   }

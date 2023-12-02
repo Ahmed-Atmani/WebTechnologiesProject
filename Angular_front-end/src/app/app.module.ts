@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { AccountComponent } from './account/account.component';
 import { ShowAccountComponent } from './account/show-account/show-account.component';
 import { AddEditAccountComponent } from './account/add-edit-account/add-edit-account.component';
+import { RegisterComponent } from './account/register/register.component';
 import { SharedService } from './shared.service';
 
 import {HttpClientModule} from '@angular/common/http';
@@ -18,6 +19,7 @@ import { AccountOverviewComponent } from './account/account-overview/account-ove
     AccountComponent,
     ShowAccountComponent,
     AddEditAccountComponent,
+    RegisterComponent,
     AccountOverviewComponent,
   ],
   imports: [

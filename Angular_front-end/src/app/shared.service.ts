@@ -36,6 +36,9 @@ readonly PhotoUrl = "http://localhost:8000/media/"
     return this.http.get<any[]>(this.APIUrl + '/account/');
   }
 
+  regiserAccount(val:any){
+    return this.http.post(this.APIUrl + '/account/', val);
+  }
   // Add all other API's for remaining models 
 
 }
