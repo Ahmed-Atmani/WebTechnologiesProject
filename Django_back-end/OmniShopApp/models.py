@@ -6,7 +6,6 @@ class Item(models.Model):
     ItemId = models.AutoField(primary_key=True)
     ItemName = models.CharField(max_length=100)
 
-
 class Address(models.Model):
     AddressId = models.AutoField(primary_key=True)
     AddressStreet = models.CharField(max_length=20)
