@@ -1,0 +1,85 @@
+<div class="container">
+  <div class="container-fluid">
+
+    <div class="navbar">
+    
+    <div class="logo">
+        <ul class="nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="home" [routerLink]="['/']"><img src="assets/images/Omnipoints.png" alt="" width="70" height="70"></a>
+        </li>
+    
+    <div class="searchbar">
+        <li class="nav-item">
+          <div class="topnav">
+      <input id="searchbar" type="text" placeholder="Search..">
+          </div>
+        </li>
+    </div>
+    
+    
+    <div class="navright">
+    <div class="profile">
+        <li>
+        <div class="dropdown">
+              <button class="dropbtn" href="home" [routerLink]="['/account-overview']"><svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="#FFFFFF" class="bi bi-person-circle" viewBox="0 0 16 16">
+                  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                  <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                  </svg></button>
+              <div class="dropdown-content">
+                  <a href="#">My Account</a>
+                  <a href="#">My Orders</a>
+                  <a href="#">Settings</a>
+              </div>
+          </div>
+          </li>
+    </div>
+    
+    <div class="language">
+          <li>
+            <div class="switch">
+          <input id="language-toggle" class="check-toggle check-toggle-round-flat" type="checkbox">
+          <label for="language-toggle"></label>
+          <span class="on">NL</span>
+          <span class="off">EN</span>
+      </div></li>
+    </div>
+    
+    </div>
+    
+    
+      </ul>
+      </div>
+    </div>
+    
+    <div>
+      <nav class="navbar navbar-expand-sm bg-light navbar-dark">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <button routerLink="account-test"
+          class="m-1 btn btn-light btn-outline-primary" Button>Account TEST</button>
+        </li>
+      
+        <li class="nav-item">
+          <button routerLink="account-overview"
+          class="m-1 btn btn-light btn-outline-primary" Button>Account overview</button>
+        </li>
+      
+        <!-- Add other pages -->
+        <!-- <li class="nav-item">
+          <button routerLink="account"
+          class="m-1 btn btn-light btn-outline-primary" Button></button>
+        </li> -->
+      
+      </ul>
+    <!-- </div> -->
+  <!-- </div> -->
+  </nav>
+
+
+  <router-outlet></router-outlet>
+
+</div>
+</div>
+</div>
+
