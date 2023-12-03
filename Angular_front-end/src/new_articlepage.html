@@ -7,6 +7,95 @@
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
       <link rel="stylesheet" href="Template.css">
+      <style>
+        .context .catalog-bar{
+            background-color: #8ABCD7;
+            position: fixed;
+            overflow: visible;
+            z-index: 999;
+            padding: 0;
+            margin: 0;
+            
+        }
+        .context .catalog-bar a{
+            color: #fff;
+            text-decoration: none;
+        }
+
+
+
+        .context .catalog-bar ul{
+            display: flex;
+            flex-direction: column;
+            list-style-type: none;
+            z-index: 999;
+            justify-content: space-evenly;
+            text-align: left;
+            margin: 0;
+            padding: 0;
+            border: 1px solid #12263A;
+            left: 0;
+            height: 100%;
+        }
+
+        .context .catalog-bar div{
+            border-bottom: 1px solid #12263A;
+        }
+
+        .context .catalog-bar div:last-child{
+            border-bottom: none;
+        }
+
+        .context .catalog-bar ul li:hover{
+            background-color: #12263A;
+        }
+
+        .context .catalog-bar li a{
+            display: block;
+            width: 200px;
+        }
+
+        .context .catalog-bar .active{
+            background-color: #12263A;
+        }
+
+        .catalog{
+          display: flex;
+          flex-direction: column;
+        }
+
+        .category-articles{
+          margin-left: 250px;
+          flex-flow: column;
+        }
+
+        .popular{
+          text-align: center;
+          font-weight: bolder;
+          background-color: #F3C677;
+          width: 100%;
+          height: 325px;
+          display: inline-block;
+        }
+
+        .popular-product{
+          text-align: center;
+          font-weight: bold;
+          display: inline-block;
+          margin: 10px;
+          padding: 10px;
+        }
+
+        .popular-product img{
+          border: #12263A solid 2px;
+          max-width: 200px;
+          height: 200px;
+          display: block;
+          margin: auto;
+        }
+        
+
+      </style>
   </head>
   
   <body>
@@ -20,6 +109,7 @@
     <li class="nav-item">
       <a class="nav-link active" aria-current="page" href="https://imagecolorpicker.com/"><img src="assets/images/Omnipoints.png" alt="" width="70" height="70"></a>
     </li>
+    </ul>
 </div>
 
 <div class="searchbar">
@@ -67,6 +157,7 @@
 
   <div class="context">
     
+    <div class="catalog">
     <div class="catalog-bar">
         <ul>
             <div class="category">
@@ -78,10 +169,47 @@
             
         </ul>
     </div>
+    <div class="category-articles">
+      <div class="categorty-name">
+        <h2>Category 1</h2>
+        <br>
+      </div>
 
+      <div class="popular">
+        <br>
+        <h3>Popular Items</h3>
+        <div class="popular-product">
+          <img src="assets/images/aardbei.jpg" alt="picture">
+          <label for="">Aardbei</label>
+        </div>
+        <div class="popular-product">
+          <img src="assets/images/mango.jpg" alt="">
+          <label for="">Mango</label>
+        </div>
+        <div class="popular-product">
+          <img src="assets/images/appel.jpg" alt="">
+          <label for="">Appel</label>
+        </div>
+
+      <ul class="category-products">
+
+      </ul>
+    </div>
 
   </div>
 
+<ul class="pagination">
+  <li><a href="#">1</a></li>
+  <li class="active"><a href="#">2</a></li>
+  <li><a href="#">3</a></li>
+  <li><a href="#">4</a></li>
+  <li><a href="#">5</a></li>
+</ul>
 
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-rZtkjYNlEX5DJBC8pHqR8P4Xh4e7aKSe0TF6s/wfSwlt92PS9zFIAWVlQ8f3SdoJ" crossorigin="anonymous"></script>
+  
   </body>
 </html>
