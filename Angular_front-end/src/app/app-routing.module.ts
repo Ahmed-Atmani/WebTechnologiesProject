@@ -5,6 +5,7 @@ import { AccountComponent } from './account/account.component';
 import { ShowAccountComponent } from './account/show-account/show-account.component';
 import { AccountOverviewComponent } from './account/account-overview/account-overview.component';
 import { RegisterComponent } from './account/register/register.component';
+import { ItemComponent } from './item/item.component';
 
 
 const routes: Routes = [
@@ -12,6 +13,8 @@ const routes: Routes = [
   {path:'home', component:AccountComponent},
   {path:'account-overview', component:AccountOverviewComponent},
   {path:'register', component:RegisterComponent},
+
+  {path:'item/:id', component: ItemComponent}
 ];
 
 @NgModule({

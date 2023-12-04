@@ -12,6 +12,7 @@ import { SharedService } from './shared.service';
 import {HttpClientModule} from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AccountOverviewComponent } from './account/account-overview/account-overview.component';
+import { ItemComponent } from './item/item.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { AccountOverviewComponent } from './account/account-overview/account-ove
     AddEditAccountComponent,
     RegisterComponent,
     AccountOverviewComponent,
+    ItemComponent,
   ],
   imports: [
     BrowserModule,

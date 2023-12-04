@@ -11,6 +11,7 @@ readonly PhotoUrl = "http://localhost:8000/media/"
 
   constructor(private http:HttpClient) { }
 
+  // == ACCOUNT ==
   getAccountList():Observable<any[]>{
     return this.http.get<any[]>(this.APIUrl + '/account/');
   }
@@ -24,7 +25,6 @@ readonly PhotoUrl = "http://localhost:8000/media/"
   }
   
   deleteAccount(val:any){
-    console.log("Deleting " + val);
     return this.http.delete(this.APIUrl + '/account/'+ val);
   }
 
@@ -40,6 +40,31 @@ readonly PhotoUrl = "http://localhost:8000/media/"
     return this.http.post(this.APIUrl + '/account/', val);
   }
   // Add all other API's for remaining models 
+
+  getItemList():Observable<any[]>{
+    return this.http.get<any[]>(this.APIUrl + '/item/');
+  }
+  
+  // == ITEM ==
+  addItem(val:any){
+    return this.http.post(this.APIUrl + '/item/', val);
+  }
+  
+  updateItem(val:any){
+    return this.http.put(this.APIUrl + '/item/', val);
+  }
+  
+  deleteItem(val:any){
+    return this.http.delete(this.APIUrl + '/item/'+ val);
+  }
+  
+  getAllItems():Observable<any[]>{
+    return this.http.get<any[]>(this.APIUrl + '/item/');
+  }
+
+  regiserItem(val:any){
+    return this.http.post(this.APIUrl + '/item/', val);
+  }
 
 }
 
