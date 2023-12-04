@@ -10,7 +10,7 @@ urlpatterns = [
     re_path(r'^account/$', views.accountApi),
     re_path(r'^account/([0-9]+)$', views.accountApi),
 
-    re_path(r'^item/$', views.itemApi),
+        re_path(r'^item/$', views.itemApi),
     re_path(r'^item/([0-9]+)$', views.itemApi),
 
     re_path(r'^SaveFile$', views.SaveFile),

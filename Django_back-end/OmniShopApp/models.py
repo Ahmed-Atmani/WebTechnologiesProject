@@ -1,6 +1,5 @@
 from django.db import models
 
-
 # Create your models here.
 
 class Item(models.Model):
@@ -15,7 +14,6 @@ class Address(models.Model):
     AddressCountry = models.CharField(max_length=20)
     AddressStreetNumber = models.PositiveIntegerField()
     AddressPostalCode = models.PositiveIntegerField()
-
 
 class Account(models.Model):
     AccountId = models.AutoField(primary_key=True)
@@ -32,26 +30,8 @@ class Account(models.Model):
     AccountAddressStreetNumber = models.PositiveIntegerField()
     AccountAddressPostalCode = models.PositiveIntegerField()
 
-
 class Purchase(models.Model):
     PurchaseId = models.AutoField(primary_key=True)
     Item = models.ForeignKey(Item, on_delete=models.CASCADE)
     Account = models.ForeignKey(Account, on_delete=models.CASCADE)
-
-
-STATUS_CHOICES = (
-    (1, 'Not Started'),
-    (2, 'In Progress'),
-    (3, 'Closed'),
-)
-
-
-class Complaint(models.Model):
-    ComplaintId = models.AutoField(primary_key=True)
-    Account = models.ForeignKey(Account, on_delete=models.CASCADE, related_name='complaints')
-    Item = models.ForeignKey(Item, on_delete=models.CASCADE, null=True)
-    Description = models.TextField()
-    Submit_date = models.DateTimeField(auto_now_add=True)
-    Status = models.IntegerField(default=0, choices=STATUS_CHOICES)
-
 
