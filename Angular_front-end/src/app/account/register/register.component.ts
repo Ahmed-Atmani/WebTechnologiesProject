@@ -63,7 +63,7 @@ export class RegisterComponent implements OnInit {
 
   }
 
-  updateAccount(){
+  registerAccount(){
     var val = {AccountId:this.AccountId,
       AccountFirstName: this.AccountFirstName,
       AccountLastName: this.AccountLastName,
