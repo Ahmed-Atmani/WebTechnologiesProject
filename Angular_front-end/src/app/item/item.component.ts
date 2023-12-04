@@ -11,6 +11,10 @@ import { SharedService } from '../shared.service';
 export class ItemComponent implements OnInit{
   ItemId: number = -1;
   ItemName: string = "";
+  ItemPrice: number = -1;
+  ItemDescription: string = "";
+  ItemCategoryId: number = -1;
+  ItemCategoryName: String = "";
 
   constructor(private route: ActivatedRoute, private service: SharedService) {
   }
@@ -23,6 +27,9 @@ export class ItemComponent implements OnInit{
   
         if (item) {
           this.ItemName = item.ItemName;
+          this.ItemPrice = item.ItemPrice;
+          this.ItemDescription = item.ItemDescription;
+          this.ItemCategoryId = item.ItemCategory;
         } 
         else {
           console.error(`No item has the folowing id: ${this.ItemId}`);
