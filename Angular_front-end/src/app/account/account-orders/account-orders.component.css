@@ -1,0 +1,37 @@
+body {
+    background-color: white;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#order {
+    display: flex;
+    flex-direction: row;
+    border: 3px solid black;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+#order-buttons {
+    display: flex;
+    flex-direction: column;
+}
+
+.track-package,.cancel-order {
+    color: white;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: auto;
+}
+
+.track-package {
+    background-color: #8ABCD7;
+    margin-bottom: 5px;
+}
+
+.cancel-order {
+    background-color: red;
+}
+
+#profile-pic {
+    margin-right: 10px;
+}

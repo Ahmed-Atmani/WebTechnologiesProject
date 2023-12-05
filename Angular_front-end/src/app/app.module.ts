@@ -12,7 +12,13 @@ import { SharedService } from './shared.service';
 import {HttpClientModule} from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AccountOverviewComponent } from './account/account-overview/account-overview.component';
+
 import { ItemComponent } from './item/item.component';
+
+import { AccountPointsComponent } from './account/account-points/account-points.component';
+import { AccountPreferencesComponent } from './account/account-preferences/account-preferences.component';
+import { AccountSettingsComponent } from './account/account-settings/account-settings.component';
+import { AccountOrdersComponent } from './account/account-orders/account-orders.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +29,10 @@ import { ItemComponent } from './item/item.component';
     RegisterComponent,
     AccountOverviewComponent,
     ItemComponent,
+    AccountPointsComponent,
+    AccountPreferencesComponent,
+    AccountSettingsComponent,
+    AccountOrdersComponent,
   ],
   imports: [
     BrowserModule,
