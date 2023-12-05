@@ -12,7 +12,7 @@ export class ItemComponent implements OnInit{
   ItemId: number = -1;
   ItemName: string = "";
   ItemPrice: number = -1;
-  ItemDescription: string = "";
+  ItemDetails: string = "";
   ItemCategoryId: number = -1;
   ItemCategoryName: String = "";
 
@@ -28,7 +28,7 @@ export class ItemComponent implements OnInit{
         if (item) {
           this.ItemName = item.ItemName;
           this.ItemPrice = item.ItemPrice;
-          this.ItemDescription = item.ItemDescription;
+          this.ItemDetails = item.ItemDetails;
           this.ItemCategoryId = item.ItemCategory;
         } 
         else {
