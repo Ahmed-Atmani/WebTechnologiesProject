@@ -15,6 +15,10 @@ const routes: Routes = [
   {path:'account-test', component:ShowAccountComponent},
   {path:'home', component:AccountComponent},
   {path:'account-overview', component:AccountOverviewComponent},
+  {path:'account-points', component:AccountPointsComponent},
+  {path:'account-preferences', component:AccountPreferencesComponent},
+  {path:'account-settings', component:AccountSettingsComponent},
+  {path:'account-orders', component:AccountOrdersComponent},
 ];
 
 @NgModule({
