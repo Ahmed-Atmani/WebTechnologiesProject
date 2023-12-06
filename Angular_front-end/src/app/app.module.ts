@@ -12,10 +12,6 @@ import { SharedService } from './shared.service';
 import {HttpClientModule} from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AccountOverviewComponent } from './account/account-overview/account-overview.component';
-import { CategoryComponent } from './new-article/category/category.component';
-import { ArticleComponent } from './new-article/category/article/article.component';
-import { OldArticleComponent } from './old-article/old-article.component';
-import { AddEditArticleComponent } from './new-article/add-edit-article/add-edit-article.component';
 
 import { ItemComponent } from './item/item.component';
 
@@ -32,18 +28,11 @@ import { AccountOrdersComponent } from './account/account-orders/account-orders.
     AddEditAccountComponent,
     RegisterComponent,
     AccountOverviewComponent,
-<<<<<<< HEAD
-    CategoryComponent,
-    ArticleComponent,
-    OldArticleComponent,
-    AddEditArticleComponent,
-=======
     ItemComponent,
     AccountPointsComponent,
     AccountPreferencesComponent,
     AccountSettingsComponent,
     AccountOrdersComponent,
->>>>>>> 79fd61e483dc4879d49b24c55058bb8860cc4740
   ],
   imports: [
     BrowserModule,
