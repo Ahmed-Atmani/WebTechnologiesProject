@@ -19,6 +19,7 @@ import { AccountPointsComponent } from './account/account-points/account-points.
 import { AccountPreferencesComponent } from './account/account-preferences/account-preferences.component';
 import { AccountSettingsComponent } from './account/account-settings/account-settings.component';
 import { AccountOrdersComponent } from './account/account-orders/account-orders.component';
+import { AddItemComponent } from './item/add-item/add-item.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { AccountOrdersComponent } from './account/account-orders/account-orders.
     AccountPreferencesComponent,
     AccountSettingsComponent,
     AccountOrdersComponent,
+    AddItemComponent,
   ],
   imports: [
     BrowserModule,
