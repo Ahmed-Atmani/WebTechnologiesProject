@@ -1,11 +1,22 @@
 from rest_framework import serializers
-from OmniShopApp.models import Item, Account, Purchase
+from OmniShopApp.models import Item, Account, Purchase, ItemCategory
 
 class ItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Item
         fields = ('ItemId', 
-                  'ItemName')
+                  'ItemName',
+                  'ItemDetails',
+                  'ItemPrice',
+                  'ItemCategory'
+                  )
+
+class ItemCategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ItemCategory
+        fields = (
+            'ItemCategoryId',
+            'ItemCategoryName')
 
 
 class AccountSerializer(serializers.ModelSerializer):

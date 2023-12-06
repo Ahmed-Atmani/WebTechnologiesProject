@@ -17,6 +17,13 @@ import { ArticleComponent } from './new-article/category/article/article.compone
 import { OldArticleComponent } from './old-article/old-article.component';
 import { AddEditArticleComponent } from './new-article/add-edit-article/add-edit-article.component';
 
+import { ItemComponent } from './item/item.component';
+
+import { AccountPointsComponent } from './account/account-points/account-points.component';
+import { AccountPreferencesComponent } from './account/account-preferences/account-preferences.component';
+import { AccountSettingsComponent } from './account/account-settings/account-settings.component';
+import { AccountOrdersComponent } from './account/account-orders/account-orders.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,10 +32,18 @@ import { AddEditArticleComponent } from './new-article/add-edit-article/add-edit
     AddEditAccountComponent,
     RegisterComponent,
     AccountOverviewComponent,
+<<<<<<< HEAD
     CategoryComponent,
     ArticleComponent,
     OldArticleComponent,
     AddEditArticleComponent,
+=======
+    ItemComponent,
+    AccountPointsComponent,
+    AccountPreferencesComponent,
+    AccountSettingsComponent,
+    AccountOrdersComponent,
+>>>>>>> 79fd61e483dc4879d49b24c55058bb8860cc4740
   ],
   imports: [
     BrowserModule,

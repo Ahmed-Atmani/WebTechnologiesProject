@@ -13,6 +13,9 @@ urlpatterns = [
     re_path(r'^item/$', views.itemApi),
     re_path(r'^item/([0-9]+)$', views.itemApi),
 
+    re_path(r'^item-category/$', views.itemCategoryApi),
+    re_path(r'^item-category/([0-9]+)$', views.itemCategoryApi),
+
     re_path(r'^SaveFile$', views.SaveFile),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

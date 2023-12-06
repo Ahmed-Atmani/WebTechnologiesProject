@@ -14,6 +14,10 @@ body {
     font-family: 'Montserrat', sans-serif;
 }
 
+.content-container{
+    margin-top: 100px;
+}
+
 /* NAVIGATION BAR */
   .navbar{
     display: flex;

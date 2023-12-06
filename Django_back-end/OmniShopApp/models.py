@@ -3,9 +3,18 @@ from django.db import models
 
 # Create your models here.
 
+class ItemCategory(models.Model):
+    ItemCategoryId = models.AutoField(primary_key=True)
+    ItemCategoryName = models.CharField(max_length=20)
+
+
 class Item(models.Model):
     ItemId = models.AutoField(primary_key=True)
-    ItemName = models.CharField(max_length=100)
+    ItemName = models.CharField(max_length=20)
+    ItemDetails = models.CharField(max_length=100)
+    ItemPrice = models.DecimalField(max_digits=6, decimal_places=2)
+    ItemCategory = models.ForeignKey(ItemCategory, on_delete=models.CASCADE)
+
 
 class Address(models.Model):
     AddressId = models.AutoField(primary_key=True)
