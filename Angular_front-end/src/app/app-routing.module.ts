@@ -10,6 +10,7 @@ import { AccountPreferencesComponent } from './account/account-preferences/accou
 import { AccountOrdersComponent } from './account/account-orders/account-orders.component';
 import { RegisterComponent } from './account/register/register.component';
 import { ItemComponent } from './item/item.component';
+import { AddItemComponent } from './item/add-item/add-item.component';
 
 
 const routes: Routes = [
@@ -22,6 +23,8 @@ const routes: Routes = [
   {path:'account-preferences', component:AccountPreferencesComponent},
   {path:'account-settings', component:AccountSettingsComponent},
   {path:'account-orders', component:AccountOrdersComponent},
+  {path:'add-item', component:AddItemComponent},
+  
 ];
 
 @NgModule({

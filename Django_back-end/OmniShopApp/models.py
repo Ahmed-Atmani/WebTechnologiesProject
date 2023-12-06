@@ -11,7 +11,7 @@ class ItemCategory(models.Model):
 class Item(models.Model):
     ItemId = models.AutoField(primary_key=True)
     ItemName = models.CharField(max_length=20)
-    ItemDetails = models.CharField(max_length=100)
+    ItemDetails = models.CharField(max_length=1000)
     ItemPrice = models.DecimalField(max_digits=6, decimal_places=2)
     ItemCategory = models.ForeignKey(ItemCategory, on_delete=models.CASCADE)
 
