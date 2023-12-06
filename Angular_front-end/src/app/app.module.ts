@@ -12,6 +12,10 @@ import { SharedService } from './shared.service';
 import {HttpClientModule} from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AccountOverviewComponent } from './account/account-overview/account-overview.component';
+import { CategoryComponent } from './new-article/category/category.component';
+import { ArticleComponent } from './new-article/category/article/article.component';
+import { OldArticleComponent } from './old-article/old-article.component';
+import { AddEditArticleComponent } from './new-article/add-edit-article/add-edit-article.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +25,10 @@ import { AccountOverviewComponent } from './account/account-overview/account-ove
     AddEditAccountComponent,
     RegisterComponent,
     AccountOverviewComponent,
+    CategoryComponent,
+    ArticleComponent,
+    OldArticleComponent,
+    AddEditArticleComponent,
   ],
   imports: [
     BrowserModule,

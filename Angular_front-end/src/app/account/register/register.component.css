@@ -223,7 +223,7 @@ h2{
     color: #12263A;
 }
 
-input[type=submit], .context button, .context .button{
+input[type=submit], .context button, .context .button, a button{
     color: white;
     width: 100%;
     font-weight: bold;
