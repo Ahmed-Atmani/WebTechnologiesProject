@@ -39,9 +39,9 @@
     <input type="text" name="country" placeholder="Country" [(ngModel)]="AccountAddressCountry" required>
     <br>
     <br>
-    <!-- <a href="../../login.html"> -->
+    <a [routerLink]="['/login']">
       <button (click)="addAccount()" class="btn btn-primary"> Register </button>
-    <!-- </a> -->
+    </a>
     <br>
   </div>
   <br>

@@ -11,6 +11,7 @@ import { AccountOrdersComponent } from './account/account-orders/account-orders.
 import { RegisterComponent } from './account/register/register.component';
 import { ItemComponent } from './item/item.component';
 import { AddItemComponent } from './item/add-item/add-item.component';
+import { LoginComponent } from './account/login/login.component';
 
 
 const routes: Routes = [
@@ -24,6 +25,7 @@ const routes: Routes = [
   {path:'account-settings', component:AccountSettingsComponent},
   {path:'account-orders', component:AccountOrdersComponent},
   {path:'add-item', component:AddItemComponent},
+  {path:'login', component:LoginComponent},
   
 ];
 
