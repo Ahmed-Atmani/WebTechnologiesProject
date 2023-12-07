@@ -21,7 +21,7 @@
     <label for="password">Password: </label>
     <input id="password" type="password" name="password" [(ngModel)]="AccountPassword" value="" required minlength="8">
     <label for="password">Confirm your password: </label>
-    <input id="password2" type="password" name="password" [(ngModel)]="AccountPassword" value="" required min="8">
+    <input id="password2" type="password" name="password" value="" required min="8">
     <p id="message"></p>
     <br>
     <br>
@@ -39,9 +39,9 @@
     <input type="text" name="country" placeholder="Country" [(ngModel)]="AccountAddressCountry" required>
     <br>
     <br>
-    <a href="../../login.html">
-      <button (click)="registerAccount()" *ngIf="account.AccountId==0" class="btn btn-primary"> Register </button>
-    </a>
+    <!-- <a href="../../login.html"> -->
+      <button (click)="addAccount()" class="btn btn-primary"> Register </button>
+    <!-- </a> -->
     <br>
   </div>
   <br>

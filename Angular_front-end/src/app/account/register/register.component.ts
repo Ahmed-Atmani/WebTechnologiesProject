@@ -13,11 +13,10 @@ export class RegisterComponent implements OnInit {
 
   @Input() account:any;
 
-  AccountId:string = "";
   AccountFirstName:string = "";
   AccountLastName:string = "";
-  AccountPicture:string = "";
-  AccountBirthDate:Date = new Date(2023, 1, 1);
+  AccountPicture:string = "empty-string";
+  AccountBirthDate:Date = new Date("01-01-2023");
   AccountEmail:string = "";
   AccountPassword:string = "";
   AccountAddressStreet:string = "";
@@ -26,24 +25,11 @@ export class RegisterComponent implements OnInit {
   AccountAddressStreetNumber:number = 0;
   AccountAddressPostalCode:number = 0;
 
-  ngOnInit(): void {
-    this.AccountId = this.account.AccountId;
-    this.AccountFirstName = this.account.AccountFirstName;
-    this.AccountLastName = this.account.AccountLastName;
-    this.AccountPicture = this.account.AccountPicture;
-    this.AccountBirthDate = this.account.AccountBirthDate;
-    this.AccountEmail = this.account.AccountEmail;
-    this.AccountPassword = this.account.AccountPassword;
-    this.AccountAddressStreet = this.account.AccountAddressStreet;
-    this.AccountAddressCity = this.account.AccountAddressCity;
-    this.AccountAddressCountry = this.account.AccountAddressCountry;
-    this.AccountAddressStreetNumber = this.account.AccountAddressStreetNumber;
-    this.AccountAddressPostalCode = this.account.AccountAddressPostalCode;
-    
+  ngOnInit(): void {    
   }
 
   addAccount(){
-    var val = {AccountId:this.AccountId,
+    var val = {
       AccountFirstName: this.AccountFirstName,
       AccountLastName: this.AccountLastName,
       AccountPicture: this.AccountPicture,
@@ -57,28 +43,38 @@ export class RegisterComponent implements OnInit {
       AccountAddressPostalCode: this.AccountAddressPostalCode,
     }
     console.log(val.AccountBirthDate);
+    console.log(val.AccountFirstName);
+    console.log(val.AccountLastName);
+    console.log(val.AccountPicture);
+    console.log(val.AccountEmail);
+    console.log(val.AccountPassword);
+    console.log(val.AccountAddressStreet);
+    console.log(val.AccountAddressCity);
+    console.log(val.AccountAddressCountry);
+    console.log(val.AccountAddressStreetNumber);
+    console.log(val.AccountAddressPostalCode);
     this.service.addAccount(val).subscribe(res => {
       alert(res.toString());
     })
 
   }
 
-  registerAccount(){
-    var val = {AccountId:this.AccountId,
-      AccountFirstName: this.AccountFirstName,
-      AccountLastName: this.AccountLastName,
-      AccountPicture: this.AccountPicture,
-      AccountBirthDate: this.AccountBirthDate,
-      AccountEmail: this.AccountEmail,
-      AccountPassword: this.AccountPassword,
-      AccountAddressStreet: this.AccountAddressStreet,
-      AccountAddressCity: this.AccountAddressCity,
-      AccountAddressCountry: this.AccountAddressCountry,
-      AccountAddressStreetNumber: this.AccountAddressStreetNumber,
-      AccountAddressPostalCode: this.AccountAddressPostalCode,
-    }
-    this.service.updateAccount(val).subscribe(res => {
-      alert(res.toString());
-    })
-  }
+  // registerAccount(){
+  //   var val = {AccountId:this.AccountId,
+  //     AccountFirstName: this.AccountFirstName,
+  //     AccountLastName: this.AccountLastName,
+  //     AccountPicture: this.AccountPicture,
+  //     AccountBirthDate: this.AccountBirthDate,
+  //     AccountEmail: this.AccountEmail,
+  //     AccountPassword: this.AccountPassword,
+  //     AccountAddressStreet: this.AccountAddressStreet,
+  //     AccountAddressCity: this.AccountAddressCity,
+  //     AccountAddressCountry: this.AccountAddressCountry,
+  //     AccountAddressStreetNumber: this.AccountAddressStreetNumber,
+  //     AccountAddressPostalCode: this.AccountAddressPostalCode,
+  //   }
+  //   this.service.updateAccount(val).subscribe(res => {
+  //     alert(res.toString());
+  //   })
+  // }
 }
