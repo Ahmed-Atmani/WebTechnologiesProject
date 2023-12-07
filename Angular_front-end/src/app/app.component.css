@@ -24,9 +24,8 @@ body {
 
   .template{
     background-color: #8ABCD7;
-    position: fixed;
-    overflow: visible;
     z-index: 999;
+    overflow: auto;
   }
 
 
@@ -246,6 +245,7 @@ input[type=submit]:hover, .context button:hover, .context .button:hover{
 
 .context{
     margin-left: 0;
+    overflow: auto;
 }
 .context .button{
     text-decoration: none;
