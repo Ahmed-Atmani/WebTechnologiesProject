@@ -21,6 +21,7 @@ import { AccountSettingsComponent } from './account/account-settings/account-set
 import { AccountOrdersComponent } from './account/account-orders/account-orders.component';
 import { AddItemComponent } from './item/add-item/add-item.component';
 import { LoginComponent } from './account/login/login.component';
+import { ForgotPasswordComponent } from './account/login/forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { LoginComponent } from './account/login/login.component';
     AccountOrdersComponent,
     AddItemComponent,
     LoginComponent,
+    ForgotPasswordComponent,
   ],
   imports: [
     BrowserModule,
