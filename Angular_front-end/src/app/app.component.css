@@ -22,7 +22,7 @@ body {
     justify-content: space-evenly;
   }
 
-  .container-fluid{
+  .template{
     background-color: #8ABCD7;
     position: fixed;
     overflow: visible;
