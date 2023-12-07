@@ -15,13 +15,13 @@
         <input id="password" type="password" name="password" class="input_text" required>
         <button type="button" id="showToggle">Show/Hide Password</button>
         <br>
-        <a href="forgot-password/forgot-password.component.html">Forgot your password?</a>
+        <a [routerLink]="['/forgot-password']">Forgot your password?</a>
         <p></p>
         <input id="login_button" type="submit" name="" value="Log in">
 
     </form>
     <br>
     <div class="anker">
-        <a href="../register/register.component.html" class="button">Do you not have an account yet?</a>
+        <a [routerLink]="['/register']" class="button">Do you not have an account yet?</a>
     </div>
 </div>
