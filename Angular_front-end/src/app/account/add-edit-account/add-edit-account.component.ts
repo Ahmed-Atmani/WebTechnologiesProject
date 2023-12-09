@@ -38,7 +38,7 @@ export class AddEditAccountComponent implements OnInit {
     this.AccountAddressCountry = this.account.AccountAddressCountry;
     this.AccountAddressStreetNumber = this.account.AccountAddressStreetNumber;
     this.AccountAddressPostalCode = this.account.AccountAddressPostalCode;
-    
+
   }
 
   addAccount(){
@@ -76,7 +76,7 @@ export class AddEditAccountComponent implements OnInit {
       AccountAddressStreetNumber: this.AccountAddressStreetNumber,
       AccountAddressPostalCode: this.AccountAddressPostalCode,
     }
-    this.service.updateAccount(val).subscribe(res => {
+    this.service.updateAccount(this.AccountId, val).subscribe(res => {
       alert(res.toString());
     })
   }

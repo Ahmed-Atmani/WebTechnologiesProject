@@ -1,21 +1,25 @@
-# from django.conf.urls import url
 from django.urls import re_path
 from OmniShopApp import views
 
 from django.conf.urls.static import static
 from django.conf import settings
 
+from OmniShopApp.views import ItemViewSet, AccountViewSet
+from rest_framework.routers import DefaultRouter
+from django.urls import path
+from django.conf.urls import include
+
+router = DefaultRouter()
+router.register(r'item', ItemViewSet, basename='item')
+router.register(r'account', AccountViewSet, basename='account')
 
 urlpatterns = [
-    re_path(r'^account/$', views.accountApi),
-    re_path(r'^account/([0-9]+)$', views.accountApi),
-
-    re_path(r'^item/$', views.itemApi),
-    re_path(r'^item/([0-9]+)$', views.itemApi),
-
     re_path(r'^item-category/$', views.itemCategoryApi),
     re_path(r'^item-category/([0-9]+)$', views.itemCategoryApi),
 
     re_path(r'^SaveFile$', views.SaveFile),
+    path("", include(router.urls)),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+

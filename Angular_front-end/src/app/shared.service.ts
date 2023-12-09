@@ -19,13 +19,13 @@ readonly PhotoUrl = "http://localhost:8000/media/"
   addAccount(val:any){
     return this.http.post(this.APIUrl + '/account/', val);
   }
-  
-  updateAccount(val:any){
-    return this.http.put(this.APIUrl + '/account/', val);
+
+  updateAccount(pk: string, val:any){
+    return this.http.put(this.APIUrl + '/account/'+ pk + '/', val);
   }
-  
+
   deleteAccount(val:any){
-    return this.http.delete(this.APIUrl + '/account/'+ val);
+    return this.http.delete(this.APIUrl + '/account/'+ val +'/');
   }
 
   UploadPhoto(val:any){
@@ -36,28 +36,28 @@ readonly PhotoUrl = "http://localhost:8000/media/"
     return this.http.get<any[]>(this.APIUrl + '/account/');
   }
 
-  regiserAccount(val:any){
+  registerAccount(val:any){
     return this.http.post(this.APIUrl + '/account/', val);
   }
-  // Add all other API's for remaining models 
+  // Add all other API's for remaining models
 
   getItemList():Observable<any[]>{
     return this.http.get<any[]>(this.APIUrl + '/item/');
   }
-  
+
   // == ITEM ==
   addItem(val:any){
     return this.http.post(this.APIUrl + '/item/', val);
   }
-  
+
   updateItem(val:any){
     return this.http.put(this.APIUrl + '/item/', val);
   }
-  
+
   deleteItem(val:any){
     return this.http.delete(this.APIUrl + '/item/'+ val);
   }
-  
+
   getAllItems():Observable<any[]>{
     return this.http.get<any[]>(this.APIUrl + '/item/');
   }
