@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SharedService } from '../shared.service';
+import { NgIf } from '@angular/common';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-item',
@@ -22,23 +24,23 @@ export class ItemComponent implements OnInit{
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.ItemId = params['id'];
-      this.service.getAllItems().subscribe(items => {
-        var item: any = items.find(item => item.ItemId == this.ItemId);
-  
-        if (item) {
-          this.ItemName = item.ItemName;
-          this.ItemPrice = item.ItemPrice;
-          this.ItemDetails = item.ItemDetails;
-          this.ItemCategoryId = item.ItemCategory;
-        } 
-        else {
-          console.error(`No item has the folowing id: ${this.ItemId}`);
-          this.ItemName = "Item not found"
-        }
+
+      this.service.getItem(this.ItemId).subscribe(item => {
+        console.log(JSON.stringify(item, null, 4));
+        this.ItemName = item.ItemName;
+        this.ItemPrice = item.ItemPrice;
+        this.ItemDetails = item.ItemDetails;
+        this.ItemCategoryId = item.ItemCategory;
       });
+      
+      
+      // if (item) {
+      // } 
+      // else {
+      //   console.error(`No item has the folowing id: ${this.ItemId}`);
+      //   this.ItemName = "Item not found";
+      // }
     });
   }
-  
-  
 
 }
