@@ -22,7 +22,14 @@ import { AccountOrdersComponent } from './account/account-orders/account-orders.
 import { AddItemComponent } from './item/add-item/add-item.component';
 import { LoginComponent } from './account/login/login.component';
 import { ForgotPasswordComponent } from './account/login/forgot-password/forgot-password.component';
+<<<<<<< HEAD
 import { ShowItemComponent } from './item/show-item/show-item.component';
+=======
+import { ShoppingCartComponent } from './account/shopping-cart/shopping-cart.component';
+import { CheckoutCartComponent } from './account/checkout-cart/checkout-cart.component';
+import { LocalStorage } from 'ngx-webstorage';
+
+>>>>>>> 9505b51723d880b22c6986096dc695452141af78
 
 @NgModule({
   declarations: [
@@ -40,14 +47,20 @@ import { ShowItemComponent } from './item/show-item/show-item.component';
     AddItemComponent,
     LoginComponent,
     ForgotPasswordComponent,
+<<<<<<< HEAD
     ShowItemComponent,
+=======
+    ShoppingCartComponent,
+    CheckoutCartComponent,
+>>>>>>> 9505b51723d880b22c6986096dc695452141af78
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    // LocalStorage,
   ],
   providers: [SharedService],
   bootstrap: [AppComponent]

@@ -5,8 +5,9 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 
-from OmniShopApp.models import Account, Item, Purchase, ItemCategory
-from OmniShopApp.serializers import AccountSerializer, ItemSerializer, PurchaseSerializer, ItemCategorySerializer
+from OmniShopApp.models import Account, Item, Purchase, ItemCategory, Complaint, Review
+from OmniShopApp.serializers import AccountSerializer, ItemSerializer, PurchaseSerializer, \
+    ItemCategorySerializer, ComplaintSerializer, ReviewSerializer
 
 from django.core.files.storage import default_storage
 
@@ -34,8 +35,11 @@ class AccountViewSet(viewsets.ViewSet):
         account_data = JSONParser().parse(request)
         account_serializer = AccountSerializer(data=account_data)
         if account_serializer.is_valid():
-            account_serializer.save()
-            return Response("Added successfully!")
+            if account_serializer.is_email_unique(value=account_data['AccountEmail']):
+                account_serializer.save()
+                return Response("Added successfully!")
+            else:
+                return Response("This email address is already linked to an Account.")
         return Response("Failed to add.")
 
     def update(self, request, pk=None):
@@ -56,12 +60,15 @@ class AccountViewSet(viewsets.ViewSet):
 # == ITEM ==
 class ItemViewSet(viewsets.ViewSet):
     """
-    A simple ViewSet for listing, retrieving, creating and updating items.
+    A simple ViewSet for listing, retrieving, creating, updating and deleting items.
     """
 
-    def list(self, request):
+    def list(self, request, account=None):
         queryset = Item.objects.all()
         serializer = ItemSerializer(queryset, many=True)
+        if account:
+            queryset = queryset.filter(Seller=account)
+            serializer = ItemSerializer(queryset, many=True)
         return Response(serializer.data)
 
     def retrieve(self, request, pk=None):
@@ -91,6 +98,69 @@ class ItemViewSet(viewsets.ViewSet):
         item = Item.objects.get(ItemId=pk)
         item.delete()
         return Response("Deleted successfully!")
+
+
+# == COMPLAINT ==
+class ComplaintViewSet(viewsets.ViewSet):
+    """
+    A simple ViewSet for listing and creating complaints.
+    """
+
+    def list(self, request, account=None):
+        queryset = Complaint.objects.all()
+        if account:
+            queryset = queryset.filter(Account=account)
+        serializer = ComplaintSerializer(queryset, many=True)
+        return Response(serializer.data)
+
+
+    def create(self, request):
+        complaint_data = JSONParser().parse(request)
+        complaint_serializer = ComplaintSerializer(data=complaint_data)
+        if complaint_serializer.is_valid():
+            complaint_serializer.save()
+            return Response("Added successfully!")
+        return Response("Failed to add.")
+
+
+# == REVIEW ==
+class ReviewViewSet(viewsets.ViewSet):
+    """
+    A simple ViewSet for listing, retrieving, creating, updating and deleting reviews.
+    """
+
+    def list(self, request, account=None, item=None):
+        queryset = Review.objects.all()
+        if account:
+            queryset = queryset.filter(Reviewer=account)
+        if item:
+            queryset = queryset.filter(Item=item)
+        serializer = ReviewSerializer(queryset, many=True)
+        return Response(serializer.data)
+
+
+    def create(self, request):
+        item_data = JSONParser().parse(request)
+        item_serializer = ItemSerializer(data=item_data)
+        if item_serializer.is_valid():
+            item_serializer.save()
+            return Response("Added successfully!")
+        return Response("Failed to add.")
+
+    def update(self, request, pk=None):
+        item_data = JSONParser().parse(request)
+        item = Item.objects.get(ItemId=pk)
+        item_serializer = ItemSerializer(item, data=item_data)
+        if item_serializer.is_valid():
+            item_serializer.save()
+            return Response("Updated successfully!")
+        return Response("Failed to update.")
+
+    def destroy(self, request, pk=None):
+        item = Item.objects.get(ItemId=pk)
+        item.delete()
+        return Response("Deleted successfully!")
+
 
 # == ITEM CATEGORY ==
 @csrf_exempt

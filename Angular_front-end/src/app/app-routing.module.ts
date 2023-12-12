@@ -14,6 +14,8 @@ import { AddItemComponent } from './item/add-item/add-item.component';
 import { ShowItemComponent } from './item/show-item/show-item.component';
 import { LoginComponent } from './account/login/login.component';
 import { ForgotPasswordComponent } from './account/login/forgot-password/forgot-password.component';
+import { CheckoutCartComponent } from './account/checkout-cart/checkout-cart.component';
+import { ShoppingCartComponent } from './account/shopping-cart/shopping-cart.component';
 
 
 const routes: Routes = [
@@ -29,7 +31,10 @@ const routes: Routes = [
   {path:'add-item', component:AddItemComponent},
   {path:'items', component:ShowItemComponent},
   {path:'login', component:LoginComponent},
-  {path:'forgot-password', component:ForgotPasswordComponent}
+  {path:'forgot-password', component:ForgotPasswordComponent},
+  {path:'shopping-cart', component:ShoppingCartComponent},
+  {path:'checkout-cart', component:CheckoutCartComponent},
+
 ];
 
 @NgModule({

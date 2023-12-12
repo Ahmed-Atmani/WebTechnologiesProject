@@ -6,6 +6,8 @@
 <h2 class="item-information">Price: {{'€' + ItemPrice.toString()}}</h2>
 <h2 class="item-information">Description: {{ItemDetails}}</h2>
 <h2 class="item-information">CategoryID: {{ItemCategoryId}}</h2>
+<button  type="button" (click)="AddItemToCart()">Add to cart</button>
+<button  type="button" (click)="ClearCart()">[DEBUG] clear cart</button>
 
 <div class="context">
 
