@@ -11,6 +11,7 @@ import { AccountOrdersComponent } from './account/account-orders/account-orders.
 import { RegisterComponent } from './account/register/register.component';
 import { ItemComponent } from './item/item.component';
 import { AddItemComponent } from './item/add-item/add-item.component';
+import { ShowItemComponent } from './item/show-item/show-item.component';
 import { LoginComponent } from './account/login/login.component';
 import { ForgotPasswordComponent } from './account/login/forgot-password/forgot-password.component';
 
@@ -26,6 +27,7 @@ const routes: Routes = [
   {path:'account-settings', component:AccountSettingsComponent},
   {path:'account-orders', component:AccountOrdersComponent},
   {path:'add-item', component:AddItemComponent},
+  {path:'items', component:ShowItemComponent},
   {path:'login', component:LoginComponent},
   {path:'forgot-password', component:ForgotPasswordComponent}
 ];

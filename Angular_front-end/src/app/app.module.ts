@@ -22,6 +22,7 @@ import { AccountOrdersComponent } from './account/account-orders/account-orders.
 import { AddItemComponent } from './item/add-item/add-item.component';
 import { LoginComponent } from './account/login/login.component';
 import { ForgotPasswordComponent } from './account/login/forgot-password/forgot-password.component';
+import { ShowItemComponent } from './item/show-item/show-item.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { ForgotPasswordComponent } from './account/login/forgot-password/forgot-
     AddItemComponent,
     LoginComponent,
     ForgotPasswordComponent,
+    ShowItemComponent,
   ],
   imports: [
     BrowserModule,
