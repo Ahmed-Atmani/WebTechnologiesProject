@@ -75,5 +75,9 @@ export class SharedService {
     return this.http.get<any[]>(this.APIUrl + '/complaint/?account=' + account);
   }
 
+  addComplaint(val:any) {
+    console.log(val)
+    return this.http.post(this.APIUrl + '/complaint/', val);
+  }
 }
 
