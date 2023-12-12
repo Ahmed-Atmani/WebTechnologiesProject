@@ -17,14 +17,6 @@ export class ShoppingCartComponent implements OnInit{
     console.log(localStorage.getItem("ItemList"));
     this.ItemList = JSON.parse(localStorage.getItem("ItemList") || "[]");
     console.log(JSON.stringify(this.ItemList, null, 4));
-
-  // this.service.getItem(9).subscribe(item1 => {
-  //   this.service.getItem(10).subscribe(item2 => {
-  //     this.service.getItem(8).subscribe(item3 => {
-  //       this.ItemList = [item1, item2, item3];
-  //     });
-  //   });
-  // });
   }
 
 }

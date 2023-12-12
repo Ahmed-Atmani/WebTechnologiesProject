@@ -1,1 +1,19 @@
-<p>checkout-cart works!</p>
+<h1>Checking out</h1>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ItemId</th>
+            <th>ItemName</th>
+            <th>ItemPrice</th>
+            <!-- <th>Amount</th> -->
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of ItemList">
+            <th>{{item.ItemId}}</th>
+            <th>{{item.ItemName}}</th>
+            <th>{{item.ItemPrice}}</th>
+            <!-- <th>{{item.Amount}}</th> -->
+        </tr>
+    </tbody>
+</table>
