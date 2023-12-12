@@ -14,9 +14,9 @@ export class ShoppingCartComponent implements OnInit{
   ItemList: any = [];
 
   ngOnInit(): void {
-    console.log(localStorage.getItem("ItemList"));
+    // console.log(localStorage.getItem("ItemList"));
     this.ItemList = JSON.parse(localStorage.getItem("ItemList") || "[]");
-    console.log(JSON.stringify(this.ItemList, null, 4));
+    // console.log(JSON.stringify(this.ItemList, null, 4));
   }
 
 }
