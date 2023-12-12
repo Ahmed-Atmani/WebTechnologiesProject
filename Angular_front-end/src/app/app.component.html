@@ -12,11 +12,10 @@
           <div class="searchbar">
             <li class="nav-item">
               <div class="topnav">
-                <input id="searchbar" type="text" placeholder="Search..">
+                <input id="searchbar" #searchedkeyword (input)="searchByKeyword(searchedkeyword.value)" type="text" placeholder="Search..">
               </div>
             </li>
           </div>
-
 
           <div class="navright">
             <div class="profile">
