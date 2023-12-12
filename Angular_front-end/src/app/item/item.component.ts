@@ -40,8 +40,6 @@ export class ItemComponent implements OnInit{
       
     });
   }
-<<<<<<< HEAD
-=======
   AddItemToCart(): void {
     var item: any = {
       "ItemId": this.ItemId,
@@ -73,5 +71,4 @@ export class ItemComponent implements OnInit{
 
   }
 
->>>>>>> 9505b51723d880b22c6986096dc695452141af78
 }
