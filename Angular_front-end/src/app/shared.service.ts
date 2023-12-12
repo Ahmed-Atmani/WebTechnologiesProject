@@ -71,5 +71,9 @@ export class SharedService {
     return this.http.post(this.APIUrl + '/item/', val);
   }
 
+  getMyComplaintsList(account: string): Observable<any[]> {
+    return this.http.get<any[]>(this.APIUrl + '/complaint/?account=' + account);
+  }
+
 }
 

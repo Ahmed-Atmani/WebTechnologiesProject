@@ -16,6 +16,7 @@ import { LoginComponent } from './account/login/login.component';
 import { ForgotPasswordComponent } from './account/login/forgot-password/forgot-password.component';
 import { CheckoutCartComponent } from './account/checkout-cart/checkout-cart.component';
 import { ShoppingCartComponent } from './account/shopping-cart/shopping-cart.component';
+import { ComplaintsComponent } from "./account/complaints/complaints.component";
 
 
 const routes: Routes = [
@@ -28,6 +29,7 @@ const routes: Routes = [
   {path:'account-preferences', component:AccountPreferencesComponent},
   {path:'account-settings', component:AccountSettingsComponent},
   {path:'account-orders', component:AccountOrdersComponent},
+  {path:'account-complaints', component: ComplaintsComponent},
   {path:'add-item', component:AddItemComponent},
   {path:'items', component:ShowItemComponent},
   {path:'login', component:LoginComponent},

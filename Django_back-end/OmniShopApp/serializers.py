@@ -49,6 +49,7 @@ class PurchaseSerializer(serializers.ModelSerializer):
                   'AccountId')
 
 class ComplaintSerializer(serializers.ModelSerializer):
+    Status = serializers.CharField(source='get_Status_display')
     class Meta:
         model = Complaint
         fields = '__all__'
