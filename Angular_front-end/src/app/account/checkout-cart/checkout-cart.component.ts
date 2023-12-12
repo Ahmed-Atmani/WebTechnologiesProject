@@ -15,7 +15,7 @@ export class CheckoutCartComponent {
     this.ItemList = JSON.parse(localStorage.getItem("ItemList") || "[]");
 
     this.ItemList.forEach((item: any) => {
-        this.TotalPrice += parseFloat(item["ItemPrice"]);
+        this.TotalPrice += parseFloat(item["ItemPrice"]) * parseInt(item["PurchaseAmount"]);
     });
     this.TotalPrice = Math.round(this.TotalPrice * 100) / 100;
   }
