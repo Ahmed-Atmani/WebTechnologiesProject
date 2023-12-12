@@ -61,7 +61,11 @@ class ImageViewSet(viewsets.ViewSet):
     A simple ViewSet for listing, retrieving, creating and deleting images.
     """
     def list(self, request, *args, **kwargs):
+        item = request.query_params.get('item', None)
+
         queryset = Image.objects.all()
+        if item:
+            queryset = queryset.filter(Item=Item.objects.get(ItemId=item))
         serializer = ImageSerializer(queryset, many=True)
         return Response(serializer.data)
 
