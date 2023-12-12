@@ -17,6 +17,7 @@ export class ItemComponent implements OnInit{
   ItemDetails: string = "";
   ItemCategoryId: number = -1;
   ItemCategoryName: String = "";
+  PurchaseAmount: number = 1;
 
   constructor(private route: ActivatedRoute, private service: SharedService) {
   }
@@ -38,6 +39,36 @@ export class ItemComponent implements OnInit{
       });
       
     });
+  }
+  AddItemToCart(): void {
+    var item: any = {
+      "ItemId": this.ItemId,
+      "ItemName": this.ItemName,
+      "ItemPrice": this.ItemPrice,
+      "ItemDetails": this.ItemDetails,
+      "ItemCategoryId": this.ItemCategoryId,
+      "ItemCategoryName": this.ItemCategoryName,
+      "PurchaseAmount": this.PurchaseAmount
+    };
+    console.log(localStorage.getItem("ItemList"));
+
+    var temp: any[] = JSON.parse(localStorage.getItem("ItemList") || "[]");
+
+    if (temp == null) {
+      temp = [item];
+    }
+    else {
+      temp.push(item);
+    }
+    localStorage.setItem("ItemList", JSON.stringify(temp));
+    console.log(localStorage.getItem("ItemList"));
+    alert("Item successfully added to shopping cart!");
+  }
+
+  ClearCart(): void {
+    localStorage.clear();
+    console.log(localStorage.getItem("ItemList"));
+
   }
 
 }

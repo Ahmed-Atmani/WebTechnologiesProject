@@ -22,6 +22,10 @@ import { AccountOrdersComponent } from './account/account-orders/account-orders.
 import { AddItemComponent } from './item/add-item/add-item.component';
 import { LoginComponent } from './account/login/login.component';
 import { ForgotPasswordComponent } from './account/login/forgot-password/forgot-password.component';
+import { ShoppingCartComponent } from './account/shopping-cart/shopping-cart.component';
+import { CheckoutCartComponent } from './account/checkout-cart/checkout-cart.component';
+import { LocalStorage } from 'ngx-webstorage';
+
 
 @NgModule({
   declarations: [
@@ -39,13 +43,16 @@ import { ForgotPasswordComponent } from './account/login/forgot-password/forgot-
     AddItemComponent,
     LoginComponent,
     ForgotPasswordComponent,
+    ShoppingCartComponent,
+    CheckoutCartComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    // LocalStorage,
   ],
   providers: [SharedService],
   bootstrap: [AppComponent]
