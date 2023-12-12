@@ -5,9 +5,9 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 
-from OmniShopApp.models import Account, Item, Purchase, ItemCategory, Complaint, Review
+from OmniShopApp.models import Account, Item, Purchase, ItemCategory, Complaint, Review, Image
 from OmniShopApp.serializers import AccountSerializer, ItemSerializer, PurchaseSerializer, \
-    ItemCategorySerializer, ComplaintSerializer, ReviewSerializer
+    ItemCategorySerializer, ComplaintSerializer, ReviewSerializer, ImageSerializer
 
 from django.core.files.storage import default_storage
 
@@ -56,6 +56,33 @@ class AccountViewSet(viewsets.ViewSet):
         account.delete()
         return Response("Deleted successfully!")
 
+class ImageViewSet(viewsets.ViewSet):
+    """
+    A simple ViewSet for listing, retrieving, creating and deleting images.
+    """
+    def list(self, request, *args, **kwargs):
+        queryset = Image.objects.all()
+        serializer = ImageSerializer(queryset, many=True)
+        return Response(serializer.data)
+
+    def retrieve(self, request, pk=None):
+        queryset = Image.objects.all()
+        image= get_object_or_404(queryset, pk=pk)
+        serializer = ImageSerializer(image)
+        return Response(serializer.data)
+
+    def create(self, request):
+        image_serializer = ImageSerializer(data=request.data)
+        if image_serializer.is_valid():
+            image_serializer.save()
+            return Response("Added successfully!")
+        return Response("Failed to add.")
+
+    def destroy(self, request, pk=None):
+        image = Image.objects.get(ImageId=pk)
+        image.delete()
+        return Response("Deleted successfully!")
+
 
 # == ITEM ==
 class ItemViewSet(viewsets.ViewSet):
@@ -64,7 +91,6 @@ class ItemViewSet(viewsets.ViewSet):
     For listing, filtering possible on ItemSeller with parameter 'account' (Integer)
     and on ItemState with parameter 'state' (Integer).
     """
-
     def list(self, request, *args, **kwargs):
         account = request.query_params.get('account', None)
         state = request.query_params.get('state', None)
@@ -84,8 +110,7 @@ class ItemViewSet(viewsets.ViewSet):
         return Response(serializer.data)
 
     def create(self, request):
-        item_data = JSONParser().parse(request)
-        item_serializer = ItemSerializer(data=item_data)
+        item_serializer = ItemSerializer(data=request.data)
         if item_serializer.is_valid():
             item_serializer.save()
             return Response("Added successfully!")
@@ -174,6 +199,18 @@ class ReviewViewSet(viewsets.ViewSet):
         review = Review.objects.get(ReviewId=pk)
         review.delete()
         return Response("Deleted successfully!")
+
+
+
+# class ImageViewSet(viewsets.ModelViewSet):
+#     queryset = Image.objects.all()
+#     serializer_class = ImageSerializer
+#     parser_classes = (MultiPartParser, FormParser)
+#     permission_classes = [
+#         permissions.IsAuthenticatedOrReadOnly]
+#
+#     def perform_create(self, serializer):
+#         serializer.save()
 
 
 # == ITEM CATEGORY ==

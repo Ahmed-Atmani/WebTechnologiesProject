@@ -62,6 +62,10 @@ class Item(models.Model):
 
         self.save()
 
+class Image(models.Model):
+    ImageId = models.AutoField(primary_key=True)
+    Image = models.ImageField()
+    Item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name='images')
 
 class Purchase(models.Model):
     PurchaseId = models.AutoField(primary_key=True)
