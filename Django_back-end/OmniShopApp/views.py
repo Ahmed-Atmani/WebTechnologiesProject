@@ -61,14 +61,16 @@ class AccountViewSet(viewsets.ViewSet):
 class ItemViewSet(viewsets.ViewSet):
     """
     A simple ViewSet for listing, retrieving, creating, updating and deleting items.
+    For listing, filtering possible on ItemSeller with parameter 'account' (Integer).
     """
 
-    def list(self, request, account=None):
+    def list(self, request, *args, **kwargs):
+        account = request.query_params.get('account', None)
+
         queryset = Item.objects.all()
-        serializer = ItemSerializer(queryset, many=True)
         if account:
-            queryset = queryset.filter(Seller=account)
-            serializer = ItemSerializer(queryset, many=True)
+            queryset = queryset.filter(ItemSeller=Account.objects.get(AccountId=account))
+        serializer = ItemSerializer(queryset, many=True)
         return Response(serializer.data)
 
     def retrieve(self, request, pk=None):
@@ -104,12 +106,15 @@ class ItemViewSet(viewsets.ViewSet):
 class ComplaintViewSet(viewsets.ViewSet):
     """
     A simple ViewSet for listing and creating complaints.
+    For listing, filtering possible on Account with parameter 'account' (Integer).
     """
 
-    def list(self, request, account=None):
+    def list(self, request, *args, **kwargs):
+        account = request.query_params.get('account', None)
+
         queryset = Complaint.objects.all()
         if account:
-            queryset = queryset.filter(Account=account)
+            queryset = queryset.filter(Account=Account.objects.get(AccountId=account))
         serializer = ComplaintSerializer(queryset, many=True)
         return Response(serializer.data)
 
@@ -127,38 +132,43 @@ class ComplaintViewSet(viewsets.ViewSet):
 class ReviewViewSet(viewsets.ViewSet):
     """
     A simple ViewSet for listing, retrieving, creating, updating and deleting reviews.
+    For listing, filtering possible on Reviewer with parameter 'account' (Integer)
+    and on Item with parameter 'item' (Integer).
     """
 
-    def list(self, request, account=None, item=None):
+    def list(self, request, *args, **kwargs):
+        account = request.query_params.get('account', None)
+        item = request.query_params.get('item', None)
+
         queryset = Review.objects.all()
         if account:
-            queryset = queryset.filter(Reviewer=account)
+            queryset = queryset.filter(Reviewer=Account.objects.get(AccountId=account))
         if item:
-            queryset = queryset.filter(Item=item)
+            queryset = queryset.filter(Item=Item.objects.get(ItemId=item))
         serializer = ReviewSerializer(queryset, many=True)
         return Response(serializer.data)
 
 
     def create(self, request):
-        item_data = JSONParser().parse(request)
-        item_serializer = ItemSerializer(data=item_data)
-        if item_serializer.is_valid():
-            item_serializer.save()
+        review_data = JSONParser().parse(request)
+        review_serializer = ReviewSerializer(data=review_data)
+        if review_serializer.is_valid():
+            review_serializer.save()
             return Response("Added successfully!")
         return Response("Failed to add.")
 
     def update(self, request, pk=None):
-        item_data = JSONParser().parse(request)
-        item = Item.objects.get(ItemId=pk)
-        item_serializer = ItemSerializer(item, data=item_data)
-        if item_serializer.is_valid():
-            item_serializer.save()
+        review_data = JSONParser().parse(request)
+        review = Review.objects.get(ReviewId=pk)
+        review_serializer = ReviewSerializer(review, data=review_data)
+        if review_serializer.is_valid():
+            review_serializer.save()
             return Response("Updated successfully!")
         return Response("Failed to update.")
 
     def destroy(self, request, pk=None):
-        item = Item.objects.get(ItemId=pk)
-        item.delete()
+        review = Review.objects.get(ReviewId=pk)
+        review.delete()
         return Response("Deleted successfully!")
 
 

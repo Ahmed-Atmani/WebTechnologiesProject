@@ -4,12 +4,7 @@ from OmniShopApp.models import Item, Account, Purchase, ItemCategory, Complaint,
 class ItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Item
-        fields = ('ItemId', 
-                  'ItemName',
-                  'ItemDetails',
-                  'ItemPrice',
-                  'ItemCategory'
-                  )
+        fields = '__all__'
 
 class ItemCategorySerializer(serializers.ModelSerializer):
     class Meta:

@@ -55,7 +55,7 @@ class Item(models.Model):
         # Update the rating based on the average rating of associated reviews
         reviews = self.reviews.all()
         if reviews.exists():
-            average_rating = reviews.aggregate(Avg('rating'))['rating__avg']
+            average_rating = reviews.aggregate(Avg('Rating'))['Rating__avg']
             self.ItemRating = round(average_rating, 1)
         else:
             self.ItemRating = None
