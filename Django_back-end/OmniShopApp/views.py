@@ -61,15 +61,19 @@ class AccountViewSet(viewsets.ViewSet):
 class ItemViewSet(viewsets.ViewSet):
     """
     A simple ViewSet for listing, retrieving, creating, updating and deleting items.
-    For listing, filtering possible on ItemSeller with parameter 'account' (Integer).
+    For listing, filtering possible on ItemSeller with parameter 'account' (Integer)
+    and on ItemState with parameter 'state' (Integer).
     """
 
     def list(self, request, *args, **kwargs):
         account = request.query_params.get('account', None)
+        state = request.query_params.get('state', None)
 
         queryset = Item.objects.all()
         if account:
             queryset = queryset.filter(ItemSeller=Account.objects.get(AccountId=account))
+        if state:
+            queryset = queryset.filter(ItemState=state)
         serializer = ItemSerializer(queryset, many=True)
         return Response(serializer.data)
 
