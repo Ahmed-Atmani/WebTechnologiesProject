@@ -31,15 +31,12 @@ export class ItemComponent implements OnInit{
         this.ItemPrice = item.ItemPrice;
         this.ItemDetails = item.ItemDetails;
         this.ItemCategoryId = item.ItemCategory;
+      },
+      error => {
+        console.error(`No item has the folowing id: ${this.ItemId}`);
+        this.ItemName = "Item not found";
       });
       
-      
-      // if (item) {
-      // } 
-      // else {
-      //   console.error(`No item has the folowing id: ${this.ItemId}`);
-      //   this.ItemName = "Item not found";
-      // }
     });
   }
 
