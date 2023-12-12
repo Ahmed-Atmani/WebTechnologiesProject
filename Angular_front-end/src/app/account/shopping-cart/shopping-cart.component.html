@@ -1,0 +1,21 @@
+<h1>Shopping cart</h1>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ItemId</th>
+            <th>ItemName</th>
+            <th>ItemPrice</th>
+            <th>Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of ItemList">
+            <th>{{item.ItemId}}</th>
+            <th>{{item.ItemName}}</th>
+            <th>{{item.ItemPrice}}</th>
+            <th>{{item.PurchaseAmount}}</th>
+        </tr>
+    </tbody>
+</table>
+
+<button class="m-1 btn btn-light" routerLink="/checkout-cart">Go to checkout</button>
