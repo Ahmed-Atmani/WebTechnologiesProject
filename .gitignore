@@ -1,2 +1,5 @@
 # Ignore virtual environment files
 /Django_back-end/venv/
+
+# Ignore pycache files
+**/__pycache__/
