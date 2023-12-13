@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { SharedService } from 'src/app/shared.service';
 
 @Component({
@@ -19,18 +19,18 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup = new FormGroup({
 
     AccountUserId: new FormControl('0'),
-    AccountFirstName: new FormControl(''),
-    AccountLastName: new FormControl(''),
+    AccountFirstName: new FormControl('', [Validators.required, Validators.minLength(2)]),
+    AccountLastName: new FormControl('', [Validators.required, Validators.minLength(2)]),
     AccountPicture: new FormControl(''),
-    AccountBirthDate: new FormControl('01-01-2023'),
-    AccountEmail: new FormControl(''),
-    AccountPassword: new FormControl(''),
-    AccountPasswordConfirmation: new FormControl(''),
-    AccountAddressStreet: new FormControl(''),
-    AccountAddressCity: new FormControl(''),
-    AccountAddressCountry: new FormControl(''),
-    AccountAddressStreetNumber: new FormControl('0'),
-    AccountAddressPostalCode: new FormControl('0000'),
+    AccountBirthDate: new FormControl('01-01-2023', [Validators.required]),
+    AccountEmail: new FormControl('', [Validators.required, Validators.email]),
+    AccountPassword: new FormControl('', [Validators.required, Validators.minLength(6)]),
+    AccountPasswordConfirmation: new FormControl('', [Validators.required]),
+    AccountAddressStreet: new FormControl('', [Validators.required]),
+    AccountAddressCity: new FormControl('', [Validators.required]),
+    AccountAddressCountry: new FormControl('', [Validators.required]),
+    AccountAddressStreetNumber: new FormControl('0', [Validators.required]),
+    AccountAddressPostalCode: new FormControl('0000', [Validators.required]),
 
 
   })

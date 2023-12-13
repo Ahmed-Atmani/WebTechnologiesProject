@@ -6,37 +6,104 @@
     <form [formGroup]="registerForm">
     <label for="fname">First name: </label>
     <input class="form-control" formControlName="AccountFirstName" type="text" name="fname" [(ngModel)]="AccountFirstName" value="" required>
+    <div class="input-error" *ngIf="registerForm.controls?.['AccountFirstName']?.touched">
+      <span *ngIf="registerForm.controls?.['AccountFirstName']?.errors?.['required']">
+        It is required to fill in your first name.
+      </span>
+      <span *ngIf="registerForm.controls?.['AccountFirstName']?.errors?.['minlength']">
+        Your first name needs to be at least two characters long.
+      </span>
+    </div>
     <label for="lname">Last name: </label>
     <input class="form-control" formControlName="AccountLastName" type="text" name="lname" [(ngModel)]="AccountLastName" value="" required>
+    <div class="input-error" *ngIf="registerForm.controls?.['AccountLastName']?.touched">
+      <span *ngIf="registerForm.controls?.['AccountLastName']?.errors?.['required']">
+        It is required to fill in your last name.
+      </span>
+      <span *ngIf="registerForm.controls?.['AccountLastName']?.errors?.['minlength']">
+        Your last name needs to be at least two characters long.
+      </span>
+    </div>
     <br>
     <br>
     <label for="bdate">Birth date: </label>
     <input class="form-control" formControlName="AccountBirthDate" type="date" name="bdate" [(ngModel)]="AccountBirthDate" value="" required>
+    <div class="input-error" *ngIf="registerForm.controls?.['AccountBirthDate']?.touched">
+      <span *ngIf="registerForm.controls?.['AccountBirthDate']?.errors?.['required']">
+        It is required to fill in your birth date.
+      </span>
+    </div>
     <br>
     <br>
     <label for="email">E-mail: </label>
     <input class="form-control" formControlName="AccountEmail" type="email" name="email" [(ngModel)]="AccountEmail" value="" required>
+    <div class="input-error" *ngIf="registerForm.controls?.['AccountEmail']?.touched">
+      <span *ngIf="registerForm.controls?.['AccountEmail']?.errors?.['required']">
+        It is required to fill in your e-mailaddress.
+      </span>
+      <span *ngIf="registerForm.controls?.['AccountEmail']?.errors?.['email']">
+        It is required to fill in a correct e-mailaddress.
+      </span>
+    </div>
     <br>
     <br>
     <label for="password">Password: </label>
     <input class="form-control" formControlName="AccountPassword" id="password" type="password" name="password" [(ngModel)]="AccountPassword" value="" required minlength="8">
+    <div class="input-error" *ngIf="registerForm.controls?.['AccountPassword']?.touched">
+      <span *ngIf="registerForm.controls?.['AccountPassword']?.errors?.['required']">
+        It is required to fill in your password.
+      </span>
+      <span *ngIf="registerForm.controls?.['AccountPassword']?.errors?.['minlength']">
+        Your password needs to be at least 6 characters long.
+      </span>
+    </div>
     <label for="password">Confirm your password: </label>
     <input class="form-control" formControlName="AccountPasswordConfirmation" id="password2" type="password" name="password" value="" required min="8">
+    <div class="input-error" *ngIf="registerForm.controls?.['AccountPasswordConfirmation']?.touched">
+      <span *ngIf="registerForm.controls?.['AccountPasswordConfirmation']?.errors?.['required']">
+        You have to confirm your password.
+      </span>
+    </div>
     <p id="message"></p>
     <br>
     <br>
     <p><b>Adress: </b></p>
     <br>
     <input class="form-control" formControlName="AccountAddressStreet" type="text" name="street" placeholder="Street" [(ngModel)]="AccountAddressStreet" required>
+    <div class="input-error" *ngIf="registerForm.controls?.['AccountAddressStreet']?.touched">
+      <span *ngIf="registerForm.controls?.['AccountAddressStreet']?.errors?.['required']">
+        It is required to fill in your street.
+      </span>
+    </div>
     <input class="form-control" formControlName="AccountAddressStreetNumber" type="text" name="streetnr" placeholder="Streetnumber" [(ngModel)]="AccountAddressStreetNumber" required>
+    <div class="input-error" *ngIf="registerForm.controls?.['AccountAddressStreetNumber']?.touched">
+      <span *ngIf="registerForm.controls?.['AccountAddressStreetNumber']?.errors?.['required']">
+        It is required to fill in your housenumber.
+      </span>
+    </div>
     <br>
     <br>
     <input class="form-control" formControlName="AccountAddressCity" type="text" name="city" placeholder="City" [(ngModel)]="AccountAddressCity" required minlength="2">
+    <div class="input-error" *ngIf="registerForm.controls?.['AccountAddressCity']?.touched">
+      <span *ngIf="registerForm.controls?.['AccountAddressCity']?.errors?.['required']">
+        It is required to fill in your city.
+      </span>
+    </div>
     <input class="form-control" formControlName="AccountAddressPostalCode" type="number" name="postcode" placeholder="Postal code" [(ngModel)]="AccountAddressPostalCode" required
       min="1000" max="9999">
+      <div class="input-error" *ngIf="registerForm.controls?.['AccountAddressPostalCode']?.touched">
+        <span *ngIf="registerForm.controls?.['AccountAddressPostalCode']?.errors?.['required']">
+          It is required to fill in your postal code.
+        </span>
+      </div>
     <br>
     <br>
     <input class="form-control" formControlName="AccountAddressCountry" type="text" name="country" placeholder="Country" [(ngModel)]="AccountAddressCountry" required>
+    <div class="input-error" *ngIf="registerForm.controls?.['AccountAddressCountry']?.touched">
+      <span *ngIf="registerForm.controls?.['AccountAddressCountry']?.errors?.['required']">
+        It is required to fill in your country.
+      </span>
+    </div>
     <br>
     <br>
       <button type="submit" (click)="addAccount()" class="btn btn-primary"> Register </button>
