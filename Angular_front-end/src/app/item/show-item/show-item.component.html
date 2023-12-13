@@ -1,20 +1,7 @@
-<table class="table table-striped">
-  <thead>
-      <tr>
-          <th>ItemId</th>
-          <th>ItemName</th>
-          <th>ItemDetails</th>
-          <th>ItemPrice</th>
-          <th>ItemCategory</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr *ngFor="let dataItem of ItemList">   
-          <td>{{dataItem.ItemId}}</td>
-          <td>{{dataItem.ItemName}}</td>
-          <td>{{dataItem.ItemDetails}}</td>
-          <td>{{dataItem.ItemPrice}}</td>
-          <td>{{dataItem.ItemCategory}}</td>
-      </tr>
-  </tbody>
-</table>
+<div *ngFor="let item of ItemList" class="item-box">
+    <h2>{{ item.ItemName }}</h2>
+    <p><strong>Details:</strong> {{ item.ItemDetails }}</p>
+    <p><strong>Price:</strong> {{ item.ItemPrice | currency:'EUR' }}</p>
+    <p><strong>Rating:</strong> {{ item.ItemRating }}</p>
+  </div>
+  
