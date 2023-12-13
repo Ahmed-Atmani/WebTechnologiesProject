@@ -1,10 +1,18 @@
 from rest_framework import serializers
-from OmniShopApp.models import Item, Account, Purchase, ItemCategory, Complaint, Review
+from OmniShopApp.models import Item, Account, Purchase, ItemCategory, Complaint, Review, Image
+
+
+class ImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Image
+        fields = '__all__'
+
 
 class ItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Item
         fields = '__all__'
+
 
 class ItemCategorySerializer(serializers.ModelSerializer):
     class Meta:
@@ -48,10 +56,14 @@ class PurchaseSerializer(serializers.ModelSerializer):
                   'ItemId',
                   'AccountId')
 
+
 class ComplaintSerializer(serializers.ModelSerializer):
+    Status = serializers.CharField(source='get_Status_display', read_only=True)
+
     class Meta:
         model = Complaint
         fields = '__all__'
+
 
 class ReviewSerializer(serializers.ModelSerializer):
     class Meta:

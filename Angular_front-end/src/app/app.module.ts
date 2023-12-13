@@ -25,6 +25,7 @@ import { ForgotPasswordComponent } from './account/login/forgot-password/forgot-
 import { ShowItemComponent } from './item/show-item/show-item.component';
 import { ShoppingCartComponent } from './account/shopping-cart/shopping-cart.component';
 import { CheckoutCartComponent } from './account/checkout-cart/checkout-cart.component';
+import { ComplaintsComponent } from './account/complaints/complaints.component';
 // import { LocalStorage } from 'ngx-webstorage';
 
 
@@ -47,6 +48,7 @@ import { CheckoutCartComponent } from './account/checkout-cart/checkout-cart.com
     ShowItemComponent,
     ShoppingCartComponent,
     CheckoutCartComponent,
+    ComplaintsComponent,
   ],
   imports: [
     BrowserModule,
