@@ -1,7 +1,9 @@
-<div *ngFor="let item of ItemList" class="item-box">
-    <h2>{{ item.ItemName }}</h2>
-    <p><strong>Details:</strong> {{ item.ItemDetails }}</p>
-    <p><strong>Price:</strong> {{ item.ItemPrice | currency:'EUR' }}</p>
-    <p><strong>Rating:</strong> {{ item.ItemRating }}</p>
+<div class="item-container">
+    <div *ngFor="let item of ItemList" class="item-box">
+    <a [routerLink]="['/item', item.ItemId]"><strong>{{ item.ItemName }}</strong></a>
+    <p>Details: {{ item.ItemDetails }}</p>
+    <p>Price: {{ item.ItemPrice | currency:'EUR' }}</p>
+    <p>Rating: {{ item.ItemRating }}</p>
   </div>
+</div>
   

@@ -1,7 +1,9 @@
 .item-container {
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
   }
+  
   
   .item-box {
     border: 1px solid #ccc;
@@ -19,5 +21,16 @@
   
   .item-box p {
     margin: 5px 0;
+  }
+  
+
+  .item-box a {
+    color: black; /* Set the text color to black */
+    text-decoration: none; /* Remove underlines */
+    transition: color 0.3s ease; /* Smooth color transition on hover */
+  }
+  
+  .item-box a:hover {
+    color: #555; /* Set the desired text color on hover */
   }
   
