@@ -1,0 +1,36 @@
+.item-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  
+  
+  .item-box {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+    width: calc(20% - 20px); /* Calculate 20% width with margin for 5 items in a row */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+  }
+  
+  .item-box h2 {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+  
+  .item-box p {
+    margin: 5px 0;
+  }
+  
+
+  .item-box a {
+    color: black; /* Set the text color to black */
+    text-decoration: none; /* Remove underlines */
+    transition: color 0.3s ease; /* Smooth color transition on hover */
+  }
+  
+  .item-box a:hover {
+    color: #555; /* Set the desired text color on hover */
+  }
+  

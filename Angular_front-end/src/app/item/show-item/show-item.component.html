@@ -1,20 +1,9 @@
-<table class="table table-striped">
-  <thead>
-      <tr>
-          <th>ItemId</th>
-          <th>ItemName</th>
-          <th>ItemDetails</th>
-          <th>ItemPrice</th>
-          <th>ItemCategory</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr *ngFor="let dataItem of ItemList">   
-          <td>{{dataItem.ItemId}}</td>
-          <td>{{dataItem.ItemName}}</td>
-          <td>{{dataItem.ItemDetails}}</td>
-          <td>{{dataItem.ItemPrice}}</td>
-          <td>{{dataItem.ItemCategory}}</td>
-      </tr>
-  </tbody>
-</table>
+<div class="item-container">
+    <div *ngFor="let item of ItemList" class="item-box">
+    <a [routerLink]="['/item', item.ItemId]"><strong>{{ item.ItemName }}</strong></a>
+    <p>Details: {{ item.ItemDetails }}</p>
+    <p>Price: {{ item.ItemPrice | currency:'EUR' }}</p>
+    <p>Rating: {{ item.ItemRating }}</p>
+  </div>
+</div>
+  
