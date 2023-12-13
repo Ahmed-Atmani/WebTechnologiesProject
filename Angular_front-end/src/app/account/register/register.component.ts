@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { SharedService } from 'src/app/shared.service';
+import { matchpassword } from './match.password.validator';
 
 @Component({
   selector: 'app-register',
@@ -24,7 +25,7 @@ export class RegisterComponent implements OnInit {
     AccountPicture: new FormControl(''),
     AccountBirthDate: new FormControl('01-01-2023', [Validators.required]),
     AccountEmail: new FormControl('', [Validators.required, Validators.email]),
-    AccountPassword: new FormControl('', [Validators.required, Validators.minLength(6)]),
+    AccountPassword: new FormControl('', [Validators.required, Validators.min(6)]),
     AccountPasswordConfirmation: new FormControl('', [Validators.required]),
     AccountAddressStreet: new FormControl('', [Validators.required]),
     AccountAddressCity: new FormControl('', [Validators.required]),
@@ -33,7 +34,11 @@ export class RegisterComponent implements OnInit {
     AccountAddressPostalCode: new FormControl('0000', [Validators.required]),
 
 
-  })
+  },
+  {
+    validators:matchpassword
+  }
+  )
 
   
 

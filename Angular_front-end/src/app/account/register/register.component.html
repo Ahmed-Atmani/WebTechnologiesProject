@@ -63,6 +63,9 @@
       <span *ngIf="registerForm.controls?.['AccountPasswordConfirmation']?.errors?.['required']">
         You have to confirm your password.
       </span>
+      <span *ngIf="registerForm.errors?.['passwordmatcherror']">
+        Your passwords do not match.
+      </span>
     </div>
     <p id="message"></p>
     <br>
