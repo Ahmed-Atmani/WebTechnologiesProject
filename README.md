@@ -42,6 +42,20 @@ Starting the server and front-end
 ---------------------------------
 1. Execute the ```start.bat``` file
 
+Requirements
+------------
+1. Users need to be able to **register** / Log in / Log out
+2. Basic account-overview
+3. List and view items / Search items / Create items / Modify items
+4. Social aspect
+5. AJAX
+6. Form Validation
+7. **CSS**
+8. HTML5
+9. At least one external web service
+10. Responsive Layout
+11. Map implementation
+
 Pages
 -----
 **Marouane = 1**  
