@@ -52,9 +52,7 @@ class AccountSerializer(serializers.ModelSerializer):
 class PurchaseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Purchase
-        fields = ('PurchaseId',
-                  'ItemId',
-                  'AccountId')
+        fields = '__all__'
 
 
 class ComplaintSerializer(serializers.ModelSerializer):
