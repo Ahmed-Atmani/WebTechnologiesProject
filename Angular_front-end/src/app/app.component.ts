@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SharedService } from './shared.service';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,10 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'omnicart';
 
+  constructor(public service: SharedService) {
+  }
+
   searchByKeyword(searchedkeyword: any) {
-    console.log(searchedkeyword);
+    this.service.updateSearchedKeyword(searchedkeyword);
   }
 }

@@ -9,6 +9,8 @@ export class SharedService {
   readonly APIUrl = "http://localhost:8000";
   readonly PhotoUrl = "http://localhost:8000/media/"
 
+  searchedKeyword: any;
+
   constructor(private http: HttpClient) { }
 
   // == ACCOUNT ==
@@ -90,6 +92,11 @@ export class SharedService {
 
   getReviewsForItem(id: any): Observable<any> {
     return this.http.get<any>(this.APIUrl + '/review/?item=' + id);
+  }
+
+  updateSearchedKeyword(keyword: any) {
+    console.log(keyword);
+    this.searchedKeyword = keyword;
   }
 
 }

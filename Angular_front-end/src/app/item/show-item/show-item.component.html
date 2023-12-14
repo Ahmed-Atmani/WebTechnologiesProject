@@ -1,12 +1,28 @@
 <div class="item-container">
-  <div *ngFor="let item of ItemList" class="item-box" [routerLink]="['/item', item.ItemId]">
+  <div *ngFor="let item of filteredItemList()" class="item-box" [routerLink]="['/item', item.ItemId]">
+    <ng-container *ngIf="item.ItemRating === 1">
+      <img src="../../assets/images/1 star.png" alt="1 Star" class="rating-image" style="width: 125px; height: 25px;">
+    </ng-container>
+    <ng-container *ngIf="item.ItemRating === 2">
+      <img src="../../assets/images/2 stars.png" alt="2 Stars" class="rating-image" style="width: 125px; height: 25px;">
+    </ng-container>
+    <ng-container *ngIf="item.ItemRating === 3">
+      <img src="../../assets/images/3 stars.png" alt="3 Stars" class="rating-image" style="width: 125px; height: 25px;">
+    </ng-container>
+    <ng-container *ngIf="item.ItemRating === 4">
+      <img src="../../assets/images/4 stars.png" alt="4 Stars" class="rating-image" style="width: 125px; height: 25px;">
+    </ng-container>
+    <ng-container *ngIf="item.ItemRating === 5">
+      <img src="../../assets/images/5 stars.png" alt="5 Stars" class="rating-image" style="width: 125px; height: 25px;">
+    </ng-container>
 
-    <div *ngIf="filterImage(item.ItemId)">
-      <img [src]="service.APIUrl + filterImage(item.ItemId).Image">
+    <div class="item-image" *ngIf="filterImage(item.ItemId)">
+      <img [src]="service.APIUrl + filterImage(item.ItemId).Image" alt="Item Image">
     </div>
 
-    <strong>{{ item.ItemName }}</strong>
-    <p>{{ item.ItemPrice | currency:'EUR' }}</p>
-    <p>Rating: {{ item.ItemRating }}</p>
+    <div class="item-details">
+      <strong>{{ item.ItemName }}</strong>
+      <p>{{ item.ItemPrice | currency:'EUR' }}</p>
+    </div>
   </div>
 </div>

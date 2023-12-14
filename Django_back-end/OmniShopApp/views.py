@@ -11,6 +11,9 @@ from OmniShopApp.serializers import AccountSerializer, ItemSerializer, PurchaseS
 
 from django.core.files.storage import default_storage
 
+from django.contrib.auth import authenticate, login
+import json
+
 
 #  Create your views here.
 
@@ -160,6 +163,43 @@ class ComplaintViewSet(viewsets.ViewSet):
             return Response("Added successfully!")
         return Response("Failed to add.")
 
+class PurchaseViewSet(viewsets.ViewSet):
+    """
+    A simple ViewSet for listing, retrieving, creating and updating purchases.
+    """
+
+    def list(self, request):
+        queryset = Purchase.objects.all()
+        serializer = PurchaseSerializer(queryset, many=True)
+        return Response(serializer.data)
+
+    def retrieve(self, request, pk=None):
+        queryset = Purchase.objects.all()
+        purchase = get_object_or_404(queryset, pk=pk)
+        serializer = PurchaseSerializer(purchase)
+        return Response(serializer.data)
+
+    def create(self, request):
+        data = JSONParser().parse(request)
+        serializer = PurchaseSerializer(data=data)
+        if serializer.is_valid():
+            return Response("Added successfully!")
+        else:
+            return Response("Failed to add.")
+
+    def update(self, request, pk=None):
+        data = JSONParser().parse(request)
+        purchase = Purchase.objects.get(AccountId=data['PurchaseId'])
+        serializer = PurchaseSerializer(purchase, data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response("Updated successfully!")
+        return Response("Failed to update.")
+
+    def destroy(self, request, pk=None):
+        purchase = Purchase.objects.get(PurchaseId=pk)
+        purchase.delete()
+        return Response("Deleted successfully!")
 
 # == REVIEW ==
 class ReviewViewSet(viewsets.ViewSet):
@@ -255,3 +295,20 @@ def SaveFile(request):
     file_name = default_storage.save(file.name, file)
 
     return JsonResponse(file_name, safe=False)
+
+
+@csrf_exempt
+def login_view(request):
+    if request.method == 'POST':
+        data = JSONParser().parse(request)
+        AccountEmail = data['AccountEmail']
+        AccountPassword = data['AccountPassword']
+        user = authenticate(email=AccountEmail, password=AccountPassword)
+        if user is not None:
+            login(request, user)
+            return JsonResponse({'success': True, 'message': 'Login successful!'})
+        else:
+            return JsonResponse({'success': False, 'message': 'Invalid credentials'}, status=401)
+
+    return JsonResponse({'success': False, 'message': 'Invalid request method'}, status=400)
+
