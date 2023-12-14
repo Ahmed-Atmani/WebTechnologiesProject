@@ -1,41 +1,84 @@
-body, html {
-    margin: 0;
-    padding: 0;
-  }
-  
-.context{
-    margin-left: 50px;
-  }
+.body, html {
+  margin: 0;
+  padding: 0;
+}
 
-  /* Create three equal columns that float next to each other */
+.context {
+  margin-left: 50px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Create two equal columns within the .context container */
+.column {
+  flex: 1; /* Make each column take up equal space */
+}
+
+/* Responsive layout - makes the two columns stack on top of each other on smaller screens */
+@media screen and (max-width: 600px) {
   .column {
-    float: left;
-    width: 50%;
+    width: 100%;
   }
+}
 
-  /* Clear floats after the columns */
-  .row:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
 
-  /* Responsive layout - makes the three columns stack on top of each other instead of next to each other on smaller screens (600px wide or less) */
-  @media screen and (max-width: 600px) {
-    .column {
-      width: 100%;
-    }
-  }
+.article {
+  display: flex;
+  justify-content: space-between; /* Add this line to create space between items */
+}
 
-  .article{
-    display: flex;
-  }
+.show-article {
+  display: flex;
+  flex-direction: row;
+}
 
-  .show-article{
-    display: inline-block
-  }
+.show-article img {
+  width: 100%;
+  height: 250px; /* Adjust the height for larger images */
+  object-fit: cover;
+  border-radius: 10px;
+}
 
-  .article-image img{
-    max-width: 90%;
-    max-height: 90%;
-  }
+/* Custom styles for the carousel */
+#itemCarousel {
+  margin-top: 20px;
+}
+
+.carousel-inner {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.carousel-item {
+  text-align: center;
+}
+
+.carousel-item img {
+  width: 100%;
+  height: 350px; /* Adjust the height for larger images */
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.carousel-control-prev, .carousel-control-next {
+  width: 5%;
+}
+
+.carousel-control-prev-icon, .carousel-control-next-icon {
+  background-color: #333;
+}
+
+/* Faster transition between images */
+.carousel-inner .carousel-item {
+  transition: transform 0.5s ease-in-out;
+}
+
+.item-details {
+  text-align: center;
+}

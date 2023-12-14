@@ -79,5 +79,13 @@ export class SharedService {
     console.log(val)
     return this.http.post(this.APIUrl + '/complaint/', val);
   }
+
+  getAllImages(): Observable<any> {
+    return this.http.get<any>(this.APIUrl + '/image/');
+  }
+
+  getImagesForItem(id: any): Observable<any> {
+    return this.http.get<any>(this.APIUrl + '/image/?item=' + id);
+  }
 }
 

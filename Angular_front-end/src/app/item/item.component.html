@@ -1,51 +1,56 @@
-<br>
-<br>
-<br>
-<h1 class="item-information">ItemName: {{ItemName}}</h1>
-<h2 class="item-information">ItemID: {{ItemId}}</h2>
-<h2 class="item-information">Price: {{'€' + ItemPrice.toString()}}</h2>
-<h2 class="item-information">Description: {{ItemDetails}}</h2>
-<h2 class="item-information">CategoryID: {{ItemCategoryId}}</h2>
-<button  type="button" (click)="AddItemToCart()">Add to cart</button>
-<button  type="button" (click)="ClearCart()">[DEBUG] clear cart</button>
-
 <div class="context">
-
-    <div class="row">
-      <div class="column">
+  <div class="row">
+    <div class="column">
+      <div class="item">
         <div class="show-article">
-          <div class="article-name">
-            <br>
-            <h2>{{ItemName}}</h2>
+          <div id="itemCarousel" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+              <div *ngFor="let img of ImagesList; let i = index" class="carousel-item" [class.active]="i === 0">
+                <img class="d-block w-100" [src]="service.APIUrl + img.Image" alt="Item Image">
+              </div>
+            </div>
+            <a class="carousel-control-prev" href="#itemCarousel" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#itemCarousel" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
           </div>
-          <div class="article-image">
-            <img src="assets/images/aardbei.jpg" alt="">
-          </div>
-        </div>
-        <br>
-      </div>
-      <div class="column">
-        <div class="article-information">
-          <div class="description">
+
+          <div class="item-details">
             <br>
+            <h1 class="item-information">{{ItemName}}</h1>
+            <h2 class="item-information">{{'€' + ItemPrice.toString()}}</h2>
+
+            <div class="description">
+              <br>
               <h4><strong>Description</strong></h4>
               <p>{{ItemDetails}}</p>
               <br>
+            </div>
+
+            <button type="button" (click)="AddItemToCart()">Add to cart</button>
+            <button type="button" (click)="ClearCart()">[DEBUG] clear cart</button>
+
           </div>
         </div>
       </div>
+      <br>
     </div>
-    <div class="row">
-      <div class="column">
-        <div class="reviews">
-          <br>
-          <h4><strong>Reviews</strong></h4>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic sed, quia dolor, cumque vitae enim sunt eligendi ipsa perspiciatis eveniet, ex obcaecati maxime numquam pariatur delectus. Optio numquam saepe inventore!
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit consectetur ipsum consequatur sint voluptatem molestiae. Accusantium nihil obcaecati, sit, officiis impedit quas, atque adipisci suscipit placeat quo sed! Esse, obcaecati?
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dignissimos obcaecati perspiciatis corrupti consequatur, veritatis, eligendi quia quaerat nihil at eius a ex quibusdam sint enim voluptatum aut sit! Cumque, velit.
-          </p>
-        </div>
+  </div>
+
+  <div class="row">
+    <div class="column">
+      <div class="reviews">
+        <br>
+        <h4><strong>Reviews</strong></h4>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic sed, quia dolor, cumque vitae enim sunt eligendi ipsa perspiciatis eveniet, ex obcaecati maxime numquam pariatur delectus. Optio numquam saepe inventore!
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit consectetur ipsum consequatur sint voluptatem molestiae. Accusantium nihil obcaecati, sit, officiis impedit quas, atque adipisci suscipit placeat quo sed! Esse, obcaecati?
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dignissimos obcaecati perspiciatis corrupti consequatur, veritatis, eligendi quia quaerat nihil at eius a ex quibusdam sint enim voluptatum aut sit! Cumque, velit.
+        </p>
       </div>
     </div>
   </div>
-    
+</div>
