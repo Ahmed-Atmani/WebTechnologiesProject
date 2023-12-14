@@ -11,6 +11,9 @@ from OmniShopApp.serializers import AccountSerializer, ItemSerializer, PurchaseS
 
 from django.core.files.storage import default_storage
 
+from django.contrib.auth import authenticate, login
+import json
+
 
 #  Create your views here.
 
@@ -255,3 +258,20 @@ def SaveFile(request):
     file_name = default_storage.save(file.name, file)
 
     return JsonResponse(file_name, safe=False)
+
+
+@csrf_exempt
+def login_view(request):
+    if request.method == 'POST':
+        data = JSONParser().parse(request)
+        AccountEmail = data['AccountEmail']
+        AccountPassword = data['AccountPassword']
+        user = authenticate(email=AccountEmail, password=AccountPassword)
+        if user is not None:
+            login(request, user)
+            return JsonResponse({'success': True, 'message': 'Login successful!'})
+        else:
+            return JsonResponse({'success': False, 'message': 'Invalid credentials'}, status=401)
+
+    return JsonResponse({'success': False, 'message': 'Invalid request method'}, status=400)
+

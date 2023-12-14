@@ -23,6 +23,8 @@ urlpatterns = [
     re_path(r'^SaveFile$', views.SaveFile),
     path("", include(router.urls)),
 
+    path('api/account/', views.login_view, name='login'),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
