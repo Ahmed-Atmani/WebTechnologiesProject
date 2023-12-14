@@ -57,6 +57,7 @@ class Item(models.Model):
     ItemState = models.IntegerField(default=1, choices=STATE_CHOICES)
     ItemSeller = models.ForeignKey(Account, on_delete=models.CASCADE, null=True)
     ItemRating = models.FloatField(help_text='Average rating', null=True)
+    ItemBrand = models.CharField(max_length=20, null=True)
 
     def update_rating(self):
         # Update the rating based on the average rating of associated reviews
@@ -74,10 +75,23 @@ class Image(models.Model):
     Image = models.ImageField()
     Item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name='images')
 
+
+PURCHASE_STATUS_CHOICES = (
+    (1, 'Pending'),
+    (2, 'Confirmed'),
+    (3, 'Shipped'),
+    (4, 'Delivered')
+)
+
+
 class Purchase(models.Model):
     PurchaseId = models.AutoField(primary_key=True)
-    Item = models.ForeignKey(Item, on_delete=models.CASCADE)
+    Items = models.ManyToManyField(Item)
     Account = models.ForeignKey(Account, on_delete=models.CASCADE)
+    Purchase_date = models.DateTimeField(auto_now_add=True, null=True)
+    Shipping_date = models.DateTimeField(null=True)
+    Delivery_time = models.PositiveIntegerField(null=True)
+    Status = models.IntegerField(default=1, choices=PURCHASE_STATUS_CHOICES)
 
 
 STATUS_CHOICES = (
