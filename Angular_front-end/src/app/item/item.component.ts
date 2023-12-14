@@ -18,7 +18,8 @@ export class ItemComponent implements OnInit {
   ItemCategoryId: number = -1;
   ItemCategoryName: String = "";
   PurchaseAmount: number = 1;
-  ImagesList: any[] = []; // Use an array instead of an object
+  ImagesList: any[] = [];
+  ReviewList: any[] = [];
 
   constructor(private route: ActivatedRoute, public service: SharedService) {
   }
@@ -34,10 +35,14 @@ export class ItemComponent implements OnInit {
         this.ItemDetails = item.ItemDetails;
         this.ItemCategoryId = item.ItemCategory;
 
-        // Call fillImagesList and assign the result to ImagesList
         this.fillImagesList(this.ItemId).subscribe(images => {
           this.ImagesList = images;
         });
+
+        this.fillReviewList(this.ItemId).subscribe(reviews => {
+          this.ReviewList = reviews;
+        });
+        
       },
       error => {
         console.error(`No item has the following id: ${this.ItemId}`);
@@ -79,5 +84,9 @@ export class ItemComponent implements OnInit {
 
   fillImagesList(itemId: number): Observable<any[]> {
     return this.service.getImagesForItem(itemId);
+  }
+
+  fillReviewList(itemId: number): Observable<any[]> {
+    return this.service.getReviewsForItem(itemId);
   }
 }

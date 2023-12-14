@@ -9,19 +9,16 @@
   flex-direction: column;
 }
 
-/* Create two equal columns within the .context container */
 .column {
-  flex: 1; /* Make each column take up equal space */
+  flex: 1;
 }
 
-/* Responsive layout - makes the two columns stack on top of each other on smaller screens */
 @media screen and (max-width: 600px) {
   .column {
     width: 100%;
   }
 }
 
-/* Clear floats after the columns */
 .row:after {
   content: "";
   display: table;
@@ -30,7 +27,7 @@
 
 .article {
   display: flex;
-  justify-content: space-between; /* Add this line to create space between items */
+  justify-content: space-between;
 }
 
 .show-article {
@@ -40,12 +37,11 @@
 
 .show-article img {
   width: 100%;
-  height: 250px; /* Adjust the height for larger images */
+  height: 250px;
   object-fit: cover;
   border-radius: 10px;
 }
 
-/* Custom styles for the carousel */
 #itemCarousel {
   margin-top: 20px;
 }
@@ -61,7 +57,7 @@
 
 .carousel-item img {
   width: 100%;
-  height: 350px; /* Adjust the height for larger images */
+  height: 350px;
   object-fit: cover;
   border-radius: 10px;
 }
@@ -74,11 +70,47 @@
   background-color: #333;
 }
 
-/* Faster transition between images */
 .carousel-inner .carousel-item {
   transition: transform 0.5s ease-in-out;
 }
 
 .item-details {
   text-align: center;
+}
+
+.reviews {
+  margin-top: 10px; /* Adjust the margin-top value to position the reviews higher */
+  margin-bottom: 20px; /* Add margin-bottom to create space under the reviews */
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+}
+
+.review-item {
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.review-item p {
+  margin: 5px 0;
+}
+
+.review-item .profile-picture {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+.review-item svg {
+  width: 16px;
+  height: 16px;
+  margin-right: 5px;
+}
+
+.review-item:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }

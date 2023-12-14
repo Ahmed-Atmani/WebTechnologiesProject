@@ -43,13 +43,31 @@
 
   <div class="row">
     <div class="column">
+      
       <div class="reviews">
         <br>
         <h4><strong>Reviews</strong></h4>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic sed, quia dolor, cumque vitae enim sunt eligendi ipsa perspiciatis eveniet, ex obcaecati maxime numquam pariatur delectus. Optio numquam saepe inventore!
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit consectetur ipsum consequatur sint voluptatem molestiae. Accusantium nihil obcaecati, sit, officiis impedit quas, atque adipisci suscipit placeat quo sed! Esse, obcaecati?
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dignissimos obcaecati perspiciatis corrupti consequatur, veritatis, eligendi quia quaerat nihil at eius a ex quibusdam sint enim voluptatum aut sit! Cumque, velit.
-        </p>
+
+        <ng-container *ngIf="ReviewList.length > 0; else noReviews">
+          <div *ngFor="let review of ReviewList" class="review-item">
+            <span class="profile-picture">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+              </svg>
+            </span>
+
+            <div class="review-content">
+              <p><strong>{{ review.ReviewerName }}</strong></p>
+              <p>Rating: {{ review.Rating }} stars</p>
+              <p>Review Text: {{ review.ReviewText }}</p>
+            </div>
+          </div>
+        </ng-container>
+
+        <ng-template #noReviews>
+          <p>No reviews yet for this product. Be the first one to give your opinion!</p>
+        </ng-template>
       </div>
     </div>
   </div>
