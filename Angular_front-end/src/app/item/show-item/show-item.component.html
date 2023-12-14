@@ -1,9 +1,12 @@
 <div class="item-container">
-    <div *ngFor="let item of ItemList" class="item-box">
-    <a [routerLink]="['/item', item.ItemId]"><strong>{{ item.ItemName }}</strong></a>
-    <p>Details: {{ item.ItemDetails }}</p>
-    <p>Price: {{ item.ItemPrice | currency:'EUR' }}</p>
+  <div *ngFor="let item of ItemList" class="item-box" [routerLink]="['/item', item.ItemId]">
+
+    <div *ngIf="filterImage(item.ItemId)">
+      <img [src]="service.APIUrl + filterImage(item.ItemId).Image">
+    </div>
+
+    <strong>{{ item.ItemName }}</strong>
+    <p>{{ item.ItemPrice | currency:'EUR' }}</p>
     <p>Rating: {{ item.ItemRating }}</p>
   </div>
 </div>
-  

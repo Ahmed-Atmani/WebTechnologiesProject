@@ -1,41 +1,116 @@
-body, html {
-    margin: 0;
-    padding: 0;
-  }
-  
-.context{
-    margin-left: 50px;
-  }
+.body, html {
+  margin: 0;
+  padding: 0;
+}
 
-  /* Create three equal columns that float next to each other */
+.context {
+  margin-left: 50px;
+  display: flex;
+  flex-direction: column;
+}
+
+.column {
+  flex: 1;
+}
+
+@media screen and (max-width: 600px) {
   .column {
-    float: left;
-    width: 50%;
+    width: 100%;
   }
+}
 
-  /* Clear floats after the columns */
-  .row:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
 
-  /* Responsive layout - makes the three columns stack on top of each other instead of next to each other on smaller screens (600px wide or less) */
-  @media screen and (max-width: 600px) {
-    .column {
-      width: 100%;
-    }
-  }
+.article {
+  display: flex;
+  justify-content: space-between;
+}
 
-  .article{
-    display: flex;
-  }
+.show-article {
+  display: flex;
+  flex-direction: row;
+}
 
-  .show-article{
-    display: inline-block
-  }
+.show-article img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 10px;
+}
 
-  .article-image img{
-    max-width: 90%;
-    max-height: 90%;
-  }
+#itemCarousel {
+  margin-top: 20px;
+}
+
+.carousel-inner {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.carousel-item {
+  text-align: center;
+}
+
+.carousel-item img {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.carousel-control-prev, .carousel-control-next {
+  width: 5%;
+}
+
+.carousel-control-prev-icon, .carousel-control-next-icon {
+  background-color: #333;
+}
+
+.carousel-inner .carousel-item {
+  transition: transform 0.5s ease-in-out;
+}
+
+.item-details {
+  text-align: center;
+}
+
+.reviews {
+  margin-top: 10px; /* Adjust the margin-top value to position the reviews higher */
+  margin-bottom: 20px; /* Add margin-bottom to create space under the reviews */
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+}
+
+.review-item {
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.review-item p {
+  margin: 5px 0;
+}
+
+.review-item .profile-picture {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+.review-item svg {
+  width: 16px;
+  height: 16px;
+  margin-right: 5px;
+}
+
+.review-item:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}

@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./item.component.css']
 })
 
-export class ItemComponent implements OnInit{
+export class ItemComponent implements OnInit {
   ItemId: number = -1;
   ItemName: string = "";
   ItemPrice: number = -1;
@@ -18,8 +18,10 @@ export class ItemComponent implements OnInit{
   ItemCategoryId: number = -1;
   ItemCategoryName: String = "";
   PurchaseAmount: number = 1;
+  ImagesList: any[] = [];
+  ReviewList: any[] = [];
 
-  constructor(private route: ActivatedRoute, private service: SharedService) {
+  constructor(private route: ActivatedRoute, public service: SharedService) {
   }
 
   ngOnInit(): void {
@@ -32,14 +34,23 @@ export class ItemComponent implements OnInit{
         this.ItemPrice = item.ItemPrice;
         this.ItemDetails = item.ItemDetails;
         this.ItemCategoryId = item.ItemCategory;
+
+        this.fillImagesList(this.ItemId).subscribe(images => {
+          this.ImagesList = images;
+        });
+
+        this.fillReviewList(this.ItemId).subscribe(reviews => {
+          this.ReviewList = reviews;
+        });
+        
       },
       error => {
-        console.error(`No item has the folowing id: ${this.ItemId}`);
+        console.error(`No item has the following id: ${this.ItemId}`);
         this.ItemName = "Item not found";
       });
-      
     });
   }
+
   AddItemToCart(): void {
     var item: any = {
       "ItemId": this.ItemId,
@@ -71,4 +82,11 @@ export class ItemComponent implements OnInit{
 
   }
 
+  fillImagesList(itemId: number): Observable<any[]> {
+    return this.service.getImagesForItem(itemId);
+  }
+
+  fillReviewList(itemId: number): Observable<any[]> {
+    return this.service.getReviewsForItem(itemId);
+  }
 }
