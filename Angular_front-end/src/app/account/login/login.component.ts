@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
     // TODO: ADD USER INFO TO LOCALSTORAGE
     // localStorage.setItem("AccountId", this.AccountId);
     // localStorage.setItem("ItemList", <SET '[]' or saved shopping cart from DB>);
-    
+
   }
 
   loginForm: FormGroup = new FormGroup({
@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
   constructor(private http: HttpClient, public shared: SharedService, private authService: AuthService, private router: Router) {}
 
 
-  
+
 
   login(): void {
     this.loginInProgress = true;
@@ -57,5 +57,5 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  
+
 }

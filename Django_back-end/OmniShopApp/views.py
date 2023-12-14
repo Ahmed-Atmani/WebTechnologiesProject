@@ -259,14 +259,14 @@ def SaveFile(request):
 
     return JsonResponse(file_name, safe=False)
 
+
 @csrf_exempt
 def login_view(request):
     if request.method == 'POST':
-        AccountEmail = request.POST.get('AccountEmail')
-        AccountPassword = request.POST.get('AccountPassword')
-
-        user = authenticate(request, AccountEmail=AccountEmail, AccountPassword=AccountPassword)
-
+        data = JSONParser().parse(request)
+        AccountEmail = data['AccountEmail']
+        AccountPassword = data['AccountPassword']
+        user = authenticate(email=AccountEmail, password=AccountPassword)
         if user is not None:
             login(request, user)
             return JsonResponse({'success': True, 'message': 'Login successful!'})
@@ -274,3 +274,4 @@ def login_view(request):
             return JsonResponse({'success': False, 'message': 'Invalid credentials'}, status=401)
 
     return JsonResponse({'success': False, 'message': 'Invalid request method'}, status=400)
+

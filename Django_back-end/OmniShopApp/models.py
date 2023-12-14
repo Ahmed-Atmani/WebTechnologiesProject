@@ -1,9 +1,11 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db.models import Avg
+from django.contrib.auth.models import User
 
 
 # Create your models here.
+
 
 class Address(models.Model):
     AddressId = models.AutoField(primary_key=True)
@@ -28,6 +30,11 @@ class Account(models.Model):
     AccountAddressCountry = models.CharField(max_length=20)
     AccountAddressStreetNumber = models.PositiveIntegerField()
     AccountAddressPostalCode = models.PositiveIntegerField()
+    User = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
+
+    def save(self, *args, **kwargs):
+        User.objects.create_user(self.AccountFirstName, self.AccountEmail, self.AccountPassword)
+        super(Account, self).save(*args, **kwargs)
 
 
 class ItemCategory(models.Model):
