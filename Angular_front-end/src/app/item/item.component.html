@@ -43,7 +43,6 @@
 
   <div class="row">
     <div class="column">
-
       <div class="reviews">
         <br>
         <h4><strong>Reviews</strong></h4>
@@ -59,7 +58,23 @@
 
             <div class="review-content">
               <p><strong>{{ review.ReviewerName }}</strong></p>
-              <p>{{ review.Rating }} stars</p>
+              
+              <ng-container *ngIf="review.Rating === 1">
+                <img src="../../assets/images/1 star.png" alt="1 Star" style="width: 125px; height: 25px;">
+              </ng-container>
+              <ng-container *ngIf="review.Rating === 2">
+                <img src="../../assets/images/2 stars.png" alt="2 Stars" style="width: 125px; height: 25px;">
+              </ng-container>
+              <ng-container *ngIf="review.Rating === 3">
+                <img src="../../assets/images/3 stars.png" alt="3 Stars" style="width: 125px; height: 25px;">
+              </ng-container>
+              <ng-container *ngIf="review.Rating === 4">
+                <img src="../../assets/images/4 stars.png" alt="4 Stars" style="width: 125px; height: 25px;">
+              </ng-container>
+              <ng-container *ngIf="review.Rating === 5">
+                <img src="../../assets/images/5 stars.png" alt="5 Stars" style="width: 125px; height: 25px;">
+              </ng-container>
+
               <p>{{ review.ReviewText }}</p>
             </div>
           </div>
