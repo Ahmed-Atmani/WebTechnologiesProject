@@ -12,12 +12,13 @@ export class CheckoutCartComponent {
   ItemList: any = [];
   TotalPrice: number = 0;
   ShopLocation: any = { "latitude": 50.844278, "longitude": 2.961053 };
+  LatestCoordinates = { "latitude": 500, "longitude": 500 }
   map: any = [];
 
   ngOnInit(): void {
     this.getCartItems();
     this.initLeafletMap();
-    this.initGeoCoder();
+    this.addGeocodedMarker('Vrije Universiteit Brussel, Belgium', true);
   }
 
   initLeafletMap(): void {
@@ -27,74 +28,74 @@ export class CheckoutCartComponent {
     }).addTo(this.map);
   }
 
-  addMarkerToMap(longitude: number, latitude: number, name: string): void {
-    L.marker([longitude, latitude]).addTo(this.map).bindPopup(name);
+  addMarkerToMap(latitude: number, longitude: number, name: string): void {
+    L.marker([latitude, longitude]).addTo(this.map).bindPopup(name);
   }
 
-  initGeoCoder(): void {
-    var api_key = 'cc863016aa0e4d35a9725dd2c9b8cb70';
+  goToCoordinates(latitude: number, longitude: number): void {
+    this.map.setView([latitude, longitude], 12);
+  }
 
-    // reverse geocoding example (coordinates to address)
-    // var latitude = '52.3877830';
-    // var longitude = '9.7334394';
-    // var query = latitude + ',' + longitude;
+  goToLatestCoordinates(): void {
+    this.goToCoordinates(this.LatestCoordinates.latitude, this.LatestCoordinates.longitude);
+  }
 
-    // forward geocoding example (address to coordinate)
-    var query = 'Vrije Universiteit Brussel, Belgium';
-    // var query = 'Philipsbornstr. 2, 30165 Hannover, Germany';
-    // note: query needs to be URI encoded (see below)
-
-    var api_url = 'https://api.opencagedata.com/geocode/v1/json'
-
-    var request_url = api_url
-      + '?'
-      + 'key=' + api_key
-      + '&q=' + encodeURIComponent(query)
-      + '&pretty=1'
-      + '&no_annotations=1';
-
-    // see full list of required and optional parameters:
-    // https://opencagedata.com/api#forward
-
-    var request = new XMLHttpRequest();
-    request.open('GET', request_url, true);
-
-    request.onload = () => {
-      // see full list of possible response codes:
-      // https://opencagedata.com/api#codes
-
-      if (request.status === 200){
-        // Success!
-        var data = JSON.parse(request.responseText);
-        // alert(JSON.stringify(data, null, 4));
-        // alert(data.results[0].formatted); // print the location
-        // alert("lat: " + data.results[0].bounds.northeast.lat);
-        // alert("lng: " + data.results[0].bounds.northeast.lng);
-
-        var lat: number = data.results[0].bounds.northeast.lat;
-        var long: number = data.results[0].bounds.northeast.lng;
-
-        this.addMarkerToMap(lat, long, query);
-
-
-      } else if (request.status <= 500){
-        // We reached our target server, but it returned an error
-
-        console.log("unable to geocode! Response code: " + request.status);
-        var data = JSON.parse(request.responseText);
-        console.log('error msg: ' + data.status.message);
-      } else {
-        console.log("server error");
+  addGeocodedMarker(query: string, goto: boolean): void {
+    this.geocode(query).then(
+      (result) => {
+        this.addMarkerToMap(result.latitude, result.longitude, query);
+        if (goto) {this.goToLatestCoordinates();}
+      },
+      (error) => {
+        console.error(error);
       }
-    };
-
-    request.onerror = function() {
-      // There was a connection error of some sort
-      console.log("unable to connect to server");
-    };
-
-    request.send();  // make the request
+    );
   }
+
+  geocode(query: string): Promise<{ latitude: number; longitude: number }> {
+    return new Promise((resolve, reject) => {
+      var api_key = 'cc863016aa0e4d35a9725dd2c9b8cb70';
+      var api_url = 'https://api.opencagedata.com/geocode/v1/json';
+      var request_url =
+        api_url +
+        '?' +
+        'key=' +
+        api_key +
+        '&q=' +
+        encodeURIComponent(query) +
+        '&pretty=1' +
+        '&no_annotations=1';
+  
+      var request = new XMLHttpRequest();
+      request.open('GET', request_url, true);
+      request.onload = () => {
+        if (request.status === 200) {
+          var data = JSON.parse(request.responseText);
+          const latitude = data.results[0].bounds.northeast.lat;
+          const longitude = data.results[0].bounds.northeast.lng;
+          this.LatestCoordinates = {longitude, latitude};
+          resolve({ longitude, latitude });
+
+        } else if (request.status <= 500) {
+          console.log('unable to geocode! Response code: ' + request.status);
+          var data = JSON.parse(request.responseText);
+          console.log('error msg: ' + data.status.message);
+          reject('Error during geocoding');
+
+        } else {
+          console.log('server error');
+          reject('Server error during geocoding');
+        }
+      };
+  
+      request.onerror = function () {
+        reject('Connection error during geocoding');
+      };
+  
+      request.send(); // make the request
+    });
+  }
+  
 
   getCartItems(): void {
     this.ItemList = JSON.parse(localStorage.getItem("ItemList") || "[]");
