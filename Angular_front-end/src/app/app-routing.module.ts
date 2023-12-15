@@ -20,7 +20,6 @@ import { ComplaintsComponent } from "./account/complaints/complaints.component";
 
 
 const routes: Routes = [
-  
   {path:'account', component:AccountComponent},
   {path:'account/test', component:ShowAccountComponent},
   {path:'account/overview', component:AccountOverviewComponent},
