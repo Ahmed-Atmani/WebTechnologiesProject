@@ -31,6 +31,9 @@ class Account(models.Model):
     AccountAddressStreetNumber = models.PositiveIntegerField()
     AccountAddressPostalCode = models.PositiveIntegerField()
     User = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
+    AccountPoints = models.PositiveIntegerField(default=0)
+    AccountVouchers = models.JSONField(default=[], help_text='list of integers')
+
 
     def save(self, *args, **kwargs):
         User.objects.create_user(self.AccountFirstName, self.AccountEmail, self.AccountPassword)
