@@ -2,17 +2,29 @@
 <html lang="en">
 
 <body>
-    <div id="order">
-    <h1><img id="profile-pic" src="assets/images/no-picture.jpg" width="125" height="125"></h1>
-    <div id="order-information">
-        <h3>Item name(s)</h3>
-        <p>Delivery ETA: XX days</p>
-        <p>Order number: XXXXX</p>
-    </div>
-        <form id ="order-buttons">
-            <input class="track-package" type="button" value="Track package">
-            <input class="cancel-order" type="button" value="Cancel order">
-        </form>
+    <div class="accordion accordion-flush" id="accordionFlushExample">
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                <div id="order">
+                    <h1><img id="profile-pic" src="assets/images/no-picture.jpg" width="125" height="125"></h1>
+                    <div id="order-information">
+                        <h3>Item name(s)</h3>
+                        <p>Delivery ETA: XX days</p>
+                        <p>Order number: XXXXX</p>
+                    </div>
+                        <form id ="order-buttons">
+                            <input class="track-package" type="button" value="Track package">
+                            <input class="cancel-order" type="button" value="Cancel order">
+                        </form>
+                    </div>
+            </button>
+          </h2>
+          <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion body.</div>
+          </div>
+        </div>
     </div>
 </body>
 </html>
+
