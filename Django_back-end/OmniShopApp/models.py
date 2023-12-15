@@ -1,9 +1,11 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db.models import Avg
+from django.contrib.auth.models import User
 
 
 # Create your models here.
+
 
 class Address(models.Model):
     AddressId = models.AutoField(primary_key=True)
@@ -28,6 +30,14 @@ class Account(models.Model):
     AccountAddressCountry = models.CharField(max_length=20)
     AccountAddressStreetNumber = models.PositiveIntegerField()
     AccountAddressPostalCode = models.PositiveIntegerField()
+    User = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
+    AccountPoints = models.PositiveIntegerField(default=0)
+    AccountVouchers = models.JSONField(default=[], help_text='list of integers')
+
+
+    def save(self, *args, **kwargs):
+        User.objects.create_user(self.AccountFirstName, self.AccountEmail, self.AccountPassword)
+        super(Account, self).save(*args, **kwargs)
 
 
 class ItemCategory(models.Model):
@@ -50,6 +60,7 @@ class Item(models.Model):
     ItemState = models.IntegerField(default=1, choices=STATE_CHOICES)
     ItemSeller = models.ForeignKey(Account, on_delete=models.CASCADE, null=True)
     ItemRating = models.FloatField(help_text='Average rating', null=True)
+    ItemBrand = models.CharField(max_length=20, null=True)
 
     def update_rating(self):
         # Update the rating based on the average rating of associated reviews
@@ -67,10 +78,23 @@ class Image(models.Model):
     Image = models.ImageField()
     Item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name='images')
 
+
+PURCHASE_STATUS_CHOICES = (
+    (1, 'Pending'),
+    (2, 'Confirmed'),
+    (3, 'Shipped'),
+    (4, 'Delivered')
+)
+
+
 class Purchase(models.Model):
     PurchaseId = models.AutoField(primary_key=True)
-    Item = models.ForeignKey(Item, on_delete=models.CASCADE)
+    Items = models.ManyToManyField(Item)
     Account = models.ForeignKey(Account, on_delete=models.CASCADE)
+    Purchase_date = models.DateTimeField(auto_now_add=True, null=True)
+    Shipping_date = models.DateTimeField(null=True)
+    Delivery_time = models.PositiveIntegerField(null=True)
+    Status = models.IntegerField(default=1, choices=PURCHASE_STATUS_CHOICES)
 
 
 STATUS_CHOICES = (

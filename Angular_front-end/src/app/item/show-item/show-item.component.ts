@@ -38,4 +38,16 @@ export class ShowItemComponent implements OnInit {
   filterImage(itemId: number): any {
     return this.ImagesList[itemId] || null;
   }
+
+  filteredItemList(): any[] {
+    if (!this.service.searchedKeyword) {
+      return this.ItemList;
+    }
+
+    const keyword = this.service.searchedKeyword.toLowerCase();
+
+    return this.ItemList.filter((item: any) => {
+      return item.ItemName.toLowerCase().includes(keyword);
+    });
+  }
 }

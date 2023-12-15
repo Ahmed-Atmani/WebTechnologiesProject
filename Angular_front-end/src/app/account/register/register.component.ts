@@ -3,6 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { SharedService } from 'src/app/shared.service';
 import { matchpassword } from './match.password.validator';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -12,7 +13,7 @@ import { matchpassword } from './match.password.validator';
 
 export class RegisterComponent implements OnInit {
 
-  constructor(private http: HttpClient, private service: SharedService) {
+  constructor(private http: HttpClient, private service: SharedService, private router: Router) {
     this.getAllUser();
   }
 
@@ -92,7 +93,6 @@ export class RegisterComponent implements OnInit {
   }
 
   addAccount(){
-    debugger;
     var val = {
       AccountFirstName: this.AccountFirstName,
       AccountLastName: this.AccountLastName,
@@ -110,6 +110,7 @@ export class RegisterComponent implements OnInit {
     this.service.addAccount(val).subscribe(res => {
     alert(res.toString());
     })
+    this.router.navigate(['/login']);
    
     // }
     
