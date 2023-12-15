@@ -11,7 +11,7 @@
   width: calc(20% - 20px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   background-color: #fff;
-  transition: transform 0.3s ease; /* Add transition effect to scaling */
+  transition: transform 0.3s ease;
 }
 
 .item-box h2 {
@@ -26,7 +26,7 @@
 .item-box a {
   color: black;
   text-decoration: none;
-  transition: color 0.3s ease; /* Add transition effect to text color */
+  transition: color 0.3s ease
 }
 
 .item-box a:hover {
@@ -41,5 +41,12 @@
 }
 
 .item-box:hover {
-  transform: scale(1.05); /* Increase item-box size on hover */
+  transform: scale(1.05);
 }
+
+
+.item-box .brand {
+  font-size: 14px;
+  margin: 0;
+}
+
