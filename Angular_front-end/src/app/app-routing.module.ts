@@ -20,20 +20,24 @@ import { ComplaintsComponent } from "./account/complaints/complaints.component";
 
 
 const routes: Routes = [
-  {path:'account-test', component:ShowAccountComponent},
   {path:'home', component:AccountComponent},
-  {path:'account-overview', component:AccountOverviewComponent},
-  {path:'register', component:RegisterComponent},
-  {path:'item/:id', component: ItemComponent},
-  {path:'account-points', component:AccountPointsComponent},
-  {path:'account-preferences', component:AccountPreferencesComponent},
-  {path:'account-settings', component:AccountSettingsComponent},
-  {path:'account-orders', component:AccountOrdersComponent},
-  {path:'account-complaints', component: ComplaintsComponent},
-  {path:'add-item', component:AddItemComponent},
+
+  {path:'account/test', component:ShowAccountComponent},
+  {path:'account/overview', component:AccountOverviewComponent},
+  {path:'account/points', component:AccountPointsComponent},
+  {path:'account/preferences', component:AccountPreferencesComponent},
+  {path:'account/settings', component:AccountSettingsComponent},
+  {path:'account/orders', component:AccountOrdersComponent},
+  {path:'account/complaints', component: ComplaintsComponent},
+
   {path:'items', component:ShowItemComponent},
+  {path:'items/:id', component: ItemComponent},
+  {path:'add-item', component:AddItemComponent},
+
   {path:'login', component:LoginComponent},
+  {path:'register', component:RegisterComponent},
   {path:'forgot-password', component:ForgotPasswordComponent},
+
   {path:'shopping-cart', component:ShoppingCartComponent},
   {path:'checkout-cart', component:CheckoutCartComponent},
 
