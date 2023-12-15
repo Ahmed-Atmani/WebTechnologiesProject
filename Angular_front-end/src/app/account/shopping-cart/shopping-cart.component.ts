@@ -14,9 +14,30 @@ export class ShoppingCartComponent implements OnInit{
   ItemList: any = [];
 
   ngOnInit(): void {
-    // console.log(localStorage.getItem("ItemList"));
     this.ItemList = JSON.parse(localStorage.getItem("ItemList") || "[]");
-    // console.log(JSON.stringify(this.ItemList, null, 4));
+  }
+
+  updateShoppingCart(): void {
+    localStorage.setItem("ItemList", JSON.stringify(this.ItemList));
+  }
+
+  addItemQuantity(item: any, quantity: number): void {
+    item["PurchaseAmount"] += quantity;
+    if (item.PurchaseAmount < 1) {
+      if (!this.removeItem(item)) {
+      item["PurchaseAmount"] -= quantity;
+      }
+    }
+    this.updateShoppingCart();
+  }
+
+  removeItem(item: any): boolean {
+    if (confirm("Are you sure to remove \"" + item.ItemName + "\" from your shopping cart?")) {
+      this.ItemList = this.ItemList.filter((i: any) => i != item);
+      this.updateShoppingCart();
+      return true;
+    }
+    return false;
   }
 
 }
