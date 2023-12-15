@@ -55,6 +55,13 @@ body {
             border: white solid 7px;
           }
 
+/* SHOPPING CART */
+.cart {
+    background-color: transparent; 
+    border: none; 
+    color: white;
+}
+
 /* PROFILE */
   .dropbtn {
       background-color: #8ABCD7;
