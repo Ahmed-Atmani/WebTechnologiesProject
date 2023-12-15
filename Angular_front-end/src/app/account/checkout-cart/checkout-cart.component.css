@@ -1,1 +1,26 @@
 @import '~leaflet/dist/leaflet.css';
+
+body {
+    display: flex;
+}
+
+.payment-method-image {
+    max-width: 30px;
+    max-height: 30px;
+}
+
+#checkout-wrapper {
+    width: 500px;
+    border: 1px solid black;
+    overflow: hidden; /* add this to contain floated children */
+}
+#shopping-cart-summary {
+    margin-top: 200px;
+    width: 300px;
+    float:left;
+    border: 1px solid red;
+}
+#payment {
+    border: 1px solid green;
+    /* float: right;  */
+}

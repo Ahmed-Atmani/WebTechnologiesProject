@@ -11,14 +11,26 @@ export class CheckoutCartComponent {
 
   ItemList: any = [];
   TotalPrice: number = 0;
+
+  // Leaflet map
   ShopLocation: any = { "latitude": 50.844278, "longitude": 2.961053 };
   LatestCoordinates = { "latitude": 500, "longitude": 500 }
   map: any = [];
+  selectedPostOffice: any = [];
+  
 
   ngOnInit(): void {
     this.getCartItems();
     this.initLeafletMap();
     this.addGeocodedMarker('Vrije Universiteit Brussel, Belgium', true);
+    this.initPostOffices();
+  }
+
+  initPostOffices(): void {
+    var postOffices: string[] = ["Bpost", "Mondial relay", "PostNL"];
+    postOffices.forEach((post: string) => {
+      this.markAllGeocodedResults(post);
+    });
   }
 
   initLeafletMap(): void {
@@ -28,8 +40,10 @@ export class CheckoutCartComponent {
     }).addTo(this.map);
   }
 
-  addMarkerToMap(latitude: number, longitude: number, name: string): void {
-    L.marker([latitude, longitude]).addTo(this.map).bindPopup(name);
+  addMarkerToMap(latitude: number, longitude: number, name: string): L.Marker {
+    var marker = L.marker([latitude, longitude]);
+    marker.addTo(this.map).bindPopup(name);
+    return marker;
   }
 
   goToCoordinates(latitude: number, longitude: number): void {
@@ -50,6 +64,79 @@ export class CheckoutCartComponent {
         console.error(error);
       }
     );
+  }
+
+  // makePostPopup(post: any, id: number): string {
+  //   var text: string = "<h5>" + post.formatted.split(',')[0] + " " + post.components.state + "</h5>"; // Name
+  //   text += "<p>" + post.formatted.substring(post.formatted.indexOf(',') + 1) + "</p>"; // Address
+  //   text += "<button class=\"btn btn-primary\">Choose this post office</button>";
+
+  //   return text
+  // }
+
+  makePostPopup(post: any, id: number): string {
+    var text: string = "<h5>" + post.formatted.split(',')[0] + " " + post.components.state + "</h5>"; // Name
+    text += "<p>" + post.formatted.substring(post.formatted.indexOf(',') + 1) + "</p>"; // Address
+    // text += `<button id="chooseBtn${id}" class="btn btn-primary">Choose this post office</button>`;
+  
+    return text;
+  }
+  
+  
+
+  choosePostOffice(office: any): void {
+    this.selectedPostOffice = office;
+    console.log("Selected post office: " + JSON.stringify(office, null, 4));
+  }
+
+  addPostOfficeMarker(office: any, id: number): void {
+    var marker = this.addMarkerToMap(office.bounds.northeast.lat, office.bounds.northeast.lng, this.makePostPopup(office, id));
+    marker.on('click', () => {
+      this.choosePostOffice(office);
+    })
+
+  }
+
+  markAllGeocodedResults(query: string): void {
+    var api_key = 'cc863016aa0e4d35a9725dd2c9b8cb70';
+    var api_url = 'https://api.opencagedata.com/geocode/v1/json';
+    var request_url =
+      api_url +
+      '?' +
+      'key=' +
+      api_key +
+      '&q=' +
+      encodeURIComponent(query) +
+      '&pretty=1' +
+      '&no_annotations=1';
+
+    var counter: number = 0;
+    var request = new XMLHttpRequest();
+    request.open('GET', request_url, true);
+    request.onload = () => {
+      if (request.status === 200) {
+        var data = JSON.parse(request.responseText);
+        var lst = data.results;
+        lst.forEach((postOffice: any) => {
+          // alert(JSON.stringify(postOffice, null, 4));
+          this.addPostOfficeMarker(postOffice, counter);
+          counter++;
+        });
+
+      } else if (request.status <= 500) {
+        console.log('Unable to geocode! Response code: ' + request.status);
+        var data = JSON.parse(request.responseText);
+        console.log('Error msg: ' + data.status.message);
+
+      } else {
+        console.log('Server error');
+      }
+    };
+
+    request.onerror = function () {
+    };
+
+    request.send(); // Make the request
   }
 
   geocode(query: string): Promise<{ latitude: number; longitude: number }> {
