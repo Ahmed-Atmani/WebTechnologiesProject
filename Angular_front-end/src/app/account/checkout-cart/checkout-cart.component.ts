@@ -11,6 +11,7 @@ export class CheckoutCartComponent {
 
   ItemList: any = [];
   TotalPrice: number = 0;
+  ShopLocation: any = { "latitude": 50.844278, "longitude": 2.961053 };
 
   ngOnInit(): void {
     this.getCartItems();
@@ -28,8 +29,8 @@ export class CheckoutCartComponent {
       attribution: '© OpenStreetMap contributors'
     }).addTo(map);
 
-    // L.marker([51.505, -0.09]).addTo(map)
-    //   .bindPopup('A sample marker.');
+    L.marker([51.505, -0.09]).addTo(map)
+      .bindPopup('A sample marker.');
   }
 
   getCartItems(): void {
