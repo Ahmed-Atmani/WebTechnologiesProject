@@ -2,20 +2,27 @@ body {
     font-family: 'Montserrat', sans-serif;
 }
 
-
 #profile-pic {
     border: 4px solid #8ABCD7;
+    cursor: default;
 }
 
-.account_form{
-    overflow: scroll;
+#directory-icon {
+    cursor: pointer;
 }
 
-input[type=submit]:hover, .context button:hover, .context .button:hover{
+.account_form {
+    overflow: auto;
+}
+
+input[type=submit]:hover,
+.context button:hover,
+.context .button:hover {
     background-color: #6e8499;
     border: #6e8499 solid 7px;
-}  
+}
 
-.context .button{
+.context .button {
     text-decoration: none;
+    color: #333;
 }
