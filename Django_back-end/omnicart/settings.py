@@ -43,8 +43,15 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',
     'OmniShopApp.apps.OmnishopappConfig',
-    'rest_framework'
+    'rest_framework',
+    'rest_framework_simplejwt'
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
 
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_ALL_ORIGINS = True
@@ -132,5 +139,6 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTHENTICATION_BACKENDS = ['OmniShopApp.backends.EmailBackend']
+AUTHENTICATION_BACKENDS = ['OmniShopApp.backends.EmailBackend',
+                           'django.contrib.auth.backends.ModelBackend']
 
