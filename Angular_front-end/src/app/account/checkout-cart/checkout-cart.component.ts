@@ -22,8 +22,19 @@ export class CheckoutCartComponent {
   ngOnInit(): void {
     this.getCartItems();
     this.initLeafletMap();
-    this.addGeocodedMarker('Vrije Universiteit Brussel, Belgium', true);
+    this.goToGeocode("Brussels");
     this.initPostOffices();
+  }
+
+  goToGeocode(query: string): void {
+    this.geocode(query).then(
+      (result) => {
+        this.goToCoordinates(result.latitude, result.longitude);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }
 
   initPostOffices(): void {
