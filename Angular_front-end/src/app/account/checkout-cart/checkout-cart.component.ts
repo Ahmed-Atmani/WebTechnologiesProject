@@ -22,8 +22,19 @@ export class CheckoutCartComponent {
   ngOnInit(): void {
     this.getCartItems();
     this.initLeafletMap();
-    this.addGeocodedMarker('Vrije Universiteit Brussel, Belgium', true);
+    this.goToGeocode("Brussels");
     this.initPostOffices();
+  }
+
+  goToGeocode(query: string): void {
+    this.geocode(query).then(
+      (result) => {
+        this.goToCoordinates(result.latitude, result.longitude);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }
 
   initPostOffices(): void {
@@ -66,35 +77,73 @@ export class CheckoutCartComponent {
     );
   }
 
-  // makePostPopup(post: any, id: number): string {
-  //   var text: string = "<h5>" + post.formatted.split(',')[0] + " " + post.components.state + "</h5>"; // Name
-  //   text += "<p>" + post.formatted.substring(post.formatted.indexOf(',') + 1) + "</p>"; // Address
-  //   text += "<button class=\"btn btn-primary\">Choose this post office</button>";
-
-  //   return text
-  // }
-
   makePostPopup(post: any, id: number): string {
     var text: string = "<h5>" + post.formatted.split(',')[0] + " " + post.components.state + "</h5>"; // Name
     text += "<p>" + post.formatted.substring(post.formatted.indexOf(',') + 1) + "</p>"; // Address
-    // text += `<button id="chooseBtn${id}" class="btn btn-primary">Choose this post office</button>`;
   
     return text;
   }
-  
-  
 
+  // Called when user clicks on a post office's marker 
   choosePostOffice(office: any): void {
     this.selectedPostOffice = office;
+    // var tokenized = office.formatted.split(", ");
     console.log("Selected post office: " + JSON.stringify(office, null, 4));
+
+    var streetElement = document.getElementById("street") as HTMLInputElement;
+    var streetNumberElement = document.getElementById("streetNumber") as HTMLInputElement;
+    var cityElement = document.getElementById("city") as HTMLInputElement;
+    var postCodeElement = document.getElementById("postCode") as HTMLInputElement;
+    var countryElement = document.getElementById("country") as HTMLInputElement;    
+    
+    this.setFormAddress(office);
+  }
+
+  setFormAddress(place: any): void {
+    var streetElement = document.getElementById("street") as HTMLInputElement;
+    var streetNumberElement = document.getElementById("streetNumber") as HTMLInputElement;
+    var cityElement = document.getElementById("city") as HTMLInputElement;
+    var postCodeElement = document.getElementById("postCode") as HTMLInputElement;
+    var countryElement = document.getElementById("country") as HTMLInputElement;    
+    
+    streetElement.value = place.components.road ?? place.components.square ?? "";
+    streetNumberElement.value = place.components.house_number ?? "";
+    cityElement.value = place.components.county ?? place.components.state ?? place.components.town ?? "";
+    postCodeElement.value = place.components.postcode ?? "";
+    countryElement.value = place.components.country ?? "";
+  }
+
+  // Called when user inputs an address 
+  goToInputAddress(): void {
+    var streetElement = document.getElementById("street") as HTMLInputElement;
+    var streetNumberElement = document.getElementById("streetNumber") as HTMLInputElement;
+    var cityElement = document.getElementById("city") as HTMLInputElement;
+    var postCodeElement = document.getElementById("postCode") as HTMLInputElement;
+    var countryElement = document.getElementById("country") as HTMLInputElement;   
+
+    var street = streetElement.value;
+    var streetNumber = streetNumberElement.value;
+    var city = cityElement.value;
+    var postCode = postCodeElement.value;
+    var country = countryElement.value; 
+
+    this.geocode(street + " " + streetNumber + ", " + postCode + " " + city + ", " + country).then(
+      (result) => {
+        this.goToCoordinates(result.latitude, result.longitude);
+
+        var office = result.results[0];
+        this.setFormAddress(office);
+
+        this.addMarkerToMap(result.latitude, result.longitude, "Home");
+      }
+    );
   }
 
   addPostOfficeMarker(office: any, id: number): void {
     var marker = this.addMarkerToMap(office.bounds.northeast.lat, office.bounds.northeast.lng, this.makePostPopup(office, id));
     marker.on('click', () => {
       this.choosePostOffice(office);
-    })
-
+    });
   }
 
   markAllGeocodedResults(query: string): void {
@@ -139,7 +188,7 @@ export class CheckoutCartComponent {
     request.send(); // Make the request
   }
 
-  geocode(query: string): Promise<{ latitude: number; longitude: number }> {
+  geocode(query: string): Promise<{ latitude: number; longitude: number; results: any}> {
     return new Promise((resolve, reject) => {
       var api_key = 'cc863016aa0e4d35a9725dd2c9b8cb70';
       var api_url = 'https://api.opencagedata.com/geocode/v1/json';
@@ -161,7 +210,7 @@ export class CheckoutCartComponent {
           const latitude = data.results[0].bounds.northeast.lat;
           const longitude = data.results[0].bounds.northeast.lng;
           this.LatestCoordinates = {longitude, latitude};
-          resolve({ longitude, latitude });
+          resolve({ longitude, latitude , results: data.results});
 
         } else if (request.status <= 500) {
           console.log('unable to geocode! Response code: ' + request.status);
