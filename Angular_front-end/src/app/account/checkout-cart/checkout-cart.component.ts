@@ -66,27 +66,29 @@ export class CheckoutCartComponent {
     );
   }
 
-  // makePostPopup(post: any, id: number): string {
-  //   var text: string = "<h5>" + post.formatted.split(',')[0] + " " + post.components.state + "</h5>"; // Name
-  //   text += "<p>" + post.formatted.substring(post.formatted.indexOf(',') + 1) + "</p>"; // Address
-  //   text += "<button class=\"btn btn-primary\">Choose this post office</button>";
-
-  //   return text
-  // }
-
   makePostPopup(post: any, id: number): string {
     var text: string = "<h5>" + post.formatted.split(',')[0] + " " + post.components.state + "</h5>"; // Name
     text += "<p>" + post.formatted.substring(post.formatted.indexOf(',') + 1) + "</p>"; // Address
-    // text += `<button id="chooseBtn${id}" class="btn btn-primary">Choose this post office</button>`;
   
     return text;
   }
-  
-  
 
   choosePostOffice(office: any): void {
     this.selectedPostOffice = office;
+    // var tokenized = office.formatted.split(", ");
     console.log("Selected post office: " + JSON.stringify(office, null, 4));
+
+    var streetElement = document.getElementById("street") as HTMLInputElement;
+    var streetNumberElement = document.getElementById("streetNumber") as HTMLInputElement;
+    var cityElement = document.getElementById("city") as HTMLInputElement;
+    var postCodeElement = document.getElementById("postCode") as HTMLInputElement;
+    var countryElement = document.getElementById("country") as HTMLInputElement;    
+    
+    streetElement.value = office.components.road ?? office.components.square ?? "";
+    streetNumberElement.value = office.components.house_number ?? "";
+    cityElement.value = office.components.county ?? office.components.state ?? office.components.town ?? ""; //state/town
+    postCodeElement.value = office.components.postcode ?? "";
+    countryElement.value = office.components.country ?? "";
   }
 
   addPostOfficeMarker(office: any, id: number): void {
