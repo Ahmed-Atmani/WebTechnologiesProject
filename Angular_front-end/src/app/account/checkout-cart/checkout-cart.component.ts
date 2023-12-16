@@ -85,11 +85,21 @@ export class CheckoutCartComponent {
     var postCodeElement = document.getElementById("postCode") as HTMLInputElement;
     var countryElement = document.getElementById("country") as HTMLInputElement;    
     
-    streetElement.value = office.components.road ?? office.components.square ?? "";
-    streetNumberElement.value = office.components.house_number ?? "";
-    cityElement.value = office.components.county ?? office.components.state ?? office.components.town ?? ""; //state/town
-    postCodeElement.value = office.components.postcode ?? "";
-    countryElement.value = office.components.country ?? "";
+    this.setFormAddress(office);
+  }
+
+  setFormAddress(place: any): void {
+    var streetElement = document.getElementById("street") as HTMLInputElement;
+    var streetNumberElement = document.getElementById("streetNumber") as HTMLInputElement;
+    var cityElement = document.getElementById("city") as HTMLInputElement;
+    var postCodeElement = document.getElementById("postCode") as HTMLInputElement;
+    var countryElement = document.getElementById("country") as HTMLInputElement;    
+    
+    streetElement.value = place.components.road ?? place.components.square ?? "";
+    streetNumberElement.value = place.components.house_number ?? "";
+    cityElement.value = place.components.county ?? place.components.state ?? place.components.town ?? "";
+    postCodeElement.value = place.components.postcode ?? "";
+    countryElement.value = place.components.country ?? "";
   }
 
   // Called when user inputs an address 
@@ -111,11 +121,7 @@ export class CheckoutCartComponent {
         this.goToCoordinates(result.latitude, result.longitude);
 
         var office = result.results[0];
-        streetElement.value = office.components.road ?? office.components.square ?? "";
-        streetNumberElement.value = office.components.house_number ?? "";
-        cityElement.value = office.components.county ?? office.components.state ?? office.components.town ?? ""; //state/town
-        postCodeElement.value = office.components.postcode ?? "";
-        countryElement.value = office.components.country ?? "";
+        this.setFormAddress(office);
 
         this.addMarkerToMap(result.latitude, result.longitude, "Home");
       }
@@ -126,8 +132,7 @@ export class CheckoutCartComponent {
     var marker = this.addMarkerToMap(office.bounds.northeast.lat, office.bounds.northeast.lng, this.makePostPopup(office, id));
     marker.on('click', () => {
       this.choosePostOffice(office);
-    })
-
+    });
   }
 
   markAllGeocodedResults(query: string): void {
