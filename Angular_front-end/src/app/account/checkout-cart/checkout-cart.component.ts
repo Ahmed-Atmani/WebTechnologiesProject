@@ -73,6 +73,7 @@ export class CheckoutCartComponent {
     return text;
   }
 
+  // Called when user clicks on a post office's marker 
   choosePostOffice(office: any): void {
     this.selectedPostOffice = office;
     // var tokenized = office.formatted.split(", ");
@@ -89,6 +90,36 @@ export class CheckoutCartComponent {
     cityElement.value = office.components.county ?? office.components.state ?? office.components.town ?? ""; //state/town
     postCodeElement.value = office.components.postcode ?? "";
     countryElement.value = office.components.country ?? "";
+  }
+
+  // Called when user inputs an address 
+  goToInputAddress(): void {
+    var streetElement = document.getElementById("street") as HTMLInputElement;
+    var streetNumberElement = document.getElementById("streetNumber") as HTMLInputElement;
+    var cityElement = document.getElementById("city") as HTMLInputElement;
+    var postCodeElement = document.getElementById("postCode") as HTMLInputElement;
+    var countryElement = document.getElementById("country") as HTMLInputElement;   
+
+    var street = streetElement.value;
+    var streetNumber = streetNumberElement.value;
+    var city = cityElement.value;
+    var postCode = postCodeElement.value;
+    var country = countryElement.value; 
+
+    this.geocode(street + " " + streetNumber + ", " + postCode + " " + city + ", " + country).then(
+      (result) => {
+        this.goToCoordinates(result.latitude, result.longitude);
+
+        var office = result.results[0];
+        streetElement.value = office.components.road ?? office.components.square ?? "";
+        streetNumberElement.value = office.components.house_number ?? "";
+        cityElement.value = office.components.county ?? office.components.state ?? office.components.town ?? ""; //state/town
+        postCodeElement.value = office.components.postcode ?? "";
+        countryElement.value = office.components.country ?? "";
+
+        this.addMarkerToMap(result.latitude, result.longitude, "Home");
+      }
+    );
   }
 
   addPostOfficeMarker(office: any, id: number): void {
@@ -141,7 +172,7 @@ export class CheckoutCartComponent {
     request.send(); // Make the request
   }
 
-  geocode(query: string): Promise<{ latitude: number; longitude: number }> {
+  geocode(query: string): Promise<{ latitude: number; longitude: number; results: any}> {
     return new Promise((resolve, reject) => {
       var api_key = 'cc863016aa0e4d35a9725dd2c9b8cb70';
       var api_url = 'https://api.opencagedata.com/geocode/v1/json';
@@ -163,7 +194,7 @@ export class CheckoutCartComponent {
           const latitude = data.results[0].bounds.northeast.lat;
           const longitude = data.results[0].bounds.northeast.lng;
           this.LatestCoordinates = {longitude, latitude};
-          resolve({ longitude, latitude });
+          resolve({ longitude, latitude , results: data.results});
 
         } else if (request.status <= 500) {
           console.log('unable to geocode! Response code: ' + request.status);
