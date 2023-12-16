@@ -43,11 +43,15 @@ export class ShowItemComponent implements OnInit {
     if (!this.service.searchedKeyword) {
       return this.ItemList;
     }
-
+  
     const keyword = this.service.searchedKeyword.toLowerCase();
-
+  
     return this.ItemList.filter((item: any) => {
-      return item.ItemName.toLowerCase().includes(keyword);
+      const itemNameMatch = item.ItemName && item.ItemName.toLowerCase().includes(keyword);
+      const itemBrandMatch = item.ItemBrand && item.ItemBrand.toLowerCase().includes(keyword);
+  
+      return itemNameMatch || itemBrandMatch;
     });
   }
+  
 }
