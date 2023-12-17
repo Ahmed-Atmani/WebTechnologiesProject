@@ -10,7 +10,7 @@ import { AddEditAccountComponent } from './account/add-edit-account/add-edit-acc
 import { RegisterComponent } from './account/register/register.component';
 import { SharedService } from './shared.service';
 
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AccountOverviewComponent } from './account/account-overview/account-overview.component';
 

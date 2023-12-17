@@ -1,8 +1,10 @@
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
-from rest_framework import viewsets
+from rest_framework import viewsets, status
 from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework.authtoken.models import Token
 from django.shortcuts import get_object_or_404, render
 
 from OmniShopApp.models import Account, Item, Purchase, ItemCategory, Complaint, Review, Image
@@ -11,7 +13,7 @@ from OmniShopApp.serializers import AccountSerializer, ItemSerializer, PurchaseS
 
 from django.core.files.storage import default_storage
 
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 import json
 
 
@@ -201,7 +203,7 @@ class PurchaseViewSet(viewsets.ViewSet):
         purchase.delete()
         return Response("Deleted successfully!")
 
-
+# == REVIEW ==
 class ReviewViewSet(viewsets.ViewSet):
     """
     A simple ViewSet for listing, retrieving, creating, updating and deleting reviews.
@@ -281,20 +283,25 @@ def SaveFile(request):
     return JsonResponse(file_name, safe=False)
 
 
-@csrf_exempt
-def login_view(request):
-    if request.method == 'POST':
-        data = JSONParser().parse(request)
-        AccountEmail = data['AccountEmail']
-        AccountPassword = data['AccountPassword']
+class LoginView(APIView):
+    def post(self, request):
+        AccountEmail = request.data.get('AccountEmail')
+        AccountPassword = request.data.get('AccountPassword')
+
         user = authenticate(email=AccountEmail, password=AccountPassword)
         if user is not None:
             login(request, user)
-            return JsonResponse({'success': True, 'message': 'Login successful!'})
-        else:
-            return JsonResponse({'success': False, 'message': 'Invalid credentials'}, status=401)
+            token, _ = Token.objects.get_or_create(user=user)
 
-    return JsonResponse({'success': False, 'message': 'Invalid request method'}, status=400)
+            return Response({'token': token.key,
+                             'AccountId': Account.objects.get(User=user).AccountId})
+        else:
+            return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
+
+class LogoutView(APIView):
+    def post(self, request):
+        logout(request)
+        return Response({'message': 'Successfully logged out'})
 
 
 def landing_page(request):

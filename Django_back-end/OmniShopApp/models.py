@@ -36,7 +36,8 @@ class Account(models.Model):
 
 
     def save(self, *args, **kwargs):
-        User.objects.create_user(self.AccountFirstName, self.AccountEmail, self.AccountPassword)
+        user = User.objects.create_user(self.AccountEmail, self.AccountEmail, self.AccountPassword)
+        self.User = user
         super(Account, self).save(*args, **kwargs)
 
 
