@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 
 export class PaintService {
   private isDragging = false;
-  private color = '#0000FF';
+  private color = '#000000';
   private context: CanvasRenderingContext2D = {} as CanvasRenderingContext2D;
 
   initializeCanvas(canvas: HTMLCanvasElement): void {
@@ -28,7 +28,7 @@ export class PaintService {
 
   private handleMouseDown(event: MouseEvent): void {
     const mouseX = event.pageX - (event.currentTarget as any)['offsetLeft'];
-    const mouseY = event.pageY - (event.currentTarget as any)['offsetTop'];
+    const mouseY = event.pageY - (event.currentTarget as any)['offsetTop'] - 100;
     this.isDragging = true;
     this.context.beginPath();
     this.context.moveTo(mouseX, mouseY);
@@ -37,7 +37,7 @@ export class PaintService {
   private handleMouseMove(event: MouseEvent): void {
     if (this.isDragging) {
       const mouseX = event.pageX - (event.currentTarget as any)['offsetLeft'];
-      const mouseY = event.pageY - (event.currentTarget as any)['offsetTop'];
+      const mouseY = event.pageY - (event.currentTarget as any)['offsetTop'] - 100;
       this.context.lineTo(mouseX, mouseY);
       this.context.strokeStyle = this.color;
       this.context.stroke();
