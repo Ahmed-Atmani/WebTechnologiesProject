@@ -29,6 +29,11 @@ body {
     margin-bottom: 5px;
 }
 
+.write-review {
+    background-color: aquamarine;
+    margin-bottom: 5px;
+}
+
 .cancel-order {
     background-color: red;
 }

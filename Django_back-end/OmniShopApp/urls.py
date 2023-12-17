@@ -4,7 +4,7 @@ from OmniShopApp import views
 from django.conf.urls.static import static
 from django.conf import settings
 
-from OmniShopApp.views import ItemViewSet, AccountViewSet, ComplaintViewSet, ReviewViewSet, ImageViewSet, PurchaseViewSet, ItemCategoryViewSet
+from OmniShopApp.views import ItemViewSet, AccountViewSet, ComplaintViewSet, ReviewViewSet, ImageViewSet, PurchaseViewSet, ItemCategoryViewSet, LoginView, LogoutView
 from rest_framework.routers import DefaultRouter
 from django.urls import path
 from django.conf.urls import include
@@ -23,7 +23,8 @@ urlpatterns = [
     re_path(r'^SaveFile$', views.SaveFile),
     path("", include(router.urls)),
 
-    path('api/account/', views.login_view, name='login'),
+    path('login/', LoginView.as_view(), name='login'),
+    path('logout/', LogoutView.as_view(), name='logout')
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
