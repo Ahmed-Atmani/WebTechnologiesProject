@@ -18,6 +18,10 @@ export class SharedService {
     return this.http.get<any[]>(this.APIUrl + '/account/');
   }
 
+  getLoggedInAccount(accountID: number): Observable<any[]> {
+    return this.http.get<any[]>(this.APIUrl + '/account/' + accountID);
+  }
+
   addAccount(val: any) {
     return this.http.post(this.APIUrl + '/account/', val);
   }

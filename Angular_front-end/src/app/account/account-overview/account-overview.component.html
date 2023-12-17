@@ -41,17 +41,17 @@
       <div class="forms">
         <form class="account_form">
             <label for="fname">First name: </label>
-            <input type="text" name="fname" value="" required />
+            <input type="text" name="fname" value="{{currentAccount.AccountFirstName}}" required />
             <label for="lname">Last name: </label>
-            <input type="text" name="lname" value="" required />
+            <input type="text" name="lname" value="{{currentAccount.AccountLastName}}" required />
             <br />
             <br />
             <label for="bdate">Birth date: </label>
-            <input type="date" name="bdate" value="" required />
+            <input type="date" name="bdate" value="{{currentAccount.AccountBirthDate}}" required />
             <br />
             <br />
             <label for="email">E-mail: </label>
-            <input type="email" name="email" value="" required />
+            <input type="email" name="email" value="{{currentAccount.AccountEmail}}" required />
             <br />
             <br />
             <label for="password">Password: </label>
@@ -59,7 +59,7 @@
               id="password"
               type="password"
               name="password"
-              value=""
+              value="{{currentAccount.AccountPassword}}"
               required
               minlength="8"
             />
@@ -68,7 +68,7 @@
               id="password2"
               type="password"
               name="password"
-              value=""
+              value="{{currentAccount.AccountPassword}}"
               required
               min="8"
             />
@@ -77,11 +77,12 @@
             <br />
             <p><b>Address: </b></p>
             <br />
-            <input type="text" name="street" placeholder="Street" required />
+            <input type="text" name="street" placeholder="Street" value="{{currentAccount.AccountAddressStreet}}" required />
             <input
               type="text"
               name="streetnr"
               placeholder="Streetnumber"
+              value="{{currentAccount.AccountAddressStreetNumber}}"
               required
             />
             <br />
@@ -90,6 +91,7 @@
               type="text"
               name="city"
               placeholder="City"
+              value="{{currentAccount.AccountAddressCity}}"
               required
               minlength="2"
             />
@@ -97,13 +99,14 @@
               type="number"
               name="postcode"
               placeholder="Postal code"
+              value="{{currentAccount.AccountAddressPostalCode}}"
               required
               min="1000"
               max="9999"
             />
             <br />
             <br />
-            <input type="text" name="country" placeholder="Country" required />
+            <input type="text" name="country" placeholder="Country"  value= "{{currentAccount.AccountAddressCountry}}" required />
           </form>
       </div>
     </div>
