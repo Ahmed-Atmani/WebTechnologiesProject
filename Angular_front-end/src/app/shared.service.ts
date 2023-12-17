@@ -86,6 +86,10 @@ export class SharedService {
     return this.http.get<any>(this.APIUrl + '/image/?item=' + id);
   }
 
+  getAllCategories(): Observable<any[]> {
+    return this.http.get<any[]>(this.APIUrl + '/item-category/');
+  }
+
   getReviewsForItem(id: any): Observable<any> {
     return this.http.get<any>(this.APIUrl + '/review/?item=' + id);
   }
