@@ -28,7 +28,7 @@
               "@angular/material/prebuilt-themes/purple-green.css",
               "src/styles.css"
             ],
-            "scripts": ["src/app/account/checkout-cart/paint.js"]
+            "scripts": []
           },
           "configurations": {
             "production": {
