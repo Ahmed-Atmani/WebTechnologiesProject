@@ -29,6 +29,7 @@ import { ComplaintsComponent } from './account/complaints/complaints.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { NewBestsellersComponent } from './landing-page/new-bestsellers/new-bestsellers.component';
 import { UsedBestsellersComponent } from './landing-page/used-bestsellers/used-bestsellers.component';
+import { CategoriesComponent } from './landing-page/categories/categories.component';
 // import { LocalStorage } from 'ngx-webstorage';
 
 
@@ -55,6 +56,7 @@ import { UsedBestsellersComponent } from './landing-page/used-bestsellers/used-b
     LandingPageComponent,
     NewBestsellersComponent,
     UsedBestsellersComponent,
+    CategoriesComponent,
   ],
   imports: [
     BrowserModule,
