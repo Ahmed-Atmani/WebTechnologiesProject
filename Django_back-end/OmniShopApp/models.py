@@ -33,6 +33,7 @@ class Account(models.Model):
     User = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     AccountPoints = models.PositiveIntegerField(default=0)
     AccountVouchers = models.JSONField(default=[], help_text='list of integers')
+    Following = models.ManyToManyField('self', symmetrical=False)
 
 
     def save(self, *args, **kwargs):

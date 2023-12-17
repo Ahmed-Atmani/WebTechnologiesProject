@@ -23,19 +23,7 @@ class ItemCategorySerializer(serializers.ModelSerializer):
 class AccountSerializer(serializers.ModelSerializer):
     class Meta:
         model = Account
-        fields = (  'AccountId', 
-                    'AccountFirstName',
-                    'AccountLastName',
-                    'AccountPicture',
-                    'AccountBirthDate',
-                    'AccountEmail',                  
-                    'AccountPassword',  
-
-                    'AccountAddressStreet',
-                    'AccountAddressCity',
-                    'AccountAddressCountry',
-                    'AccountAddressStreetNumber',
-                    'AccountAddressPostalCode')
+        fields = '__all__'
 
     def is_email_unique(self, value):
         # Check if an account with the same email address already exists

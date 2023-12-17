@@ -1,4 +1,5 @@
 from django.views.decorators.csrf import csrf_exempt
+from rest_framework.decorators import action
 from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
 from rest_framework import viewsets, status
@@ -60,6 +61,25 @@ class AccountViewSet(viewsets.ViewSet):
         account = Account.objects.get(AccountId=pk)
         account.delete()
         return Response("Deleted successfully!")
+
+    @action(detail=False,
+            methods=['POST'])
+    def add_account_to_following(self, request):
+        data = JSONParser().parse(request)
+        account = get_object_or_404(Account, AccountId=data['follower'])
+        seller = get_object_or_404(Account, AccountId=data['seller'])
+        account.Following.add(seller)
+        return Response("Seller added to your followed sellers.")
+
+    @action(detail=False,
+            methods=['POST'])
+    def remove_account_from_following(self, request):
+        data = JSONParser().parse(request)
+        account = get_object_or_404(Account, AccountId=data['follower'])
+        seller = get_object_or_404(Account, AccountId=data['seller'])
+        account.Following.remove(seller)
+        return Response("Seller removed from your followed sellers.")
+
 
 class ImageViewSet(viewsets.ViewSet):
     """
