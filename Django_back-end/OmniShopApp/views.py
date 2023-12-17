@@ -201,7 +201,7 @@ class PurchaseViewSet(viewsets.ViewSet):
         purchase.delete()
         return Response("Deleted successfully!")
 
-# == REVIEW ==
+
 class ReviewViewSet(viewsets.ViewSet):
     """
     A simple ViewSet for listing, retrieving, creating, updating and deleting reviews.
@@ -245,48 +245,32 @@ class ReviewViewSet(viewsets.ViewSet):
         return Response("Deleted successfully!")
 
 
+class ItemCategoryViewSet(viewsets.ViewSet):
+    """
+    A simple ViewSet for listing, retrieving, creating and deleting ItemCategories
+    """
+    def list(self, request, *args, **kwargs):
+        queryset = ItemCategory.objects.all()
+        serializer = ItemCategorySerializer(queryset, many=True)
+        return Response(serializer.data)
 
-# class ImageViewSet(viewsets.ModelViewSet):
-#     queryset = Image.objects.all()
-#     serializer_class = ImageSerializer
-#     parser_classes = (MultiPartParser, FormParser)
-#     permission_classes = [
-#         permissions.IsAuthenticatedOrReadOnly]
-#
-#     def perform_create(self, serializer):
-#         serializer.save()
+    def retrieve(self, request, pk=None):
+        queryset = ItemCategory.objects.all()
+        itemcategory = get_object_or_404(queryset, pk=pk)
+        serializer = ItemCategorySerializer(itemcategory)
+        return Response(serializer.data)
 
+    def create(self, request):
+        serializer = ItemCategorySerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response("Added successfully!")
+        return Response("Failed to add.")
 
-# == ITEM CATEGORY ==
-@csrf_exempt
-def itemCategoryApi(request, id=0):
-    if request.method == 'GET':
-        itemCategorys = ItemCategory.objects.all()
-        itemCategory_serializer = ItemCategorySerializer(itemCategorys, many=True)
-        return JsonResponse(itemCategory_serializer.data, safe=False)
-
-    elif request.method == 'POST':
-        itemCategory_data = JSONParser().parse(request)
-        itemCategory_serializer = ItemCategorySerializer(data=itemCategory_data)
-
-        if itemCategory_serializer.is_valid():
-            itemCategory_serializer.save()
-            return JsonResponse("Added successfully!", safe=False)
-        return JsonResponse("Failed to add.", safe=False)
-
-    elif request.method == 'PUT':
-        itemCategory_data = JSONParser().parse(request)
-        itemCategory = ItemCategory.objects.get(ItemCategoryId=itemCategory_data['ItemCategoryId'])
-        itemCategory_serializer = ItemCategorySerializer(itemCategory, data=itemCategory_data)
-        if itemCategory_serializer.is_valid():
-            itemCategory_serializer.save()
-            return JsonResponse("Updated successfully!", safe=False)
-        return JsonResponse("Failed to update.", safe=False)
-
-    elif request.method == 'DELETE':
-        itemCategory = ItemCategory.objects.get(ItemCategoryId=id)
-        itemCategory.delete()
-        return JsonResponse("Deleted successfully!", safe=False)
+    def destroy(self, request, pk=None):
+        itemcategory = ItemCategory.objects.get(ItemCategoryId=pk)
+        itemcategory.delete()
+        return Response("Deleted successfully!")
 
 
 @csrf_exempt

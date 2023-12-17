@@ -4,7 +4,7 @@ from OmniShopApp import views
 from django.conf.urls.static import static
 from django.conf import settings
 
-from OmniShopApp.views import ItemViewSet, AccountViewSet, ComplaintViewSet, ReviewViewSet, ImageViewSet, PurchaseViewSet
+from OmniShopApp.views import ItemViewSet, AccountViewSet, ComplaintViewSet, ReviewViewSet, ImageViewSet, PurchaseViewSet, ItemCategoryViewSet
 from rest_framework.routers import DefaultRouter
 from django.urls import path
 from django.conf.urls import include
@@ -16,10 +16,9 @@ router.register(r'complaint', ComplaintViewSet, basename='complaint')
 router.register(r'review', ReviewViewSet, basename='review')
 router.register(r'image', ImageViewSet, basename='image')
 router.register(r'purchase', PurchaseViewSet, basename='purchase')
+router.register(r'item-category', ItemCategoryViewSet, basename='item-category')
 
 urlpatterns = [
-    re_path(r'^item-category/$', views.itemCategoryApi),
-    re_path(r'^item-category/([0-9]+)$', views.itemCategoryApi),
 
     re_path(r'^SaveFile$', views.SaveFile),
     path("", include(router.urls)),
