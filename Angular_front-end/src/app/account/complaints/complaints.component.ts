@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedService } from 'src/app/shared.service';
+import { LoginService } from 'src/app/login.service';
 
 @Component({
   selector: 'app-complaints',
@@ -7,13 +8,12 @@ import { SharedService } from 'src/app/shared.service';
   styleUrls: ['./complaints.component.css']
 })
 export class ComplaintsComponent implements OnInit {
-  constructor(private service: SharedService) {
+  constructor(private service: SharedService, private loginservice: LoginService) {
 
   }
 
   ComplaintList: any = [];
-   // TODO: get current logged in accountID, now default use of 2
-  AccountId: string = '2';
+  AccountId: string = '';
   ItemId: number | undefined;
   PurchaseId: number | undefined;
   ComplaintText:string = "";
@@ -23,7 +23,7 @@ export class ComplaintsComponent implements OnInit {
   }
 
   refreshComplaintList() {
-    this.service.getMyComplaintsList(this.AccountId).subscribe(data => {
+    this.service.getMyComplaintsList(this.loginservice.getAccountId()).subscribe(data => {
       this.ComplaintList = data;
 
       // Replace ItemId by ItemName
@@ -36,7 +36,7 @@ export class ComplaintsComponent implements OnInit {
 
   submitComplaint() {
     const val: any = {
-      Account: this.AccountId,
+      Account: this.loginservice.getAccountId(),
       Description: this.ComplaintText,
     };
     if (this.ItemId !== undefined) {

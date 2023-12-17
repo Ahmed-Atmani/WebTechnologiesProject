@@ -1,9 +1,11 @@
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
-from rest_framework import viewsets
+from rest_framework import viewsets, status
 from rest_framework.response import Response
-from django.shortcuts import get_object_or_404
+from rest_framework.views import APIView
+from rest_framework.authtoken.models import Token
+from django.shortcuts import get_object_or_404, render
 
 from OmniShopApp.models import Account, Item, Purchase, ItemCategory, Complaint, Review, Image
 from OmniShopApp.serializers import AccountSerializer, ItemSerializer, PurchaseSerializer, \
@@ -11,7 +13,7 @@ from OmniShopApp.serializers import AccountSerializer, ItemSerializer, PurchaseS
 
 from django.core.files.storage import default_storage
 
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 import json
 
 
@@ -245,48 +247,32 @@ class ReviewViewSet(viewsets.ViewSet):
         return Response("Deleted successfully!")
 
 
+class ItemCategoryViewSet(viewsets.ViewSet):
+    """
+    A simple ViewSet for listing, retrieving, creating and deleting ItemCategories
+    """
+    def list(self, request, *args, **kwargs):
+        queryset = ItemCategory.objects.all()
+        serializer = ItemCategorySerializer(queryset, many=True)
+        return Response(serializer.data)
 
-# class ImageViewSet(viewsets.ModelViewSet):
-#     queryset = Image.objects.all()
-#     serializer_class = ImageSerializer
-#     parser_classes = (MultiPartParser, FormParser)
-#     permission_classes = [
-#         permissions.IsAuthenticatedOrReadOnly]
-#
-#     def perform_create(self, serializer):
-#         serializer.save()
+    def retrieve(self, request, pk=None):
+        queryset = ItemCategory.objects.all()
+        itemcategory = get_object_or_404(queryset, pk=pk)
+        serializer = ItemCategorySerializer(itemcategory)
+        return Response(serializer.data)
 
+    def create(self, request):
+        serializer = ItemCategorySerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response("Added successfully!")
+        return Response("Failed to add.")
 
-# == ITEM CATEGORY ==
-@csrf_exempt
-def itemCategoryApi(request, id=0):
-    if request.method == 'GET':
-        itemCategorys = ItemCategory.objects.all()
-        itemCategory_serializer = ItemCategorySerializer(itemCategorys, many=True)
-        return JsonResponse(itemCategory_serializer.data, safe=False)
-
-    elif request.method == 'POST':
-        itemCategory_data = JSONParser().parse(request)
-        itemCategory_serializer = ItemCategorySerializer(data=itemCategory_data)
-
-        if itemCategory_serializer.is_valid():
-            itemCategory_serializer.save()
-            return JsonResponse("Added successfully!", safe=False)
-        return JsonResponse("Failed to add.", safe=False)
-
-    elif request.method == 'PUT':
-        itemCategory_data = JSONParser().parse(request)
-        itemCategory = ItemCategory.objects.get(ItemCategoryId=itemCategory_data['ItemCategoryId'])
-        itemCategory_serializer = ItemCategorySerializer(itemCategory, data=itemCategory_data)
-        if itemCategory_serializer.is_valid():
-            itemCategory_serializer.save()
-            return JsonResponse("Updated successfully!", safe=False)
-        return JsonResponse("Failed to update.", safe=False)
-
-    elif request.method == 'DELETE':
-        itemCategory = ItemCategory.objects.get(ItemCategoryId=id)
-        itemCategory.delete()
-        return JsonResponse("Deleted successfully!", safe=False)
+    def destroy(self, request, pk=None):
+        itemcategory = ItemCategory.objects.get(ItemCategoryId=pk)
+        itemcategory.delete()
+        return Response("Deleted successfully!")
 
 
 @csrf_exempt
@@ -297,18 +283,27 @@ def SaveFile(request):
     return JsonResponse(file_name, safe=False)
 
 
-@csrf_exempt
-def login_view(request):
-    if request.method == 'POST':
-        data = JSONParser().parse(request)
-        AccountEmail = data['AccountEmail']
-        AccountPassword = data['AccountPassword']
+class LoginView(APIView):
+    def post(self, request):
+        AccountEmail = request.data.get('AccountEmail')
+        AccountPassword = request.data.get('AccountPassword')
+
         user = authenticate(email=AccountEmail, password=AccountPassword)
         if user is not None:
             login(request, user)
-            return JsonResponse({'success': True, 'message': 'Login successful!'})
+            token, _ = Token.objects.get_or_create(user=user)
+
+            return Response({'token': token.key,
+                             'AccountId': Account.objects.get(User=user).AccountId})
         else:
-            return JsonResponse({'success': False, 'message': 'Invalid credentials'}, status=401)
+            return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
 
-    return JsonResponse({'success': False, 'message': 'Invalid request method'}, status=400)
+class LogoutView(APIView):
+    def post(self, request):
+        logout(request)
+        return Response({'message': 'Successfully logged out'})
 
+
+def landing_page(request):
+    newbestsellers = Item.objects.all()[:4]  # Assuming you want to display 4 bestsellers
+    return render(request, 'landing_page.html', {'newbestsellers': newbestsellers})

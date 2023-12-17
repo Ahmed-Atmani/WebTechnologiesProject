@@ -1,18 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<body>
-    <div id="order">
-    <h1><img id="profile-pic" src="assets/images/no-picture.jpg" width="125" height="125"></h1>
-    <div id="order-information">
-        <h3>Item name(s)</h3>
-        <p>Delivery ETA: XX days</p>
-        <p>Order number: XXXXX</p>
+<div class="accordion accordion-flush" id="accordionFlushExample">
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+            <div id="order">
+                <h1><img id="profile-pic" src="assets/images/no-picture.jpg" width="125" height="125"></h1>
+                <div id="order-information">
+                    <h3>Item name(s)</h3>
+                    <p>Delivery ETA: XX days</p>
+                    <p>Order number: XXXXX</p>
+                </div>
+                    <form id ="order-buttons">
+                        <input class="track-package" type="button" (click)="toggleAccordion()" value="Track package">
+                        <input class="cancel-order" type="button" value="Cancel order">
+                    </form>
+                </div>
+        </button>
+      </h2>
+      <div *ngIf="isOpen" class="accordion-content">
+        <mat-progress-bar *ngIf="showProgressBar" mode="indeterminate"></mat-progress-bar>
+        <!-- Add other content here -->
+      </div>
     </div>
-        <form id ="order-buttons">
-            <input class="track-package" type="button" value="Track package">
-            <input class="cancel-order" type="button" value="Cancel order">
-        </form>
-    </div>
-</body>
-</html>
+</div>

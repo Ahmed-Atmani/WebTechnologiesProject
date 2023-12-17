@@ -1,8 +1,5 @@
 @import '~leaflet/dist/leaflet.css';
 
-body {
-    display: flex;
-}
 
 /* h1 {
     display: flex;

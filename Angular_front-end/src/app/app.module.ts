@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,7 +10,7 @@ import { AddEditAccountComponent } from './account/add-edit-account/add-edit-acc
 import { RegisterComponent } from './account/register/register.component';
 import { SharedService } from './shared.service';
 
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AccountOverviewComponent } from './account/account-overview/account-overview.component';
 
@@ -26,6 +27,12 @@ import { ShowItemComponent } from './item/show-item/show-item.component';
 import { ShoppingCartComponent } from './account/shopping-cart/shopping-cart.component';
 import { CheckoutCartComponent } from './account/checkout-cart/checkout-cart.component';
 import { ComplaintsComponent } from './account/complaints/complaints.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
+import { NewBestsellersComponent } from './landing-page/new-bestsellers/new-bestsellers.component';
+import { UsedBestsellersComponent } from './landing-page/used-bestsellers/used-bestsellers.component';
+import { CategoriesComponent } from './landing-page/categories/categories.component';
+import { PackageTrackingComponent } from './account/account-orders/package-tracking/package-tracking.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // import { LocalStorage } from 'ngx-webstorage';
 
 
@@ -49,6 +56,11 @@ import { ComplaintsComponent } from './account/complaints/complaints.component';
     ShoppingCartComponent,
     CheckoutCartComponent,
     ComplaintsComponent,
+    LandingPageComponent,
+    NewBestsellersComponent,
+    UsedBestsellersComponent,
+    CategoriesComponent,
+    PackageTrackingComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,6 +68,8 @@ import { ComplaintsComponent } from './account/complaints/complaints.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatProgressBarModule,
     // LocalStorage,
   ],
   providers: [SharedService],

@@ -36,13 +36,15 @@ class Account(models.Model):
 
 
     def save(self, *args, **kwargs):
-        User.objects.create_user(self.AccountFirstName, self.AccountEmail, self.AccountPassword)
+        user = User.objects.create_user(self.AccountEmail, self.AccountEmail, self.AccountPassword)
+        self.User = user
         super(Account, self).save(*args, **kwargs)
 
 
 class ItemCategory(models.Model):
     ItemCategoryId = models.AutoField(primary_key=True)
     ItemCategoryName = models.CharField(max_length=20)
+    ItemCategoryImage = models.ImageField(null=True)
 
 
 STATE_CHOICES = (
@@ -73,6 +75,7 @@ class Item(models.Model):
 
         self.save()
 
+
 class Image(models.Model):
     ImageId = models.AutoField(primary_key=True)
     Image = models.ImageField()
@@ -80,9 +83,9 @@ class Image(models.Model):
 
 
 PURCHASE_STATUS_CHOICES = (
-    (1, 'Pending'),
-    (2, 'Confirmed'),
-    (3, 'Shipped'),
+    (1, 'In Progress'),
+    (2, 'Sent to Post Office'),
+    (3, 'In Delivery'),
     (4, 'Delivered')
 )
 
@@ -95,6 +98,7 @@ class Purchase(models.Model):
     Shipping_date = models.DateTimeField(null=True)
     Delivery_time = models.PositiveIntegerField(null=True)
     Status = models.IntegerField(default=1, choices=PURCHASE_STATUS_CHOICES)
+    CustomDrawing = models.ImageField(null=True)
 
 
 STATUS_CHOICES = (
