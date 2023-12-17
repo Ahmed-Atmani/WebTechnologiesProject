@@ -54,6 +54,10 @@ export class UsedBestsellersComponent {
     return this.filteredItemList().slice(startIndex, endIndex);
   }
 
+  itemHasImage(item: any): boolean {
+    return this.ImagesList[item.ItemId] !== null;
+  }
+
   fillItemList() {
     this.service.getItemList().subscribe(data => {
       this.ItemList = data;

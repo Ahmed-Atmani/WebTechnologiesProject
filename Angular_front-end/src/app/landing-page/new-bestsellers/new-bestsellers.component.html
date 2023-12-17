@@ -6,30 +6,39 @@
 
   <div class="item-container">
     <div *ngFor="let item of filteredItemList(); let i = index" class="item-box" [routerLink]="['/items', item.ItemId]" [ngClass]="{'hidden': i < (currentPage - 1) * itemsPerPage || i >= currentPage * itemsPerPage}">
-        <ng-container *ngIf="item.ItemRating === 1">
-            <img src="../../assets/images/1 star.png" alt="1 Star" class="rating-image" style="width: 125px; height: 25px;">
-          </ng-container>
-          <ng-container *ngIf="item.ItemRating === 2">
-            <img src="../../assets/images/2 stars.png" alt="2 Stars" class="rating-image" style="width: 125px; height: 25px;">
-          </ng-container>
-          <ng-container *ngIf="item.ItemRating === 3">
-            <img src="../../assets/images/3 stars.png" alt="3 Stars" class="rating-image" style="width: 125px; height: 25px;">
-          </ng-container>
-          <ng-container *ngIf="item.ItemRating === 4">
-            <img src="../../assets/images/4 stars.png" alt="4 Stars" class="rating-image" style="width: 125px; height: 25px;">
-          </ng-container>
-          <ng-container *ngIf="item.ItemRating === 5">
-            <img src="../../assets/images/5 stars.png" alt="5 Stars" class="rating-image" style="width: 125px; height: 25px;">
-          </ng-container>
+        
       
-          <div class="item-image" *ngIf="filterImage(item.ItemId)">
+          <ng-container *ngIf="itemHasImage(item)">
             <img [src]="service.APIUrl + filterImage(item.ItemId).Image" alt="Item Image">
-          </div>
+          </ng-container>
+          <ng-container *ngIf="!itemHasImage(item)">
+            <img src="../../../assets/images/no-picture.jpg" alt="Placeholder Image">
+          </ng-container>
       
           <div class="item-details">
             <p class="brand">{{ item.ItemBrand }}</p>
             <strong>{{ item.ItemName }}</strong>
-            <p>{{ item.ItemPrice | currency:'EUR' }}</p>
+            
+            <div class="rating-and-price">
+              <p class="price"> {{ item.ItemPrice | currency:'EUR' }}</p>
+              <ng-container *ngIf="item.ItemRating === 1">
+                <img src="../../assets/images/1 star.png" alt="1 Star" class="rating-image">
+              </ng-container>
+              <ng-container *ngIf="item.ItemRating === 2">
+                <img src="../../assets/images/2 stars.png" alt="2 Stars" class="rating-image">
+              </ng-container>
+              <ng-container *ngIf="item.ItemRating === 3">
+                <img src="../../assets/images/3 stars.png" alt="3 Stars" class="rating-image">
+              </ng-container>
+              <ng-container *ngIf="item.ItemRating === 4">
+                <img src="../../assets/images/4 stars.png" alt="4 Stars" class="rating-image">
+              </ng-container>
+              <ng-container *ngIf="item.ItemRating === 5">
+                <img src="../../assets/images/5 stars.png" alt="5 Stars" class="rating-image">
+              </ng-container>
+              
+              
+            </div>
           </div>
     </div>
   </div>

@@ -22,9 +22,12 @@
             <img src="../../assets/images/5 stars.png" alt="5 Stars" class="rating-image" style="width: 125px; height: 25px;">
           </ng-container>
       
-          <div class="item-image" *ngIf="filterImage(item.ItemId)">
+          <ng-container *ngIf="itemHasImage(item)">
             <img [src]="service.APIUrl + filterImage(item.ItemId).Image" alt="Item Image">
-          </div>
+          </ng-container>
+          <ng-container *ngIf="!itemHasImage(item)">
+            <img src="../../../assets/images/no-picture.jpg" alt="Placeholder Image">
+          </ng-container>
       
           <div class="item-details">
             <p class="brand">{{ item.ItemBrand }}</p>

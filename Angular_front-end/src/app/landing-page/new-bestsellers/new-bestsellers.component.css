@@ -95,3 +95,16 @@
   .item-box:last-child {
     margin-right: 0;
   }
+  
+  .rating-image { /* Adjust the width as needed */
+    height: 20px; /* Adjust the height as needed */
+    margin-left: 250px; /* Adjust the spacing between rating and price */
+    order: 2;
+  }
+  
+  .rating-and-price{
+    display: flex;
+    justify-content: space-between;
+  }
+
+  
