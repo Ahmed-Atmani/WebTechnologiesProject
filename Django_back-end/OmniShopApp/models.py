@@ -33,12 +33,13 @@ class Account(models.Model):
     User = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     AccountPoints = models.PositiveIntegerField(default=0)
     AccountVouchers = models.JSONField(default=[], help_text='list of integers')
-    Following = models.ManyToManyField('self', symmetrical=False)
+    Following = models.ManyToManyField('self', symmetrical=False, null=True)
 
 
     def save(self, *args, **kwargs):
         user = User.objects.create_user(self.AccountEmail, self.AccountEmail, self.AccountPassword)
         self.User = user
+        self.AccountPassword = ""
         super(Account, self).save(*args, **kwargs)
 
 
