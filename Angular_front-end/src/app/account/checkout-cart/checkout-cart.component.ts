@@ -142,15 +142,6 @@ export class CheckoutCartComponent implements OnInit, AfterViewInit{
   // Called when user clicks on a post office's marker 
   choosePostOffice(office: any): void {
     this.selectedPostOffice = office;
-    // var tokenized = office.formatted.split(", ");
-    console.log("Selected post office: " + JSON.stringify(office, null, 4));
-
-    var streetElement = document.getElementById("street") as HTMLInputElement;
-    var streetNumberElement = document.getElementById("streetNumber") as HTMLInputElement;
-    var cityElement = document.getElementById("city") as HTMLInputElement;
-    var postCodeElement = document.getElementById("postCode") as HTMLInputElement;
-    var countryElement = document.getElementById("country") as HTMLInputElement;    
-    
     this.setFormAddress(office);
   }
 

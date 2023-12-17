@@ -19,18 +19,23 @@
 
 .checkout-wrapper {
     display: flex;
-    /* flex-wrap: wrap; */
+    flex-wrap: wrap;
     flex-direction: column;
 }
 
-.custom-message {
+.shopping-cart-summary {
     flex: 1;
+    margin-right: 50px;
 }
 
 .payment {
     flex: 1;
+    max-width: 300px;
+    margin-left: 50px;
 }
 
 #first-row {
     flex-direction: row;
+    display: flex;
+    -ms-flex-item-align: auto;
 }
