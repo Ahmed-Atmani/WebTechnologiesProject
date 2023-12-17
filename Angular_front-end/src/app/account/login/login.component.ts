@@ -54,6 +54,7 @@ export class LoginComponent implements OnInit {
       (error) => {
         // Handle login error
         console.error('Login failed', error);
+        alert('Your e-mail or password was not correct. Please try again. ');
       }
     );
   }
