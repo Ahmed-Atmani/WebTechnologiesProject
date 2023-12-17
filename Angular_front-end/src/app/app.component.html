@@ -1,14 +1,16 @@
+<body>
 <div class="template">
 
     <div class="navbar">
 
       <div class="logo">
-        <ul class="nav">
+        <div class="nav">
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="" [routerLink]="['/']"><img
                 src="assets/images/Omnipoints.png" alt="" width="70" height="70"></a>
           </li>
-
+        </div>
+      </div>
           <div class="searchbar">
             <li class="nav-item">
               <div class="topnav">
@@ -59,19 +61,28 @@
           </div>
 
 
-        </ul>
-      </div>
+      
     </div>
 
       
   </div>
-  <router-outlet></router-outlet>
   
-  <div class="footer">
+    <div class="context">
+      <div class="container">
+        <br>
+        <router-outlet></router-outlet>
+        <br>
+      </div>
+      
+    </div>
+    
+  </body>
+  
+  <footer class="footer">
     <div class="footer-images">
       <img src="../assets/images/x.jpg" alt="X Image">
       <img src="../assets/images/instagram.png" alt="Instagram Image">
       <img src="../assets/images/facebook.jpg" alt="Facebook Image">
     </div>
-  </div>
+  </footer>
 
