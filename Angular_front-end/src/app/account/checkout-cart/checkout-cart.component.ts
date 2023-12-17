@@ -31,7 +31,6 @@ export class CheckoutCartComponent implements OnInit, AfterViewInit{
   
 
   ngOnInit(): void {
-    this.initCanvas();
     this.getCartItems();
     this.initLeafletMap();
     this.goToGeocode("Brussels");
@@ -63,22 +62,6 @@ export class CheckoutCartComponent implements OnInit, AfterViewInit{
   }
 
   // === CANVAS 2D GIFT MESSAGE ===
-  initCanvas(): void {
-    // this.canvas = document.getElementById("custom-message-canvas");
-    // this.context = this.canvas.getContext("2d");
-	  // $('#custom-message-canvas').mousemove(this.handleMouseMove);
-
-  }
-
-  handleMouseMove(event: any): void {
-    // var mouseX = event.pageX;
-		// var mouseY = event.pageY;
-		// // this.context.lineTo(mouseX, mouseY);
-		// // this.context.strokeStyle = "#000000";
-		// // this.context.stroke();
-
-    // console.log(mouseX);
-  }
 
   changedCustomMessageRadio(val: boolean): void {
     this.SelectedRadioChoice = val;
@@ -91,23 +74,10 @@ export class CheckoutCartComponent implements OnInit, AfterViewInit{
     else {
       customMessageCanvas.style.display = "none";
     }
-
-
   }
 
   clearCanvas2D(): void {
-    // if (this.context == null) { return; }
-    // this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.paintService.clearCanvas();
-  }
-
-  drawPixel(event: any, str: string): void {
-    // console.log("drawing: " + str);
-    // if (str == "down") {
-    //   this.context.beginPath();
-    //   this.context.moveTo(event.pageX, event.pageY);
-
-    // }
   }
 
   // === LEAFLET MAP ===
@@ -163,7 +133,7 @@ export class CheckoutCartComponent implements OnInit, AfterViewInit{
   }
 
   makePostPopup(post: any, id: number): string {
-    var text: string = "<h5>" + post.formatted.split(',')[0] + " " + post.components.state + "</h5>"; // Name
+    var text: string = "<h2>" + post.formatted.split(',')[0] + " " + post.components.state + "</h2>"; // Name
     text += "<p>" + post.formatted.substring(post.formatted.indexOf(',') + 1) + "</p>"; // Address
   
     return text;
