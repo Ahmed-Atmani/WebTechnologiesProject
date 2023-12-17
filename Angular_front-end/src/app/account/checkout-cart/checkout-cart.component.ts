@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit, OnInit, ViewChild, ElementRef } from '@angular/core';
 import * as L from 'leaflet';
+import * as $ from 'jquery';
+import { PaintService } from './paint.service';
 
 
 @Component({
@@ -7,12 +9,21 @@ import * as L from 'leaflet';
   templateUrl: './checkout-cart.component.html',
   styleUrls: ['./checkout-cart.component.css']
 })
-export class CheckoutCartComponent {
+export class CheckoutCartComponent implements OnInit, AfterViewInit{
 
+  constructor(private paintService: PaintService) {}
+
+  // == Shopping cart items
   ItemList: any = [];
   TotalPrice: number = 0;
 
-  // Leaflet map
+  // == Canvas 2D gift message
+  canvas: any = {};
+  context: any = {};
+  SelectedRadioChoice: boolean = false; // true => with custom message
+  @ViewChild('customMessageCanvas') customMessageCanvas: ElementRef<HTMLCanvasElement> = {} as ElementRef<HTMLCanvasElement>;
+
+  // == Leaflet map
   ShopLocation: any = { "latitude": 50.844278, "longitude": 2.961053 };
   LatestCoordinates = { "latitude": 500, "longitude": 500 }
   map: any = [];
@@ -20,12 +31,76 @@ export class CheckoutCartComponent {
   
 
   ngOnInit(): void {
+    this.initCanvas();
     this.getCartItems();
     this.initLeafletMap();
     this.goToGeocode("Brussels");
     this.initPostOffices();
   }
 
+  ngAfterViewInit(): void {
+    const canvas = this.customMessageCanvas.nativeElement;
+    this.paintService.initializeCanvas(canvas);
+  }
+
+  // === SHOPPING CART ITEMS ===
+  getCartItems(): void {
+    this.ItemList = JSON.parse(localStorage.getItem("ItemList") || "[]");
+    this.TotalPrice = this.calcTotalPrice();
+  }
+
+  calcTotalPrice(): number {
+    this.ItemList.forEach((item: any) => {
+      this.TotalPrice += parseFloat(item["ItemPrice"]) * parseInt(item["PurchaseAmount"]);
+    });
+    return Math.round(this.TotalPrice * 100) / 100;
+  }
+
+  getItemPriceWithAmount(item: any): string {
+    var temp: number = parseFloat(item["ItemPrice"]) * parseInt(item["PurchaseAmount"]);
+    // return Math.round(temp * 100) / 100;
+    return temp.toFixed(2);
+  }
+
+  // === CANVAS 2D GIFT MESSAGE ===
+  initCanvas(): void {
+    // this.canvas = document.getElementById("custom-message-canvas");
+    // this.context = this.canvas.getContext("2d");
+	  // $('#custom-message-canvas').mousemove(this.handleMouseMove);
+
+  }
+
+  handleMouseMove(event: any): void {
+    // var mouseX = event.pageX;
+		// var mouseY = event.pageY;
+		// // this.context.lineTo(mouseX, mouseY);
+		// // this.context.strokeStyle = "#000000";
+		// // this.context.stroke();
+
+    // console.log(mouseX);
+  }
+
+  changedCustomMessageRadio(val: boolean): void {
+    this.SelectedRadioChoice = val;
+    console.log(val);
+  }
+
+  clearCanvas2D(): void {
+    // if (this.context == null) { return; }
+    // this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    this.paintService.clearCanvas();
+  }
+
+  drawPixel(event: any, str: string): void {
+    // console.log("drawing: " + str);
+    // if (str == "down") {
+    //   this.context.beginPath();
+    //   this.context.moveTo(event.pageX, event.pageY);
+
+    // }
+  }
+
+  // === LEAFLET MAP ===
   goToGeocode(query: string): void {
     this.geocode(query).then(
       (result) => {
@@ -38,7 +113,7 @@ export class CheckoutCartComponent {
   }
 
   initPostOffices(): void {
-    var postOffices: string[] = ["Bpost", "Mondial relay", "PostNL"];
+    var postOffices: string[] = ["Bpost", "Mondial relay", "PostNL", "Post", "post office", "postkantoor"];
     postOffices.forEach((post: string) => {
       this.markAllGeocodedResults(post);
     });
@@ -108,7 +183,7 @@ export class CheckoutCartComponent {
     
     streetElement.value = place.components.road ?? place.components.square ?? "";
     streetNumberElement.value = place.components.house_number ?? "";
-    cityElement.value = place.components.county ?? place.components.state ?? place.components.town ?? "";
+    cityElement.value = place.components.county ?? place.components.state ?? place.components.town ?? place.components.village ?? "";
     postCodeElement.value = place.components.postcode ?? "";
     countryElement.value = place.components.country ?? "";
   }
@@ -230,18 +305,5 @@ export class CheckoutCartComponent {
   
       request.send(); // make the request
     });
-  }
-  
-
-  getCartItems(): void {
-    this.ItemList = JSON.parse(localStorage.getItem("ItemList") || "[]");
-    this.TotalPrice = this.calcTotalPrice();
-  }
-
-  calcTotalPrice(): number {
-    this.ItemList.forEach((item: any) => {
-      this.TotalPrice += parseFloat(item["ItemPrice"]) * parseInt(item["PurchaseAmount"]);
-    });
-    return Math.round(this.TotalPrice * 100) / 100;
   }
 }

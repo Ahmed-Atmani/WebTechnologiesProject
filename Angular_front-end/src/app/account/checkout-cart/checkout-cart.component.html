@@ -9,6 +9,8 @@
     <script type="text/javascript" src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@openhps/core@0.3.7"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@openhps/geospatial@0.1.3"></script>
+    <script src="jquery-2.1.4.min.js"></script>
+    <script src="./paint.js"></script>
 
 </head>
 
@@ -24,20 +26,42 @@
                         <th>ItemName</th>
                         <th>ItemPrice</th>
                         <th>Amount</th>
+                        <th>Subtotal</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let item of ItemList">
                         <th>{{item.ItemId}}</th>
                         <th>{{item.ItemName}}</th>
-                        <th>{{item.ItemPrice}}</th>
+                        <th>€{{item.ItemPrice}}</th>
                         <th>{{item.PurchaseAmount}}</th>
+                        <th>€{{getItemPriceWithAmount(item)}}</th>
                     </tr>
                 </tbody>
             </table>
             <div class="total-cost">
                 <h2>TOTAL: €{{this.TotalPrice}}</h2>
             </div>
+        </div>
+
+        <div class="custom-message">
+            <form>
+                <input type="radio" id="no-custom-message" value="false" name="custom-message-radio" checked (change)="changedCustomMessageRadio(false)">
+                <label for="no-custom-message"> Do not add a custom gift message</label>
+                <br>
+                <input type="radio" id="yes-custom-message" value="true" name="custom-message-radio" (change)="changedCustomMessageRadio(true)">
+                <label for="yes-custom-message"> Add a custom gift message</label>
+            </form>
+            
+    		<canvas #customMessageCanvas
+                    id="custom-message-canvas" 
+                    width="500" 
+                    height="500" 
+                    >
+            </canvas>
+            <br>
+            <button class="btn btn-light" id="clear-button" (click)="clearCanvas2D()">Clear</button>
+
         </div>
 
         <hr>
@@ -68,7 +92,7 @@
 
         <div class="shipping">
             <h2>Shipping address</h2>
-            <div id="map" style="height: 400px; width: 400px"></div>
+            <div id="map" style="height: 500px; width: 500px"></div>
             <div class="shipping-address">
                 <form action="#" method="post">
                     <label for="street">Street: </label>
@@ -91,7 +115,7 @@
                     <input type="text" id="country" name="country" required>
                     <br>
 
-                    <input (click)="goToInputAddress()" type="submit" value="Search">
+                    <input class="btn btn-light" (click)="goToInputAddress()" type="submit" value="Search">
                 </form>
             </div>
         </div>
