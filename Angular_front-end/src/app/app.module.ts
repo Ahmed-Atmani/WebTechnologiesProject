@@ -27,6 +27,7 @@ import { ShoppingCartComponent } from './account/shopping-cart/shopping-cart.com
 import { CheckoutCartComponent } from './account/checkout-cart/checkout-cart.component';
 import { ComplaintsComponent } from './account/complaints/complaints.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { NewBestsellersComponent } from './landing-page/new-bestsellers/new-bestsellers.component';
 // import { LocalStorage } from 'ngx-webstorage';
 
 
@@ -51,6 +52,7 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
     CheckoutCartComponent,
     ComplaintsComponent,
     LandingPageComponent,
+    NewBestsellersComponent,
   ],
   imports: [
     BrowserModule,

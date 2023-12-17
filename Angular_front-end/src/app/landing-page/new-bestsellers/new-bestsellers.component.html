@@ -1,0 +1,9 @@
+
+<div class="bestsellers">
+    <div *ngFor="let item of bestsellers" class="item">
+      <img [src]="item.image_url" alt="{{ item.name }}">
+      <h3>{{ item.ItemName }}</h3>
+      <p>{{ item.ItemDetails }}</p>
+    </div>
+  </div>
+  

@@ -12,6 +12,7 @@
 
 body {
     font-family: 'Montserrat', sans-serif;
+    background-color: #fff;
 }
 
 /* NAVIGATION BAR */
@@ -258,3 +259,24 @@ input[type=submit]:hover, .context button:hover, .context .button:hover{
     text-decoration: none;
 }
 
+/* FOOTER */
+.footer {
+    bottom: 0;
+    width: 100%;
+    background-color: #8ABCD7;
+    padding: 20px 0;
+    text-align: center;
+    z-index: 1;
+  }
+  
+
+.footer-images {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.footer-images img {
+    width: 40px;
+    height: 40px;
+}

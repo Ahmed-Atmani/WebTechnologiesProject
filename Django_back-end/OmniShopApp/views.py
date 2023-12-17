@@ -3,7 +3,7 @@ from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
 from rest_framework import viewsets
 from rest_framework.response import Response
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render
 
 from OmniShopApp.models import Account, Item, Purchase, ItemCategory, Complaint, Review, Image
 from OmniShopApp.serializers import AccountSerializer, ItemSerializer, PurchaseSerializer, \
@@ -312,3 +312,7 @@ def login_view(request):
 
     return JsonResponse({'success': False, 'message': 'Invalid request method'}, status=400)
 
+
+def landing_page(request):
+    newbestsellers = Item.objects.all()[:4]  # Assuming you want to display 4 bestsellers
+    return render(request, 'landing_page.html', {'newbestsellers': newbestsellers})
