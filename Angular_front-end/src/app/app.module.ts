@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -30,6 +31,8 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { NewBestsellersComponent } from './landing-page/new-bestsellers/new-bestsellers.component';
 import { UsedBestsellersComponent } from './landing-page/used-bestsellers/used-bestsellers.component';
 import { CategoriesComponent } from './landing-page/categories/categories.component';
+import { PackageTrackingComponent } from './account/account-orders/package-tracking/package-tracking.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // import { LocalStorage } from 'ngx-webstorage';
 
 
@@ -57,6 +60,7 @@ import { CategoriesComponent } from './landing-page/categories/categories.compon
     NewBestsellersComponent,
     UsedBestsellersComponent,
     CategoriesComponent,
+    PackageTrackingComponent,
   ],
   imports: [
     BrowserModule,
@@ -64,6 +68,8 @@ import { CategoriesComponent } from './landing-page/categories/categories.compon
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatProgressBarModule,
     // LocalStorage,
   ],
   providers: [SharedService],
