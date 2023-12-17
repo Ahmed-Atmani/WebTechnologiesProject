@@ -287,12 +287,14 @@ class LoginView(APIView):
     def post(self, request):
         AccountEmail = request.data.get('AccountEmail')
         AccountPassword = request.data.get('AccountPassword')
-        user = authenticate(request, AccountEmail=AccountEmail, AccountPassword=AccountPassword)
 
-        if user:
+        user = authenticate(email=AccountEmail, password=AccountPassword)
+        if user is not None:
             login(request, user)
             token, _ = Token.objects.get_or_create(user=user)
-            return Response({'token': token.key})
+
+            return Response({'token': token.key,
+                             'AccountId': Account.objects.get(User=user).AccountId})
         else:
             return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
 

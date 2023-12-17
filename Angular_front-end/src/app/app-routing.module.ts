@@ -29,7 +29,7 @@ const routes: Routes = [
   {path:'account/preferences', component:AccountPreferencesComponent},
   {path:'account/settings', component:AccountSettingsComponent},
   {path:'account/orders', component:AccountOrdersComponent},
-  {path:'account/complaints', component: ComplaintsComponent},
+  {path:'account/client-service', component: ComplaintsComponent},
 
   {path:'items', component:ShowItemComponent},
   {path:'items/:id', component: ItemComponent},

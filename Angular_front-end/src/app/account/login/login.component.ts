@@ -28,8 +28,6 @@ export class LoginComponent implements OnInit {
 
   AccountEmail: string = '';
   AccountPassword: string = '';
-  errorMessage: string = '';
-  loginInProgress: boolean = false;
 
   constructor(private http: HttpClient, public shared: SharedService, private loginservice: LoginService, private router: Router) {}
 
@@ -44,12 +42,14 @@ export class LoginComponent implements OnInit {
       (response) => {
         // Handle successful login, store token, etc.
         console.log('Login successful');
+        console.log(response);
         const token = response.token;
-        console.log('API Response:', response);
-        
+        const AccountId = response.AccountId;
         console.log('Token:', token);
-        
-        this.loginservice.storeToken(token);
+
+        this.loginservice.storeTokenUser(token, AccountId);
+        this.router.navigate(['/'])
+
       },
       (error) => {
         // Handle login error
@@ -57,35 +57,13 @@ export class LoginComponent implements OnInit {
       }
     );
   }
-  //   this.loginInProgress = true;
-  //   this.authService.login(this.AccountEmail, this.AccountPassword).subscribe(
-  //     (response) => {
-  //       if (response.success) {
-  //         // Navigate to the desired page upon successful login
-  //         console.log('Login successful!');
-  //         const token = 'your_received_token';
-  //         this.authService.setToken(token);
-  //         console.log(token);
-  //         this.router.navigate(['/account-overview']);
-  //       } else {
-  //         this.errorMessage = response.message;
-  //       }
-  //     },
-  //     (error) => {
-  //       console.error('Error occurred:', error);
-  //       this.errorMessage = 'An unexpected error occurred.';
-  //     }
-  //   ).add(() => {
-  //     this.loginInProgress = false;
-  //   });
-  // }
 
   logout() {
     this.loginservice.logout().subscribe(
       () => {
         // Handle successful logout, e.g., remove token from storage
         console.log('Logout successful');
-        this.loginservice.removeToken();
+        this.loginservice.removeTokenUser();
       },
       (error) => {
         // Handle logout error
