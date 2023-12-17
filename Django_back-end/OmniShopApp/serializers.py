@@ -17,9 +17,7 @@ class ItemSerializer(serializers.ModelSerializer):
 class ItemCategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = ItemCategory
-        fields = (
-            'ItemCategoryId',
-            'ItemCategoryName')
+        fields = '__all__'
 
 
 class AccountSerializer(serializers.ModelSerializer):
