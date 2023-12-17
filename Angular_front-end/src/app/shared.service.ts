@@ -69,10 +69,6 @@ export class SharedService {
     return this.http.get<any>(this.APIUrl + '/item/' + id);
   }
 
-  regiserItem(val: any) {
-    return this.http.post(this.APIUrl + '/item/', val);
-  }
-
   getMyComplaintsList(account: string): Observable<any[]> {
     return this.http.get<any[]>(this.APIUrl + '/complaint/?account=' + account);
   }

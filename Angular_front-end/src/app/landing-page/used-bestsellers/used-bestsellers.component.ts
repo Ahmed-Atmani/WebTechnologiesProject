@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ProductService } from 'src/app/product.service';
 import { SharedService } from 'src/app/shared.service';
 
 @Component({
-  selector: 'app-new-bestsellers',
-  templateUrl: './new-bestsellers.component.html',
-  styleUrls: ['./new-bestsellers.component.css']
+  selector: 'app-used-bestsellers',
+  templateUrl: './used-bestsellers.component.html',
+  styleUrls: ['./used-bestsellers.component.css']
 })
-export class NewBestsellersComponent implements OnInit {
+export class UsedBestsellersComponent {
 
   bestsellers: any[] = [];
 
@@ -79,7 +79,7 @@ export class NewBestsellersComponent implements OnInit {
 
   filteredItemList(): any[] {
     if (!this.service.searchedKeyword) {
-      return this.ItemList.filter((item: any) => item.ItemState === 1);
+      return this.ItemList.filter((item: any) => item.ItemState === 2);
     }
   
     const keyword = this.service.searchedKeyword.toLowerCase();
