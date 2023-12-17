@@ -25,24 +25,26 @@ export class PaintService {
   setColor(newColor: string): void {
     this.color = newColor;
   }
-
   private handleMouseDown(event: MouseEvent): void {
-    const mouseX = event.pageX - (event.currentTarget as any)['offsetLeft'];
-    const mouseY = event.pageY - (event.currentTarget as any)['offsetTop'] - 100;
+    const rect = (event.currentTarget as HTMLCanvasElement).getBoundingClientRect();
+    const mouseX = event.clientX - rect.left;
+    const mouseY = event.clientY - rect.top;
     this.isDragging = true;
     this.context.beginPath();
     this.context.moveTo(mouseX, mouseY);
   }
-
+  
   private handleMouseMove(event: MouseEvent): void {
     if (this.isDragging) {
-      const mouseX = event.pageX - (event.currentTarget as any)['offsetLeft'];
-      const mouseY = event.pageY - (event.currentTarget as any)['offsetTop'] - 100;
+      const rect = (event.currentTarget as HTMLCanvasElement).getBoundingClientRect();
+      const mouseX = event.clientX - rect.left;
+      const mouseY = event.clientY - rect.top;
       this.context.lineTo(mouseX, mouseY);
       this.context.strokeStyle = this.color;
       this.context.stroke();
     }
   }
+  
 
   private handleMouseUp(): void {
     this.isDragging = false;
