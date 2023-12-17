@@ -82,7 +82,17 @@ export class CheckoutCartComponent implements OnInit, AfterViewInit{
 
   changedCustomMessageRadio(val: boolean): void {
     this.SelectedRadioChoice = val;
-    console.log(val);
+    var yesCustomMessageRadio: any = document.getElementById('yes-custom-message');
+    var customMessageCanvas: any = document.getElementById('canvas-div');
+
+    if (yesCustomMessageRadio.checked) {
+      customMessageCanvas.style.display = "block";
+    }
+    else {
+      customMessageCanvas.style.display = "none";
+    }
+
+
   }
 
   clearCanvas2D(): void {

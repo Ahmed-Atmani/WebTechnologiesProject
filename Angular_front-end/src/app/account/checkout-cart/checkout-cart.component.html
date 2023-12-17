@@ -44,6 +44,10 @@
             </div>
         </div>
 
+        <br>
+        <hr>
+        <br>
+
         <div class="custom-message">
             <form>
                 <input type="radio" id="no-custom-message" value="false" name="custom-message-radio" checked (change)="changedCustomMessageRadio(false)">
@@ -53,17 +57,20 @@
                 <label for="yes-custom-message"> Add a custom gift message</label>
             </form>
             
-    		<canvas #customMessageCanvas
-                    id="custom-message-canvas" 
-                    width="500" 
-                    height="500" 
-                    >
-            </canvas>
-            <br>
-            <button class="btn btn-light" id="clear-button" (click)="clearCanvas2D()">Clear</button>
+    		<div id="canvas-div">
+                <canvas #customMessageCanvas
+                                    id="custom-message-canvas" 
+                                    width="500" 
+                                    height="500" 
+                                    >
+                            </canvas>
+                            <br>
+                            <button class="btn btn-light" id="clear-button" (click)="clearCanvas2D()">Clear</button>
+            </div>
 
         </div>
 
+        <br>
         <hr>
         <br>
 
@@ -87,12 +94,14 @@
             </ul>
         </div>
 
+        <br>
         <hr>
         <br>
 
         <div class="shipping">
             <h2>Shipping address</h2>
             <div id="map" style="height: 500px; width: 500px"></div>
+            <br>
             <div class="shipping-address">
                 <form action="#" method="post">
                     <label for="street">Street: </label>
@@ -114,11 +123,18 @@
                     <label for="country">Country: </label>
                     <input type="text" id="country" name="country" required>
                     <br>
+                    <br>
+
 
                     <input class="btn btn-light" (click)="goToInputAddress()" type="submit" value="Search">
                 </form>
             </div>
         </div>
+
+        <br>
+        <br>
+        <br>
+        <br>
 
     </div>
 

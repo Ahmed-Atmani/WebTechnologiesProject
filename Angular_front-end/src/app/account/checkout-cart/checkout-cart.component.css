@@ -4,6 +4,10 @@ body {
     display: flex;
 }
 
+/* h1 {
+    display: flex;
+} */
+
 .payment-method-image {
     max-width: 30px;
     max-height: 30px;
@@ -27,4 +31,8 @@ body {
 
 #custom-message-canvas {
     border:2px solid #000000;
+}
+
+#canvas-div{
+    display: none;
 }
