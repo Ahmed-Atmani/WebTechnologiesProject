@@ -1,67 +1,15 @@
 <app-new-bestsellers></app-new-bestsellers>
 
 <div class="bubbles">
-    <div class="bubble-container">
-      <div class="bubble">
-        <div class="bubble-image">
-          <img src="../../assets/images/mango.jpg" alt="Image 1">
-        </div>
-        <div class="text-container">
-          <h2>test1</h2>
-          <h3>test3</h3>
-        </div>
+  <div class="bubble-container" *ngFor="let category of CategoryList">
+    <div class="bubble">
+      <div class="bubble-image">
+        <img src="../../assets/images/aardbei.jpg" alt="{{ category.ItemCategoryName }}">
       </div>
-  
-      <div class="bubble">
-        <div class="bubble-image">
-          <img src="../../assets/images/aardbei.jpg" alt="Image 2">
-        </div>
-        <div class="text-container">
-          <h2>test1</h2>
-          <h3>test3</h3>
-        </div>
-      </div>
-  
-      <div class="bubble">
-        <div class="bubble-image">
-          <img src="../../assets/images/ananas.jpg" alt="Image 3">
-        </div>
-        <div class="text-container">
-          <h2>test1</h2>
-          <h3>test3</h3>
-        </div>
-      </div>
-    </div>
-  
-    <div class="bubble-container">
-      <div class="bubble">
-        <div class="bubble-image">
-          <img src="../../assets/images/tomato.jpg" alt="Image 4">
-        </div>
-        <div class="text-container">
-          <h2>test1</h2>
-          <h3>test3</h3>
-        </div>
-      </div>
-  
-      <div class="bubble">
-        <div class="bubble-image">
-          <img src="../../assets/images/banaan.jpeg" alt="Image 5">
-        </div>
-        <div class="text-container">
-          <h2>test1</h2>
-          <h3>test3</h3>
-        </div>
-      </div>
-  
-      <div class="bubble">
-        <div class="bubble-image">
-          <img src="../../assets/images/appel.jpg" alt="Image 6">
-        </div>
-        <div class="text-container">
-          <h2>test1</h2>
-          <h3>test3</h3>
-        </div>
+      <div class="text-container">
+        <h2>{{ category.ItemCategoryName }}</h2>
+        <h3>{{ category.ItemCategoryID }}</h3>
       </div>
     </div>
   </div>
+</div>
