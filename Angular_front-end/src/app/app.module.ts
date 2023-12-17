@@ -26,6 +26,10 @@ import { ShowItemComponent } from './item/show-item/show-item.component';
 import { ShoppingCartComponent } from './account/shopping-cart/shopping-cart.component';
 import { CheckoutCartComponent } from './account/checkout-cart/checkout-cart.component';
 import { ComplaintsComponent } from './account/complaints/complaints.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
+import { NewBestsellersComponent } from './landing-page/new-bestsellers/new-bestsellers.component';
+import { UsedBestsellersComponent } from './landing-page/used-bestsellers/used-bestsellers.component';
+import { CategoriesComponent } from './landing-page/categories/categories.component';
 // import { LocalStorage } from 'ngx-webstorage';
 
 
@@ -49,6 +53,10 @@ import { ComplaintsComponent } from './account/complaints/complaints.component';
     ShoppingCartComponent,
     CheckoutCartComponent,
     ComplaintsComponent,
+    LandingPageComponent,
+    NewBestsellersComponent,
+    UsedBestsellersComponent,
+    CategoriesComponent,
   ],
   imports: [
     BrowserModule,

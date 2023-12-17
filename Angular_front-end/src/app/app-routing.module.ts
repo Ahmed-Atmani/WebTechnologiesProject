@@ -17,9 +17,11 @@ import { ForgotPasswordComponent } from './account/login/forgot-password/forgot-
 import { CheckoutCartComponent } from './account/checkout-cart/checkout-cart.component';
 import { ShoppingCartComponent } from './account/shopping-cart/shopping-cart.component';
 import { ComplaintsComponent } from "./account/complaints/complaints.component";
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 
 const routes: Routes = [
+  {path: '', component:LandingPageComponent},
   {path:'account', component:AccountComponent},
   {path:'account/test', component:ShowAccountComponent},
   {path:'account/overview', component:AccountOverviewComponent},

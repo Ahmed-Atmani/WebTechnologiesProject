@@ -69,10 +69,6 @@ export class SharedService {
     return this.http.get<any>(this.APIUrl + '/item/' + id);
   }
 
-  regiserItem(val: any) {
-    return this.http.post(this.APIUrl + '/item/', val);
-  }
-
   getMyComplaintsList(account: string): Observable<any[]> {
     return this.http.get<any[]>(this.APIUrl + '/complaint/?account=' + account);
   }
@@ -88,6 +84,10 @@ export class SharedService {
 
   getImagesForItem(id: any): Observable<any> {
     return this.http.get<any>(this.APIUrl + '/image/?item=' + id);
+  }
+
+  getAllCategories(): Observable<any[]> {
+    return this.http.get<any[]>(this.APIUrl + '/item-category/');
   }
 
   getReviewsForItem(id: any): Observable<any> {
