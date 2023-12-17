@@ -1,3 +1,4 @@
+<!-- <div *ngFor="let purchase of purchases"> -->
 <div class="accordion accordion-flush" id="accordionFlushExample">
     <div class="accordion-item">
       <h2 class="accordion-header">
@@ -11,14 +12,19 @@
                 </div>
                     <form id ="order-buttons">
                         <input class="track-package" type="button" (click)="toggleAccordion()" value="Track package">
+                        <input class="write-review" type="button" value="Write a review" [routerLink]="['/forgot-password']">
                         <input class="cancel-order" type="button" value="Cancel order">
                     </form>
                 </div>
         </button>
       </h2>
+      <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion body.</div>
+      </div>
       <div *ngIf="isOpen" class="accordion-content">
-        <mat-progress-bar *ngIf="showProgressBar" mode="indeterminate"></mat-progress-bar>
+        <mat-progress-bar *ngIf="showProgressBar" mode="determinate"></mat-progress-bar>
         <!-- Add other content here -->
       </div>
     </div>
 </div>
+<!-- </div> -->

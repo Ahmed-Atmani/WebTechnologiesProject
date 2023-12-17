@@ -9,6 +9,11 @@ import { Observable } from 'rxjs';
   styleUrls: ['./account-orders.component.css']
 })
 export class AccountOrdersComponent {
+
+  purchases: any[] = [
+    
+  ]
+
   isOpen: boolean = false;
   showProgressBar: boolean = false;
 
