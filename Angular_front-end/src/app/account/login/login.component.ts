@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
         if (response.success) {
           // Navigate to the desired page upon successful login
           console.log('Login successful!');
-          this.router.navigate(['/account-overview']);
+          this.router.navigate(['/account']);
         } else {
           this.errorMessage = response.message;
         }
