@@ -1,0 +1,51 @@
+.item-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  
+  .item-box {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+    width: calc(20% - 20px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    transition: transform 0.3s ease;
+  }
+  
+  .item-box h2 {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+  
+  .item-box p {
+    margin: 5px 0;
+  }
+  
+  .item-box a {
+    color: black;
+    text-decoration: none;
+    transition: color 0.3s ease
+  }
+  
+  .item-box a:hover {
+    color: #555;
+  }
+  
+  .item-box img {
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+    margin: auto;
+  }
+  
+  .item-box:hover {
+    transform: scale(1.05);
+  }
+  
+  
+  .item-box .brand {
+    font-size: 14px;
+    margin: 0;
+  }

@@ -36,6 +36,7 @@ import { UsedBestsellersComponent } from './landing-page/used-bestsellers/used-b
 import { CategoriesComponent } from './landing-page/categories/categories.component';
 import { PackageTrackingComponent } from './account/account-orders/package-tracking/package-tracking.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MyItemsComponent } from './item/my-items/my-items.component';
 // import { LocalStorage } from 'ngx-webstorage';
 
 
@@ -64,6 +65,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     UsedBestsellersComponent,
     CategoriesComponent,
     PackageTrackingComponent,
+    MyItemsComponent,
   ],
   imports: [
     BrowserModule,

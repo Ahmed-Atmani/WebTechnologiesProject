@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { LoginService } from 'src/app/login.service';
 import { SharedService } from 'src/app/shared.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { SharedService } from 'src/app/shared.service';
 })
 export class AddItemComponent implements OnInit{
 
-  constructor(private service: SharedService) {
+  constructor(private service: SharedService, private loginservice: LoginService) {
 
   }
 
@@ -39,6 +40,7 @@ export class AddItemComponent implements OnInit{
     const itemDetailValue = this. addItemForm.get('ItemDetails')?.value;
 
     var val = {
+      ItemSeller: this.loginservice.getAccountId(),
       ItemName: this.ItemName,
       ItemPrice: this.ItemPrice,
       ItemType: itemTypeValue,

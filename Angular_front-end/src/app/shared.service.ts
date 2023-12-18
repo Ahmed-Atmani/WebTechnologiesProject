@@ -82,6 +82,9 @@ export class SharedService {
     return this.http.get<any[]>(this.APIUrl + '/item/?item-category=' + categoryId);
   }
 
+  getMyItems(account: string): Observable<any[]> {
+    return this.http.get<any[]>(this.APIUrl + '/item/?itemseller=' + account);
+  }
 
   getMyComplaintsList(account: string): Observable<any[]> {
     return this.http.get<any[]>(this.APIUrl + '/complaint/?account=' + account);

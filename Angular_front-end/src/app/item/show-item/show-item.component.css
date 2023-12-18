@@ -50,20 +50,6 @@
   margin: 0;
 }
 
-/* catalog.component.css */
-.mat-sidenav-container {
-  height: 100%;
-}
-
-mat-sidenav {
-  width: 250px; /* Adjust the width as needed */
-  background-color: black; /* Set a background color for the sidebar */
-}
-
-mat-sidenav-content {
-  padding: 16px;
-}
-
 /* Adjust the styles as needed for your specific design */
 
 .catalog-bar{
