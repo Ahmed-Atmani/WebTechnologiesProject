@@ -116,6 +116,22 @@ export class SharedService {
     this.searchedKeyword = keyword;
   }
 
+  getMyPurchases(account: string) {
+    return this.http.get<any[]>(this.APIUrl + '/purchase/?account=' + account);
+  }
+
+  getPurchaseState(purchaseId: number) {
+    return this.http.get<string>(this.APIUrl + "/purchase/?purchaseid="+ purchaseId +"/state/");
+  }
+
+  getPurchaseDeliveryTime(purchaseID: number) {
+    return this.http.get<number>(this.APIUrl + "/purchase/?purchaseid=" + purchaseID + "/delivery_time/")
+  }
+
+  getPurchaseDate(purchaseID: number) {
+    return this.http.get<Date>(this.APIUrl + "/purchase/?purchaseid=" + purchaseID + "/purchase_date/")
+  }
+
   // getWishlistItems(account: string): Observable<any[]> {
   //   return this.http.get<any[]>(this.APIUrl + ' ' + account);
   // }
