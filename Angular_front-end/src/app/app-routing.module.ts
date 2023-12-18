@@ -32,7 +32,7 @@ const routes: Routes = [
   {path:'account/preferences', component:AccountPreferencesComponent},
   {path:'account/settings', component:AccountSettingsComponent},
   {path:'account/orders', component:AccountOrdersComponent},
-  {path:'account/client-service', component: ComplaintsComponent},
+  {path:'account/customer-service', component: ComplaintsComponent},
   {path:'account/wishlist', component: MyWishlistComponent},
 
   {path:'items', component:ShowItemComponent},
