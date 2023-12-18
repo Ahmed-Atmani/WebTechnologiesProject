@@ -54,6 +54,8 @@ export class CheckoutCartComponent implements OnInit, AfterViewInit{
       image = this.paintService.getImageData(this.customMessageCanvas.nativeElement);
     }
 
+    alert(image);
+
     var accountId = 21;
     var items = [10, 11];
     this.sharedService.addPurchase(items, accountId, image).subscribe(res =>{

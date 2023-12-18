@@ -23,7 +23,7 @@ export class PaintService {
   }
 
   getImageData(canvas: HTMLCanvasElement): string {
-    return canvas.toDataURL("image/png");
+    return canvas.toDataURL();
   }
 
   private handleMouseDown(event: MouseEvent): void {

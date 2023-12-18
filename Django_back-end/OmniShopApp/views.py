@@ -17,6 +17,11 @@ from django.core.files.storage import default_storage
 from django.contrib.auth import authenticate, login, logout
 
 
+from django.core.files.base import ContentFile
+import base64
+
+
+
 #  Create your views here.
 
 # == Account ==
@@ -155,12 +160,21 @@ class ItemViewSet(viewsets.ViewSet):
         serializer = ItemSerializer(item)
         return Response(serializer.data)
 
-    def create(self, request):
-        item_serializer = ItemSerializer(data=request.data)
-        if item_serializer.is_valid():
-            item_serializer.save()
-            return Response("Added successfully!")
-        return Response("Failed to add.")
+    def create(self, validated_data):
+        custom_drawing_data = validated_data.pop('CustomDrawing', None)
+
+        purchase = Purchase.objects.create(**validated_data)
+
+        if custom_drawing_data:
+            format, imgstr = custom_drawing_data.split(';base64,')
+            ext = format.split('/')[-1]
+
+            # Decoding base64 and saving as ContentFile
+            custom_drawing = ContentFile(base64.b64decode(imgstr), name=f'custom_drawing.{ext}')
+            purchase.CustomDrawing.save(f'custom_drawing.{ext}', custom_drawing)
+
+        return purchase
+
 
     def update(self, request, pk=None):
         item_data = JSONParser().parse(request)
