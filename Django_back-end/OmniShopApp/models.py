@@ -34,12 +34,13 @@ class Account(models.Model):
     AccountPoints = models.PositiveIntegerField(default=0)
     AccountVouchers = models.JSONField(default=[], help_text='list of integers')
     Following = models.ManyToManyField('self', symmetrical=False, null=True)
-
+    Wishlist = models.ManyToManyField('Item', null=True)
 
     def save(self, *args, **kwargs):
-        user = User.objects.create_user(self.AccountEmail, self.AccountEmail, self.AccountPassword)
-        self.User = user
-        self.AccountPassword = ""
+        if self.AccountPassword != "encrypted":
+            user = User.objects.create_user(self.AccountEmail, self.AccountEmail, self.AccountPassword)
+            self.User = user
+            self.AccountPassword = "encrypted"
         super(Account, self).save(*args, **kwargs)
 
 
