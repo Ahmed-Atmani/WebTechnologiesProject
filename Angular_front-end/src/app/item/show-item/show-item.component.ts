@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedService } from 'src/app/shared.service';
+import { map, catchError } from 'rxjs/operators';
+import { of, Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-show-item',
@@ -36,6 +39,29 @@ export class ShowItemComponent implements OnInit {
     this.SelectedCategory = categoryID;
     
   }
+
+  getSeller(accountID: number): Observable<string> {
+    this.service.getAccountName(accountID).subscribe(
+  response => console.log('Response from getAccountName:', response),
+  error => console.error('Error from getAccountName:', error)
+);
+
+    if (accountID) {
+      return this.service.getAccountName(accountID).pipe(
+        map(seller => (seller ? seller.toString() : 'Unknown Seller')),
+        catchError(() => of('Unknown Seller'))
+      );
+    } else {
+      return of('Unknown Seller');
+    }
+  }
+  
+  
+  
+
+  filterItemState() {
+      return this.ItemList.filter((item: any) => item.ItemState == 2);
+    }
   
 
   fillImagesList() {

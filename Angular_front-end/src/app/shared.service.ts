@@ -45,6 +45,12 @@ export class SharedService {
     return this.http.get<any[]>(this.APIUrl + '/account/');
   }
 
+  getAccountName(accountID: number): Observable<any[]> {
+    console.log(accountID);
+    
+    return this.http.get<any[]>(this.APIUrl + '/account/?accountid=' + accountID + '/AccountFirstName/');
+  }
+
   registerAccount(val: any) {
     return this.http.post(this.APIUrl + '/account/', val);
   }
@@ -59,12 +65,12 @@ export class SharedService {
     return this.http.post(this.APIUrl + '/item/', val);
   }
 
-  updateItem(val: any) {
-    return this.http.put(this.APIUrl + '/item/', val);
+  updateItem(pk: string, val: any) {
+    return this.http.put(this.APIUrl + '/item/'+ pk + '/', val);
   }
 
   deleteItem(val: any) {
-    return this.http.delete(this.APIUrl + '/item/' + val);
+    return this.http.delete(this.APIUrl + '/item/' + val + '/');
   }
 
   getAllItems(): Observable<any[]> {
@@ -85,7 +91,7 @@ export class SharedService {
   }
 
   getMyItems(account: string): Observable<any[]> {
-    return this.http.get<any[]>(this.APIUrl + '/item/?itemseller=' + account);
+    return this.http.get<any[]>(this.APIUrl + '/item/?account=' + account);
   }
 
   getMyComplaintsList(account: string): Observable<any[]> {
@@ -107,6 +113,10 @@ export class SharedService {
 
   getAllCategories(): Observable<any[]> {
     return this.http.get<any[]>(this.APIUrl + '/item-category/');
+  }
+
+  getCategory(category: string): Observable<any[]> {
+    return this.http.get<any[]>(this.APIUrl + '/item-category/' + category);
   }
 
   getReviewsForItem(id: any): Observable<any> {

@@ -38,6 +38,7 @@ import { PackageTrackingComponent } from './account/account-orders/package-track
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MyItemsComponent } from './item/my-items/my-items.component';
 import { MyWishlistComponent } from './account/my-wishlist/my-wishlist.component';
+import { EditItemComponent } from './item/my-items/edit-item/edit-item.component';
 // import { LocalStorage } from 'ngx-webstorage';
 
 
@@ -68,6 +69,7 @@ import { MyWishlistComponent } from './account/my-wishlist/my-wishlist.component
     PackageTrackingComponent,
     MyItemsComponent,
     MyWishlistComponent,
+    EditItemComponent,
   ],
   imports: [
     BrowserModule,
