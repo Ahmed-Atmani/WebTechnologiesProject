@@ -53,6 +53,8 @@
       <input type="text" id="country" name="country" placeholder="Country"
         [(ngModel)]="editedAccount.AccountAddressCountry" required>
 
+      <button type="button" class="delete-button" (click)="deleteAccount(currentAccount.AccountId)">Delete Account</button>
+
       <button type="button" class="save-button" (click)="saveAccount()">Save</button>
     </form>
   </div>

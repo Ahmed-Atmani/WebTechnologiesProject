@@ -60,7 +60,6 @@ body {
     box-sizing: border-box;
   }
   
-/* Add specific styles for the save button */
 .save-button {
     background-color: #8ABCD7;
     color: #fff;
@@ -69,7 +68,7 @@ body {
     cursor: pointer;
     border-radius: 4px;
     transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
-    float: right; /* Align to the right */
+    float: right; 
   }
   
   .save-button:hover {
@@ -81,8 +80,7 @@ body {
   }
   
   
-  
-  /* Responsive Styles */
+
   @media (max-width: 600px) {
     .container {
       padding: 10px;
@@ -96,4 +94,20 @@ body {
       padding: 8px;
     }
   }
+
+.delete-button {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  
+  .delete-button:hover {
+    background-color: #c82333;
+  }
+  
   
