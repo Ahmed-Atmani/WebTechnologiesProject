@@ -65,12 +65,12 @@ export class SharedService {
     return this.http.post(this.APIUrl + '/item/', val);
   }
 
-  updateItem(val: any) {
-    return this.http.put(this.APIUrl + '/item/', val);
+  updateItem(pk: string, val: any) {
+    return this.http.put(this.APIUrl + '/item/'+ pk + '/', val);
   }
 
   deleteItem(val: any) {
-    return this.http.delete(this.APIUrl + '/item/' + val);
+    return this.http.delete(this.APIUrl + '/item/' + val + '/');
   }
 
   getAllItems(): Observable<any[]> {
@@ -113,6 +113,10 @@ export class SharedService {
 
   getAllCategories(): Observable<any[]> {
     return this.http.get<any[]>(this.APIUrl + '/item-category/');
+  }
+
+  getCategory(category: string): Observable<any[]> {
+    return this.http.get<any[]>(this.APIUrl + '/item-category/' + category);
   }
 
   getReviewsForItem(id: any): Observable<any> {
