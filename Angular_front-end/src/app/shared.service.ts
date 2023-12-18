@@ -99,5 +99,43 @@ export class SharedService {
     this.searchedKeyword = keyword;
   }
 
+<<<<<<< Updated upstream
+=======
+  getMyPurchases(account: string) {
+    return this.http.get<any[]>(this.APIUrl + '/purchase/?account=' + account);
+  }
+
+  getPurchaseState(purchaseId: number) {
+    return this.http.get<string>(this.APIUrl + "/purchase/?purchaseid="+ purchaseId +"/state/");
+  }
+
+  getPurchaseDeliveryTime(purchaseID: number) {
+    return this.http.get<number>(this.APIUrl + "/purchase/?purchaseid=" + purchaseID + "/delivery_time/");
+  }
+
+  getPurchaseDate(purchaseID: number) {
+    return this.http.get<Date>(this.APIUrl + "/purchase/?purchaseid=" + purchaseID + "/purchase_date/");
+  }
+
+  // getWishlistItems(account: string): Observable<any[]> {
+  //   return this.http.get<any[]>(this.APIUrl + ' ' + account);
+  // }
+
+  searchMoviesByTitle(title: string): Observable<any>{
+    var apiKey = "b152332e"; 
+    var omdbApiUrl = "http://www.omdbapi.com/";
+    const apiUrl = `${omdbApiUrl}?s=${title}&apikey=${apiKey}`;
+    // return this.http.get<any>("/omdbapi/?s=" + title + "&apikey=b152332e");
+    return this.http.jsonp(apiUrl, "callback");
+  }
+
+  getMovieDetailsById(imdbId: string): Observable<any> {
+    var apiKey = "b152332e"; 
+    var omdbApiUrl = "http://www.omdbapi.com/";
+    const apiUrl = `${omdbApiUrl}?i=${imdbId}&apikey=${apiKey}`;
+    return this.http.jsonp(apiUrl, "callback");
+  }
+
+>>>>>>> Stashed changes
 }
 

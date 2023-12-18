@@ -6,7 +6,7 @@
           <div id="itemCarousel" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
               <div *ngFor="let img of ImagesList; let i = index" class="carousel-item" [class.active]="i === 0">
-                <img class="d-block w-100" [src]="service.APIUrl + img.Image" alt="Item Image">
+                <img class="d-block w-100" [src]="img.src + img.Image" alt="Item Image">
               </div>
             </div>
             <a class="carousel-control-prev" href="#itemCarousel" role="button" data-slide="prev">
