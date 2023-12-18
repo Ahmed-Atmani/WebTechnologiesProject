@@ -222,6 +222,7 @@ class PurchaseViewSet(viewsets.ViewSet):
         data = JSONParser().parse(request)
         serializer = PurchaseSerializer(data=data)
         if serializer.is_valid():
+            serializer.save()
             return Response("Added successfully!")
         else:
             return Response("Failed to add.")
