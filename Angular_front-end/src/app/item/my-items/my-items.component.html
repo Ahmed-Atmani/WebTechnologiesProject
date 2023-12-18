@@ -1,5 +1,5 @@
 <div class="item-container">
-    <div  *ngFor="let item of ItemList()" class="item-box" [routerLink]="['/items', item.ItemId]">
+    <div  *ngFor="let item of ItemList" class="item-box" [routerLink]="['/items', item.ItemId]">
       <ng-container *ngIf="item.ItemRating === 1">
         <img src="../../assets/images/1 star.png" alt="1 Star" class="rating-image" style="width: 125px; height: 25px;">
       </ng-container>

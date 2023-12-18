@@ -45,6 +45,12 @@ export class SharedService {
     return this.http.get<any[]>(this.APIUrl + '/account/');
   }
 
+  getAccountName(accountID: number): Observable<any[]> {
+    console.log(accountID);
+    
+    return this.http.get<any[]>(this.APIUrl + '/account/?accountid=' + accountID + '/AccountFirstName/');
+  }
+
   registerAccount(val: any) {
     return this.http.post(this.APIUrl + '/account/', val);
   }
@@ -85,7 +91,7 @@ export class SharedService {
   }
 
   getMyItems(account: string): Observable<any[]> {
-    return this.http.get<any[]>(this.APIUrl + '/item/?itemseller=' + account);
+    return this.http.get<any[]>(this.APIUrl + '/item/?account=' + account);
   }
 
   getMyComplaintsList(account: string): Observable<any[]> {

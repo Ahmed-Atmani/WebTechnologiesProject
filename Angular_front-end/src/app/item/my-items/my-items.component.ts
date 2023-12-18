@@ -22,7 +22,11 @@ export class MyItemsComponent implements OnInit{
   }
 
   refreshItemList() {
+    console.log(this.loginservice.getAccountId());
+    
     this.service.getMyItems(this.loginservice.getAccountId()).subscribe(data => {
+      console.log(data);
+      
       this.ItemList = data;
       this.fillImagesList();
     }
