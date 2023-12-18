@@ -20,6 +20,8 @@ export class ItemComponent implements OnInit {
   PurchaseAmount: number = 1;
   ImagesList: any[] = [];
   ReviewList: any[] = [];
+  ReviewText:string = "";
+  Rating: number = 5;
 
   constructor(private route: ActivatedRoute, public service: SharedService) {
   }
@@ -39,10 +41,13 @@ export class ItemComponent implements OnInit {
           this.ImagesList = images;
         });
 
+
         this.fillReviewList(this.ItemId).subscribe(reviews => {
           this.ReviewList = reviews;
+          this.ReviewList.forEach(review => {
+          this.service.getAccount(review.Reviewer).subscribe((response: any) => {
+  review.ReviewerName = response['AccountFirstName'] + ' ' + response['AccountLastName'] })});
         });
-        
       },
       error => {
         console.error(`No item has the following id: ${this.ItemId}`);
@@ -89,4 +94,17 @@ export class ItemComponent implements OnInit {
   fillReviewList(itemId: number): Observable<any[]> {
     return this.service.getReviewsForItem(itemId);
   }
+
+  submitReview() {
+    const val: any = {
+      Reviewer: this.loginservice.getAccountId(),
+      ReviewText: this.ReviewText,
+      Item: this.ItemId,
+      Rating: this.Rating
+    };
+    this.service.addReview(val).subscribe(res => {
+      alert(res.toString());
+    })
+  }
+
 }
