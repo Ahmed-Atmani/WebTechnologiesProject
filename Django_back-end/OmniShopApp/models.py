@@ -9,25 +9,25 @@ from django.contrib.auth.models import User
 
 class Address(models.Model):
     AddressId = models.AutoField(primary_key=True)
-    AddressStreet = models.CharField(max_length=20)
-    AddressCity = models.CharField(max_length=20)
-    AddressCountry = models.CharField(max_length=20)
+    AddressStreet = models.CharField(max_length=100)
+    AddressCity = models.CharField(max_length=100)
+    AddressCountry = models.CharField(max_length=100)
     AddressStreetNumber = models.PositiveIntegerField()
     AddressPostalCode = models.PositiveIntegerField()
 
 
 class Account(models.Model):
     AccountId = models.AutoField(primary_key=True)
-    AccountFirstName = models.CharField(max_length=20)
-    AccountLastName = models.CharField(max_length=20)
+    AccountFirstName = models.CharField(max_length=100)
+    AccountLastName = models.CharField(max_length=100)
     AccountPicture = models.CharField(max_length=100)
     AccountBirthDate = models.DateField()
-    AccountEmail = models.CharField(max_length=20)
-    AccountPassword = models.CharField(max_length=20)
+    AccountEmail = models.CharField(max_length=100)
+    AccountPassword = models.CharField(max_length=100)
     # Address
-    AccountAddressStreet = models.CharField(max_length=20)
-    AccountAddressCity = models.CharField(max_length=20)
-    AccountAddressCountry = models.CharField(max_length=20)
+    AccountAddressStreet = models.CharField(max_length=100)
+    AccountAddressCity = models.CharField(max_length=100)
+    AccountAddressCountry = models.CharField(max_length=100)
     AccountAddressStreetNumber = models.PositiveIntegerField()
     AccountAddressPostalCode = models.PositiveIntegerField()
     User = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
@@ -46,7 +46,7 @@ class Account(models.Model):
 
 class ItemCategory(models.Model):
     ItemCategoryId = models.AutoField(primary_key=True)
-    ItemCategoryName = models.CharField(max_length=20)
+    ItemCategoryName = models.CharField(max_length=100)
     ItemCategoryImage = models.ImageField(null=True)
 
 
@@ -58,7 +58,7 @@ STATE_CHOICES = (
 
 class Item(models.Model):
     ItemId = models.AutoField(primary_key=True)
-    ItemName = models.CharField(max_length=20)
+    ItemName = models.CharField(max_length=100)
     ItemDetails = models.CharField(max_length=1000)
     ItemPrice = models.DecimalField(max_digits=6, decimal_places=2)
     ItemCategory = models.ForeignKey(ItemCategory, on_delete=models.CASCADE)

@@ -19,12 +19,14 @@
         Confirm
       </button>
 
+      <!-- Check if user does not have enough points and confirmation button is clicked -->
       <ng-container *ngIf="!checkAccountPoints(confirmationData.points) && confirmationData.showConfirmation">
         <br>
         <p class="error-message">Not enough Omnipoints for this voucher...</p>
       </ng-container>
     </ng-container>
 
+    <!-- Check if lastClickedPoints is not null and user does not have enough points, and confirmation button is not clicked -->
     <ng-container *ngIf="lastClickedPoints !== null && !checkAccountPoints(lastClickedPoints) && !confirmationData.showConfirmation">
       <br>
       <p class="error-message">Not enough Omnipoints for this voucher...</p>

@@ -27,6 +27,7 @@ export class AccountPointsComponent {
     this.service.getLoggedInAccount(accountIdNumber).subscribe(
       data => {
         this.currentAccount = data;
+        console.log(data);
       },
       error => {
         console.error('Error fetching account data:', error);
@@ -43,27 +44,12 @@ export class AccountPointsComponent {
   confirmRedeem(): void {
     if (this.checkAccountPoints(this.confirmationData.points)) {
       this.confirmationData.showConfirmation = false;
+      this.confirmationData.points = 0;
       this.confirmationData.redemptionMessage = 'Points redeemed successfully!';
-
-      const updatedAccount = { ...this.currentAccount };
-  
-      updatedAccount.AccountPoints -= this.confirmationData.points;
-  
-      this.currentAccount = updatedAccount;
-  
-      this.service.updateAccount(this.currentAccount.AccountId, this.currentAccount).subscribe(
-        data => {
-          console.log('Account updated successfully:', data);
-        },
-        error => {
-          console.error('Error updating account:', error);
-        }
-      );
     } else {     
       this.confirmationData.redemptionMessage = 'Not enough Omnipoints for redemption.';
     }
   }
-  
 
   checkAccountPoints(points: number): boolean {
     return this.currentAccount?.AccountPoints > points;

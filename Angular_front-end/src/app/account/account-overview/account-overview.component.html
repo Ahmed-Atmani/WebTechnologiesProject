@@ -1,59 +1,87 @@
-<div class="container">
-  <div class="profile-section">
-    <label for="profile-picture" class="profile-picture-label">
-      <img id="profile-pic" src="assets/images/no_profilpic.png" width="125" height="125" alt="Profile Picture">
-      <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-pencil-square"
-        viewBox="0 0 16 16" id="directory-icon">
-        <path
-          d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-        <path fill-rule="evenodd"
-          d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
-      </svg>
-    </label>
-    <input type="file" id="profile-picture" style="display: none" accept="image/*" >
-  </div>
-  <br />
-  <div class="forms">
-    <p><b>Personal details: </b></p>
-    <br>
-    <form class="account-form">
-      <label for="fname">First name: </label>
-      <input type="text" id="fname" name="fname" [(ngModel)]="editedAccount.AccountFirstName" required>
-      <label for="lname">Last name: </label>
-      <input type="text" id="lname" name="lname" [(ngModel)]="editedAccount.AccountLastName" required>
-      <label for="bdate">Birth date: </label>
-      <input type="date" id="bdate" name="bdate" [(ngModel)]="editedAccount.AccountBirthDate" required>
-      <label for="email">E-mail: </label>
-      <input type="email" id="email" name="email" [(ngModel)]="editedAccount.AccountEmail" required>
-      <label for="password">Password: </label>
-      <input id="password" type="password" name="password" [(ngModel)]="editedAccount.AccountPassword" required
-        minlength="8">
-      <label for="password2">Confirm your password: </label>
-      <input id="password2" type="password" name="password2" [(ngModel)]="editedAccount.AccountPassword" required
-        minlength="8">
-      <p id="message"></p>
-      <br />
-      <br />
-      <p><b>Address: </b></p>
-      <br />
-      <label for="street">Street: </label>
-      <input type="text" id="street" name="street" placeholder="Street" [(ngModel)]="editedAccount.AccountAddressStreet"
-        required>
-      <label for="streetnr">Streetnr: </label>
-      <input type="text" id="streetnr" name="streetnr" placeholder="Streetnumber"
-        [(ngModel)]="editedAccount.AccountAddressStreetNumber" required>
 
-      <label for="city">City: </label>
-      <input type="text" id="city" name="city" placeholder="City" [(ngModel)]="editedAccount.AccountAddressCity"
-        required minlength="2">
-      <label for="postcode">Postcode: </label>
-      <input type="number" id="postcode" name="postcode" placeholder="Postal code"
-        [(ngModel)]="editedAccount.AccountAddressPostalCode" required min="1000" max="9999">
-      <label for="country">Country: </label>
-      <input type="text" id="country" name="country" placeholder="Country"
-        [(ngModel)]="editedAccount.AccountAddressCountry" required>
 
-      <button type="button" class="save-button" (click)="saveAccount()">Save</button>
-    </form>
+  <div class="container">
+    <div class="profile-section">
+      <label for="profile-picture" class="profile-picture-label">
+        <img id="profile-pic" src="assets/images/no_profilpic.png" width="125" height="125" alt="Profile Picture">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16"
+          id="directory-icon">
+          <path
+            d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+          <path fill-rule="evenodd"
+            d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
+        </svg>
+      </label>
+      <input type="file" id="profile-picture" style="display: none" accept="image/*"  onchange="loadProfilePicture(event)">
+    </div>
+    <br />
+    <div class="forms">
+      <p><b>Personal details: </b></p>
+      <br>
+      <form class="account-form">
+        <label for="fname">First name: </label>
+        <input type="text" name="fname" [value]="currentAccount?.AccountFirstName" required>
+        <label for="lname">Last name: </label>
+        <input type="text" name="lname" [value]="currentAccount?.AccountLastName" required>
+        <label for="bdate">Birth date: </label>
+        <input type="date" name="bdate" [value]="currentAccount?.AccountBirthDate" required>
+        <label for="email">E-mail: </label>
+        <input type="email" name="email" [value]="currentAccount?.AccountEmail" required>
+        <label for="password">Password: </label>
+        <input id="password" type="password" name="password" [value]="currentAccount?.AccountPassword" required
+          minlength="8">
+        <label for="password2">Confirm your password: </label>
+        <input id="password" type="password" name="password2" [value]="currentAccount?.AccountPassword" required
+          minlength="8">
+        <p id="message"></p>
+        <br />
+        <br />
+        <p><b>Address: </b></p>
+        <br />
+        <label for="street">Street: </label>
+        <input type="text" name="street" placeholder="Street" [value]="currentAccount?.AccountAddressStreet" required>
+        <label for="streetnr">Streetnr: </label>
+        <input type="text" name="streetnr" placeholder="Streetnumber"
+          [value]="currentAccount?.AccountAddressStreetNumber" required>
+      
+        <label for="city">City: </label>
+        <input type="text" name="city" placeholder="City" [value]="currentAccount?.AccountAddressCity" required
+          minlength="2">
+          <label for="postcode">Postcode: </label>
+        <input type="number" name="postcode" placeholder="Postal code"
+          [value]="currentAccount?.AccountAddressPostalCode" required min="1000" max="9999">
+        <label for="country">Country: </label>
+        <input type="text" name="country" placeholder="Country" [value]="currentAccount?.AccountAddressCountry"
+          required>
+      </form>
+    </div>
   </div>
-</div>
+
+
+    <script>
+      function loadProfilePicture(event) {
+        if (event.target.matches('#directory-icon')) {
+          // Handle directory icon click
+          event.stopPropagation();
+          alert('Directory will be opened here');
+          // You can add logic to handle directory selection here
+        } else {
+          // Handle file input change (for profile picture)
+          const input = event.target;
+          if (input.files && input.files[0]) {
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+              updateProfilePicture(e.target.result);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+          }
+        }
+      }
+
+      function updateProfilePicture(src) {
+        document.getElementById('profile-pic').src = src;
+      }
+    </script>
+

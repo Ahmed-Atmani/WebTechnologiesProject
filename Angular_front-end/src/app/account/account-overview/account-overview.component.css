@@ -60,27 +60,19 @@ body {
     box-sizing: border-box;
   }
   
-/* Add specific styles for the save button */
-.save-button {
+  .account-form button {
     background-color: #8ABCD7;
     color: #fff;
     border: none;
     padding: 10px 15px;
     cursor: pointer;
     border-radius: 4px;
-    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
-    float: right; /* Align to the right */
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
   
-  .save-button:hover {
+  .account-form button:hover {
     background-color: #34495e;
   }
-  
-  .save-button:active {
-    transform: scale(0.95);
-  }
-  
-  
   
   /* Responsive Styles */
   @media (max-width: 600px) {
