@@ -39,7 +39,22 @@
     margin-left: 5px;
   }
   
-  button {
+  button, .pointsOption {
+    display: inline-block;
+    margin-right: 10px;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    background-color: #8ABCD7;
+    color: #fff;
+  }
+  
+  button:hover, .pointsOption:hover {
+    background-color: #2980b9;
+  }
+  
+  .confirmation-button {
     background-color: #8ABCD7;
     color: #fff;
     border: none;
@@ -49,41 +64,16 @@
     transition: background-color 0.3s ease, color 0.3s ease;
   }
   
-  button:hover {
+  .confirmation-button:hover {
     background-color: #2980b9;
   }
   
-  .moreInfo {
-    margin-top: 20px;
+  .confirmation-button:disabled {
+    cursor: not-allowed; /* Change the cursor on hover for disabled state */
   }
   
-  .pointsSelection {
-    margin-top: 20px;
-  }
-  
-  .pointsOption {
-    display: inline-block;
-    margin-right: 10px;
-    padding: 8px 12px;
-    background-color: #8ABCD7;
-    color: #fff;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-  }
-  
-  .pointsOption:hover {
-    background-color: #2980b9;
-  }
-  
-  .infoWindow {
-    position: absolute;
-    background-color: #8ABCD7;
-    color: #fff;
-    padding: 10px;
-    border-radius: 4px;
-    display: none;
-    z-index: 1;
+  .error-message {
+    color: red;
   }
   
   /* Responsive Styles */
@@ -96,12 +86,11 @@
       font-size: 14px;
     }
   
-    .vouchers th,
-    .vouchers td {
+    .vouchers th, .vouchers td {
       padding: 8px;
     }
   
-    button {
+    button, .pointsOption {
       padding: 6px 10px;
     }
   }

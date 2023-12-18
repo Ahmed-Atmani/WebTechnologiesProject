@@ -6,15 +6,30 @@
   <div class="omnipointsButtons">
     <div class="pointsSelection">
       <p>Select a voucher</p>
-      <div class="pointsOption" (click)="redeemPoints(100)">100 points</div>
-      <div class="pointsOption" (click)="redeemPoints(200)">200 points</div>
-      <div class="pointsOption" (click)="redeemPoints(300)">300 points</div>
-      <div class="pointsOption" (click)="redeemPoints(400)">400 points</div>
+      <div class="pointsOption" (click)="showConfirmation(100)">100 points</div>
+      <div class="pointsOption" (click)="showConfirmation(200)">200 points</div>
+      <div class="pointsOption" (click)="showConfirmation(300)">300 points</div>
+      <div class="pointsOption" (click)="showConfirmation(400)">400 points</div>
     </div>
-    <br>
 
-    <ng-container *ngIf="lastClickedPoints !== null && !checkAccountPoints(lastClickedPoints)">
-      <p>Not enough Omnipoints for {{ lastClickedPoints }} this voucher...</p>
+    <ng-container *ngIf="confirmationData.showConfirmation">
+      <br>
+      <p>Do you want to convert <strong>{{ confirmationData.points }}</strong> Omnipoints for a <strong>{{ calculateVoucherAmount(confirmationData.points) }}</strong>?</p>
+      <button class="confirmation-button" (click)="confirmRedeem()" [disabled]="!checkAccountPoints(confirmationData.points)">
+        Confirm
+      </button>
+
+      <!-- Check if user does not have enough points and confirmation button is clicked -->
+      <ng-container *ngIf="!checkAccountPoints(confirmationData.points) && confirmationData.showConfirmation">
+        <br>
+        <p class="error-message">Not enough Omnipoints for this voucher...</p>
+      </ng-container>
+    </ng-container>
+
+    <!-- Check if lastClickedPoints is not null and user does not have enough points, and confirmation button is not clicked -->
+    <ng-container *ngIf="lastClickedPoints !== null && !checkAccountPoints(lastClickedPoints) && !confirmationData.showConfirmation">
+      <br>
+      <p class="error-message">Not enough Omnipoints for this voucher...</p>
     </ng-container>
 
     <div class="vouchersButtons">
@@ -28,7 +43,7 @@
           <ng-container *ngIf="currentAccount?.AccountVouchers && currentAccount?.AccountVouchers.length > 0; else noVouchers">
             <tr *ngFor="let voucher of currentAccount?.AccountVouchers">
               <td>{{ voucher.Amount }} <img src="assets/images/Omnipoints.png" alt="" width="30" height="30"></td>
-              <td><button type="button">Redeem</button></td>
+              <td><button type="button" [disabled]="!checkAccountPoints(voucher.Amount)" (click)="showConfirmation(voucher.Amount)">Redeem</button></td>
             </tr>
           </ng-container>
         </tbody>
