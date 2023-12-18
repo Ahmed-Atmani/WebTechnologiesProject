@@ -36,7 +36,6 @@ class AccountSerializer(serializers.ModelSerializer):
 
 
 class PurchaseSerializer(serializers.ModelSerializer):
-    CustomDrawing = serializers.ImageField()
     class Meta:
         model = Purchase
         fields = '__all__'
