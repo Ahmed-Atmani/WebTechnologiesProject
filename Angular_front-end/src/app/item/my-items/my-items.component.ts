@@ -15,14 +15,38 @@ export class MyItemsComponent implements OnInit{
   ItemList: any = [];
   AccountId: string = '';
   ImagesList: any = {};
+  item: any;
+  ModalTitle:string = "";
+
+  ActivateEditItemComp: boolean = false;
 
 
   ngOnInit(): void {
     this.refreshItemList();
   }
 
+  closeClick(){
+    this.ActivateEditItemComp = false;
+    this.refreshItemList();
+  }
+
+  editItem(dataItem:any) {
+    this.item = dataItem;
+    this.ModalTitle = "Edit Item";
+    this.ActivateEditItemComp = true;
+  }
+
+  deleteItem(dataItem: any) {
+    if (confirm("Are you sure to delete this item?")) {
+      this.service.deleteItem(dataItem).subscribe(data => {
+        alert(data.toString());
+        this.refreshItemList();
+      })
+  }
+}
+  
+
   refreshItemList() {
-    console.log(this.loginservice.getAccountId());
     
     this.service.getMyItems(this.loginservice.getAccountId()).subscribe(data => {
       console.log(data);
