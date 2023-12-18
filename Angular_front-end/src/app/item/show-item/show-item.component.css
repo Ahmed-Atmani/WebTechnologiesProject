@@ -1,7 +1,90 @@
+.all-elements {
+  display: flex;
+}
+
+.catalog-bar {
+  background-color: #8ABCD7;
+  position: fixed;
+  overflow: visible;
+  z-index: 999;
+  padding: 0;
+  margin: 0;
+  margin-left: 0;
+  width: 200px;
+  color: #ecf0f1;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: width 0.3s ease; /* Add transition for smooth effect */
+}
+
+.catalog-bar:hover {
+  width: 220px; /* Adjust the width on hover */
+}
+
+.catalog-bar a {
+  color: #ecf0f1;
+  text-decoration: none;
+  padding: 15px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  display: block;
+}
+
+.catalog-bar a:hover {
+  background-color: #34495e;
+  color: #fff;
+}
+
+.catalog-bar ul {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  z-index: 999;
+  justify-content: space-evenly;
+  text-align: left;
+  margin: 0;
+  padding: 0;
+  border: 1px solid #34495e;
+  left: 0;
+  height: 100%;
+}
+
+.catalog-bar div {
+  border-bottom: 1px solid #34495e;
+}
+
+.catalog-bar div:last-child {
+  border-bottom: none;
+}
+
+.catalog-bar ul li:hover {
+  background-color: #34495e;
+}
+
+.catalog-bar li a {
+  width: 100%;
+}
+
+.catalog-bar .active {
+  background-color: #34495e;
+  color: #fff;
+}
+
+.category-button {
+  background-color: transparent;
+  color: white;
+  border: none;
+  padding: 15px;
+  margin: 0;
+  font-size: inherit;
+  font-family: inherit;
+  cursor: pointer;
+  outline: none;
+}
+
 .item-container {
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
+  margin-left: 220px; /* Adjust margin for space after widening */
+  padding: 20px;
 }
 
 .item-box {
@@ -9,7 +92,8 @@
   padding: 10px;
   margin: 10px;
   width: calc(20% - 20px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px
+  rgba(0, 0, 0, 0.1);
   background-color: #fff;
   transition: transform 0.3s ease;
 }
@@ -26,7 +110,7 @@
 .item-box a {
   color: black;
   text-decoration: none;
-  transition: color 0.3s ease
+  transition: color 0.3s ease;
 }
 
 .item-box a:hover {
@@ -44,70 +128,9 @@
   transform: scale(1.05);
 }
 
-
 .item-box .brand {
   font-size: 14px;
   margin: 0;
 }
 
-/* Adjust the styles as needed for your specific design */
 
-.catalog-bar{
-  background-color: #8ABCD7;
-  position: fixed;
-  overflow: visible;
-  z-index: 999;
-  padding: 0;
-  margin: 0;
-  
-}
-.catalog-bar a{
-  color: #fff;
-  text-decoration: none;
-}
-
-.catalog-bar ul{
-  display: flex;
-  flex-direction: column;
-  list-style-type: none;
-  z-index: 999;
-  justify-content: space-evenly;
-  text-align: left;
-  margin: 0;
-  padding: 0;
-  border: 1px solid #12263A;
-  left: 0;
-  height: 100%;
-}
-.catalog-bar div{
-  border-bottom: 1px solid #12263A;
-}
-
-.catalog-bar div:last-child{
-  border-bottom: none;
-}
-
-.catalog-bar ul li:hover{
-  background-color: #12263A;
-}
-
-.catalog-bar li a{
-  display: block;
-  width: 200px;
-}
-
-.catalog-bar .active{
-  background-color: #12263A;
-}
-
-.category-button{
-  background-color: transparent;
-  color: white;
-  border: none;
-  padding: 0;
-  margin: 0;
-  font-size: inherit;
-  font-family: inherit;
-  cursor: pointer;
-  outline: none; 
-}
