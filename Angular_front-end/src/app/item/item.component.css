@@ -74,12 +74,16 @@
   transition: transform 0.5s ease-in-out;
 }
 
+.form-floating > label {
+  left: 10px;
+}
+
 .item-details {
   text-align: center;
 }
 
 .reviews {
-  margin-top: 10px; /* Adjust the margin-top value to position the reviews higher */
+  margin-top: 30px; /* Adjust the margin-top value to position the reviews higher */
   margin-bottom: 20px; /* Add margin-bottom to create space under the reviews */
   padding: 20px;
   border: 1px solid #ddd;

@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { SharedService } from '../shared.service';
 import { NgIf } from '@angular/common';
 import { Observable } from 'rxjs';
+import {LoginService} from "../login.service";
 
 @Component({
   selector: 'app-item',
@@ -20,8 +21,10 @@ export class ItemComponent implements OnInit {
   PurchaseAmount: number = 1;
   ImagesList: any[] = [];
   ReviewList: any[] = [];
+  ReviewText:string = "";
+  Rating: number = 5;
 
-  constructor(private route: ActivatedRoute, public service: SharedService) {
+  constructor(private route: ActivatedRoute, public service: SharedService,  private loginservice: LoginService) {
   }
 
   ngOnInit(): void {
@@ -41,8 +44,11 @@ export class ItemComponent implements OnInit {
 
         this.fillReviewList(this.ItemId).subscribe(reviews => {
           this.ReviewList = reviews;
+          this.ReviewList.forEach(review => {
+          review.ReviewerName = review.Reviewer;
+          this.service.getAccount(review.Reviewer).subscribe((response: any) => {
+  review.ReviewerName = response['AccountFirstName']})});
         });
-        
       },
       error => {
         console.error(`No item has the following id: ${this.ItemId}`);
@@ -89,4 +95,17 @@ export class ItemComponent implements OnInit {
   fillReviewList(itemId: number): Observable<any[]> {
     return this.service.getReviewsForItem(itemId);
   }
+
+  submitReview() {
+    const val: any = {
+      Reviewer: this.loginservice.getAccountId(),
+      ReviewText: this.ReviewText,
+      Item: this.ItemId,
+      Rating: this.Rating
+    };
+    this.service.addReview(val).subscribe(res => {
+      alert(res.toString());
+    })
+  }
+
 }
