@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,12 @@ import { map, switchMap } from 'rxjs/operators';
 export class SharedService {
   readonly APIUrl = "http://localhost:8000";
   readonly PhotoUrl = "http://localhost:8000/media/"
+
+  accountid: string = '';
+
+  updateAccountId(newAccountId: string): void {
+    this.accountid = newAccountId;
+  }
 
   searchedKeyword: any;
 
@@ -21,7 +28,12 @@ export class SharedService {
 
   getLoggedInAccount(accountID: number): Observable<any[]> {
     console.log(this.http.get<any[]>(this.APIUrl + '/account/' + accountID));
-    
+
+    return this.http.get<any[]>(this.APIUrl + '/account/' + accountID);
+  }
+
+  getAccount(accountID: number): Observable<any[]> {
+
     return this.http.get<any[]>(this.APIUrl + '/account/' + accountID);
   }
 
@@ -47,7 +59,7 @@ export class SharedService {
 
   getAccountName(accountID: number): Observable<any[]> {
     console.log(accountID);
-    
+
     return this.http.get<any[]>(this.APIUrl + '/account/?accountid=' + accountID + '/AccountFirstName/');
   }
 
@@ -81,7 +93,7 @@ export class SharedService {
     console.log(this.APIUrl + '/item/' + id);
     return this.http.get<any>(this.APIUrl + '/item/' + id);
   }
-  
+
   getCategoryList(): Observable<any[]> {
     return this.http.get<any[]>(this.APIUrl + '/item-category/');
   }
@@ -99,8 +111,13 @@ export class SharedService {
   }
 
   addComplaint(val:any) {
-    console.log(val)
+console.log(val)
     return this.http.post(this.APIUrl + '/complaint/', val);
+  }
+
+  addReview(val:any) {
+    console.log(val)
+    return this.http.post(this.APIUrl + '/review/', val);
   }
 
   getAllImages(): Observable<any> {

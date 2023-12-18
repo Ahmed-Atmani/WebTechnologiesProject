@@ -37,10 +37,15 @@
                     <a [routerLink]="['/my-items']">My Items</a>
                     <a [routerLink]="['/shopping-cart']">My Shopping Cart</a>
                     <a [routerLink]="['/account/customer-service']">Customer service</a>
+                    <a [routerLink]="['/login']" *ngIf="this.service.accountid === 'no-id'; else LogOut">Log In</a>
                   </div>
                 </div>
               </li>
             </div>
+
+            <ng-template #LogOut >
+              <a (click)="logOut()" [routerLink]="['/account/']">Log Out</a>
+            </ng-template>
 
         <div>
           <button class="cart" [routerLink]="['/shopping-cart']">

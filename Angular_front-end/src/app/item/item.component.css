@@ -74,6 +74,10 @@
   transition: transform 0.5s ease-in-out;
 }
 
+.form-floating > label {
+  left: 10px;
+}
+
 .item-details {
   text-align: center;
 }
