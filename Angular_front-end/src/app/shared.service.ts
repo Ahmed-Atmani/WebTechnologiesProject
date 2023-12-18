@@ -162,10 +162,19 @@ console.log(val)
   }
 
   addPurchase(itemIdList: number[], accountId: number, image: string) {
-    var data = {"Items": itemIdList, "Account": accountId, "CustomDrawing": image};
-    alert(JSON.stringify(data, null, 4));
+    const data: { Items: number[]; Account: number; CustomDrawing?: string } = {
+      Items: itemIdList,
+      Account: accountId,
+    };
+  
+    if (image !== "") {
+      data.CustomDrawing = image;
+    }
+  
+    console.log(JSON.stringify(data, null, 4));  // Use console.log for debugging instead of alert
     return this.http.post(this.APIUrl + "/purchase/", data);
   }
+  
 
   // getWishlistItems(account: string): Observable<any[]> {
   //   return this.http.get<any[]>(this.APIUrl + ' ' + account);
