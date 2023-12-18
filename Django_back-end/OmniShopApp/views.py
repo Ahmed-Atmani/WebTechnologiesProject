@@ -15,7 +15,6 @@ from OmniShopApp.serializers import AccountSerializer, ItemSerializer, PurchaseS
 from django.core.files.storage import default_storage
 
 from django.contrib.auth import authenticate, login, logout
-import json
 
 
 #  Create your views here.
@@ -79,6 +78,24 @@ class AccountViewSet(viewsets.ViewSet):
         seller = get_object_or_404(Account, AccountId=data['seller'])
         account.Following.remove(seller)
         return Response("Seller removed from your followed sellers.")
+
+    @action(detail=False,
+            methods=['POST'])
+    def add_item_to_wishlist(self, request):
+        data = JSONParser().parse(request)
+        account = get_object_or_404(Account, AccountId=data['account'])
+        item = get_object_or_404(Item, ItemId=data['item'])
+        account.Wishlist.add(item)
+        return Response("Item added to your wishlist.")
+
+    @action(detail=False,
+            methods=['POST'])
+    def remove_item_from_wishlist(self, request):
+        data = JSONParser().parse(request)
+        account = get_object_or_404(Account, AccountId=data['account'])
+        item = get_object_or_404(Item, ItemId=data['item'])
+        account.Wishlist.remove(item)
+        return Response("Item removed from your wishlist.")
 
 
 class ImageViewSet(viewsets.ViewSet):
