@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { LoginService } from 'src/app/login.service';
 import { SharedService } from 'src/app/shared.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { SharedService } from 'src/app/shared.service';
 })
 export class AddItemComponent implements OnInit{
 
-  constructor(private service: SharedService) {
+  constructor(private service: SharedService, private loginservice: LoginService) {
 
   }
 
@@ -17,7 +18,6 @@ export class AddItemComponent implements OnInit{
 
     ItemName: new FormControl('', [Validators.required]),
     ItemPrice: new FormControl('0', [Validators.required]),
-    ItemType: new FormControl('', [Validators.required]),
     ItemCategory: new FormControl('', [Validators.required]),
     ItemDetails: new FormControl('', [Validators.required]),
 
@@ -25,7 +25,7 @@ export class AddItemComponent implements OnInit{
 
   ItemName:string = "";
   ItemPrice:number = 0;
-  ItemType:string = "";
+  ItemState:number = 2;
   ItemCategory:string = "";
   ItemDetails:string = "";
 
@@ -34,14 +34,14 @@ export class AddItemComponent implements OnInit{
   }
 
   addItem(){
-    const itemTypeValue = this.addItemForm.get('ItemType')?.value;
     const itemCategoryValue = this.addItemForm.get('ItemCategory')?.value;
     const itemDetailValue = this. addItemForm.get('ItemDetails')?.value;
 
     var val = {
+      ItemSeller: this.loginservice.getAccountId(),
       ItemName: this.ItemName,
       ItemPrice: this.ItemPrice,
-      ItemType: itemTypeValue,
+      ItemState: this.ItemState,
       ItemCategory: itemCategoryValue,
       ItemDetails: itemDetailValue,
     }

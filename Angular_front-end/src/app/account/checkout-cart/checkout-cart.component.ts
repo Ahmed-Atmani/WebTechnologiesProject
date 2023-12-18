@@ -1,7 +1,7 @@
 import { Component, AfterViewInit, OnInit, ViewChild, ElementRef } from '@angular/core';
 import * as L from 'leaflet';
-import * as $ from 'jquery';
 import { PaintService } from './paint.service';
+import { SharedService } from 'src/app/shared.service';
 
 
 @Component({
@@ -11,7 +11,7 @@ import { PaintService } from './paint.service';
 })
 export class CheckoutCartComponent implements OnInit, AfterViewInit{
 
-  constructor(private paintService: PaintService) {}
+  constructor(private paintService: PaintService, private sharedService: SharedService) {}
 
   // == Shopping cart items
   ItemList: any = [];
@@ -43,6 +43,24 @@ export class CheckoutCartComponent implements OnInit, AfterViewInit{
   }
 
   // === SHOPPING CART ITEMS ===
+  checkout(): void {
+    // get address
+    // get image
+    // get payment option
+    // get get item lists 
+
+    var image = "";
+    if (this.SelectedRadioChoice) {
+      image = this.paintService.getImageData(this.customMessageCanvas.nativeElement);
+    }
+
+    var accountId = 21;
+    var items = [10, 11];
+    this.sharedService.addPurchase(items, accountId, image).subscribe(res =>{
+      alert(res.toString());
+    });
+  }
+
   getCartItems(): void {
     this.ItemList = JSON.parse(localStorage.getItem("ItemList") || "[]");
     this.TotalPrice = this.calcTotalPrice();
@@ -100,7 +118,7 @@ export class CheckoutCartComponent implements OnInit, AfterViewInit{
   }
 
   initLeafletMap(): void {
-    this.map = L.map('map').setView([this.ShopLocation.latitude, this.ShopLocation.longitude], 13);
+    this.map = L.map('map').setView([this.ShopLocation.latitude, this.ShopLocation.longitude], 5);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '© OpenStreetMap contributors'
     }).addTo(this.map);
@@ -113,7 +131,7 @@ export class CheckoutCartComponent implements OnInit, AfterViewInit{
   }
 
   goToCoordinates(latitude: number, longitude: number): void {
-    this.map.setView([latitude, longitude], 12);
+    this.map.setView([latitude, longitude], 5);
   }
 
   goToLatestCoordinates(): void {

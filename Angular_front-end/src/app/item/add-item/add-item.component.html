@@ -25,23 +25,6 @@
                 </span>
             </div>
             <br> -->
-            <label for="new_Item_type">Type of Item: </label>
-            <!-- <input type="radio" class="form-control" formControlName="ItemType" name="new_Item_type" id="new_product">
-            New Product
-            <input type="radio" class="form-control" formControlName="ItemType" name="new_Item_type" id="old_product">
-            Second Hand Product -->
-            <!-- <select name="" id="" formControlName="ItemType">
-                <option class="form-control" >New Item</option>
-                <option class="form-control" >Second Hand Item</option>
-            </select> -->
-            <input type="number" formControlName="ItemType" [(ngModel)]="ItemType" name="" id="">
-            <div class="input-error" *ngIf="addItemForm.controls?.['ItemType']?.touched">
-                <span *ngIf="addItemForm.controls?.['ItemType']?.errors?.['required']">
-                    It is required to select a type for your Item.
-                </span>
-            </div>
-            <!-- </label> -->
-            <br>
             <label for="new_Item_category">Category: </label>
             <!-- <select name="" id="new_Item_category" formControlName="ItemCategory">
                 <option class="form-control">Clothes</option>

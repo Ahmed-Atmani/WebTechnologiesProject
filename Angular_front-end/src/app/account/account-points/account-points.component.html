@@ -1,26 +1,57 @@
 <div class="context">
-           
-    <h1> <img src="assets/images/Omnipoints.png" alt="" width="30" height="30"> Omnipoints</h1>
-    
-   <div class="omnipointsButtons">
+  <h1>Omnipoints</h1>
+
+  <p>Your Omnipoints: <strong>{{ currentAccount?.AccountPoints }}</strong></p>
+
+  <div class="omnipointsButtons">
+    <div class="pointsSelection">
+      <p>Select a voucher</p>
+      <div class="pointsOption" (click)="showConfirmation(100)">100 points</div>
+      <div class="pointsOption" (click)="showConfirmation(200)">200 points</div>
+      <div class="pointsOption" (click)="showConfirmation(300)">300 points</div>
+      <div class="pointsOption" (click)="showConfirmation(400)">400 points</div>
+    </div>
+
+    <ng-container *ngIf="confirmationData.showConfirmation">
+      <br>
+      <p>Do you want to convert <strong>{{ confirmationData.points }}</strong> Omnipoints for a <strong>{{ calculateVoucherAmount(confirmationData.points) }}</strong>?</p>
+      <button class="confirmation-button" (click)="confirmRedeem()" [disabled]="!checkAccountPoints(confirmationData.points)">
+        Confirm
+      </button>
+
+      <!-- Check if user does not have enough points and confirmation button is clicked -->
+      <ng-container *ngIf="!checkAccountPoints(confirmationData.points) && confirmationData.showConfirmation">
+        <br>
+        <p class="error-message">Not enough Omnipoints for this voucher...</p>
+      </ng-container>
+    </ng-container>
+
+    <!-- Check if lastClickedPoints is not null and user does not have enough points, and confirmation button is not clicked -->
+    <ng-container *ngIf="lastClickedPoints !== null && !checkAccountPoints(lastClickedPoints) && !confirmationData.showConfirmation">
+      <br>
+      <p class="error-message">Not enough Omnipoints for this voucher...</p>
+    </ng-container>
+
     <div class="vouchersButtons">
-    <table class="vouchers">
-      <tr>
-        <td><button type="submit"> 100 <img src="assets/images/Omnipoints.png" alt="" width="30" height="30"> </button></td>
-        <td><button type="submit"> 200 <img src="assets/images/Omnipoints.png" alt="" width="30" height="30"> </button></td>
-      </tr>
-      <tr>
-        <td><button type="submit"> 300 <img src="assets/images/Omnipoints.png" alt="" width="30" height="30"> </button></td>
-        <td><button type="submit"> 400 <img src="assets/images/Omnipoints.png" alt="" width="30" height="30"> </button></td>
-      </tr>
-    </table>
-  </div>
-    <br>
-    <br>
-  <div class="moreInfo">
-    <form action="More_Information.html" method="post">
-      <input type="submit" name="More Information" value="More Information?">
-    </form>
-  </div>
+      <table class="vouchers">
+        <thead>
+          <tr>
+            <th>Your vouchers</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngIf="currentAccount?.AccountVouchers && currentAccount?.AccountVouchers.length > 0; else noVouchers">
+            <tr *ngFor="let voucher of currentAccount?.AccountVouchers">
+              <td>{{ voucher.Amount }} <img src="assets/images/Omnipoints.png" alt="" width="30" height="30"></td>
+              <td><button type="button" [disabled]="!checkAccountPoints(voucher.Amount)" (click)="showConfirmation(voucher.Amount)">Redeem</button></td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+
+      <ng-template #noVouchers>
+        <p>You currently have no vouchers.</p>
+      </ng-template>
+    </div>
   </div>
 </div>

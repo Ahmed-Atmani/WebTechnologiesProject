@@ -18,10 +18,13 @@ import { CheckoutCartComponent } from './account/checkout-cart/checkout-cart.com
 import { ShoppingCartComponent } from './account/shopping-cart/shopping-cart.component';
 import { ComplaintsComponent } from "./account/complaints/complaints.component";
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { MyItemsComponent } from './item/my-items/my-items.component';
+import { MyWishlistComponent } from './account/my-wishlist/my-wishlist.component';
 
 
 const routes: Routes = [
   {path: '', component:LandingPageComponent},
+
   {path:'account', component:AccountComponent},
   {path:'account/test', component:ShowAccountComponent},
   {path:'account/overview', component:AccountOverviewComponent},
@@ -30,10 +33,12 @@ const routes: Routes = [
   {path:'account/settings', component:AccountSettingsComponent},
   {path:'account/orders', component:AccountOrdersComponent},
   {path:'account/client-service', component: ComplaintsComponent},
+  {path:'account/wishlist', component: MyWishlistComponent},
 
   {path:'items', component:ShowItemComponent},
   {path:'items/:id', component: ItemComponent},
   {path:'add-item', component:AddItemComponent},
+  {path:'my-items', component:MyItemsComponent},
 
   {path:'login', component:LoginComponent},
   {path:'register', component:RegisterComponent},
