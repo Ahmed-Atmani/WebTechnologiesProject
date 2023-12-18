@@ -161,8 +161,9 @@ console.log(val)
     return this.http.get<Date>(this.APIUrl + "/purchase/?purchaseid=" + purchaseID + "/purchase_date/");
   }
 
-  addPurchase(itemIdList: number[], accountId: number, image: any) {
+  addPurchase(itemIdList: number[], accountId: number, image: string) {
     var data = {"Items": itemIdList, "Account": accountId, "CustomDrawing": image};
+    alert(JSON.stringify(data, null, 4));
     return this.http.post(this.APIUrl + "/purchase/", data);
   }
 
