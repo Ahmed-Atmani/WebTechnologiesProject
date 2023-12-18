@@ -14,16 +14,28 @@ export class AccountOrdersComponent {
     
   ]
 
-  isOpen: boolean = false;
-  showProgressBar: boolean = false;
+  isOpenPackageTrack: boolean = false;
+  showPackageTrack: boolean = false;
+  isOpenItems: boolean = false;
+  showItems: boolean = false;
 
-  toggleAccordion() {
-    this.isOpen = !this.isOpen;
+  togglePackageTrack() {
+    this.isOpenPackageTrack = !this.isOpenPackageTrack;
 
     // Simulate loading with a delay
-    this.showProgressBar = true;
+    this.showPackageTrack = true;
     setTimeout(() => {
-      this.showProgressBar = false;
+      this.showPackageTrack = false;
+    }, 2000); // Adjust the duration as needed
+  }
+
+  toggleItems() {
+    this.isOpenItems = !this.isOpenItems;
+
+    // Simulate loading with a delay
+    this.showItems = true;
+    setTimeout(() => {
+      this.showItems = false;
     }, 2000); // Adjust the duration as needed
   }
 

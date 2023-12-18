@@ -276,11 +276,10 @@ input[type=submit]:hover,
 .footer {
     bottom: 0;
     width: 100%;
-    flex-shrink: 0;
     background-color: #8ABCD7;
     padding: 20px 0;
     text-align: center;
-    z-index: 1;
+    position: relative;
   }
   
 

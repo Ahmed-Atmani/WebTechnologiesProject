@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatButtonModule } from '@angular/material/button';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -33,6 +36,8 @@ import { UsedBestsellersComponent } from './landing-page/used-bestsellers/used-b
 import { CategoriesComponent } from './landing-page/categories/categories.component';
 import { PackageTrackingComponent } from './account/account-orders/package-tracking/package-tracking.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MyItemsComponent } from './item/my-items/my-items.component';
+import { MyWishlistComponent } from './account/my-wishlist/my-wishlist.component';
 // import { LocalStorage } from 'ngx-webstorage';
 
 
@@ -61,6 +66,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     UsedBestsellersComponent,
     CategoriesComponent,
     PackageTrackingComponent,
+    MyItemsComponent,
+    MyWishlistComponent,
   ],
   imports: [
     BrowserModule,
@@ -70,6 +77,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatProgressBarModule,
+    MatIconModule,
+    MatSidenavModule,
+    MatButtonModule,
     // LocalStorage,
   ],
   providers: [SharedService],
