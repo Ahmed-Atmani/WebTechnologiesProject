@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { SharedService } from '../shared.service';
 import { NgIf } from '@angular/common';
 import { Observable } from 'rxjs';
+import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-item',
@@ -23,7 +24,7 @@ export class ItemComponent implements OnInit {
   ReviewText:string = "";
   Rating: number = 5;
 
-  constructor(private route: ActivatedRoute, public service: SharedService) {
+  constructor(private route: ActivatedRoute, public service: SharedService, private loginservice: LoginService) {
   }
 
   ngOnInit(): void {
