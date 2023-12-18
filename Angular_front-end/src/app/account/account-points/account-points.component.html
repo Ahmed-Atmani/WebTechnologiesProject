@@ -1,17 +1,21 @@
 <div class="context">
   <h1>Omnipoints</h1>
 
-  <p>Your Omnipoints: <strong>{{ currentAccount.AccountPoints }}</strong></p>
+  <p>Your Omnipoints: <strong>{{ currentAccount?.AccountPoints }}</strong></p>
 
   <div class="omnipointsButtons">
     <div class="pointsSelection">
-      <p>Select points:</p>
-      <div class="pointsOption" data-points="100" >100 points</div>
-      <div class="pointsOption" data-points="200" >200 points</div>
-      <div class="pointsOption" data-points="300" >300 points</div>
-      <div class="pointsOption" data-points="400" >400 points</div>
-    
+      <p>Select a voucher</p>
+      <div class="pointsOption" (click)="redeemPoints(100)">100 points</div>
+      <div class="pointsOption" (click)="redeemPoints(200)">200 points</div>
+      <div class="pointsOption" (click)="redeemPoints(300)">300 points</div>
+      <div class="pointsOption" (click)="redeemPoints(400)">400 points</div>
     </div>
+    <br>
+
+    <ng-container *ngIf="lastClickedPoints !== null && !checkAccountPoints(lastClickedPoints)">
+      <p>Not enough Omnipoints for {{ lastClickedPoints }} this voucher...</p>
+    </ng-container>
 
     <div class="vouchersButtons">
       <table class="vouchers">
@@ -21,8 +25,8 @@
           </tr>
         </thead>
         <tbody>
-          <ng-container *ngIf="currentAccount.AccountVouchers && currentAccount.AccountVouchers.length > 0; else noVouchers">
-            <tr *ngFor="let voucher of currentAccount.AccountVouchers">
+          <ng-container *ngIf="currentAccount?.AccountVouchers && currentAccount?.AccountVouchers.length > 0; else noVouchers">
+            <tr *ngFor="let voucher of currentAccount?.AccountVouchers">
               <td>{{ voucher.Amount }} <img src="assets/images/Omnipoints.png" alt="" width="30" height="30"></td>
               <td><button type="button">Redeem</button></td>
             </tr>

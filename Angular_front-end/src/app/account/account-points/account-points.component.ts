@@ -9,7 +9,8 @@ import { SharedService } from 'src/app/shared.service';
 })
 export class AccountPointsComponent {
   currentAccount: any = null;
-  
+  lastClickedPoints: number | null = null;
+
   constructor(public login: LoginService, public service: SharedService) {
     this.fillAccount();
   }
@@ -22,11 +23,18 @@ export class AccountPointsComponent {
       data => {
         this.currentAccount = data;
         console.log(data);
-        
       },
       error => {
         console.error('Error fetching account data:', error);
       }
     );
+  }
+
+  redeemPoints(points: number): void {
+    this.lastClickedPoints = points;
+  }
+
+  checkAccountPoints(points: number): boolean {
+    return this.currentAccount?.AccountPoints > points;
   }
 }
