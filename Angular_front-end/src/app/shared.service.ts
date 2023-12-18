@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -72,6 +73,15 @@ export class SharedService {
     console.log(this.APIUrl + '/item/' + id);
     return this.http.get<any>(this.APIUrl + '/item/' + id);
   }
+  
+  getCategoryList(): Observable<any[]> {
+    return this.http.get<any[]>(this.APIUrl + '/item-category/');
+  }
+
+  getItemsByCategory(categoryId: number): Observable<any[]> {
+    return this.http.get<any[]>(this.APIUrl + '/item/?item-category=' + categoryId);
+  }
+
 
   getMyComplaintsList(account: string): Observable<any[]> {
     return this.http.get<any[]>(this.APIUrl + '/complaint/?account=' + account);
