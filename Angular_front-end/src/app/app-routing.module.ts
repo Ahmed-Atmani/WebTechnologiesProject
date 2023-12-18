@@ -19,6 +19,7 @@ import { ShoppingCartComponent } from './account/shopping-cart/shopping-cart.com
 import { ComplaintsComponent } from "./account/complaints/complaints.component";
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { MyItemsComponent } from './item/my-items/my-items.component';
+import { MyWishlistComponent } from './account/my-wishlist/my-wishlist.component';
 
 
 const routes: Routes = [
@@ -32,6 +33,7 @@ const routes: Routes = [
   {path:'account/settings', component:AccountSettingsComponent},
   {path:'account/orders', component:AccountOrdersComponent},
   {path:'account/client-service', component: ComplaintsComponent},
+  {path:'account/wishlist', component: MyWishlistComponent},
 
   {path:'items', component:ShowItemComponent},
   {path:'items/:id', component: ItemComponent},
