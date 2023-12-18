@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SharedService } from '../shared.service';
 import { NgIf } from '@angular/common';
-import { Observable } from 'rxjs';
+import {forkJoin, Observable} from 'rxjs';
 import {LoginService} from "../login.service";
 
 @Component({
@@ -42,12 +42,12 @@ export class ItemComponent implements OnInit {
           this.ImagesList = images;
         });
 
+
         this.fillReviewList(this.ItemId).subscribe(reviews => {
           this.ReviewList = reviews;
           this.ReviewList.forEach(review => {
-          review.ReviewerName = review.Reviewer;
           this.service.getAccount(review.Reviewer).subscribe((response: any) => {
-  review.ReviewerName = response['AccountFirstName']})});
+  review.ReviewerName = response['AccountFirstName'] + ' ' + response['AccountLastName'] })});
         });
       },
       error => {

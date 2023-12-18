@@ -25,7 +25,7 @@ export class SharedService {
     return this.http.get<any[]>(this.APIUrl + '/account/' + accountID);
   }
 
-    getAccount(accountID: number): Observable<any[]> {
+  getAccount(accountID: number): Observable<any[]> {
 
     return this.http.get<any[]>(this.APIUrl + '/account/' + accountID);
   }
