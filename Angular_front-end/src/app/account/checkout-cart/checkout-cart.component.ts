@@ -1,6 +1,5 @@
 import { Component, AfterViewInit, OnInit, ViewChild, ElementRef } from '@angular/core';
 import * as L from 'leaflet';
-import * as $ from 'jquery';
 import { PaintService } from './paint.service';
 
 

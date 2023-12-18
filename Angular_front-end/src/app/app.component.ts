@@ -8,6 +8,7 @@ import { SharedService } from './shared.service';
 })
 export class AppComponent {
   title = 'omnicart';
+  ItemList: any[] = [];
 
   constructor(public service: SharedService) {
   }
@@ -15,4 +16,20 @@ export class AppComponent {
   searchByKeyword(searchedkeyword: any) {
     this.service.updateSearchedKeyword(searchedkeyword);
   }
+
+  filteredItemList(): any[] {
+    if (!this.service.searchedKeyword) {
+      return this.ItemList;
+    }
+  
+    const keyword = this.service.searchedKeyword.toLowerCase();
+  
+    return this.ItemList.filter((item: any) => {
+      const itemNameMatch = item.ItemName && item.ItemName.toLowerCase().includes(keyword);
+      const itemBrandMatch = item.ItemBrand && item.ItemBrand.toLowerCase().includes(keyword);
+  
+      return itemNameMatch || itemBrandMatch;
+    });
+  }
+  
 }
