@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit, OnInit, ViewChild, ElementRef } from '@angular/core';
 import * as L from 'leaflet';
+import * as $ from 'jquery';
+import { PaintService } from './paint.service';
 
 
 @Component({
@@ -7,12 +9,21 @@ import * as L from 'leaflet';
   templateUrl: './checkout-cart.component.html',
   styleUrls: ['./checkout-cart.component.css']
 })
-export class CheckoutCartComponent {
+export class CheckoutCartComponent implements OnInit, AfterViewInit{
 
+  constructor(private paintService: PaintService) {}
+
+  // == Shopping cart items
   ItemList: any = [];
   TotalPrice: number = 0;
 
-  // Leaflet map
+  // == Canvas 2D gift message
+  canvas: any = {};
+  context: any = {};
+  SelectedRadioChoice: boolean = false; // true => with custom message
+  @ViewChild('customMessageCanvas') customMessageCanvas: ElementRef<HTMLCanvasElement> = {} as ElementRef<HTMLCanvasElement>;
+
+  // == Leaflet map
   ShopLocation: any = { "latitude": 50.844278, "longitude": 2.961053 };
   LatestCoordinates = { "latitude": 500, "longitude": 500 }
   map: any = [];
@@ -26,6 +37,50 @@ export class CheckoutCartComponent {
     this.initPostOffices();
   }
 
+  ngAfterViewInit(): void {
+    const canvas = this.customMessageCanvas.nativeElement;
+    this.paintService.initializeCanvas(canvas);
+  }
+
+  // === SHOPPING CART ITEMS ===
+  getCartItems(): void {
+    this.ItemList = JSON.parse(localStorage.getItem("ItemList") || "[]");
+    this.TotalPrice = this.calcTotalPrice();
+  }
+
+  calcTotalPrice(): number {
+    this.ItemList.forEach((item: any) => {
+      this.TotalPrice += parseFloat(item["ItemPrice"]) * parseInt(item["PurchaseAmount"]);
+    });
+    return Math.round(this.TotalPrice * 100) / 100;
+  }
+
+  getItemPriceWithAmount(item: any): string {
+    var temp: number = parseFloat(item["ItemPrice"]) * parseInt(item["PurchaseAmount"]);
+    // return Math.round(temp * 100) / 100;
+    return temp.toFixed(2);
+  }
+
+  // === CANVAS 2D GIFT MESSAGE ===
+
+  changedCustomMessageRadio(val: boolean): void {
+    this.SelectedRadioChoice = val;
+    var yesCustomMessageRadio: any = document.getElementById('yes-custom-message');
+    var customMessageCanvas: any = document.getElementById('canvas-div');
+
+    if (yesCustomMessageRadio.checked) {
+      customMessageCanvas.style.display = "block";
+    }
+    else {
+      customMessageCanvas.style.display = "none";
+    }
+  }
+
+  clearCanvas2D(): void {
+    this.paintService.clearCanvas();
+  }
+
+  // === LEAFLET MAP ===
   goToGeocode(query: string): void {
     this.geocode(query).then(
       (result) => {
@@ -38,7 +93,7 @@ export class CheckoutCartComponent {
   }
 
   initPostOffices(): void {
-    var postOffices: string[] = ["Bpost", "Mondial relay", "PostNL"];
+    var postOffices: string[] = ["Bpost", "Mondial relay", "PostNL", "Post", "post office", "postkantoor"];
     postOffices.forEach((post: string) => {
       this.markAllGeocodedResults(post);
     });
@@ -78,7 +133,7 @@ export class CheckoutCartComponent {
   }
 
   makePostPopup(post: any, id: number): string {
-    var text: string = "<h5>" + post.formatted.split(',')[0] + " " + post.components.state + "</h5>"; // Name
+    var text: string = "<h2>" + post.formatted.split(',')[0] + " " + post.components.state + "</h2>"; // Name
     text += "<p>" + post.formatted.substring(post.formatted.indexOf(',') + 1) + "</p>"; // Address
   
     return text;
@@ -87,15 +142,6 @@ export class CheckoutCartComponent {
   // Called when user clicks on a post office's marker 
   choosePostOffice(office: any): void {
     this.selectedPostOffice = office;
-    // var tokenized = office.formatted.split(", ");
-    console.log("Selected post office: " + JSON.stringify(office, null, 4));
-
-    var streetElement = document.getElementById("street") as HTMLInputElement;
-    var streetNumberElement = document.getElementById("streetNumber") as HTMLInputElement;
-    var cityElement = document.getElementById("city") as HTMLInputElement;
-    var postCodeElement = document.getElementById("postCode") as HTMLInputElement;
-    var countryElement = document.getElementById("country") as HTMLInputElement;    
-    
     this.setFormAddress(office);
   }
 
@@ -108,7 +154,7 @@ export class CheckoutCartComponent {
     
     streetElement.value = place.components.road ?? place.components.square ?? "";
     streetNumberElement.value = place.components.house_number ?? "";
-    cityElement.value = place.components.county ?? place.components.state ?? place.components.town ?? "";
+    cityElement.value = place.components.county ?? place.components.state ?? place.components.town ?? place.components.village ?? "";
     postCodeElement.value = place.components.postcode ?? "";
     countryElement.value = place.components.country ?? "";
   }
@@ -230,18 +276,5 @@ export class CheckoutCartComponent {
   
       request.send(); // make the request
     });
-  }
-  
-
-  getCartItems(): void {
-    this.ItemList = JSON.parse(localStorage.getItem("ItemList") || "[]");
-    this.TotalPrice = this.calcTotalPrice();
-  }
-
-  calcTotalPrice(): number {
-    this.ItemList.forEach((item: any) => {
-      this.TotalPrice += parseFloat(item["ItemPrice"]) * parseInt(item["PurchaseAmount"]);
-    });
-    return Math.round(this.TotalPrice * 100) / 100;
   }
 }

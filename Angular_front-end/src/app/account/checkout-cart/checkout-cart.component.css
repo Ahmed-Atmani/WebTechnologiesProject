@@ -1,23 +1,41 @@
 @import '~leaflet/dist/leaflet.css';
 
 
+/* Size of the peyment method icons */
 .payment-method-image {
-    max-width: 30px;
-    max-height: 30px;
+    max-width: 50px;
+    max-height: 50px;
 }
 
-#checkout-wrapper {
-    width: 500px;
-    border: 1px solid black;
-    overflow: hidden; /* add this to contain floated children */
+/* Border of the canvas */
+#custom-message-canvas {
+    border:2px solid #000000;
 }
-#shopping-cart-summary {
-    margin-top: 200px;
-    width: 300px;
-    float:left;
-    border: 1px solid red;
+
+/* To hide canvas (default radio is no message) */
+#canvas-div{
+    display: none;
 }
-#payment {
-    border: 1px solid green;
-    /* float: right;  */
+
+.checkout-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.shopping-cart-summary {
+    flex: 1;
+    margin-right: 50px;
+}
+
+.payment {
+    flex: 1;
+    max-width: 300px;
+    margin-left: 50px;
+}
+
+#first-row {
+    flex-direction: row;
+    display: flex;
+    -ms-flex-item-align: auto;
 }
