@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,12 @@ import { map, switchMap } from 'rxjs/operators';
 export class SharedService {
   readonly APIUrl = "http://localhost:8000";
   readonly PhotoUrl = "http://localhost:8000/media/"
+
+  accountid: string = '';
+
+  updateAccountId(newAccountId: string): void {
+    this.accountid = newAccountId;
+  }
 
   searchedKeyword: any;
 
@@ -104,6 +111,7 @@ export class SharedService {
   }
 
   addComplaint(val:any) {
+console.log(val)
     return this.http.post(this.APIUrl + '/complaint/', val);
   }
 

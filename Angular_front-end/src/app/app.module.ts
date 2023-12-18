@@ -4,6 +4,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSliderModule } from '@angular/material/slider';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -81,6 +82,7 @@ import { EditItemComponent } from './item/my-items/edit-item/edit-item.component
     MatProgressBarModule,
     MatIconModule,
     MatSidenavModule,
+    MatSliderModule,
     MatButtonModule,
     HttpClientJsonpModule,
 

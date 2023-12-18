@@ -25,7 +25,7 @@ export class ItemComponent implements OnInit {
   ReviewText:string = "";
   Rating: number = 5;
 
-  constructor(private route: ActivatedRoute, public service: SharedService,  private loginservice: LoginService) {
+  constructor(private route: ActivatedRoute, public service: SharedService, private loginservice: LoginService) {
   }
 
   ngOnInit(): void {

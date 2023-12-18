@@ -45,6 +45,7 @@ export class LoginComponent implements OnInit {
         console.log(response);
         const token = response.token;
         const AccountId = response.AccountId;
+        this.shared.updateAccountId(token);
         console.log('Token:', token);
 
         this.loginservice.storeTokenUser(token, AccountId);

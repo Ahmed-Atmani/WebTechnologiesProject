@@ -60,22 +60,40 @@ body {
     box-sizing: border-box;
   }
   
-  .account-form button {
+.save-button {
     background-color: #8ABCD7;
     color: #fff;
     border: none;
     padding: 10px 15px;
     cursor: pointer;
     border-radius: 4px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-  }
-  
-  .account-form button:hover {
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+    float: right;
+}
+
+.save-button:hover {
     background-color: #34495e;
-  }
-  
-  /* Responsive Styles */
-  @media (max-width: 600px) {
+}
+
+.save-button:active {
+    transform: scale(0.95);
+}
+
+.delete-button {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 0; 
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.delete-button:hover {
+    background-color: #c82333;
+}
+
+@media (max-width: 600px) {
     .container {
       padding: 10px;
     }
@@ -88,4 +106,3 @@ body {
       padding: 8px;
     }
   }
-  
