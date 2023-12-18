@@ -1,12 +1,24 @@
 <div class="all-elements">
+
+<div class="catalog-and-slider">
   <div class="catalog-bar">
     <ul>
-        <div *ngFor="let category of CategoryList" class="category" >
-            <button class="category-button" (click)="onCategoryClick(category.ItemCategoryId)">{{ category.ItemCategoryName }}</button>
-        </div>
-        
+      <div *ngFor="let category of CategoryList" class="category">
+        <button class="category-button" (click)="onCategoryClick(category.ItemCategoryId)">
+          {{ category.ItemCategoryName }}
+        </button>
+      </div>
     </ul>
   </div>
+  <br>
+
+  <div class="slidecontainer">
+    <input type="range" min="0" [max]="maxPrice" [(ngModel)]="selectedValue" class="slider" id="myRange" (change)="filterItemsByPrice()">
+    <p>Maximum Price: {{ selectedValue }}</p>
+  </div>
+  
+  
+</div>
 
   <div class="item-container">
     <div  *ngFor="let item of filteredItemList()" class="item-box" [routerLink]="['/items', item.ItemId]">
@@ -35,11 +47,9 @@
         <strong>{{ item.ItemName }}</strong>
         <p>{{ item.ItemPrice | currency:'EUR' }}</p>
         <ng-container *ngIf="item.ItemState === 2">
-          <p>Seller: {{ getSeller(item.ItemSeller) | async }}</p>
+          <p>Seller: {{ getSeller(item.ItemSeller) }}</p>
         </ng-container>
       </div>
-
-
     </div>
   </div>
 </div>
