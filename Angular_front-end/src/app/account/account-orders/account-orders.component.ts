@@ -62,7 +62,7 @@ export class AccountOrdersComponent implements OnInit{
     // Your existing code...
     this.service.getMyPurchases(localStorage.getItem("user_id") as string).subscribe(
       (data) => {
-        alert(JSON.stringify(data, null, 4));
+        // alert(JSON.stringify(data, null, 4));
         this.PurchaseList = data;
       }
     );

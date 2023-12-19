@@ -165,15 +165,14 @@ console.log(val)
     const data: { Items: number[]; 
                   Account: number; 
                   CustomDrawing?: string;
-                  PurchaseStreet: string;
+                  PurchaseStreet?: string;
                   PurchaseStreetNumber?: number;
                   PurchaseCity: string;
                   PurchasePostalCode: string;
                   PurchaseCountry: string;} = {
       Items: itemIdList,
       Account: accountId,
-      PurchaseStreet: address.PurchaseStreet,
-      PurchaseCity: address.PurchaseStreet,
+      PurchaseCity: address.PurchaseCity,
       PurchaseCountry: address.PurchaseCountry,
       PurchasePostalCode: address.PurchasePostalCode
     };
@@ -181,6 +180,11 @@ console.log(val)
     if (address.PurchaseStreetNumber != null) {
       data.PurchaseStreetNumber = address.PurchaseStreetNumber;
     }
+
+    if (address.PurchaseStreet != null && address.PurchaseStreet != "") {
+      data.PurchaseStreet = address.PurchaseStreet;
+    }
+
   
     if (image !== "") {
       data.CustomDrawing = image;

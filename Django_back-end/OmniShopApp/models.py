@@ -104,7 +104,7 @@ class Purchase(models.Model):
     CustomDrawing = models.TextField(null=True)
     
     # Address
-    PurchaseStreet = models.CharField(max_length=40)
+    PurchaseStreet = models.CharField(null=True, max_length=40)
     PurchaseStreetNumber = models.PositiveIntegerField(null=True)
     PurchaseCity = models.CharField(max_length=40)
     PurchasePostalCode = models.PositiveIntegerField()
