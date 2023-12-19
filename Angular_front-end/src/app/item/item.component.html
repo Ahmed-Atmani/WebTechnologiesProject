@@ -25,6 +25,10 @@
             <h2 class="item-information">{{'€' + ItemPrice.toString()}}</h2>
 
             <div class="description">
+              <ng-container *ngIf="ItemState === 2">
+                <p>Seller: getSeller(ItemSeller)</p>
+                getSeller(ItemSeller)
+              </ng-container>
               <br>
               <h4><strong>Description</strong></h4>
               <p>{{ItemDetails}}</p>

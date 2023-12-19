@@ -49,6 +49,22 @@ export class SharedService {
     return this.http.delete(this.APIUrl + '/account/' + val + '/');
   }
 
+  addAccountToFollowing(follower: number, seller: number): Observable<any> {
+    const data = {
+      follower: follower,
+      seller: seller,
+    };
+    return this.http.post(this.APIUrl + '/add_account_to_following/', data);
+  }
+
+  removeAccountFromFollowing(follower: number, seller: number): Observable<any> {
+    const data = {
+      follower: follower,
+      seller: seller,
+    };
+    return this.http.post(this.APIUrl + '/remove_account_from_following/', data);
+  }
+
   UploadPhoto(val: any) {
     return this.http.post(this.APIUrl + '/SaveFile', val);
   }

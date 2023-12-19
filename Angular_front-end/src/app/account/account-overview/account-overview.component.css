@@ -106,3 +106,26 @@ body {
       padding: 8px;
     }
   }
+
+  .social{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+  }
+
+  #followingbutton{
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #8ABCD7; /* Blue color, you can change it to your preferred color */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  height: 75px;
+  }
+
+  #followingbutton:hover{
+    background-color: #34495e;
+  }
