@@ -144,6 +144,10 @@ console.log(val)
     return this.http.get<any>(this.APIUrl + '/image/?item=' + id);
   }
 
+  addImageForItem(id: any, val: any): Observable<any> {
+    return this.http.post<any>(this.APIUrl + '/image/?item=' + id, val);
+  }
+
   getImagesForCategory(id: any): Observable<any> {
     return this.http.get<any>(this.APIUrl + '/image/?item-category=' + id);
   }
