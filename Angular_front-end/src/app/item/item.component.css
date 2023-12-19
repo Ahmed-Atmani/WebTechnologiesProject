@@ -17,7 +17,13 @@
   display: flex;
   justify-items: space-between;
   justify-content: space-between  ;
-  min-width: 300px;
+  min-width: 200px;
+  max-width: 400px;
+}
+
+
+#item-image {
+  min-width: 20%;
 }
 
 .confirm-btn {
@@ -68,6 +74,8 @@
 
 .carousel-item img {
   width: 100%;
+  min-width: 500px;
+  /* width: 225px; */
   height: 350px;
   object-fit: cover;
   border-radius: 10px;

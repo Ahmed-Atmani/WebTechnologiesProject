@@ -168,13 +168,13 @@ console.log(val)
                   PurchaseStreet?: string;
                   PurchaseStreetNumber?: number;
                   PurchaseCity: string;
-                  PurchasePostalCode: string;
+                  PurchasePostalCode: number;
                   PurchaseCountry: string;} = {
       Items: itemIdList,
       Account: accountId,
       PurchaseCity: address.PurchaseCity,
       PurchaseCountry: address.PurchaseCountry,
-      PurchasePostalCode: address.PurchasePostalCode
+      PurchasePostalCode: parseInt(address.PurchasePostalCode)
     };
 
     if (address.PurchaseStreetNumber != null) {
@@ -189,6 +189,9 @@ console.log(val)
     if (image !== "") {
       data.CustomDrawing = image;
     }
+
+    alert(JSON.stringify(data, null, 4));
+
   
     console.log(JSON.stringify(data, null, 4));  // Use console.log for debugging instead of alert
     return this.http.post(this.APIUrl + "/purchase/", data);
@@ -212,6 +215,16 @@ console.log(val)
     var omdbApiUrl = "http://www.omdbapi.com/";
     const apiUrl = `${omdbApiUrl}?i=${imdbId}&apikey=${apiKey}`;
     return this.http.jsonp(apiUrl, "callback");
+  }
+
+  getMovieDetailsByIdFromTMDB(imdbId: string): Observable<any> {
+    const tmdbApiUrl = 'https://api.themoviedb.org/3';
+    const tmdbApiKey = '9714963b09385c0e5483009be75ac2af';
+    const endpoint = `/movie/${imdbId}`;
+    const apiKeyParam = `api_key=${tmdbApiKey}`;
+    const apiUrl = `${tmdbApiUrl}${endpoint}?${apiKeyParam}`;
+
+    return this.http.get<any>(apiUrl);
   }
 
 }

@@ -69,7 +69,15 @@ export class ItemComponent implements OnInit {
                 this.ItemName = movie.Title;
                 var img = {"Image": movie.Poster, "src": ""};
                 this.ImagesList = [img];
-                this.ItemDetails = movie.Plot;
+                
+                // alert(movie.imdbID);
+                
+                this.service.getMovieDetailsByIdFromTMDB(movie.imdbID).subscribe(
+                  (movie2) => {
+                    this.ItemDetails = movie2.overview + "\nimdb rating: " + parseFloat(movie2.vote_average).toFixed(1) + "/10";
+                    // alert((JSON.stringify(movie2, null, 4)));
+                  }
+                )
                 // alert(JSON.stringify(movie, null, 4));
               }
             );
