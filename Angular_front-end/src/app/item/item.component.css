@@ -13,6 +13,13 @@
   flex: 1;
 }
 
+#add-to-cart-div {
+  display: flex;
+  justify-items: space-between;
+  justify-content: space-between  ;
+  min-width: 300px;
+}
+
 @media screen and (max-width: 600px) {
   .column {
     width: 100%;

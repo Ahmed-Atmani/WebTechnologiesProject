@@ -109,6 +109,13 @@ export class ItemComponent implements OnInit {
     alert("Item successfully added to shopping cart!");
   }
 
+  addItemQuantity(quantity: number): void {
+    this.PurchaseAmount += quantity;
+    if (this.PurchaseAmount < 1) {
+      this.PurchaseAmount = 1;
+    }
+  }
+
   ClearCart(): void {
     localStorage.clear();
     console.log(localStorage.getItem("ItemList"));
