@@ -1,55 +1,25 @@
 <div class="all-elements">
+  <div class="catalog-and-slider">
+    <div class="catalog-bar">
+      <ul>
+        <div *ngFor="let category of CategoryList" class="category">
+          <div class="category-selection">
+            <button class="category-button" (click)="onCategoryClick(category.ItemCategoryId)">
+              {{ category.ItemCategoryName }}
+            </button>
+          </div>
 
-<div class="catalog-and-slider">
-  <div class="catalog-bar">
-    <ul>
-      <div *ngFor="let category of CategoryList" class="category">
-        <button class="category-button" (click)="onCategoryClick(category.ItemCategoryId)">
-          {{ category.ItemCategoryName }}
-        </button>
-      </div>
-    </ul>
-  </div>
-  <br>
+          <div class="item-containers">
+            <app-item-category [category]="category"></app-item-category>
+          </div>
+        </div>
+      </ul>
+    </div>
+    <br>
 
-  <div class="slidecontainer">
-    <input type="range" min="0" [max]="maxPrice" [(ngModel)]="selectedValue" class="slider" id="myRange" (change)="filterItemsByPrice()">
-    <p>Maximum Price: {{ selectedValue }}</p>
-  </div>
-  
-  
-</div>
-
-  <div class="item-container">
-    <div  *ngFor="let item of filteredItemList()" class="item-box" [routerLink]="['/items', item.ItemId]">
-      <ng-container *ngIf="item.ItemRating === 1">
-        <img src="../../assets/images/1 star.png" alt="1 Star" class="rating-image" style="width: 125px; height: 25px;">
-      </ng-container>
-      <ng-container *ngIf="item.ItemRating === 2">
-        <img src="../../assets/images/2 stars.png" alt="2 Stars" class="rating-image" style="width: 125px; height: 25px;">
-      </ng-container>
-      <ng-container *ngIf="item.ItemRating === 3">
-        <img src="../../assets/images/3 stars.png" alt="3 Stars" class="rating-image" style="width: 125px; height: 25px;">
-      </ng-container>
-      <ng-container *ngIf="item.ItemRating === 4">
-        <img src="../../assets/images/4 stars.png" alt="4 Stars" class="rating-image" style="width: 125px; height: 25px;">
-      </ng-container>
-      <ng-container *ngIf="item.ItemRating === 5">
-        <img src="../../assets/images/5 stars.png" alt="5 Stars" class="rating-image" style="width: 125px; height: 25px;">
-      </ng-container>
-
-      <div class="item-image" *ngIf="filterImage(item.ItemId)">
-        <img [src]="service.APIUrl + filterImage(item.ItemId).Image" alt="Item Image">
-      </div>
-
-      <div class="item-details">
-        <p class="brand">{{ item.ItemBrand }}</p>
-        <strong>{{ item.ItemName }}</strong>
-        <p>{{ item.ItemPrice | currency:'EUR' }}</p>
-        <ng-container *ngIf="item.ItemState === 2">
-          <p>Seller: {{ getSeller(item.ItemSeller) }}</p>
-        </ng-container>
-      </div>
+    <div class="slidecontainer">
+      <input type="range" min="0" [max]="maxPrice" [(ngModel)]="selectedValue" class="slider" id="myRange" (change)="filterItemsByPrice()">
+      <p>Maximum Price: {{ selectedValue }}</p>
     </div>
   </div>
 </div>
