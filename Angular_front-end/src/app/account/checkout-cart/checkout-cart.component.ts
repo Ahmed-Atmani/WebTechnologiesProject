@@ -44,7 +44,6 @@ export class CheckoutCartComponent implements OnInit, AfterViewInit{
 
   // === SHOPPING CART ITEMS ===
   checkout(): void {
-    // get address
     // get payment option
     
     // get image
@@ -60,9 +59,30 @@ export class CheckoutCartComponent implements OnInit, AfterViewInit{
     // get get item lists 
     var items: any = JSON.parse(localStorage.getItem("ItemList") as string);
     var itemList: any = items.map((item: any) => parseInt(item.ItemId));
+    
+    // get address
+    var streetElement = document.getElementById("street") as HTMLInputElement;
+    var streetNumberElement = document.getElementById("streetNumber") as HTMLInputElement;
+    var cityElement = document.getElementById("city") as HTMLInputElement;
+    var postCodeElement = document.getElementById("postCode") as HTMLInputElement;
+    var countryElement = document.getElementById("country") as HTMLInputElement;   
+
+    var street = streetElement.value;
+    var streetNumber = parseInt(streetNumberElement.value);
+    var city = cityElement.value;
+    var postCode = postCodeElement.value;
+    var country = countryElement.value;
+
+    var address: any = {
+        "PurchaseStreet": street,      
+        "PurchaseStreetNumber": streetNumber,
+        "PurchaseCity": city,
+        "PurchasePostalCode": postCode,
+        "PurchaseCountry": country,      
+    };
 
     // perform transaction
-    this.sharedService.addPurchase(itemList, parseInt(accountId), image).subscribe(res =>{
+    this.sharedService.addPurchase(itemList, accountId, address, image).subscribe(res =>{
       alert(res.toString());
     });
   }

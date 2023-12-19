@@ -161,11 +161,26 @@ console.log(val)
     return this.http.get<Date>(this.APIUrl + "/purchase/?purchaseid=" + purchaseID + "/purchase_date/");
   }
 
-  addPurchase(itemIdList: number[], accountId: number, image: string) {
-    const data: { Items: number[]; Account: number; CustomDrawing?: string } = {
+  addPurchase(itemIdList: number[], accountId: number, address: any, image: string) {
+    const data: { Items: number[]; 
+                  Account: number; 
+                  CustomDrawing?: string;
+                  PurchaseStreet: string;
+                  PurchaseStreetNumber?: number;
+                  PurchaseCity: string;
+                  PurchasePostalCode: string;
+                  PurchaseCountry: string;} = {
       Items: itemIdList,
       Account: accountId,
+      PurchaseStreet: address.PurchaseStreet,
+      PurchaseCity: address.PurchaseStreet,
+      PurchaseCountry: address.PurchaseCountry,
+      PurchasePostalCode: address.PurchasePostalCode
     };
+
+    if (address.PurchaseStreetNumber != null) {
+      data.PurchaseStreetNumber = address.PurchaseStreetNumber;
+    }
   
     if (image !== "") {
       data.CustomDrawing = image;
