@@ -73,7 +73,15 @@ export class ItemComponent implements OnInit {
                 this.ItemName = movie.Title;
                 var img = {"Image": movie.Poster, "src": ""};
                 this.ImagesList = [img];
-                this.ItemDetails = movie.Plot;
+                
+                // alert(movie.imdbID);
+                
+                this.service.getMovieDetailsByIdFromTMDB(movie.imdbID).subscribe(
+                  (movie2) => {
+                    this.ItemDetails = movie2.overview + "\nimdb rating: " + parseFloat(movie2.vote_average).toFixed(1) + "/10";
+                    // alert((JSON.stringify(movie2, null, 4)));
+                  }
+                )
                 // alert(JSON.stringify(movie, null, 4));
               }
             );
@@ -150,7 +158,25 @@ export class ItemComponent implements OnInit {
 
     var temp: any[] = JSON.parse(localStorage.getItem("ItemList") || "[]");
 
-    if (temp == null) {
+    if (item.ItemId == -1) {
+      alert("Cannot add unknown item to the shopping cart");
+    }
+    // Item already in cart
+    if (temp.some((it) => it.ItemId == item.ItemId)) {
+
+      temp = temp.map((i: any) => {
+        if (i.ItemId == item.ItemId) {
+          i.PurchaseAmount += this.PurchaseAmount;
+          return i;
+        }
+        else {
+          return i;
+        }
+      });
+
+      }
+    // Shpping cart is empty
+    else if (temp == null) {
       temp = [item];
     }
     else {
@@ -161,7 +187,15 @@ export class ItemComponent implements OnInit {
     alert("Item successfully added to shopping cart!");
   }
 
+  addItemQuantity(quantity: number): void {
+    this.PurchaseAmount += quantity;
+    if (this.PurchaseAmount < 1) {
+      this.PurchaseAmount = 1;
+    }
+  }
+
   ClearCart(): void {
+    console.log(localStorage.getItem("ItemList"));
     localStorage.clear();
     console.log(localStorage.getItem("ItemList"));
 
@@ -183,7 +217,7 @@ export class ItemComponent implements OnInit {
       Rating: this.Rating
     };
     this.service.addReview(val).subscribe(res => {
-      alert(res.toString());
+      // alert(res.toString());
     })
   }
 

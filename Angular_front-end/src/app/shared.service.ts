@@ -181,15 +181,37 @@ console.log(val)
     return this.http.get<Date>(this.APIUrl + "/purchase/?purchaseid=" + purchaseID + "/purchase_date/");
   }
 
-  addPurchase(itemIdList: number[], accountId: number, image: string) {
-    const data: { Items: number[]; Account: number; CustomDrawing?: string } = {
+  addPurchase(itemIdList: number[], accountId: number, address: any, image: string) {
+    const data: { Items: number[]; 
+                  Account: number; 
+                  CustomDrawing?: string;
+                  PurchaseStreet?: string;
+                  PurchaseStreetNumber?: number;
+                  PurchaseCity: string;
+                  PurchasePostalCode: number;
+                  PurchaseCountry: string;} = {
       Items: itemIdList,
       Account: accountId,
+      PurchaseCity: address.PurchaseCity,
+      PurchaseCountry: address.PurchaseCountry,
+      PurchasePostalCode: parseInt(address.PurchasePostalCode)
     };
+
+    if (address.PurchaseStreetNumber != null) {
+      data.PurchaseStreetNumber = address.PurchaseStreetNumber;
+    }
+
+    if (address.PurchaseStreet != null && address.PurchaseStreet != "") {
+      data.PurchaseStreet = address.PurchaseStreet;
+    }
+
   
     if (image !== "") {
       data.CustomDrawing = image;
     }
+
+    // alert(JSON.stringify(data, null, 4));
+
   
     console.log(JSON.stringify(data, null, 4));  // Use console.log for debugging instead of alert
     return this.http.post(this.APIUrl + "/purchase/", data);
@@ -213,6 +235,16 @@ console.log(val)
     var omdbApiUrl = "http://www.omdbapi.com/";
     const apiUrl = `${omdbApiUrl}?i=${imdbId}&apikey=${apiKey}`;
     return this.http.jsonp(apiUrl, "callback");
+  }
+
+  getMovieDetailsByIdFromTMDB(imdbId: string): Observable<any> {
+    const tmdbApiUrl = 'https://api.themoviedb.org/3';
+    const tmdbApiKey = '9714963b09385c0e5483009be75ac2af';
+    const endpoint = `/movie/${imdbId}`;
+    const apiKeyParam = `api_key=${tmdbApiKey}`;
+    const apiUrl = `${tmdbApiUrl}${endpoint}?${apiKeyParam}`;
+
+    return this.http.get<any>(apiUrl);
   }
 
 }

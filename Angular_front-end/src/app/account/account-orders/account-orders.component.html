@@ -1,15 +1,15 @@
 <!-- <div *ngFor="let purchase of purchases"> -->
-<div id="order">
-  <h1><img id="profile-pic" src="assets/images/no-picture.jpg" width="125" height="125"></h1>
+<div id="order" *ngFor="let purchase of this.PurchaseList">
+  <h1><img id="profile-pic" src={{purchase.CustomDrawing}} width="125" height="125"></h1>
   <div id="order-information">
       <h3>Item name(s)</h3>
       <p>Delivery ETA: XX days</p>
-      <p>Order number: XXXXX</p>
+      <p>Order number: {{purchase.PurchaseId}}</p>
   </div>
       <form id ="order-buttons">
-          <input class="track-package" type="button" (click)="togglePackageTrack()" value="Track package">
-          <input class="write-review" type="button" value="Write a review" [routerLink]="['/forgot-password']">
-          <input class="cancel-order" type="button" value="Cancel order">
+          <input class="track-package btn" type="button" (click)="togglePackageTrack()" value="Track package">
+          <input class="write-review btn" type="button" value="Write a review" [routerLink]="['/forgot-password']">
+          <input class="cancel-order btn" type="button" value="Cancel order">
       </form>
       <button (click)="toggleItems()" class="arrow-button down-arrow">&#9664;</button>
   </div>
