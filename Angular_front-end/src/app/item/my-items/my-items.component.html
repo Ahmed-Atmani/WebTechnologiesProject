@@ -36,6 +36,7 @@
   </ng-container>
 
   <ng-template #ViewItems>
+    <div class="items">
     <div  *ngFor="let item of ItemList" class="item-box">
 
       <ng-container *ngIf="itemHasImage(item)">
@@ -90,6 +91,7 @@
       
   
     </div>
+  </div>
   </ng-template>
 </div>
   </div>

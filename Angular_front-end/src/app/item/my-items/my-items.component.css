@@ -92,3 +92,7 @@
   .add-item-button button:hover {
     background-color: #34495e; /* Darker background color on hover */
   }
+
+  .items{
+    display: flex;
+  }
