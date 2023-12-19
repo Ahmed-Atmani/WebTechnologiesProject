@@ -3,7 +3,12 @@
     <div class="bubble-container" *ngFor="let category of CategoryList" [routerLink]="['/items/category/', category.ItemCategoryId]">
       <div class="bubble">
         <div class="bubble-image">
-          <img src="../../assets/images/aardbei.jpg" alt="{{ category.ItemCategoryName }}" >
+          <ng-container *ngIf="categoryHasImage(category)">
+            <img id="show-item-image" [src]="service.APIUrl + filterImage(category.ItemCategoryId)" alt="category Image">
+          </ng-container>
+          <ng-container *ngIf="!categoryHasImage(category)">
+            <img src="../../../assets/images/no-picture.jpg" alt="Placeholder Image">
+          </ng-container>
         </div>
         <div class="text-container">
           <h2>{{ category.ItemCategoryName }}</h2>

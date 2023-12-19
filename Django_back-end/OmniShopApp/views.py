@@ -109,10 +109,13 @@ class ImageViewSet(viewsets.ViewSet):
     """
     def list(self, request, *args, **kwargs):
         item = request.query_params.get('item', None)
+        category = request.query_params.get('item-category', None)
 
         queryset = Image.objects.all()
         if item:
             queryset = queryset.filter(Item=Item.objects.get(ItemId=item))
+        if category:
+            queryset = queryset.filter(ItemCategory=ItemCategory.objects.get(ItemCategoryId=item))
         serializer = ImageSerializer(queryset, many=True)
         return Response(serializer.data)
 

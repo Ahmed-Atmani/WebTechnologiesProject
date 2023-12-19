@@ -1,51 +1,25 @@
-<div>
-    <nav class="navbar navbar-expand-sm bg-light navbar-dark">
+<div class="container">
+  <nav class="navbar navbar-expand-sm bg-light navbar-dark vertical-navbar">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <button routerLink="test"
-        class="m-1 btn btn-light btn-outline-primary" Button>Account TEST</button>
+        <button routerLink="overview" class="m-1 btn btn-light btn-outline-primary" Button>Overview</button>
       </li>
-    
       <li class="nav-item">
-        <button routerLink="overview"
-        class="m-1 btn btn-light btn-outline-primary" Button>Account overview</button>
+        <button routerLink="preferences" class="m-1 btn btn-light btn-outline-primary" Button>Preferences & settings</button>
       </li>
-
       <li class="nav-item">
-        <button routerLink="points"
-        class="m-1 btn btn-light btn-outline-primary" Button>Account points</button>
+        <button routerLink="points" class="m-1 btn btn-light btn-outline-primary" Button>Omnipoints</button>
       </li>
-
       <li class="nav-item">
-        <button routerLink="preferences"
-        class="m-1 btn btn-light btn-outline-primary" Button>Account preferences</button>
+        <button routerLink="orders" class="m-1 btn btn-light btn-outline-primary" Button>My orders</button>
       </li>
-
       <li class="nav-item">
-        <button routerLink="settings"
-        class="m-1 btn btn-light btn-outline-primary" Button>Account settings</button>
+        <button routerLink="complaints" class="m-1 btn btn-light btn-outline-primary" Button>My complaints</button>
       </li>
+    </ul>
+  </nav>
 
-      <li class="nav-item">
-        <button routerLink="orders"
-        class="m-1 btn btn-light btn-outline-primary" Button>Account orders</button>
-      </li>
-
-      <li class="nav-item">
-        <button routerLink="complaints"
-        class="m-1 btn btn-light btn-outline-primary" Button>Account complaints</button>
-      </li>
-    
-      <!-- Add other pages -->
-      <!-- <li class="nav-item">
-        <button routerLink="account"
-        class="m-1 btn btn-light btn-outline-primary" Button></button>
-      </li> -->
-
-      </ul>
-    </nav>
-
-
+  <div class="content">
     <router-outlet></router-outlet>
-
   </div>
+</div>
