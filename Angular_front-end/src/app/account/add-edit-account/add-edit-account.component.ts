@@ -57,7 +57,7 @@ export class AddEditAccountComponent implements OnInit {
     }
     console.log(val.AccountBirthDate);
     this.service.addAccount(val).subscribe(res => {
-      alert(res.toString());
+      // alert(res.toString());
     })
 
   }
@@ -77,7 +77,7 @@ export class AddEditAccountComponent implements OnInit {
       AccountAddressPostalCode: this.AccountAddressPostalCode,
     }
     this.service.updateAccount(this.AccountId, val).subscribe(res => {
-      alert(res.toString());
+      // alert(res.toString());
     })
   }
 }
