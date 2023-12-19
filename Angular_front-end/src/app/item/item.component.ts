@@ -17,8 +17,10 @@ export class ItemComponent implements OnInit {
   ItemName: string = "";
   ItemPrice: number = -1;
   ItemDetails: string = "";
+  ItemState: number = -1;
   ItemCategoryId: number = -1;
   ItemCategoryName: String = "";
+  ItemSeller: number = -1;
   PurchaseAmount: number = 1;
   ImagesList: any[] = [];
   ReviewList: any[] = [];
@@ -38,6 +40,8 @@ export class ItemComponent implements OnInit {
         this.ItemPrice = item.ItemPrice;
         this.ItemDetails = item.ItemDetails;
         this.ItemCategoryId = item.ItemCategory;
+        this.ItemSeller = item.ItemSeller;
+        this.ItemState = item.ItemState;
 
         this.fillImagesList(this.ItemId).subscribe(images => {
           this.ImagesList = images;
@@ -82,6 +86,39 @@ export class ItemComponent implements OnInit {
 
       });
     });
+  }
+
+  getItemState(): number {
+    return this.ItemState;
+  }
+
+  getSeller(accountID: number): string {
+    var sellerName: string = '';
+
+    this.service.getAccount(accountID).subscribe((account: any) => {
+      sellerName = account.AccountFirstName;
+    })
+
+    console.log(sellerName);
+    
+    // if (this.sellerMap.has(accountID)) {
+    //   return this.sellerMap.get(accountID)!;
+    // }
+
+    // const sellerName: any = this.service.getAccountName(accountID).pipe(
+    //   map(seller => (seller ? seller.toString() : 'Unknown Seller',
+    //   console.log('Seller:' + seller))),
+      
+      
+    //   catchError(() => of('Unknown Seller')),
+    //   finalize(() => this.sellerMap.set(accountID, sellerName))
+    // );
+    // const sellerName: string = '';
+
+    // this.service.getItemList().subscribe((item => {
+
+    // }))
+    return sellerName;
   }
 
   AddItemToCart(): void {

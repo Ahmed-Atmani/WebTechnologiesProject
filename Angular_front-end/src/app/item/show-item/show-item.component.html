@@ -46,9 +46,7 @@
           <p class="brand">{{ item.ItemBrand }}</p>
           <strong>{{ item.ItemName }}</strong>
           <p>{{ item.ItemPrice | currency:'EUR' }}</p>
-          <ng-container *ngIf="item.ItemState === 2">
-            <p>Seller: {{ getSeller(item.ItemSeller) }}</p>
-          </ng-container>
+          
         </div>
       </div>
     </div>
