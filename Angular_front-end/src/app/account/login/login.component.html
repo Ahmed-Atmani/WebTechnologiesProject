@@ -25,7 +25,11 @@
           </div>
           <br><br>
         <div class="buttons">
-        <button class="registerbutton" [routerLink]="['/register']">Register here</button>
+          <div>
+            <br>
+            Do you not have an account yet? <a [routerLink]="['/register']">Click here to register.</a>
+          </div>
+          
         <div class="button-space"></div>
         <button class="loginbutton" type="submit" (click)="login()" [disabled]="!loginForm.valid">Log In</button>
         </div>
