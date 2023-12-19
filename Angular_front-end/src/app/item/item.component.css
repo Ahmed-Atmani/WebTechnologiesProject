@@ -105,13 +105,13 @@
 .item-information {
   font-size: 28px;
   margin-bottom: 10px;
-  color: #333; /* Adjust the color based on your design */
+  color: #333;
 }
 
 .item-price {
   font-size: 24px;
   font-weight: bold;
-  color: #007bff; /* Blue color for the price */
+  color: #007bff;
   margin-bottom: 15px;
 }
 
@@ -122,42 +122,42 @@
 .description h4 {
   font-size: 18px;
   margin-bottom: 10px;
-  color: #333; /* Adjust the color based on your design */
+  color: #333;
 }
 
 .description p {
   font-size: 16px;
   line-height: 1.6;
-  color: #555; /* Adjust the color based on your design */
+  color: #555;
 }
 
-button {
-  background-color: #8ABCD7; /* Green button color */
-  color: #fff; /* White text color */
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.buttons button {
+  background-color: #8ABCD7;
+  color: #fff;
   padding: 15px 20px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   font-size: 18px;
   transition: background-color 0.3s ease;
-
-  &:hover {
-    background-color: #8ABCD7; /* Darker green on hover */
-  }
 }
 
-button.debug {
-  background-color: #dc3545; /* Red button color for debug */
-  margin-top: 10px;
+.buttons button:hover {
+  background-color: #506c8a;
 }
 
-button.debug:hover {
-  background-color: #c82333; /* Darker red on hover for debug */
-}
 
 .reviews {
-  margin-top: 10px; /* Adjust the margin-top value to position the reviews higher */
-  margin-bottom: 20px; /* Add margin-bottom to create space under the reviews */
+  margin-top: 10px;
+  margin-bottom: 20px;
   padding: 20px;
   border: 1px solid #ddd;
   border-radius: 10px;
@@ -195,10 +195,10 @@ button.debug:hover {
 .make-review {
   margin-top: 20px;
   padding: 20px;
-  background-color: #f8f9fa; /* Light gray background */
-  border: 1px solid #d1d1d1; /* Light border color */
-  border-radius: 8px; /* Rounded corners */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle box shadow */
+  background-color: #f8f9fa;
+  border: 1px solid #d1d1d1;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
   p {
     font-size: 16px;
@@ -216,7 +216,7 @@ button.debug:hover {
     input, textarea {
       width: 100%;
       padding: 10px;
-      border: 1px solid #ced4da; /* Light border color */
+      border: 1px solid #ced4da; 
       border-radius: 4px;
       margin-top: 5px;
       font-size: 16px;
@@ -229,8 +229,8 @@ button.debug:hover {
   }
 
   button {
-    background-color: #8ABCD7; /* Blue button color */
-    color: #fff; /* White text color */
+    background-color: #8ABCD7;
+    color: #fff; 
     padding: 10px 15px;
     border: none;
     border-radius: 4px;
@@ -242,7 +242,7 @@ button.debug:hover {
     }
 
     &:hover {
-      background-color: #506c8a; /* Darker blue on hover */
+      background-color: #506c8a;
     }
   }
 }
