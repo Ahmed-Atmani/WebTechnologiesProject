@@ -40,6 +40,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MyItemsComponent } from './item/my-items/my-items.component';
 import { MyWishlistComponent } from './account/my-wishlist/my-wishlist.component';
 import { EditItemComponent } from './item/my-items/edit-item/edit-item.component';
+import { ItemCategoryComponent } from './item/show-item/item-category/item-category.component';
 // import { LocalStorage } from 'ngx-webstorage';
 
 
@@ -71,6 +72,7 @@ import { EditItemComponent } from './item/my-items/edit-item/edit-item.component
     MyItemsComponent,
     MyWishlistComponent,
     EditItemComponent,
+    ItemCategoryComponent,
   ],
   imports: [
     BrowserModule,

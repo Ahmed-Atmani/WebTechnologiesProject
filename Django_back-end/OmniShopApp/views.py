@@ -145,12 +145,15 @@ class ItemViewSet(viewsets.ViewSet):
     def list(self, request, *args, **kwargs):
         account = request.query_params.get('account', None)
         state = request.query_params.get('state', None)
+        category = request.query_params.get('category', None)
 
         queryset = Item.objects.all()
         if account:
             queryset = queryset.filter(ItemSeller=Account.objects.get(AccountId=account))
         if state:
             queryset = queryset.filter(ItemState=state)
+        if category:
+            queryset = queryset.filter(ItemCategory=ItemCategory.objects.get(ItemCategory=category))
         serializer = ItemSerializer(queryset, many=True)
         return Response(serializer.data)
 
