@@ -44,7 +44,7 @@ export class ComplaintsComponent implements OnInit {
     if (this.PurchaseId !== undefined) {
       val["Purchase"] = this.PurchaseId;}
     this.service.addComplaint(val).subscribe(res => {
-      alert(res.toString());
+      // alert(res.toString());
     })
 
   }

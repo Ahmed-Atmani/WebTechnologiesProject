@@ -108,7 +108,7 @@ export class RegisterComponent implements OnInit {
     }
 
     this.service.addAccount(val).subscribe(res => {
-    alert(res.toString());
+    // alert(res.toString());
     })
     this.router.navigate(['/login']);
    

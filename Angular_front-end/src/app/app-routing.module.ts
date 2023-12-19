@@ -21,6 +21,8 @@ import { ComplaintsComponent } from "./account/complaints/complaints.component";
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { MyItemsComponent } from './item/my-items/my-items.component';
 import { MyWishlistComponent } from './account/my-wishlist/my-wishlist.component';
+import { OrderFinishedComponent } from './order-finished/order-finished.component';
+import {AdminComponent} from "./admin/admin.component";
 
 
 const routes: Routes = [
@@ -48,6 +50,9 @@ const routes: Routes = [
 
   {path:'shopping-cart', component:ShoppingCartComponent},
   {path:'checkout-cart', component:CheckoutCartComponent},
+  {path:'order-finished', component:OrderFinishedComponent},
+
+  { path: 'admin', component: AdminComponent }
 
 ];
 

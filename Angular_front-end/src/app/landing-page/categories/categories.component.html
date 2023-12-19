@@ -4,7 +4,7 @@
       <div class="bubble">
         <div class="bubble-image">
           <ng-container *ngIf="categoryHasImage(category)">
-            <img id="show-item-image" [src]="service.APIUrl + filterImage(category.ItemCategoryId)" alt="category Image">
+            <img id="show-item-image" [src]="service.APIUrl + category.ItemCategoryImage" alt="category Image">
           </ng-container>
           <ng-container *ngIf="!categoryHasImage(category)">
             <img src="../../../assets/images/no-picture.jpg" alt="Placeholder Image">
