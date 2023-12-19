@@ -1,0 +1,29 @@
+<div class="following-container">
+    <div >
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>First name</th>
+                    <th>Last name</th>
+                    <th></th>
+                </tr>
+            </thead>
+                <tbody>
+                    <tr  *ngFor="let followingAccount of FollowingList" class="following-row">
+                        <td>
+                            {{followingAccount.firstName}}
+                        </td>
+                        <td>
+                            {{followingAccount.lastName}}
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-danger mr-1"
+                            (click)="unfollow(followingAccount.AccountId)">
+                            Unfollow Account
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+        </table>
+    </div>
+</div>
