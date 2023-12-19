@@ -21,6 +21,7 @@ export class EditItemComponent implements OnInit {
   ItemBrand: string = "";
   ItemCategory: number = 0;
   ItemSeller: string = "";
+  ItemImages: any = '';
 
   ngOnInit(): void {
   this.ItemId = this.item.ItemId;
@@ -32,6 +33,7 @@ export class EditItemComponent implements OnInit {
   this.ItemBrand = this.item.ItemBrand;
   this.ItemCategory = this.item.ItemCategory;
   this.ItemSeller = this.item.ItemSeller;
+  this.ItemImages = this.service.getImagesForItem(this.ItemId);
   }
 
   editItem() {
@@ -45,9 +47,11 @@ export class EditItemComponent implements OnInit {
       ItemCategory:this.ItemCategory,
       ItemSeller:this.ItemSeller,
     }
+    
     this.service.updateItem(this.ItemId, val).subscribe(res => {
       // alert(res.toString());
     })
-
+    const ItemImage = this.ItemImages;
+    this.service.addImageForItem(this.ItemId, ItemImage);
   }
 }

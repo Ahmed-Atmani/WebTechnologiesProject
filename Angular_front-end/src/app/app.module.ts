@@ -43,6 +43,7 @@ import { EditItemComponent } from './item/my-items/edit-item/edit-item.component
 import { ItemCategoryComponent } from './item/show-item/item-category/item-category.component';
 import { OrderFinishedComponent } from './order-finished/order-finished.component';
 import { FollowingComponent } from './account/account-overview/following/following.component';
+import { AdminComponent } from './admin/admin.component';
 // import { LocalStorage } from 'ngx-webstorage';
 
 
