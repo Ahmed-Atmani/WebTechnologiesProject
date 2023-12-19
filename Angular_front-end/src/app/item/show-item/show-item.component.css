@@ -1,10 +1,11 @@
+/* show-item.component.css */
+
 .all-elements {
   display: flex;
 }
 
 .catalog-bar {
   background-color: #8ABCD7;
-
   overflow: visible;
   z-index: 999;
   padding: 0;
@@ -13,24 +14,23 @@
   width: 200px;
   color: #ecf0f1;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  transition: width 0.3s ease; /* Add transition for smooth effect */
+  transition: width 0.3s ease;
 }
 
 .catalog-bar:hover {
-  width: 220px; /* Adjust the width on hover */
+  width: 220px;
 }
 
-.catalog-bar a {
-  color: #ecf0f1;
-  text-decoration: none;
+.category-button {
+  background-color: transparent;
+  color: white;
+  border: none;
   padding: 15px;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  display: block;
-}
-
-.catalog-bar a:hover {
-  background-color: #34495e;
-  color: #fff;
+  margin: 0;
+  font-size: inherit;
+  font-family: inherit;
+  cursor: pointer;
+  outline: none;
 }
 
 .catalog-bar ul {
@@ -68,38 +68,19 @@
   color: #fff;
 }
 
-.category-button {
-  background-color: transparent;
-  color: white;
-  border: none;
-  padding: 15px;
-  margin: 0;
-  font-size: inherit;
-  font-family: inherit;
-  cursor: pointer;
-  outline: none;
-}
-
-.item-container {
-  /* Adjust margin for space after widening */
-  margin-left: 220px;
-  padding: 20px;
-}
-
-.item-container {
+.item-containers {
+  margin-left: 240px;
+  padding: 30px;
   display: flex;
   flex-wrap: wrap;
-  margin-left: 220px; /* Adjust margin for space after widening */
-  padding: 20px;
 }
 
 .item-box {
   border: 1px solid #ccc;
-  padding: 10px;
-  margin: 10px;
-  width: calc(20% - 20px); /* Adjust width based on total width */
-  box-shadow: 0 4px 8px
-  rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  margin: 15px;
+  width: calc(20% - 30px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   background-color: #fff;
   transition: transform 0.3s ease;
 }
@@ -139,8 +120,6 @@
   margin: 0;
 }
 
-/* Add these styles to your component's CSS file */
-
 .slidecontainer {
   width: 80%;
   margin: auto;
@@ -162,17 +141,10 @@
   opacity: 1;
 }
 
-.slider::-webkit-slider-thumb {
+.slider::-webkit-slider-thumb,
+.slider::-moz-range-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  background: #8ABCD7;
-  cursor: pointer;
-}
-
-.slider::-moz-range-thumb {
   width: 25px;
   height: 25px;
   border-radius: 50%;

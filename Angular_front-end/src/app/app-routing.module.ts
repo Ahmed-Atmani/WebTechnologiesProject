@@ -38,7 +38,7 @@ const routes: Routes = [
 
   {path:'items', component:ShowItemComponent},
   {path:'items/:id', component: ItemComponent},
-  {path:'items/?category=:category', component: ItemCategoryComponent},
+  {path:'items/category/:category', component: ItemCategoryComponent},
   {path:'add-item', component:AddItemComponent},
   {path:'my-items', component:MyItemsComponent},
 

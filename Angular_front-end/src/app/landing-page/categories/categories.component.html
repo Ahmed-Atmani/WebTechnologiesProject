@@ -1,6 +1,6 @@
 <h3>Categories</h3>
 <div class="bubbles">
-    <div class="bubble-container" *ngFor="let category of CategoryList" [routerLink]="['/items', category.ItemCategoryID]">
+    <div class="bubble-container" *ngFor="let category of CategoryList" [routerLink]="['/items/category/', category.ItemCategoryId]">
       <div class="bubble">
         <div class="bubble-image">
           <img src="../../assets/images/aardbei.jpg" alt="{{ category.ItemCategoryName }}" >
