@@ -30,15 +30,10 @@ export class FollowingComponent implements OnInit{
   AccountFollowing: any[] = [];
 
   ngOnInit(): void {
-    this.AccountFollowing = this.account.AccountFollowing;
-    this.FollowingList = this.AccountFollowing;
+    this.FollowingList = this.account.AccountFollowing;
+    
   }
 
-  getLength(): number {
-    console.log(this.AccountFollowing.length);
-    
-    return this.AccountFollowing.length;
-  }
 
   unfollow(following: number): void {
     this.service.removeAccountFromFollowing(this.account.AccountId, following).subscribe((response) => {
