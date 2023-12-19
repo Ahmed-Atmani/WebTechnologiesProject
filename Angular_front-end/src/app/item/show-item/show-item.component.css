@@ -191,3 +191,8 @@ p {
 .brand{
   text-align: left;
 }
+
+.rating-and-price{
+  display: flex;
+  flex-direction: row;
+}
