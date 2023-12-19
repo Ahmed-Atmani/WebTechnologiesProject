@@ -210,7 +210,7 @@ console.log(val)
       data.CustomDrawing = image;
     }
 
-    alert(JSON.stringify(data, null, 4));
+    // alert(JSON.stringify(data, null, 4));
 
   
     console.log(JSON.stringify(data, null, 4));  // Use console.log for debugging instead of alert

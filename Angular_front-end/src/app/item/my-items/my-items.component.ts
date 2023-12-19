@@ -43,7 +43,7 @@ export class MyItemsComponent implements OnInit{
   deleteItem(dataItem: any) {
     if (confirm("Are you sure to delete this item?")) {
       this.service.deleteItem(dataItem).subscribe(data => {
-        alert(data.toString());
+        // alert(data.toString());
         this.refreshItemList();
       })
   }

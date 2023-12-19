@@ -60,7 +60,7 @@ export class AddItemComponent implements OnInit{
     }
 
     this.service.addItem(val).subscribe(res => {
-      alert(res.toString());
+      // alert(res.toString());
     })
   }
 

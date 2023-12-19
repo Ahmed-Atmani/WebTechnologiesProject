@@ -55,7 +55,7 @@ export class ShowAccountComponent implements OnInit {
   deleteClick(dataItem:any){
     if (confirm("Are you sure?")){
       this.service.deleteAccount(dataItem.AccountId).subscribe(data => {
-        alert(data.toString());
+        // alert(data.toString());
         this.refreshAccountList();
       })
     }

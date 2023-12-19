@@ -60,7 +60,7 @@ export class AccountOrdersComponent implements OnInit{
 
   ngOnInit(): void {
     // Your existing code...
-    alert(this.loginservice.getAccountId());
+    // alert(this.loginservice.getAccountId());
     this.service.getMyPurchases(this.loginservice.getAccountId()).subscribe(
       (data) => {
         // alert(JSON.stringify(data, null, 4));

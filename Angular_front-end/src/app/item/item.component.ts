@@ -217,7 +217,7 @@ export class ItemComponent implements OnInit {
       Rating: this.Rating
     };
     this.service.addReview(val).subscribe(res => {
-      alert(res.toString());
+      // alert(res.toString());
     })
   }
 
