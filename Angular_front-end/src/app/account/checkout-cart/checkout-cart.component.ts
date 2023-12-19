@@ -45,19 +45,24 @@ export class CheckoutCartComponent implements OnInit, AfterViewInit{
   // === SHOPPING CART ITEMS ===
   checkout(): void {
     // get address
-    // get image
     // get payment option
-    // get get item lists 
-
+    
+    // get image
     var image = "";
     if (this.SelectedRadioChoice) {
       image = this.paintService.getImageData(this.customMessageCanvas.nativeElement);
     }
+    
+    // get account id
+    var accountIdString: string | null = localStorage.getItem("user_id");
+    var accountId: any = accountIdString ? JSON.parse(accountIdString) : null;
+    
+    // get get item lists 
+    var items: any = JSON.parse(localStorage.getItem("ItemList") as string);
+    var itemList: any = items.map((item: any) => parseInt(item.ItemId));
 
-
-    var accountId = 2;
-    var items = [2, 5];
-    this.sharedService.addPurchase(items, accountId, image).subscribe(res =>{
+    // perform transaction
+    this.sharedService.addPurchase(itemList, parseInt(accountId), image).subscribe(res =>{
       alert(res.toString());
     });
   }
