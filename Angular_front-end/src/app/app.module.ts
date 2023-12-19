@@ -14,7 +14,7 @@ import { AddEditAccountComponent } from './account/add-edit-account/add-edit-acc
 import { RegisterComponent } from './account/register/register.component';
 import { SharedService } from './shared.service';
 
-import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS, HttpClientJsonpModule} from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AccountOverviewComponent } from './account/account-overview/account-overview.component';
 
@@ -40,6 +40,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MyItemsComponent } from './item/my-items/my-items.component';
 import { MyWishlistComponent } from './account/my-wishlist/my-wishlist.component';
 import { EditItemComponent } from './item/my-items/edit-item/edit-item.component';
+import { ItemCategoryComponent } from './item/show-item/item-category/item-category.component';
 // import { LocalStorage } from 'ngx-webstorage';
 
 
@@ -71,6 +72,7 @@ import { EditItemComponent } from './item/my-items/edit-item/edit-item.component
     MyItemsComponent,
     MyWishlistComponent,
     EditItemComponent,
+    ItemCategoryComponent,
   ],
   imports: [
     BrowserModule,
@@ -84,6 +86,8 @@ import { EditItemComponent } from './item/my-items/edit-item/edit-item.component
     MatSidenavModule,
     MatSliderModule,
     MatButtonModule,
+    HttpClientJsonpModule,
+
     // LocalStorage,
   ],
   providers: [SharedService],

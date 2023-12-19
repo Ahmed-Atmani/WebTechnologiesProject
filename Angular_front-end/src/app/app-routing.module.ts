@@ -12,6 +12,7 @@ import { RegisterComponent } from './account/register/register.component';
 import { ItemComponent } from './item/item.component';
 import { AddItemComponent } from './item/add-item/add-item.component';
 import { ShowItemComponent } from './item/show-item/show-item.component';
+import { ItemCategoryComponent } from './item/show-item/item-category/item-category.component';
 import { LoginComponent } from './account/login/login.component';
 import { ForgotPasswordComponent } from './account/login/forgot-password/forgot-password.component';
 import { CheckoutCartComponent } from './account/checkout-cart/checkout-cart.component';
@@ -37,6 +38,7 @@ const routes: Routes = [
 
   {path:'items', component:ShowItemComponent},
   {path:'items/:id', component: ItemComponent},
+  {path:'items/?category=:category', component: ItemCategoryComponent},
   {path:'add-item', component:AddItemComponent},
   {path:'my-items', component:MyItemsComponent},
 

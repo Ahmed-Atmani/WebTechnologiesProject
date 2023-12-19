@@ -6,7 +6,7 @@
           <div id="itemCarousel" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
               <div *ngFor="let img of ImagesList; let i = index" class="carousel-item" [class.active]="i === 0">
-                <img class="d-block w-100" [src]="service.APIUrl + img.Image" alt="Item Image">
+                <img class="d-block w-100" [src]="img.src + img.Image" alt="Item Image">
               </div>
             </div>
             <a class="carousel-control-prev" href="#itemCarousel" role="button" data-slide="prev">
@@ -86,21 +86,24 @@
       </div>
     </div>
   </div>
+
+  <div class="make-review">
+    <p>Did you buy this item? Please leave a review to help out other customers.</p>
+    <div class="form-group row col-sm-10">
+            <div class="form-floating">
+              <label>Rating (1 to 5)</label>
+            <input class="form-control" type="number" min=1 max=5 [(ngModel)]="Rating">
+          </div>
+          <div class="form-floating">
+            <label>Review</label>
+            <textarea class="form-control" [(ngModel)]="ReviewText" style="height: 100px"></textarea>
+          </div>
+      </div>
+    <button type="button" (click)="submitReview()">
+        Submit Review <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
+          </svg>
+    </button>
 </div>
 
-<p>Did you buy this item? Please leave a review to help out other customers.</p>
-<div class="form-group row col-sm-10">
-        <div class="form-floating">
-        <input class="form-control" type="number" min=1 max=5 [(ngModel)]="Rating">
-        <label>Rating (1 to 5)</label>
-      </div>
-      <div class="form-floating">
-        <textarea class="form-control" [(ngModel)]="ReviewText" style="height: 100px"></textarea>
-        <label>Review</label>
-      </div>
-  </div>
-<button type="button" (click)="submitReview()">
-    Submit Review <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
-        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
-      </svg>
-</button>
+</div>

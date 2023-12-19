@@ -101,7 +101,7 @@ class Purchase(models.Model):
     Shipping_date = models.DateTimeField(null=True)
     Delivery_time = models.PositiveIntegerField(null=True)
     Status = models.IntegerField(default=1, choices=PURCHASE_STATUS_CHOICES)
-    CustomDrawing = models.ImageField(null=True)
+    CustomDrawing = CustomDrawing = models.TextField(null=True)
 
 
 STATUS_CHOICES = (
