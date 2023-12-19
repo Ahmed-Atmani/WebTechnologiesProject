@@ -76,6 +76,7 @@ import { AdminComponent } from './admin/admin.component';
     MyWishlistComponent,
     EditItemComponent,
     ItemCategoryComponent,
+    OrderFinishedComponent,
     FollowingComponent
   ],
   imports: [
