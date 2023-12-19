@@ -230,7 +230,7 @@ class PurchaseViewSet(viewsets.ViewSet):
 
         queryset = Purchase.objects.all()
         if account:
-            queryset = queryset.filter(Purchase=Account.objects.get(AccountId=account))
+            queryset = queryset.filter(Account=Account.objects.get(AccountId=account))
         serializer = PurchaseSerializer(queryset, many=True)
         return Response(serializer.data)
 
