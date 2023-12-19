@@ -51,16 +51,20 @@ export class AddItemComponent implements OnInit{
     const itemDetailValue = this. addItemForm.get('ItemDetails')?.value;
 
     var val = {
-      ItemSeller: this.loginservice.getAccountId(),
+      ItemSeller: parseInt(this.loginservice.getAccountId()),
       ItemName: this.ItemName,
-      ItemPrice: this.ItemPrice,
+      ItemPrice: this.ItemPrice.toString(),
       ItemState: 2,
       ItemCategory: this.ItemCategory,
       ItemDetails: itemDetailValue,
     }
 
+    alert(JSON.stringify(val, null, 4));
+
     this.service.addItem(val).subscribe(res => {
-      // alert(res.toString());
+      alert(JSON.stringify(val, null, 4));
+
+      alert(res.toString());
     })
   }
 
