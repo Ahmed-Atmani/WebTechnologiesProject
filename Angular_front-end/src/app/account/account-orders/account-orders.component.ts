@@ -60,7 +60,8 @@ export class AccountOrdersComponent implements OnInit{
 
   ngOnInit(): void {
     // Your existing code...
-    this.service.getMyPurchases(localStorage.getItem("user_id") as string).subscribe(
+    alert(this.loginservice.getAccountId());
+    this.service.getMyPurchases(this.loginservice.getAccountId()).subscribe(
       (data) => {
         // alert(JSON.stringify(data, null, 4));
         this.PurchaseList = data;
