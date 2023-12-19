@@ -114,8 +114,6 @@ class ImageViewSet(viewsets.ViewSet):
         queryset = Image.objects.all()
         if item:
             queryset = queryset.filter(Item=Item.objects.get(ItemId=item))
-        if category:
-            queryset = queryset.filter(ItemCategory=ItemCategory.objects.get(ItemCategoryId=item))
         serializer = ImageSerializer(queryset, many=True)
         return Response(serializer.data)
 
@@ -228,7 +226,11 @@ class PurchaseViewSet(viewsets.ViewSet):
     """
 
     def list(self, request):
+        account = request.query_params.get('account', None)
+
         queryset = Purchase.objects.all()
+        if account:
+            queryset = queryset.filter(Purchase=Account.objects.get(AccountId=account))
         serializer = PurchaseSerializer(queryset, many=True)
         return Response(serializer.data)
 
