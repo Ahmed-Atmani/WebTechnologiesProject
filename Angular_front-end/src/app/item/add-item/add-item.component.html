@@ -26,17 +26,9 @@
             </div>
             <br> -->
             <label for="new_Item_category">Category: </label>
-            <!-- <select name="" id="new_Item_category" formControlName="ItemCategory">
-                <option class="form-control">Clothes</option>
-                <option class="form-control">Books</option>
-                <option class="form-control">House Products</option>
-                <option class="form-control">Movies</option>
-                <option class="form-control">Electronics</option>
-                <option class="form-control">School Supplies</option>
-                <option class="form-control">Toys</option>
-                <option class="form-control">Tools</option>
-            </select> -->
-            <input type="number" formControlName="ItemCategory" [(ngModel)]="ItemCategory">
+            <select name="" id="" formControlName="ItemCategory" [(ngModel)]="ItemCategory">
+                <option class="form-control" *ngFor="let category of CategoryList" (click)="revertCategory(category.ItemCategoryId)">{{category.ItemCategoryName}}</option>
+            </select>
             <div class="input-error" *ngIf="addItemForm.controls?.['ItemCategory']?.touched">
                 <span *ngIf="addItemForm.controls?.['ItemCategory']?.errors?.['required']">
                     It is required to choose a category for your Item.
@@ -52,7 +44,9 @@
                 </span>
             </div>
             <br>
-            <input type="submit" (click)="addItem()" name="" id="" value="Add Item">
+            <div class="button-div">
+            <input type="submit" (click)="addItem()" name="" id="add-item-button" value="Add Item">
+        </div>
         </form>
     </div>
 </div>

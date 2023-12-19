@@ -92,14 +92,28 @@ export class ItemComponent implements OnInit {
     return this.ItemState;
   }
 
+  followSeller(): void {
+    const sellerId = this.ItemSeller;
+    var followerId: any = this.loginservice.getAccountId();
+    followerId = parseInt(followerId, 10);
+    console.log(sellerId);
+    console.log(followerId);
+    
+    
+    this.service.addAccountToFollowing(followerId, sellerId).subscribe(
+      (response) => {
+        console.log(response); // Handle successful follow response
+      },
+      (error) => {
+        console.error(error); // Handle error
+      }
+    );
+  }
+
   getSeller(accountID: number): string {
     var sellerName: string = '';
 
-    this.service.getAccount(accountID).subscribe((account: any) => {
-      sellerName = account.AccountFirstName;
-    })
 
-    console.log(sellerName);
     
     // if (this.sellerMap.has(accountID)) {
     //   return this.sellerMap.get(accountID)!;
