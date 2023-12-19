@@ -1,0 +1,29 @@
+#add-item-button {
+    background-color: #8ABCD7; /* Button background color */
+    color: #ffffff; /* Text color */
+    border: 1px solid #8ABCD7; /* Border color */
+    padding: 8px 16px; /* Padding */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth transition on hover */
+  
+    /* Optional: Adjust the styles based on your design preferences */
+  }
+  
+  #add-item-button:hover {
+    background-color: #34495e; /* Darker background color on hover */
+  }
+
+  .button-div{
+    display: flex;
+    justify-content: end;
+  }
+
+  .container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }

@@ -49,3 +49,46 @@
     font-size: 14px;
     margin: 0;
   }
+
+  .top{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2%;
+  }
+
+  .add-item-button{
+    display: flex;
+    justify-content: end;
+  }
+
+  .item-overview{
+    text-align: left;
+  }
+
+  .item-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .add-item-button {
+    top: 0;
+    right: 0;
+    margin: 10px; /* Optional margin for spacing */
+  }
+
+  .add-item-button button {
+    background-color: #8ABCD7; /* Button background color */
+    color: #ffffff; /* Text color */
+    border: 1px solid #8ABCD7; /* Border color */
+    padding: 8px 16px; /* Padding */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth transition on hover */
+  
+    /* Optional: Adjust the styles based on your design preferences */
+  }
+  
+  .add-item-button button:hover {
+    background-color: #34495e; /* Darker background color on hover */
+  }

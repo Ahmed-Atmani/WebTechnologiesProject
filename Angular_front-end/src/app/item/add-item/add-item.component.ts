@@ -26,23 +26,36 @@ export class AddItemComponent implements OnInit{
   ItemName:string = "";
   ItemPrice:number = 0;
   ItemState:number = 2;
-  ItemCategory:string = "";
+  ItemCategory:number = 0;
   ItemDetails:string = "";
 
+  CategoryList: any[] = [];
+
+
+  fillCategoryList():void {
+    this.service.getAllCategories().subscribe((data)=>{
+      this.CategoryList = data;
+  }   
+  )
+}
+
   ngOnInit(): void {
-    
+    this.fillCategoryList();
+  }
+
+  revertCategory(id: number): void{
+    this.ItemCategory = id;
   }
 
   addItem(){
-    const itemCategoryValue = this.addItemForm.get('ItemCategory')?.value;
     const itemDetailValue = this. addItemForm.get('ItemDetails')?.value;
 
     var val = {
       ItemSeller: this.loginservice.getAccountId(),
       ItemName: this.ItemName,
       ItemPrice: this.ItemPrice,
-      ItemState: this.ItemState,
-      ItemCategory: itemCategoryValue,
+      ItemState: 2,
+      ItemCategory: this.ItemCategory,
       ItemDetails: itemDetailValue,
     }
 
