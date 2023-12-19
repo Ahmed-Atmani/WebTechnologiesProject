@@ -67,16 +67,31 @@ export class ShowItemComponent implements OnInit {
   }
 
   getSeller(accountID: number): string {
-    if (this.sellerMap.has(accountID)) {
-      return this.sellerMap.get(accountID)!;
-    }
+    var sellerName: string = '';
 
-    const sellerName: any = this.service.getAccountName(accountID).pipe(
-      map(seller => (seller ? seller.toString() : 'Unknown Seller')),
-      catchError(() => of('Unknown Seller')),
-      finalize(() => this.sellerMap.set(accountID, sellerName))
-    );
+    this.service.getAccount(accountID).subscribe((account: any) => {
+      sellerName = account.AccountFirstName;
+    })
 
+    console.log(sellerName);
+    
+    // if (this.sellerMap.has(accountID)) {
+    //   return this.sellerMap.get(accountID)!;
+    // }
+
+    // const sellerName: any = this.service.getAccountName(accountID).pipe(
+    //   map(seller => (seller ? seller.toString() : 'Unknown Seller',
+    //   console.log('Seller:' + seller))),
+      
+      
+    //   catchError(() => of('Unknown Seller')),
+    //   finalize(() => this.sellerMap.set(accountID, sellerName))
+    // );
+    // const sellerName: string = '';
+
+    // this.service.getItemList().subscribe((item => {
+
+    // }))
     return sellerName;
   }
 
