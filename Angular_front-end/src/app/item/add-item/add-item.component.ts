@@ -53,7 +53,7 @@ export class AddItemComponent implements OnInit{
     var val = {
       ItemSeller: parseInt(this.loginservice.getAccountId()),
       ItemName: this.ItemName,
-      ItemPrice: this.ItemPrice.toString(),
+      ItemPrice: this.ItemPrice.toFixed(2).toString(),
       ItemState: 2,
       ItemCategory: this.ItemCategory,
       ItemDetails: itemDetailValue,
