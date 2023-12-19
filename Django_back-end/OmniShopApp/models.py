@@ -101,7 +101,15 @@ class Purchase(models.Model):
     Shipping_date = models.DateTimeField(null=True)
     Delivery_time = models.PositiveIntegerField(null=True)
     Status = models.IntegerField(default=1, choices=PURCHASE_STATUS_CHOICES)
-    CustomDrawing = CustomDrawing = models.TextField(null=True)
+    CustomDrawing = models.TextField(null=True)
+    
+    # Address
+    PurchaseStreet = models.CharField(max_length=40)
+    PurchaseStreetNumber = models.PositiveIntegerField(null=True)
+    PurchaseCity = models.CharField(max_length=40)
+    PurchasePostalCode = models.PositiveIntegerField()
+    PurchaseCountry = models.CharField(max_length=40)
+
 
 
 STATUS_CHOICES = (
