@@ -2,6 +2,7 @@ import { Component, AfterViewInit, OnInit, ViewChild, ElementRef } from '@angula
 import * as L from 'leaflet';
 import { PaintService } from './paint.service';
 import { SharedService } from 'src/app/shared.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -11,7 +12,7 @@ import { SharedService } from 'src/app/shared.service';
 })
 export class CheckoutCartComponent implements OnInit, AfterViewInit{
 
-  constructor(private paintService: PaintService, private sharedService: SharedService) {}
+  constructor(private paintService: PaintService, private sharedService: SharedService, private router: Router) {}
 
   // == Shopping cart items
   ItemList: any = [];
@@ -83,7 +84,10 @@ export class CheckoutCartComponent implements OnInit, AfterViewInit{
 
     // perform transaction
     this.sharedService.addPurchase(itemList, accountId, address, image).subscribe(res =>{
-      alert(res.toString());
+      if (res == "Added successfully!") {
+        // localStorage.setItem("ItemList", "[]");
+        this.router.navigate(["/order-finished"]);
+      }
     });
   }
 
