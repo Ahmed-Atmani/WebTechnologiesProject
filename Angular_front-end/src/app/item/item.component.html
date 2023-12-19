@@ -26,8 +26,9 @@
 
             <div class="description">
               <ng-container *ngIf="ItemState === 2">
-                <p>Seller: getSeller(ItemSeller)</p>
-                getSeller(ItemSeller)
+                <button (click)="followSeller()" >
+                  Follow seller
+                </button>
               </ng-container>
               <br>
               <h4><strong>Description</strong></h4>
