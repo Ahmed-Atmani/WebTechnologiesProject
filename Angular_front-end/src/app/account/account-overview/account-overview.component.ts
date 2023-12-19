@@ -60,12 +60,14 @@ export class AccountOverviewComponent implements OnInit {
   }
 
   saveAccount() {
-    this.updatedAccount = { ...this.editedAccount };
+    this.updatedAccount = this.editedAccount ;
 
-    this.service.updateAccount(this.currentAccount.AccountId, this.updatedAccount).subscribe(
+    var UpdatedInformation: any[] = [this.editedAccount.AccountFirstName, this.editedAccount.AcccountLastname, this.editedAccount.AccountBirthDate, this.editedAccount.AccountEmail, this.editedAccount.AccountPassword, this.editedAccount.AccountAdressStreet, this.editedAccount.AddressCity, this.editedAccount.AddressStreetNumber, this.editedAccount.AddressPostalCode, this.editedAccount.AddressCountry]
+
+    this.service.updateAccount(this.currentAccount.AccountId, UpdatedInformation).subscribe(
       data => {
         console.log('Account updated successfully:', data);
-        this.currentAccount = { ...this.updatedAccount };
+        this.currentAccount = this.updatedAccount;
       },
       error => {
         console.error('Error updating account:', error);
