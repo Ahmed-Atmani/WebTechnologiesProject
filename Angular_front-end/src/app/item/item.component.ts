@@ -103,6 +103,7 @@ export class ItemComponent implements OnInit {
     this.service.addAccountToFollowing(followerId, sellerId).subscribe(
       (response) => {
         console.log(response); // Handle successful follow response
+        alert("Succesfully followed this seller!")
       },
       (error) => {
         console.error(error); // Handle error
