@@ -9,11 +9,12 @@ import { LoginService } from 'src/app/login.service';
   templateUrl: './account-orders.component.html',
   styleUrls: ['./account-orders.component.css']
 })
-export class AccountOrdersComponent {
+export class AccountOrdersComponent implements OnInit{
 
   constructor(private route: ActivatedRoute, public service: SharedService, private loginservice: LoginService) {
     
   }
+
 
   PurchaseList: any[] = [];
   AccountId: string = '';
@@ -59,6 +60,12 @@ export class AccountOrdersComponent {
 
   ngOnInit(): void {
     // Your existing code...
+    this.service.getMyPurchases(localStorage.getItem("user_id") as string).subscribe(
+      (data) => {
+        alert(JSON.stringify(data, null, 4));
+        this.PurchaseList = data;
+      }
+    );
   }
 
 }
