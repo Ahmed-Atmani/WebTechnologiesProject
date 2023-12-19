@@ -98,7 +98,25 @@ export class ItemComponent implements OnInit {
 
     var temp: any[] = JSON.parse(localStorage.getItem("ItemList") || "[]");
 
-    if (temp == null) {
+    if (item.ItemId == -1) {
+      alert("Cannot add unknown item to the shopping cart");
+    }
+    // Item already in cart
+    if (temp.some((it) => it.ItemId == item.ItemId)) {
+
+      temp = temp.map((i: any) => {
+        if (i.ItemId == item.ItemId) {
+          i.PurchaseAmount += this.PurchaseAmount;
+          return i;
+        }
+        else {
+          return i;
+        }
+      });
+
+      }
+    // Shpping cart is empty
+    else if (temp == null) {
       temp = [item];
     }
     else {
@@ -117,6 +135,7 @@ export class ItemComponent implements OnInit {
   }
 
   ClearCart(): void {
+    console.log(localStorage.getItem("ItemList"));
     localStorage.clear();
     console.log(localStorage.getItem("ItemList"));
 

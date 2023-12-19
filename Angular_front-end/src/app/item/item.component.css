@@ -20,6 +20,10 @@
   min-width: 300px;
 }
 
+.confirm-btn {
+  background-color: #3da1d7;
+}
+
 @media screen and (max-width: 600px) {
   .column {
     width: 100%;
