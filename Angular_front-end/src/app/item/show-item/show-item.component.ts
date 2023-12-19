@@ -1,7 +1,5 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { SharedService } from 'src/app/shared.service';
-import { Observable, of } from 'rxjs';
-import { map, catchError, finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-show-item',
@@ -13,12 +11,8 @@ export class ShowItemComponent implements OnInit {
   ImagesList: any = {};
   CategoryList: any = {};
   SelectedCategory: number = 0;
-
-  maxPrice: number = 0; // Variable to store the highest price
-
-  selectedPriceRange: number = 0;
+  maxPrice: number = 0;
   sellerMap: Map<number, string> = new Map<number, string>();
-
   selectedValue: number = 0;
 
   constructor(public service: SharedService, private cdr: ChangeDetectorRef) {}
@@ -46,18 +40,13 @@ export class ShowItemComponent implements OnInit {
 
   onCategoryClick(categoryID: number) {
     this.SelectedCategory = categoryID;
-    this.filterItemsByPrice();
-  }
-
-  onPriceRangeChange() {
-    this.filterItemsByPrice();
   }
 
   filterItemsByPrice() {
-    const filteredItems = this.categorizedItemList().filter((item: any) => item.ItemPrice <= this.selectedPriceRange);
-    this.service.searchedKeyword = '';
+    const filteredItems = this.ItemList.filter((item: any) => item.ItemPrice <= this.selectedValue);
     this.ItemList = filteredItems;
-    this.cdr.detectChanges();
+    this.calculateMaxPrice();
+    return this.categorizedItemList();
   }
 
   fillCategoryList() {
