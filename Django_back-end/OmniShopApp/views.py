@@ -306,6 +306,15 @@ class ItemCategoryViewSet(viewsets.ViewSet):
             serializer.save()
             return Response("Added successfully!")
         return Response("Failed to add.")
+    
+    def update(self, request, pk=None):
+        data = JSONParser().parse(request)
+        itemcategory = ItemCategory.objects.get(ItemId=data['ItemCategoryId'])
+        serializer = ItemCategorySerializer(itemcategory, data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response("Updated successfully!")
+        return Response("Failed to update.")
 
     def destroy(self, request, pk=None):
         itemcategory = ItemCategory.objects.get(ItemCategoryId=pk)

@@ -23,6 +23,10 @@ export class ShowItemComponent implements OnInit {
 
   constructor(public service: SharedService, private cdr: ChangeDetectorRef) {}
 
+  itemHasImage(item: any): boolean {
+    return this.ImagesList[item.ItemId] !== null;
+  }
+  
   ngOnInit(): void {
     this.fillItemList();
     this.fillCategoryList();
