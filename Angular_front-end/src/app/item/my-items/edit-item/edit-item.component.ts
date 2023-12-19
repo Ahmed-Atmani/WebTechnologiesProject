@@ -46,7 +46,7 @@ export class EditItemComponent implements OnInit {
       ItemSeller:this.ItemSeller,
     }
     this.service.updateItem(this.ItemId, val).subscribe(res => {
-      alert(res.toString());
+      // alert(res.toString());
     })
 
   }

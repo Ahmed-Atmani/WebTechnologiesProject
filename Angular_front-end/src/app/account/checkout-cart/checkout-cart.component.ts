@@ -2,6 +2,7 @@ import { Component, AfterViewInit, OnInit, ViewChild, ElementRef } from '@angula
 import * as L from 'leaflet';
 import { PaintService } from './paint.service';
 import { SharedService } from 'src/app/shared.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -11,7 +12,7 @@ import { SharedService } from 'src/app/shared.service';
 })
 export class CheckoutCartComponent implements OnInit, AfterViewInit{
 
-  constructor(private paintService: PaintService, private sharedService: SharedService) {}
+  constructor(private paintService: PaintService, private sharedService: SharedService, private router: Router) {}
 
   // == Shopping cart items
   ItemList: any = [];
@@ -44,21 +45,50 @@ export class CheckoutCartComponent implements OnInit, AfterViewInit{
 
   // === SHOPPING CART ITEMS ===
   checkout(): void {
-    // get address
-    // get image
     // get payment option
-    // get get item lists 
-
+    
+    // get image
     var image = "";
     if (this.SelectedRadioChoice) {
       image = this.paintService.getImageData(this.customMessageCanvas.nativeElement);
     }
+    
+    // get account id
+    var accountIdString: string | null = localStorage.getItem("user_id");
+    var accountId: any = accountIdString ? JSON.parse(accountIdString) : null;
+    
+    // get get item lists 
+    var items: any = JSON.parse(localStorage.getItem("ItemList") as string);
+    var itemList: any = items.map((item: any) => parseInt(item.ItemId));
+    
+    // get address
+    var streetElement = document.getElementById("street") as HTMLInputElement;
+    var streetNumberElement = document.getElementById("streetNumber") as HTMLInputElement;
+    var cityElement = document.getElementById("city") as HTMLInputElement;
+    var postCodeElement = document.getElementById("postCode") as HTMLInputElement;
+    var countryElement = document.getElementById("country") as HTMLInputElement;   
 
+    var street = streetElement.value;
+    var streetNumber = parseInt(streetNumberElement.value);
+    var city = cityElement.value;
+    var postCode = postCodeElement.value;
+    var country = countryElement.value;
 
-    var accountId = 2;
-    var items = [2, 5];
-    this.sharedService.addPurchase(items, accountId, image).subscribe(res =>{
-      alert(res.toString());
+    var address: any = {
+        "PurchaseStreet": street,      
+        "PurchaseStreetNumber": streetNumber,
+        "PurchaseCity": city,
+        "PurchasePostalCode": postCode,
+        "PurchaseCountry": country,      
+    };
+
+    // perform transaction
+    this.sharedService.addPurchase(itemList, accountId, address, image).subscribe(res =>{
+      // alert(res);
+      if (res == "Added successfully!") {
+        // localStorage.setItem("ItemList", "[]");
+        this.router.navigate(["/order-finished"]);
+      }
     });
   }
 
