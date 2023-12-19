@@ -1,9 +1,6 @@
-<head>
-    <script src="login.js"></script>
-</head>
 
-<div class="context">
-    <h2>Do you already have an account?</h2>
+<div class="container">
+    <h2>Log In</h2>
     <br>
     <br>
     <form [formGroup]="loginForm" class="login">
@@ -26,11 +23,12 @@
               It is required to fill in your password.
             </span>
           </div>
-        <button type="button" id="showToggle">Show/Hide Password</button>
-        <br>
-        <a [routerLink]="['/forgot-password']">Forgot your password?</a>
-        <p></p>
-        <button type="submit" (click)="login()" [disabled]="!loginForm.valid">Log In</button>
+          <br><br>
+        <div class="buttons">
+        <button class="registerbutton" [routerLink]="['/register']">Register here</button>
+        <div class="button-space"></div>
+        <button class="loginbutton" type="submit" (click)="login()" [disabled]="!loginForm.valid">Log In</button>
+        </div>
     </form>
     <br>
     
