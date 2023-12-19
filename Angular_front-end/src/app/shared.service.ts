@@ -154,16 +154,45 @@ console.log(val)
   }
 
   getPurchaseDeliveryTime(purchaseID: number) {
-    return this.http.get<number>(this.APIUrl + "/purchase/?purchaseid=" + purchaseID + "/delivery_time/")
+    return this.http.get<number>(this.APIUrl + "/purchase/?purchaseid=" + purchaseID + "/delivery_time/");
   }
 
   getPurchaseDate(purchaseID: number) {
-    return this.http.get<Date>(this.APIUrl + "/purchase/?purchaseid=" + purchaseID + "/purchase_date/")
+    return this.http.get<Date>(this.APIUrl + "/purchase/?purchaseid=" + purchaseID + "/purchase_date/");
   }
+
+  addPurchase(itemIdList: number[], accountId: number, image: string) {
+    const data: { Items: number[]; Account: number; CustomDrawing?: string } = {
+      Items: itemIdList,
+      Account: accountId,
+    };
+  
+    if (image !== "") {
+      data.CustomDrawing = image;
+    }
+  
+    console.log(JSON.stringify(data, null, 4));  // Use console.log for debugging instead of alert
+    return this.http.post(this.APIUrl + "/purchase/", data);
+  }
+  
 
   // getWishlistItems(account: string): Observable<any[]> {
   //   return this.http.get<any[]>(this.APIUrl + ' ' + account);
   // }
 
-}
+  searchMoviesByTitle(title: string): Observable<any>{
+    var apiKey = "b152332e"; 
+    var omdbApiUrl = "http://www.omdbapi.com/";
+    const apiUrl = `${omdbApiUrl}?s=${title}&apikey=${apiKey}`;
+    // return this.http.get<any>("/omdbapi/?s=" + title + "&apikey=b152332e");
+    return this.http.jsonp(apiUrl, "callback");
+  }
 
+  getMovieDetailsById(imdbId: string): Observable<any> {
+    var apiKey = "b152332e"; 
+    var omdbApiUrl = "http://www.omdbapi.com/";
+    const apiUrl = `${omdbApiUrl}?i=${imdbId}&apikey=${apiKey}`;
+    return this.http.jsonp(apiUrl, "callback");
+  }
+
+}

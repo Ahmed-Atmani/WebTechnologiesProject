@@ -22,9 +22,10 @@ export class PaintService {
     this.context.clearRect(0, 0, this.context.canvas.width, this.context.canvas.height);
   }
 
-  setColor(newColor: string): void {
-    this.color = newColor;
+  getImageData(canvas: HTMLCanvasElement): string {
+    return canvas.toDataURL();
   }
+
   private handleMouseDown(event: MouseEvent): void {
     const rect = (event.currentTarget as HTMLCanvasElement).getBoundingClientRect();
     const mouseX = event.clientX - rect.left;
@@ -44,7 +45,6 @@ export class PaintService {
       this.context.stroke();
     }
   }
-  
 
   private handleMouseUp(): void {
     this.isDragging = false;

@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SharedService } from '../shared.service';
 import { NgIf } from '@angular/common';
-import { Observable } from 'rxjs';
-import { LoginService } from '../login.service';
+import { HttpClientJsonpModule } from '@angular/common/http';
+import {forkJoin, Observable} from 'rxjs';
+import {LoginService} from "../login.service";
 
 @Component({
   selector: 'app-item',
@@ -40,6 +41,10 @@ export class ItemComponent implements OnInit {
 
         this.fillImagesList(this.ItemId).subscribe(images => {
           this.ImagesList = images;
+          this.ImagesList.forEach(img => {
+            img.src = this.service.APIUrl;
+          })
+          // alert(JSON.stringify(images, null, 4));
         });
 
 
@@ -53,6 +58,28 @@ export class ItemComponent implements OnInit {
       error => {
         console.error(`No item has the following id: ${this.ItemId}`);
         this.ItemName = "Item not found";
+        
+        // TEMP: movies
+        this.service.searchMoviesByTitle(params['id']).subscribe(
+          (data) => {
+            this.service.getMovieDetailsById(data.Search[0].imdbID).subscribe(
+              (movie) => {
+                console.log(data);
+                // this.ItemId = movie.imdbID;
+                this.ItemName = movie.Title;
+                var img = {"Image": movie.Poster, "src": ""};
+                this.ImagesList = [img];
+                this.ItemDetails = movie.Plot;
+                // alert(JSON.stringify(movie, null, 4));
+              }
+            );
+          },
+          (error) => {
+            console.error(error);
+          }
+        );
+
+
       });
     });
   }

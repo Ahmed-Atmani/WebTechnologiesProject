@@ -1,0 +1,8 @@
+{
+    "/omdbapi": {
+      "target": "http://www.omdbapi.com",
+      "secure": false,
+      "changeOrigin": true
+    }
+  }
+  
