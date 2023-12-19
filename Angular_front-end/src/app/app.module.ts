@@ -42,6 +42,7 @@ import { MyWishlistComponent } from './account/my-wishlist/my-wishlist.component
 import { EditItemComponent } from './item/my-items/edit-item/edit-item.component';
 import { ItemCategoryComponent } from './item/show-item/item-category/item-category.component';
 import { OrderFinishedComponent } from './order-finished/order-finished.component';
+import { FollowingComponent } from './account/account-overview/following/following.component';
 // import { LocalStorage } from 'ngx-webstorage';
 
 
@@ -75,6 +76,7 @@ import { OrderFinishedComponent } from './order-finished/order-finished.componen
     EditItemComponent,
     ItemCategoryComponent,
     OrderFinishedComponent,
+    FollowingComponent
   ],
   imports: [
     BrowserModule,

@@ -11,9 +11,19 @@ export class AccountOverviewComponent implements OnInit {
   currentAccount: any = null;
   editedAccount: any = null;
   updatedAccount: any = {};
+  activatedFollowersComp: boolean = false;
 
   constructor(public login: LoginService, public service: SharedService) {
     this.fillAccount();
+  }
+
+  closeClick(){
+    this.activatedFollowersComp = false;
+    this.fillAccount();
+  }
+
+  viewFollowing() {
+    this.activatedFollowersComp = true;
   }
 
   ngOnInit(): void {

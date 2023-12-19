@@ -109,6 +109,7 @@ class ImageViewSet(viewsets.ViewSet):
     """
     def list(self, request, *args, **kwargs):
         item = request.query_params.get('item', None)
+        category = request.query_params.get('item-category', None)
 
         queryset = Image.objects.all()
         if item:
@@ -225,7 +226,11 @@ class PurchaseViewSet(viewsets.ViewSet):
     """
 
     def list(self, request):
+        account = request.query_params.get('account', None)
+
         queryset = Purchase.objects.all()
+        if account:
+            queryset = queryset.filter(Account=Account.objects.get(AccountId=account))
         serializer = PurchaseSerializer(queryset, many=True)
         return Response(serializer.data)
 
@@ -323,6 +328,15 @@ class ItemCategoryViewSet(viewsets.ViewSet):
             serializer.save()
             return Response("Added successfully!")
         return Response("Failed to add.")
+    
+    def update(self, request, pk=None):
+        data = JSONParser().parse(request)
+        itemcategory = ItemCategory.objects.get(ItemId=data['ItemCategoryId'])
+        serializer = ItemCategorySerializer(itemcategory, data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response("Updated successfully!")
+        return Response("Failed to update.")
 
     def destroy(self, request, pk=None):
         itemcategory = ItemCategory.objects.get(ItemCategoryId=pk)

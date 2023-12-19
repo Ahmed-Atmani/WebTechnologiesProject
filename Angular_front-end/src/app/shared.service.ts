@@ -49,6 +49,22 @@ export class SharedService {
     return this.http.delete(this.APIUrl + '/account/' + val + '/');
   }
 
+  addAccountToFollowing(follower: number, seller: number): Observable<any> {
+    const data = {
+      follower: follower,
+      seller: seller,
+    };
+    return this.http.post(this.APIUrl + '/account/add_account_to_following/', data);
+  }
+
+  removeAccountFromFollowing(follower: number, seller: number): Observable<any> {
+    const data = {
+      follower: follower,
+      seller: seller,
+    };
+    return this.http.post(this.APIUrl + '/account/remove_account_from_following/', data);
+  }
+
   UploadPhoto(val: any) {
     return this.http.post(this.APIUrl + '/SaveFile', val);
   }
@@ -58,9 +74,9 @@ export class SharedService {
   }
 
   getAccountName(accountID: number): Observable<any[]> {
-    console.log(accountID);
+    console.log('AccountId:'+ accountID);
 
-    return this.http.get<any[]>(this.APIUrl + '/account/?accountid=' + accountID + '/AccountFirstName/');
+    return this.http.get<any[]>(this.APIUrl + '/account/' + accountID + '/AccountFirstName/');
   }
 
   registerAccount(val: any) {
@@ -126,6 +142,10 @@ console.log(val)
 
   getImagesForItem(id: any): Observable<any> {
     return this.http.get<any>(this.APIUrl + '/image/?item=' + id);
+  }
+
+  getImagesForCategory(id: any): Observable<any> {
+    return this.http.get<any>(this.APIUrl + '/image/?item-category=' + id);
   }
 
   getAllCategories(): Observable<any[]> {

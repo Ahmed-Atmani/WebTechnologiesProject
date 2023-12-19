@@ -10,6 +10,15 @@
     font-style: normal;
 }
 
+.container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+
 body {
     font-family: 'Montserrat', sans-serif;
 }
@@ -247,6 +256,7 @@ input[type=submit]:hover, .context button:hover, .context .button:hover{
 
 .context{
     margin-left: 0;
+    margin-top: 0;
 }
 .context .button{
     text-decoration: none;
@@ -301,4 +311,23 @@ input[type=submit]:hover, .context button:hover, .context .button:hover{
 
 .context .catalog-bar .active{
     background-color: #12263A;
+}
+
+#registerbutton {
+    background-color: #8ABCD7;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+    float: right;
+}
+
+#registerbutton:hover {
+    background-color: #34495e;
+}
+
+#registerbutton:active {
+    transform: scale(0.95);
 }

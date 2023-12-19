@@ -1,8 +1,6 @@
-<div class="context">
-
-  <h2>Sign up!</h2>
-
+<br>
   <div class="container">
+    <h2>Sign up!</h2>
     <form [formGroup]="registerForm">
     <label for="fname">First name: </label>
     <input class="form-control" formControlName="AccountFirstName" type="text" name="fname" [(ngModel)]="AccountFirstName" value="" required>
@@ -25,7 +23,6 @@
       </span>
     </div>
     <br>
-    <br>
     <label for="bdate">Birth date: </label>
     <input class="form-control" formControlName="AccountBirthDate" type="date" name="bdate" [(ngModel)]="AccountBirthDate" value="" required>
     <div class="input-error" *ngIf="registerForm.controls?.['AccountBirthDate']?.touched">
@@ -33,7 +30,6 @@
         It is required to fill in your birth date.
       </span>
     </div>
-    <br>
     <br>
     <label for="email">E-mail: </label>
     <input class="form-control" formControlName="AccountEmail" type="email" name="email" [(ngModel)]="AccountEmail" value="" required>
@@ -45,7 +41,6 @@
         It is required to fill in a correct e-mailaddress.
       </span>
     </div>
-    <br>
     <br>
     <label for="password">Password: </label>
     <input class="form-control" formControlName="AccountPassword" id="password" type="password" name="password" [(ngModel)]="AccountPassword" value="" required minlength="8">
@@ -69,7 +64,6 @@
     </div>
     <p id="message"></p>
     <br>
-    <br>
     <p><b>Adress: </b></p>
     <br>
     <input class="form-control" formControlName="AccountAddressStreet" type="text" name="street" placeholder="Street" [(ngModel)]="AccountAddressStreet" required>
@@ -84,7 +78,6 @@
         It is required to fill in your housenumber.
       </span>
     </div>
-    <br>
     <br>
     <input class="form-control" formControlName="AccountAddressCity" type="text" name="city" placeholder="City" [(ngModel)]="AccountAddressCity" required minlength="2">
     <div class="input-error" *ngIf="registerForm.controls?.['AccountAddressCity']?.touched">
@@ -109,9 +102,11 @@
     </div>
     <br>
     <br>
-      <button type="submit" (click)="addAccount()" class="btn btn-primary"> Register </button>
+      <button id="registerbutton" type="submit" (click)="addAccount()" class="btn btn-primary"> Register </button>
+      <br>
     <br>
   </form>
+  
   </div>
   <br>
-</div>
+  <br>

@@ -21,7 +21,29 @@
 </div>
 
 <div class="item-container">
+  <div class="top">
+  <div>
+    <h2>My Items</h2>
+  </div>
+    
+    <div class="add-item-button">
+    <button [routerLink]="['/add-item']">Add item</button>
+</div>
+</div>
+  <div class="item-overview">
+  <ng-container *ngIf="ItemList.length === 0; else ViewItems">
+    <p>You are not selling any items.</p>
+  </ng-container>
+
+  <ng-template #ViewItems>
     <div  *ngFor="let item of ItemList" class="item-box">
+
+      <ng-container *ngIf="itemHasImage(item)">
+        <img id="show-item-image" [src]="service.APIUrl + filterImage(item.ItemId).Image" alt="Item Image">
+      </ng-container>
+      <ng-container *ngIf="!itemHasImage(item)">
+        <img src="../../../assets/images/no-picture.jpg" alt="Placeholder Image">
+      </ng-container>
       
       <ng-container *ngIf="item.ItemRating === 1">
         <img src="../../assets/images/1 star.png" alt="1 Star" class="rating-image" style="width: 125px; height: 25px;">
@@ -39,9 +61,6 @@
         <img src="../../assets/images/5 stars.png" alt="5 Stars" class="rating-image" style="width: 125px; height: 25px;">
       </ng-container>
   
-      <div class="item-image" *ngIf="filterImage(item.ItemId)">
-        <img [src]="service.APIUrl + filterImage(item.ItemId).Image" alt="Item Image">
-      </div>
   
       <div class="item-details">
         <p class="brand">{{ item.ItemBrand }}</p>
@@ -71,4 +90,6 @@
       
   
     </div>
+  </ng-template>
+</div>
   </div>

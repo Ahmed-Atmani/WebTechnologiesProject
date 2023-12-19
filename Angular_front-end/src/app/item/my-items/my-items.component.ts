@@ -25,6 +25,10 @@ export class MyItemsComponent implements OnInit{
     this.refreshItemList();
   }
 
+  itemHasImage(item: any): boolean {
+    return this.ImagesList[item.ItemId] !== null;
+  }
+
   closeClick(){
     this.ActivateEditItemComp = false;
     this.refreshItemList();

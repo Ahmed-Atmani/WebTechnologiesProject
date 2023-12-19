@@ -86,7 +86,10 @@
   }
   
   .item-box {
+    display: flex;
+    flex-direction: column;
     width: calc(20% - 10px); /* 25% for 4 items, subtracting margin */
+    height: 300px;
     margin-right: 10px;
     margin-left: 10px;
     box-sizing: border-box; /* Include padding and border in the box sizing */

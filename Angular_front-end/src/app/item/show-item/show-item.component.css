@@ -180,10 +180,13 @@
   cursor: pointer;
 }
 
-/* Additional styles for the text */
-p {
-  text-align: center;
-  font-size: 16px;
-  color: #333;
-  margin-top: 10px;
+
+.brand{
+  text-align: left;
+}
+
+.rating-and-price{
+  display: flex;
+  flex-direction: row;
+  text-align: left;
 }

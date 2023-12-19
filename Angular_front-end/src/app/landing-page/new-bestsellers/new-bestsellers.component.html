@@ -6,10 +6,10 @@
 
   <div class="item-container">
     <div *ngFor="let item of filteredItemList(); let i = index" class="item-box" [routerLink]="['/items', item.ItemId]" [ngClass]="{'hidden': i < (currentPage - 1) * itemsPerPage || i >= currentPage * itemsPerPage}">
-        
+        <div class="box">
       
           <ng-container *ngIf="itemHasImage(item)">
-            <img [src]="service.APIUrl + filterImage(item.ItemId).Image" alt="Item Image">
+            <img id="show-item-image" [src]="service.APIUrl + filterImage(item.ItemId).Image" alt="Item Image">
           </ng-container>
           <ng-container *ngIf="!itemHasImage(item)">
             <img src="../../../assets/images/no-picture.jpg" alt="Placeholder Image">
@@ -37,7 +37,7 @@
                 <img src="../../assets/images/5 stars.png" alt="5 Stars" class="rating-image">
               </ng-container>
               
-              
+            </div>
             </div>
           </div>
     </div>
