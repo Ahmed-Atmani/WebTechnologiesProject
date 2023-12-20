@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
+import { enc, MD5 } from 'crypto-js';
+
 
 @Injectable({
   providedIn: 'root'
@@ -106,7 +108,7 @@ export class SharedService {
   }
 
   getItem(id: any): Observable<any> {
-    console.log(this.APIUrl + '/item/' + id);
+    // console.log(this.APIUrl + '/item/' + id);
     return this.http.get<any>(this.APIUrl + '/item/' + id);
   }
 
@@ -127,12 +129,12 @@ export class SharedService {
   }
 
   addComplaint(val:any) {
-console.log(val)
+// console.log(val)
     return this.http.post(this.APIUrl + '/complaint/', val);
   }
 
   addReview(val:any) {
-    console.log(val)
+    // console.log(val)
     return this.http.post(this.APIUrl + '/review/', val);
   }
 
@@ -217,7 +219,7 @@ console.log(val)
     // alert(JSON.stringify(data, null, 4));
 
   
-    console.log(JSON.stringify(data, null, 4));  // Use console.log for debugging instead of alert
+    // console.log(JSON.stringify(data, null, 4));  // Use console.log for debugging instead of alert
     return this.http.post(this.APIUrl + "/purchase/", data);
   }
   
@@ -251,4 +253,32 @@ console.log(val)
     return this.http.get<any>(apiUrl);
   }
 
+  generateMoviePrice(movieTitle: string): number {
+    // Use a hash function to create a deterministic mapping
+    // (deterministic = a movie will always get the same price)
+    const hash = MD5(movieTitle).toString(enc.Hex);
+  
+    // Hash->[5, 30]
+    const price = parseInt(hash, 16) % (30 - 5 + 1) + 5;
+
+  
+    const roundedPrice = Math.round(price * 100) / 100;
+    return roundedPrice;
+  }
+
+  getMovieByImdbId(id: string) {
+    return this.http.get<any[]>(this.APIUrl + '/item/?brand=' + id);
+  }
+
+  getItemIdByImdbId(imdbId: string): number {
+    this.getMovieByImdbId(imdbId).subscribe(
+      (item: any) => {
+        return item.ItemId as number;
+      },
+      (error) => {
+        return -1;
+      }
+    );
+    return -1;
+  }
 }

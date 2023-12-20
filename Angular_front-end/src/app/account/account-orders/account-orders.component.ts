@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SharedService } from 'src/app/shared.service';
 import { Observable } from 'rxjs';
 import { LoginService } from 'src/app/login.service';
@@ -11,13 +11,14 @@ import { LoginService } from 'src/app/login.service';
 })
 export class AccountOrdersComponent implements OnInit{
 
-  constructor(private route: ActivatedRoute, public service: SharedService, private loginservice: LoginService) {
+  constructor(private route: ActivatedRoute, public service: SharedService, private loginservice: LoginService, private router: Router) {
     
   }
 
 
   PurchaseList: any[] = [];
   AccountId: string = '';
+  ItemList: any[] = [];
 
   isOpenPackageTrack: boolean = false;
   showPackageTrack: boolean = false;
@@ -47,6 +48,8 @@ export class AccountOrdersComponent implements OnInit{
   refreshItemList() {
     this.service.getMyPurchases(this.loginservice.getAccountId()).subscribe(data => {
       this.PurchaseList = data;
+      // this.ItemList = 
+      // data.forEach(x => {alert(x)});
     }
     )
   }
@@ -57,6 +60,9 @@ export class AccountOrdersComponent implements OnInit{
     })
   }
   
+  goToItemPage(id: number): void {
+    this.router.navigate(["/items/" + id.toString()]);
+  }
 
   ngOnInit(): void {
     // Your existing code...
@@ -65,6 +71,19 @@ export class AccountOrdersComponent implements OnInit{
       (data) => {
         // alert(JSON.stringify(data, null, 4));
         this.PurchaseList = data;
+        this.PurchaseList.forEach((purchase: any) => {
+          purchase.ItemData = [];
+          purchase.Items.forEach((item: any) => {
+            this.service.getItem(item).subscribe(
+              (item: any) => {
+                // alert(JSON.stringify(item, null, 4));
+                purchase.ItemData.push(item);
+
+              }
+            );
+            
+          })
+        })
       }
     );
   }
