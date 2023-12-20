@@ -84,7 +84,7 @@ export class CheckoutCartComponent implements OnInit, AfterViewInit{
 
     // perform transaction
     this.sharedService.addPurchase(itemList, accountId, address, image).subscribe(res =>{
-      // alert(res);
+      alert(res);
       if (res == "Added successfully!") {
         // localStorage.setItem("ItemList", "[]");
         this.router.navigate(["/order-finished"]);

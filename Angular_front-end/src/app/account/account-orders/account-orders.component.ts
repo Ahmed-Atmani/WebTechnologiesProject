@@ -18,6 +18,7 @@ export class AccountOrdersComponent implements OnInit{
 
   PurchaseList: any[] = [];
   AccountId: string = '';
+  ItemList: any[] = [];
 
   isOpenPackageTrack: boolean = false;
   showPackageTrack: boolean = false;
@@ -47,6 +48,8 @@ export class AccountOrdersComponent implements OnInit{
   refreshItemList() {
     this.service.getMyPurchases(this.loginservice.getAccountId()).subscribe(data => {
       this.PurchaseList = data;
+      // this.ItemList = 
+      // data.forEach(x => {alert(x)});
     }
     )
   }
@@ -65,6 +68,21 @@ export class AccountOrdersComponent implements OnInit{
       (data) => {
         // alert(JSON.stringify(data, null, 4));
         this.PurchaseList = data;
+        this.PurchaseList.forEach((purchase: any) => {
+          purchase.ItemData = [];
+          purchase.Items.forEach((item: any) => {
+            this.service.getItem(item).subscribe(
+              (item: any) => {
+                // alert(JSON.stringify(item, null, 4));
+                purchase.ItemData.push(item);
+
+              }
+            );
+            
+          })
+        })
+        data.forEach(x => {alert(JSON.stringify(x))});
+
       }
     );
   }

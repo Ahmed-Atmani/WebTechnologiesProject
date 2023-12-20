@@ -12,7 +12,7 @@
             <tr *ngFor="let item of ItemList">
                 <th>{{item.ItemId}}</th>
                 <th>{{item.ItemName}}</th>
-                <th>{{item.ItemPrice}}</th>
+                <th>€{{item.ItemPrice}}</th>
                 <button (click)="addItemQuantity(item, -1)" class="btn btn-primary quantity-btn">
                     <!-- Subtract -->
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash-square-fill" viewBox="0 0 16 16">
