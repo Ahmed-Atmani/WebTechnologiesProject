@@ -265,4 +265,20 @@ console.log(val)
     const roundedPrice = Math.round(price * 100) / 100;
     return roundedPrice;
   }
+
+  getMovieByImdbId(id: string) {
+    return this.http.get<any[]>(this.APIUrl + '/item/?brand=' + id);
+  }
+
+  getItemIdByImdbId(imdbId: string): number {
+    this.getMovieByImdbId(imdbId).subscribe(
+      (item: any) => {
+        return item.ItemId as number;
+      },
+      (error) => {
+        return -1;
+      }
+    );
+    return -1;
+  }
 }

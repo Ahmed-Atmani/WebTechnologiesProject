@@ -66,13 +66,13 @@ export class ItemComponent implements OnInit {
         console.error(`No item has the following id: ${this.ItemId}`);
         this.ItemName = "Item not found";
         
+        this.isMovie = true;
         // TEMP: movies
         this.service.searchMoviesByTitle(params['id']).subscribe(
           (data) => {
             this.service.getMovieDetailsById(data.Search[0].imdbID).subscribe(
               (movie) => {
                 console.log(data);
-                this.isMovie = true;
                 this.MovieId = movie.imdbID;
                 this.ItemName = movie.Title;
                 var img = {"Image": movie.Poster, "src": ""};
@@ -150,26 +150,66 @@ export class ItemComponent implements OnInit {
   }
 
   AddItemToCart(): void {
-    // Add movie to DB
-    if (this.isMovie) {
+    // == Add movie to DB
+    var exists: boolean = false;
+
+    if (this.isMovie == true) {
+
+      this.service.getMovieByImdbId(this.MovieId).subscribe(
+        (data) => {
+          if (!data || data.length === 0) {
+            exists = false;
+            alert(exists);
+          }
+          else {
+            exists = true;
+          }
+        }
+      );
+    }
+
+    // Add as item
+    if (this.isMovie == true && exists == false) {
       var item: any = {
         "ItemName": this.ItemName, //
-        "ItemPrice": this.ItemPrice, //
+        "ItemPrice": this.ItemPrice.toFixed(2), //
         "ItemDetails": this.ItemDetails, //
         "ItemCategory": 5, // Movie category
         "ItemState": 1, //
         "ItemSeller": 23, // Temporary Ahmed account
         "ItemBrand": this.MovieId, 
       };
-      alert(JSON.stringify(item, null, 4));
+      // alert(JSON.stringify(item, null, 4));
       this.service.addItem(item).subscribe(
         (data) => {alert(data)}
       );
+    // Add image
+    this.service.getMovieByImdbId(this.MovieId).subscribe(
+      (i: any) => {
+        
+        this.ItemId = i.ItemId;
+        this.service.addImageForItem(this.ItemId, this.ImagesList[0]);
+      },
+      (error) => {
+        alert("Couldn't find item id");
+      }
+    );
     }
+
+    else if (this.isMovie) {
+      this.service.getMovieByImdbId(this.MovieId).subscribe(
+        (i: any) => {
+          this.ItemId = i.ItemId;
+        }
+      );
+    }
+
+
+    alert("id: " + this.ItemId.toString());
     var item: any = {
       "ItemId": this.ItemId,
       "ItemName": this.ItemName, //
-      "ItemPrice": this.ItemPrice, //
+      "ItemPrice": this.ItemPrice.toFixed(2), //
       "ItemDetails": this.ItemDetails,
       "ItemCategoryId": this.ItemCategoryId,
       "ItemCategoryName": this.ItemCategoryName,
