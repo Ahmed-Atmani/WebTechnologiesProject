@@ -108,7 +108,7 @@ export class SharedService {
   }
 
   getItem(id: any): Observable<any> {
-    console.log(this.APIUrl + '/item/' + id);
+    // console.log(this.APIUrl + '/item/' + id);
     return this.http.get<any>(this.APIUrl + '/item/' + id);
   }
 
@@ -129,12 +129,12 @@ export class SharedService {
   }
 
   addComplaint(val:any) {
-console.log(val)
+// console.log(val)
     return this.http.post(this.APIUrl + '/complaint/', val);
   }
 
   addReview(val:any) {
-    console.log(val)
+    // console.log(val)
     return this.http.post(this.APIUrl + '/review/', val);
   }
 
@@ -219,7 +219,7 @@ console.log(val)
     // alert(JSON.stringify(data, null, 4));
 
   
-    console.log(JSON.stringify(data, null, 4));  // Use console.log for debugging instead of alert
+    // console.log(JSON.stringify(data, null, 4));  // Use console.log for debugging instead of alert
     return this.http.post(this.APIUrl + "/purchase/", data);
   }
   

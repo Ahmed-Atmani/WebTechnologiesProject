@@ -81,8 +81,6 @@ export class AccountOrdersComponent implements OnInit{
             
           })
         })
-        data.forEach(x => {alert(JSON.stringify(x))});
-
       }
     );
   }
