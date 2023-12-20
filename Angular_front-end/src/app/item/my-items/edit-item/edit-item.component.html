@@ -1,12 +1,12 @@
 <div class="form-group row">
     <label class="col-sm-2 col-form-label">Edit Item</label>
     <div class="col-sm-10">
-        <input type="text" class="form-control" [(ngModel)]="ItemName" [placeholder]="item.ItemName">
-        <input type="text" class="form-control" [(ngModel)]="ItemDetails" [placeholder]="item.ItemDetails">
-        <input type="text" class="form-control" [(ngModel)]="ItemImages" [placeholder]="item.ItemImages">
-        <input type="text" class="form-control" [(ngModel)]="ItemPrice" [placeholder]="item.ItemPrice">
-        <input type="text" class="form-control" [(ngModel)]="ItemBrand" [placeholder]="item.ItemBrand">
-        <input type="text" class="form-control" [(ngModel)]="ItemCategory" [placeholder]="item.ItemCategory">
+        <input type="text" class="form-control" [(ngModel)]="ItemName" [placeholder]="item.ItemName || 'Enter Item Name'">
+        <input type="text" class="form-control" [(ngModel)]="ItemDetails" [placeholder]="item.ItemDetails || 'Enter Item Details'">
+        <input type="text" class="form-control" [(ngModel)]="ItemImages" [placeholder]="item.ItemImages || 'Enter Path to Image'">
+        <input type="text" class="form-control" [(ngModel)]="ItemPrice" [placeholder]="item.ItemPrice || 'Enter Item Price'">
+        <input type="text" class="form-control" [(ngModel)]="ItemBrand" [placeholder]="item.ItemBrand || 'Enter Item Brand'">
+        <input type="text" class="form-control" [(ngModel)]="ItemCategory" [placeholder]="item.ItemCategory || 'Enter Item Category'">
     </div>
 </div>
 
