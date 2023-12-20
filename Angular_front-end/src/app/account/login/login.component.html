@@ -8,19 +8,19 @@
         <label>E-mail: </label>
         <input type="email" name="e-mail" class="input_text" [(ngModel)]="AccountEmail" formControlName="AccountEmail" required>
         <div class="input-error" *ngIf="loginForm.controls?.['AccountEmail']?.touched">
-            <span *ngIf="loginForm.controls?.['AccountEmail']?.errors?.['required']">
-              It is required to fill in your emailaddress.
+            <span class="error" *ngIf="loginForm.controls?.['AccountEmail']?.errors?.['required']">
+              <p>It is required to fill in your emailaddress.</p>
             </span>
-            <span *ngIf="loginForm.controls?.['AccountEmail']?.errors?.['email']">
-                This is not a valid emailaddress.
+            <span class="error" *ngIf="loginForm.controls?.['AccountEmail']?.errors?.['email']">
+                <p>This is not a valid emailaddress.</p>
             </span>
           </div>
         <br>
         <label>Password: </label>
         <input id="password" type="password" name="password" class="input_text" [(ngModel)]="AccountPassword" formControlName="AccountPassword" required>
         <div class="input-error" *ngIf="loginForm.controls?.['AccountPassword']?.touched">
-            <span *ngIf="loginForm.controls?.['AccountPassword']?.errors?.['required']">
-              It is required to fill in your password.
+            <span class="error" *ngIf="loginForm.controls?.['AccountPassword']?.errors?.['required']">
+              <p>It is required to fill in your password.</p>
             </span>
           </div>
           <br><br>

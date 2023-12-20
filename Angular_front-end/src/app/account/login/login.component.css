@@ -311,3 +311,7 @@ input[type=submit]:hover, .context button:hover, .context .button:hover{
 .button-space {
   width: 10px; /* Adjust the space width as needed */
 }
+
+.error p{
+  color: red;
+}

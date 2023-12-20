@@ -4,16 +4,16 @@
         <label for="new_Item_name"> Name of product: </label>
         <input class="form-control" formControlName="ItemName" type="text" name="" id="new_Item_name" required>
         <div class="input-error" *ngIf="addItemForm.controls?.['ItemName']?.touched">
-          <span *ngIf="addItemForm.controls?.['ItemName']?.errors?.['required']">
-            It is required to name your Item.
+          <span class="error" *ngIf="addItemForm.controls?.['ItemName']?.errors?.['required']">
+            <p>It is required to name your Item.</p>
           </span>
         </div>
         <br>
         <label for="price_Item"> Price: </label>
         <input class="form-control" formControlName="ItemPrice" type="number" name="" id="">
         <div class="input-error" *ngIf="addItemForm.controls?.['ItemPrice']?.touched">
-          <span *ngIf="addItemForm.controls?.['ItemPrice']?.errors?.['required']">
-            It is required to set a price for your Item.
+          <span class="error" *ngIf="addItemForm.controls?.['ItemPrice']?.errors?.['required']">
+            <p>It is required to set a price for your Item.</p>
           </span>
         </div>
         <br>
@@ -22,8 +22,8 @@
           <option class="form-control" *ngFor="let category of CategoryList" [value]="category.ItemCategoryId">{{category.ItemCategoryName}}</option>
         </select>
         <div class="input-error" *ngIf="addItemForm.controls?.['ItemCategory']?.touched">
-          <span *ngIf="addItemForm.controls?.['ItemCategory']?.errors?.['required']">
-            It is required to choose a category for your Item.
+          <span class="error" *ngIf="addItemForm.controls?.['ItemCategory']?.errors?.['required']">
+            <p>It is required to choose a category for your Item.</p>
           </span>
         </div>
         <br>
@@ -31,8 +31,8 @@
         <br>
         <textarea class="form-control" formControlName="ItemDetails" name="" id="new_Item_description" cols="50" rows="10"></textarea>
         <div class="input-error" *ngIf="addItemForm.controls?.['ItemDetails']?.touched">
-          <span *ngIf="addItemForm.controls?.['ItemDetails']?.errors?.['required']">
-            It is required to give your Item a description.
+          <span class="error" *ngIf="addItemForm.controls?.['ItemDetails']?.errors?.['required']">
+            <p>It is required to give your Item a description.</p>
           </span>
         </div>
         <br>
