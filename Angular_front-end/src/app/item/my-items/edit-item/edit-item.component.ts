@@ -48,8 +48,11 @@ export class EditItemComponent implements OnInit {
       ItemSeller:this.ItemSeller,
     }
     
-    this.service.updateItem(this.ItemId, val).subscribe(res => {
-      // alert(res.toString());
+    this.service.updateItem(this.ItemId, val).subscribe(res => {   
+      console.log(val);
+         
+       alert(res.toString());
+       window.location.reload();
     })
     const ItemImage = this.ItemImages;
     this.service.addImageForItem(this.ItemId, ItemImage);
