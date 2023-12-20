@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
+import { enc, MD5 } from 'crypto-js';
+
 
 @Injectable({
   providedIn: 'root'
@@ -247,4 +249,16 @@ console.log(val)
     return this.http.get<any>(apiUrl);
   }
 
+  generateMoviePrice(movieTitle: string): number {
+    // Use a hash function to create a deterministic mapping
+    // (deterministic = a movie will always get the same price)
+    const hash = MD5(movieTitle).toString(enc.Hex);
+  
+    // Hash->[5, 30]
+    const price = parseInt(hash, 16) % (30 - 5 + 1) + 5;
+
+  
+    const roundedPrice = Math.round(price * 100) / 100;
+    return roundedPrice;
+  }
 }
