@@ -12,7 +12,7 @@ export class OrderFinishedComponent implements OnInit{
   }
 
   ClearCart(): void {
-    localStorage.clear();
+    localStorage.setItem("ItemList", JSON.parse("[]"));
 
   }
 

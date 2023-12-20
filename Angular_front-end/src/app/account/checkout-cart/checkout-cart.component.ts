@@ -89,6 +89,11 @@ export class CheckoutCartComponent implements OnInit, AfterViewInit{
         // localStorage.setItem("ItemList", "[]");
         this.router.navigate(["/order-finished"]);
       }
+      else {
+        if (accountId == null) {
+          alert("You must sign in before checking out");
+        }
+      }
     });
   }
 
