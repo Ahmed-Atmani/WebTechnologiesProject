@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SharedService } from 'src/app/shared.service';
 import { Observable } from 'rxjs';
 import { LoginService } from 'src/app/login.service';
@@ -11,7 +11,7 @@ import { LoginService } from 'src/app/login.service';
 })
 export class AccountOrdersComponent implements OnInit{
 
-  constructor(private route: ActivatedRoute, public service: SharedService, private loginservice: LoginService) {
+  constructor(private route: ActivatedRoute, public service: SharedService, private loginservice: LoginService, private router: Router) {
     
   }
 
@@ -60,6 +60,9 @@ export class AccountOrdersComponent implements OnInit{
     })
   }
   
+  goToItemPage(id: number): void {
+    this.router.navigate(["/items/" + id.toString()]);
+  }
 
   ngOnInit(): void {
     // Your existing code...

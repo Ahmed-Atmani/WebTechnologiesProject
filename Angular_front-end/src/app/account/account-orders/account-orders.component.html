@@ -3,9 +3,13 @@
   <h1><img id="profile-pic" src={{purchase.CustomDrawing}} width="125" height="125"></h1>
   <div id="order-information">
       <h2><b>Items:</b></h2>
-      <div *ngFor="let item of purchase.ItemData">
-        <i>{{item.ItemName}}</i>
-      </div>
+
+      <ul>
+        <div *ngFor="let item of purchase.ItemData">
+          <li><button (click)="goToItemPage(item.ItemId)" class="btn btn-close-white"><i>{{item.ItemName}}</i></button></li>
+        </div>
+      </ul>
+      <br>  
       <p>Delivery ETA: XX days</p>
       <p><b>Order number: </b>{{purchase.PurchaseId}}</p>
   </div>
