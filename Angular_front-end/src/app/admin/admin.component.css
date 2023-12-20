@@ -1,0 +1,15 @@
+button {
+    background-color: #8ABCD7;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+    float: right;
+    font-size: small;
+  }
+  
+  button:hover {
+    background-color: #34495e;
+  }
