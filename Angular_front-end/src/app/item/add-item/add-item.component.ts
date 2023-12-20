@@ -8,64 +8,49 @@ import { SharedService } from 'src/app/shared.service';
   templateUrl: './add-item.component.html',
   styleUrls: ['./add-item.component.css']
 })
-export class AddItemComponent implements OnInit{
+export class AddItemComponent implements OnInit {
 
-  constructor(private service: SharedService, private loginservice: LoginService) {
-
-  }
+  constructor(private service: SharedService, private loginservice: LoginService) {}
 
   addItemForm: FormGroup = new FormGroup({
-
     ItemName: new FormControl('', [Validators.required]),
     ItemPrice: new FormControl('0', [Validators.required]),
-    ItemCategory: new FormControl('', [Validators.required]),
+    ItemCategory: new FormControl(null, [Validators.required]),
     ItemDetails: new FormControl('', [Validators.required]),
+  });
 
-  })
-
-  ItemName:string = "";
-  ItemPrice:number = 0;
-  ItemState:number = 2;
-  ItemCategory:number = 0;
-  ItemDetails:string = "";
-
+  ItemState: number = 2;
   CategoryList: any[] = [];
 
-
-  fillCategoryList():void {
-    this.service.getAllCategories().subscribe((data)=>{
+  fillCategoryList(): void {
+    this.service.getAllCategories().subscribe((data) => {
       this.CategoryList = data;
-  }   
-  )
-}
+    });
+  }
 
   ngOnInit(): void {
     this.fillCategoryList();
   }
 
-  revertCategory(id: number): void{
-    this.ItemCategory = id;
-  }
+  addItem(): void {
+    const itemDetailValue = this.addItemForm.get('ItemDetails')?.value;
 
-  addItem(){
-    const itemDetailValue = this. addItemForm.get('ItemDetails')?.value;
-
-    var val = {
+    const val = {
       ItemSeller: parseInt(this.loginservice.getAccountId()),
-      ItemName: this.ItemName,
-      ItemPrice: this.ItemPrice.toFixed(2).toString(),
+      ItemName: this.addItemForm.get('ItemName')?.value,
+      ItemPrice: this.addItemForm.get('ItemPrice')?.value.toFixed(2).toString(),
       ItemState: 2,
-      ItemCategory: this.ItemCategory,
+      ItemCategory: +this.addItemForm.get('ItemCategory')?.value,
       ItemDetails: itemDetailValue,
-    }
+    };
 
     alert(JSON.stringify(val, null, 4));
 
     this.service.addItem(val).subscribe(res => {
+      console.log(val);
+      
       alert(JSON.stringify(val, null, 4));
-
       alert(res.toString());
-    })
+    });
   }
-
 }

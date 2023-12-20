@@ -34,8 +34,13 @@ export class MyItemsComponent implements OnInit{
     this.refreshItemList();
   }
 
-  editItem(dataItem:any) {
-    this.item = dataItem;
+  editItem(dataItem:any) {    
+    this.service.getItem(dataItem).subscribe(data => {
+      console.log(data);
+      this.item = data;
+    }
+    )
+    
     this.ModalTitle = "Edit Item";
     this.ActivateEditItemComp = true;
   }
