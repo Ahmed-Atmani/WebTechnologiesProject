@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class OrderFinishedComponent implements OnInit{
 
   ngOnInit(): void {
-    // this.ClearCart();
+    this.ClearCart();
   }
 
   ClearCart(): void {
