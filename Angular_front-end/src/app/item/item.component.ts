@@ -27,6 +27,8 @@ export class ItemComponent implements OnInit {
   ReviewList: any[] = [];
   ReviewText:string = "";
   Rating: number = 5;
+  isMovie: boolean = false;
+  MovieId: string = "";
 
   constructor(private route: ActivatedRoute, public service: SharedService, private loginservice: LoginService) {
   }
@@ -70,7 +72,8 @@ export class ItemComponent implements OnInit {
             this.service.getMovieDetailsById(data.Search[0].imdbID).subscribe(
               (movie) => {
                 console.log(data);
-                // this.ItemId = movie.imdbID;
+                this.isMovie = true;
+                this.MovieId = movie.imdbID;
                 this.ItemName = movie.Title;
                 var img = {"Image": movie.Poster, "src": ""};
                 this.ImagesList = [img];
@@ -147,15 +150,33 @@ export class ItemComponent implements OnInit {
   }
 
   AddItemToCart(): void {
+    // Add movie to DB
+    if (this.isMovie) {
+      var item: any = {
+        "ItemName": this.ItemName, //
+        "ItemPrice": this.ItemPrice, //
+        "ItemDetails": this.ItemDetails, //
+        "ItemCategory": 5, // Movie category
+        "ItemState": 1, //
+        "ItemSeller": 23, // Temporary Ahmed account
+        "ItemBrand": this.MovieId, 
+      };
+      alert(JSON.stringify(item, null, 4));
+      this.service.addItem(item).subscribe(
+        (data) => {alert(data)}
+      );
+    }
     var item: any = {
       "ItemId": this.ItemId,
-      "ItemName": this.ItemName,
-      "ItemPrice": this.ItemPrice,
+      "ItemName": this.ItemName, //
+      "ItemPrice": this.ItemPrice, //
       "ItemDetails": this.ItemDetails,
       "ItemCategoryId": this.ItemCategoryId,
       "ItemCategoryName": this.ItemCategoryName,
       "PurchaseAmount": this.PurchaseAmount
     };
+
+
     console.log(localStorage.getItem("ItemList"));
 
     var temp: any[] = JSON.parse(localStorage.getItem("ItemList") || "[]");
@@ -169,11 +190,8 @@ export class ItemComponent implements OnInit {
       temp = temp.map((i: any) => {
         if (i.ItemId == item.ItemId) {
           i.PurchaseAmount += this.PurchaseAmount;
-          return i;
         }
-        else {
-          return i;
-        }
+        return i;
       });
 
       }
@@ -184,6 +202,7 @@ export class ItemComponent implements OnInit {
     else {
       temp.push(item);
     }
+
     localStorage.setItem("ItemList", JSON.stringify(temp));
     console.log(localStorage.getItem("ItemList"));
     alert("Item successfully added to shopping cart!");

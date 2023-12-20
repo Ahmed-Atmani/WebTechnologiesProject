@@ -147,6 +147,7 @@ class ItemViewSet(viewsets.ViewSet):
         account = request.query_params.get('account', None)
         state = request.query_params.get('state', None)
         category = request.query_params.get('category', None)
+        brand = request.query_params.get('brand', None)
 
         queryset = Item.objects.all()
         if account:
@@ -155,6 +156,8 @@ class ItemViewSet(viewsets.ViewSet):
             queryset = queryset.filter(ItemState=state)
         if category:
             queryset = queryset.filter(ItemCategory=ItemCategory.objects.get(ItemCategory=category))
+        if brand:
+            queryset = queryset.filter(ItemBrand=brand)
         serializer = ItemSerializer(queryset, many=True)
         return Response(serializer.data)
 
