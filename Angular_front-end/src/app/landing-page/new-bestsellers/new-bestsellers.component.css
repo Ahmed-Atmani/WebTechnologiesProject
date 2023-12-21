@@ -128,3 +128,28 @@
   .see-more:hover {
     background-color: #34495e;
   }
+
+  
+  /* Tablets (landscape) */
+@media only screen and (min-width: 600px) {
+  /* Add tablet-specific styles here */
+  .item-box {
+    width: calc(33.33% - 20px);
+  }
+}
+
+/* Tablets (portrait) and larger */
+@media only screen and (min-width: 768px) {
+  /* Add styles for larger screens (tablets in portrait mode and above) */
+  .item-box {
+    width: calc(25% - 20px);
+  }
+}
+
+/* Mobile devices */
+@media only screen and (max-width: 599px) {
+  /* Add mobile-specific styles here */
+  .item-box {
+    width: calc(50% - 20px);
+  }
+}

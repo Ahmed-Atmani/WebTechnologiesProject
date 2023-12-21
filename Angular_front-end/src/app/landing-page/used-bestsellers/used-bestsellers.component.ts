@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ProductService } from 'src/app/product.service';
 import { SharedService } from 'src/app/shared.service';
+import { HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-used-bestsellers',
@@ -17,6 +18,22 @@ export class UsedBestsellersComponent {
   ImagesList: any = {};
   currentPage: number = 1;
   itemsPerPage: number = 4;
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event): void {
+    // Adjust the number of items per page based on the window width
+    this.adjustItemsPerPage(window.innerWidth);
+  }
+
+  adjustItemsPerPage(windowWidth: number): void {
+    if (windowWidth < 768) {
+      this.itemsPerPage = 2;
+    } else if (windowWidth < 1024) {
+      this.itemsPerPage = 3;
+    } else {
+      this.itemsPerPage = 4;
+    }
+  }
 
   ngOnInit(): void {
     this.productService.getBestsellers().subscribe((data: any) => {
