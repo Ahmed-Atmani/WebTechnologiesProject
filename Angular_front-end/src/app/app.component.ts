@@ -11,6 +11,7 @@ export class AppComponent implements OnInit{
   title = 'omnicart';
   ItemList: any[] = [];
   AccountId: string = '';
+  private is_admin: any[] = [];
 
   constructor(public service: SharedService, private loginservice: LoginService) {
   }
@@ -49,6 +50,15 @@ export class AppComponent implements OnInit{
     });
   }
 
-  
-  
+  openDjangoAdmin() {
+    // Update the URL based on your Django admin URL
+    const djangoAdminUrl = 'http://localhost:8000/admin/';
+    this.service.isAdminAccount(Number(this.loginservice.getAccountId())).subscribe((data => {
+            this.is_admin = data
+      console.log(this.is_admin)
+          }))
+    // Navigate to Django admin within the same tab
+    window.open(djangoAdminUrl, '_blank');
+  }
+
 }
