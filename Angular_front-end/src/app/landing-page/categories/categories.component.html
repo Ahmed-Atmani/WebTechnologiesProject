@@ -1,19 +1,16 @@
 <h3>Categories</h3>
 <div class="bubbles">
-    <div class="bubble-container" *ngFor="let category of CategoryList" [routerLink]="['/items']">
-      <div class="bubble">
-        <div class="bubble-image">
-          <ng-container *ngIf="categoryHasImage(category)">
-            <img id="show-item-image" [src]="service.APIUrl + category.ItemCategoryImage" alt="category Image">
-          </ng-container>
-          <ng-container *ngIf="!categoryHasImage(category)">
-            <img src="../../../assets/images/no-picture.jpg" alt="Placeholder Image">
-          </ng-container>
-        </div>
-        <div class="text-container">
-          <h2>{{ category.ItemCategoryName }}</h2>
-        </div>
-      </div>
+  <div class="bubble" *ngFor="let category of CategoryList" [routerLink]="['/items']">
+    <div class="bubble-image">
+      <ng-container *ngIf="categoryHasImage(category)">
+        <img id="show-item-image" [src]="service.APIUrl + category.ItemCategoryImage" alt="category Image">
+      </ng-container>
+      <ng-container *ngIf="!categoryHasImage(category)">
+        <img src="../../../assets/images/no-picture.jpg" alt="Placeholder Image">
+      </ng-container>
+    </div>
+    <div class="text-container">
+      <h2>{{ category.ItemCategoryName }}</h2>
     </div>
   </div>
-  
+</div>
