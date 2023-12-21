@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import action
 from rest_framework.parsers import JSONParser
@@ -16,10 +17,8 @@ from django.core.files.storage import default_storage
 
 from django.contrib.auth import authenticate, login, logout
 
-
 from django.core.files.base import ContentFile
 import base64
-
 
 
 #  Create your views here.
@@ -30,8 +29,12 @@ class AccountViewSet(viewsets.ViewSet):
     A simple ViewSet for listing, retrieving, creating and updating accounts.
     """
 
-    def list(self, request):
+    def list(self, request, *args, **kwargs):
+        only_superusers = request.query_params.get('only_superusers', None)
+
         queryset = Account.objects.all()
+        if only_superusers == "1":
+            queryset = queryset.filter(User__is_superuser=True)
         serializer = AccountSerializer(queryset, many=True)
         return Response(serializer.data)
 
@@ -107,6 +110,7 @@ class ImageViewSet(viewsets.ViewSet):
     """
     A simple ViewSet for listing, retrieving, creating and deleting images.
     """
+
     def list(self, request, *args, **kwargs):
         item = request.query_params.get('item', None)
         category = request.query_params.get('item-category', None)
@@ -119,7 +123,7 @@ class ImageViewSet(viewsets.ViewSet):
 
     def retrieve(self, request, pk=None):
         queryset = Image.objects.all()
-        image= get_object_or_404(queryset, pk=pk)
+        image = get_object_or_404(queryset, pk=pk)
         serializer = ImageSerializer(image)
         return Response(serializer.data)
 
@@ -143,6 +147,7 @@ class ItemViewSet(viewsets.ViewSet):
     For listing, filtering possible on ItemSeller with parameter 'account' (Integer)
     and on ItemState with parameter 'state' (Integer).
     """
+
     def list(self, request, *args, **kwargs):
         account = request.query_params.get('account', None)
         state = request.query_params.get('state', None)
@@ -173,7 +178,6 @@ class ItemViewSet(viewsets.ViewSet):
             item_serializer.save()
             return Response("Added successfully!")
         return Response("Failed to add.")
-
 
     def update(self, request, pk=None):
         item_data = JSONParser().parse(request)
@@ -206,7 +210,6 @@ class ComplaintViewSet(viewsets.ViewSet):
         serializer = ComplaintSerializer(queryset, many=True)
         return Response(serializer.data)
 
-
     def create(self, request):
         complaint_data = JSONParser().parse(request)
         complaint_serializer = ComplaintSerializer(data=complaint_data)
@@ -214,6 +217,7 @@ class ComplaintViewSet(viewsets.ViewSet):
             complaint_serializer.save()
             return Response("Added successfully!")
         return Response("Failed to add.")
+
 
 class PurchaseViewSet(viewsets.ViewSet):
     """
@@ -258,6 +262,7 @@ class PurchaseViewSet(viewsets.ViewSet):
         purchase.delete()
         return Response("Deleted successfully!")
 
+
 # == REVIEW ==
 class ReviewViewSet(viewsets.ViewSet):
     """
@@ -277,7 +282,6 @@ class ReviewViewSet(viewsets.ViewSet):
             queryset = queryset.filter(Item=Item.objects.get(ItemId=item))
         serializer = ReviewSerializer(queryset, many=True)
         return Response(serializer.data)
-
 
     def create(self, request):
         review_data = JSONParser().parse(request)
@@ -306,6 +310,7 @@ class ItemCategoryViewSet(viewsets.ViewSet):
     """
     A simple ViewSet for listing, retrieving, creating and deleting ItemCategories
     """
+
     def list(self, request, *args, **kwargs):
         queryset = ItemCategory.objects.all()
         serializer = ItemCategorySerializer(queryset, many=True)
@@ -323,7 +328,7 @@ class ItemCategoryViewSet(viewsets.ViewSet):
             serializer.save()
             return Response("Added successfully!")
         return Response("Failed to add.")
-    
+
     def update(self, request, pk=None):
         data = JSONParser().parse(request)
         itemcategory = ItemCategory.objects.get(ItemId=data['ItemCategoryId'])
@@ -361,6 +366,7 @@ class LoginView(APIView):
                              'AccountId': Account.objects.get(User=user).AccountId})
         else:
             return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
+
 
 class LogoutView(APIView):
     def post(self, request):

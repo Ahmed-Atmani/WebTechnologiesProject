@@ -81,10 +81,9 @@ export class SharedService {
     return this.http.get<any[]>(this.APIUrl + '/account/' + accountID + '/AccountFirstName/');
   }
 
-  registerAccount(val: any) {
-    return this.http.post(this.APIUrl + '/account/', val);
+  getAdminAccounts(): Observable<any[]> {
+    return this.http.get<any[]>(this.APIUrl + '/account/?only_superusers=1/');
   }
-  // Add all other API's for remaining models
 
   getItemList(): Observable<any[]> {
     return this.http.get<any[]>(this.APIUrl + '/item/');
@@ -188,8 +187,8 @@ export class SharedService {
   }
 
   addPurchase(itemIdList: number[], accountId: number, address: any, image: string) {
-    const data: { Items: number[]; 
-                  Account: number; 
+    const data: { Items: number[];
+                  Account: number;
                   CustomDrawing?: string;
                   PurchaseStreet?: string;
                   PurchaseStreetNumber?: number;
@@ -211,25 +210,25 @@ export class SharedService {
       data.PurchaseStreet = address.PurchaseStreet;
     }
 
-  
+
     if (image !== "") {
       data.CustomDrawing = image;
     }
 
     // alert(JSON.stringify(data, null, 4));
 
-  
+
     // console.log(JSON.stringify(data, null, 4));  // Use console.log for debugging instead of alert
     return this.http.post(this.APIUrl + "/purchase/", data);
   }
-  
+
 
   // getWishlistItems(account: string): Observable<any[]> {
   //   return this.http.get<any[]>(this.APIUrl + ' ' + account);
   // }
 
   searchMoviesByTitle(title: string): Observable<any>{
-    var apiKey = "b152332e"; 
+    var apiKey = "b152332e";
     var omdbApiUrl = "http://www.omdbapi.com/";
     const apiUrl = `${omdbApiUrl}?s=${title}&apikey=${apiKey}`;
     // return this.http.get<any>("/omdbapi/?s=" + title + "&apikey=b152332e");
@@ -237,7 +236,7 @@ export class SharedService {
   }
 
   getMovieDetailsById(imdbId: string): Observable<any> {
-    var apiKey = "b152332e"; 
+    var apiKey = "b152332e";
     var omdbApiUrl = "http://www.omdbapi.com/";
     const apiUrl = `${omdbApiUrl}?i=${imdbId}&apikey=${apiKey}`;
     return this.http.jsonp(apiUrl, "callback");
@@ -257,11 +256,11 @@ export class SharedService {
     // Use a hash function to create a deterministic mapping
     // (deterministic = a movie will always get the same price)
     const hash = MD5(movieTitle).toString(enc.Hex);
-  
+
     // Hash->[5, 30]
     const price = parseInt(hash, 16) % (30 - 5 + 1) + 5;
 
-  
+
     const roundedPrice = Math.round(price * 100) / 100;
     return roundedPrice;
   }
