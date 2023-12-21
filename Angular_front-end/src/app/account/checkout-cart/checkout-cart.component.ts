@@ -109,7 +109,7 @@ export class CheckoutCartComponent implements OnInit, AfterViewInit{
         delete account.AccountId;
         this.sharedService.updateAccount(accountId.toString(), account).subscribe(
           (result: any) => {
-            alert(result);
+            // alert(result);
           }
         )
       }
