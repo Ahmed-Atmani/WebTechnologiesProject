@@ -57,3 +57,45 @@
 .bubble:hover .text-container {
   color: #8ABCD7;
 }
+
+
+/* Default styles for larger screens */
+.bubble {
+  width: calc(30% - 20px);
+}
+
+/* Tablets (landscape) */
+@media only screen and (min-width: 600px) {
+  .bubble {
+    width: calc(30% - 20px);
+  }
+}
+
+/* Tablets (portrait) and larger */
+@media only screen and (min-width: 768px) {
+  .bubble {
+    width: calc(30% - 20px);
+  }
+}
+
+/* Mobile devices */
+@media only screen and (max-width: 599px) {
+  .bubble {
+    width: calc(50% - 20px);
+  }
+}
+
+/* Ensure two bubbles per row on all screen sizes */
+@media only screen and (max-width: 768px) {
+  .bubble {
+    width: calc(50% - 20px);
+  }
+}
+
+/* Ensure three bubbles per row on larger screens */
+@media only screen and (min-width: 1200px) {
+  .bubble {
+    width: calc(33.33% - 20px);
+  }
+}
+
