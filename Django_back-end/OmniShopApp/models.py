@@ -4,18 +4,6 @@ from django.db.models import Avg
 from django.contrib.auth.models import User
 
 
-# Create your models here.
-
-
-class Address(models.Model):
-    AddressId = models.AutoField(primary_key=True)
-    AddressStreet = models.CharField(max_length=100)
-    AddressCity = models.CharField(max_length=100)
-    AddressCountry = models.CharField(max_length=100)
-    AddressStreetNumber = models.PositiveIntegerField()
-    AddressPostalCode = models.PositiveIntegerField()
-
-
 class Account(models.Model):
     AccountId = models.AutoField(primary_key=True)
     AccountFirstName = models.CharField(max_length=100)

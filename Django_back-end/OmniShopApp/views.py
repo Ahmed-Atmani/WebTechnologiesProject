@@ -1,4 +1,3 @@
-from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import action
 from rest_framework.parsers import JSONParser
@@ -17,13 +16,8 @@ from django.core.files.storage import default_storage
 
 from django.contrib.auth import authenticate, login, logout
 
-from django.core.files.base import ContentFile
-import base64
 
 
-#  Create your views here.
-
-# == Account ==
 class AccountViewSet(viewsets.ViewSet):
     """
     A simple ViewSet for listing, retrieving, creating and updating accounts.
@@ -147,7 +141,6 @@ class ImageViewSet(viewsets.ViewSet):
         return Response("Deleted successfully!")
 
 
-# == ITEM ==
 class ItemViewSet(viewsets.ViewSet):
     """
     A simple ViewSet for listing, retrieving, creating, updating and deleting items.
@@ -201,7 +194,6 @@ class ItemViewSet(viewsets.ViewSet):
         return Response("Deleted successfully!")
 
 
-# == COMPLAINT ==
 class ComplaintViewSet(viewsets.ViewSet):
     """
     A simple ViewSet for listing and creating complaints.
@@ -270,7 +262,6 @@ class PurchaseViewSet(viewsets.ViewSet):
         return Response("Deleted successfully!")
 
 
-# == REVIEW ==
 class ReviewViewSet(viewsets.ViewSet):
     """
     A simple ViewSet for listing, retrieving, creating, updating and deleting reviews.
