@@ -44,6 +44,7 @@ export class SharedService {
   }
 
   updateAccount(pk: string, val: any) {
+    alert("account: \n" + JSON.stringify(val, null, 4));
     return this.http.put(this.APIUrl + '/account/' + pk + '/', val);
   }
 

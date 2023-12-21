@@ -46,13 +46,20 @@ class AccountViewSet(viewsets.ViewSet):
         return Response("Failed to add.")
 
     def update(self, request, pk=None):
-        account_data = JSONParser().parse(request)
-        account = Account.objects.get(AccountId=account_data['AccountId'])
-        account_serializer = AccountSerializer(account, data=account_data)
-        if account_serializer.is_valid():
-            account_serializer.save()
-            return Response("Updated successfully!")
-        return Response("Failed to update.")
+        account_data = request.data
+        try:
+            account = Account.objects.get(AccountId=pk)
+        except Account.DoesNotExist:
+            return Response({"detail": "Account not found"}, status=status.HTTP_404_NOT_FOUND)
+
+        # Update AccountPoints directly
+        new_points = account_data.get("AccountPoints", None)
+        if new_points is not None:
+            account.AccountPoints = new_points
+            account.save()
+            return Response({"detail": "AccountPoints updated successfully"}, status=status.HTTP_200_OK)
+        else:
+            return Response({"detail": "AccountPoints not provided in the request body"}, status=status.HTTP_400_BAD_REQUEST)
 
     def destroy(self, request, pk=None):
         account = Account.objects.get(AccountId=pk)
@@ -105,6 +112,23 @@ class AccountViewSet(viewsets.ViewSet):
             return Response(is_superuser)
         else:
             return Response(False)
+    
+    @action(detail=True, methods=['PUT'])
+    def update_points(self, request, pk=None):
+        account_data = request.data
+        try:
+            account = Account.objects.get(AccountId=pk)
+        except Account.DoesNotExist:
+            return Response({"detail": "Account not found"}, status=status.HTTP_404_NOT_FOUND)
+
+        new_points = account_data.get("AccountPoints", None)
+        if new_points is not None:
+            account.AccountPoints = new_points
+            account.save()
+            return Response({"detail": "AccountPoints updated successfully"}, status=status.HTTP_200_OK)
+        else:
+            return Response({"detail": "AccountPoints not provided in the request body"}, status=status.HTTP_400_BAD_REQUEST)
+
 
 
 class ImageViewSet(viewsets.ViewSet):

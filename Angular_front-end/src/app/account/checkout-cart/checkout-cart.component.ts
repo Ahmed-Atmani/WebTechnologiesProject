@@ -86,7 +86,7 @@ export class CheckoutCartComponent implements OnInit, AfterViewInit{
     this.sharedService.addPurchase(itemList, accountId, address, image).subscribe(res =>{
       // alert(res);
       if (res == "Added successfully!") {
-        // localStorage.setItem("ItemList", "[]");
+        this.updateOmniPoints();  
         this.router.navigate(["/order-finished"]);
       }
       else {
@@ -95,6 +95,26 @@ export class CheckoutCartComponent implements OnInit, AfterViewInit{
         }
       }
     });
+  }
+
+  calcOmniPoints(): number {
+    return Math.round(this.TotalPrice / 10);
+  }
+
+  updateOmniPoints(): void {
+    var accountId: number = parseInt(localStorage.getItem("user_id") as string);
+    this.sharedService.getAccount(accountId).subscribe(
+      (account: any) =>{
+        account.AccountPoints += this.calcOmniPoints();
+        delete account.AccountId;
+        this.sharedService.updateAccount(accountId.toString(), account).subscribe(
+          (result: any) => {
+            alert(result);
+          }
+        )
+      }
+    )
+
   }
 
   getCartItems(): void {
