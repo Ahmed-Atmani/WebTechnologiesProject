@@ -81,8 +81,11 @@ export class SharedService {
     return this.http.get<any[]>(this.APIUrl + '/account/' + accountID + '/AccountFirstName/');
   }
 
-  getAdminAccounts(): Observable<any[]> {
-    return this.http.get<any[]>(this.APIUrl + '/account/?only_superusers=1/');
+  isAdminAccount(accountID: number): Observable<any[]> {
+    const data = {
+      account: accountID,
+    };
+    return this.http.put<any[]>(this.APIUrl + '/account/is_superuser/', data);
   }
 
   getItemList(): Observable<any[]> {

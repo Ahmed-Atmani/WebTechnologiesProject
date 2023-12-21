@@ -30,11 +30,7 @@ class AccountViewSet(viewsets.ViewSet):
     """
 
     def list(self, request, *args, **kwargs):
-        only_superusers = request.query_params.get('only_superusers', None)
-
         queryset = Account.objects.all()
-        if only_superusers == "1":
-            queryset = queryset.filter(User__is_superuser=True)
         serializer = AccountSerializer(queryset, many=True)
         return Response(serializer.data)
 
@@ -104,6 +100,17 @@ class AccountViewSet(viewsets.ViewSet):
         item = get_object_or_404(Item, ItemId=data['item'])
         account.Wishlist.remove(item)
         return Response("Item removed from your wishlist.")
+
+    @action(detail=False,
+            methods=['PUT'])
+    def is_superuser(self, request):
+        data = JSONParser().parse(request)
+        account = get_object_or_404(Account, AccountId=data['account'])
+        if account.User:
+            is_superuser = account.User.is_superuser
+            return Response(is_superuser)
+        else:
+            return Response(False)
 
 
 class ImageViewSet(viewsets.ViewSet):
