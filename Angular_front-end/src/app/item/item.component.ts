@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SharedService } from '../shared.service';
-import { NgIf } from '@angular/common';
-import { HttpClientJsonpModule } from '@angular/common/http';
-import { forkJoin, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { LoginService } from "../login.service";
 
 
@@ -298,6 +296,7 @@ export class ItemComponent implements OnInit {
     this.service.addReview(val).subscribe(res => {
       // alert(res.toString());
     })
+    window.location.reload();
   }
 
 }
