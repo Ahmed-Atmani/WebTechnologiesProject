@@ -18,8 +18,6 @@ export class ShowItemComponent implements OnInit {
 
   constructor(public service: SharedService, private cdr: ChangeDetectorRef) {}
 
-  
-
   toggleMenu() {
       this.isCollapsed = !this.isCollapsed;
   }
@@ -27,15 +25,11 @@ export class ShowItemComponent implements OnInit {
   itemHasImage(item: any): boolean {
     return this.ImagesList[item.ItemId] !== null;
   }
-
-  returnRightList(){
-    this.filterItemsByPrice();
-    return this.ItemList
-  }
   
   ngOnInit(): void {
     this.fillItemList();
     this.fillCategoryList();
+    this.calculateMaxPrice();;
   }
 
   fillItemList() {
@@ -56,9 +50,7 @@ export class ShowItemComponent implements OnInit {
 
   filterItemsByPrice() {
     this.fillItemList();
-    console.log(this.ItemList);
     const filteredItems = this.ItemList.filter((item: any) => item.ItemPrice <= this.selectedValue);
-    console.log(this.filteredItemList);
     this.ItemList = filteredItems;
   }
 
@@ -103,6 +95,7 @@ export class ShowItemComponent implements OnInit {
       filteredItems = filteredItems.filter((item: any) => item.ItemPrice <= this.selectedValue);
     }
     if (!this.service.searchedKeyword) {
+      this.ItemList = filteredItems;
       return filteredItems;
     }
   
