@@ -37,6 +37,7 @@
 #first-row {
     flex-direction: row;
     display: flex;
+    flex-wrap: wrap;
     -ms-flex-item-align: auto;
 }
 
