@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { Location } from '@angular/common';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -95,7 +96,8 @@ import { AdminComponent } from './admin/admin.component';
 
     // LocalStorage,
   ],
-  providers: [SharedService],
+  providers: [SharedService,
+              Location],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
