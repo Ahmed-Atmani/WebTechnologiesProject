@@ -1,15 +1,16 @@
 <div class="all-elements">
   <div class="catalog-and-slider">
-    <div class="catalog-bar">
-      <ul>
+    <div class="catalog-bar" [ngClass]="{'collapsed': isCollapsed}">
+      <button class="toggle-menu" onclick="toggleMenu()">☰ Menu</button>
+      <ul *ngIf="!isCollapsed">
         <div *ngFor="let category of CategoryList" class="category">
           <button class="category-button" (click)="onCategoryClick(category.ItemCategoryId)">
             {{ category.ItemCategoryName }}
           </button>
         </div>
       </ul>
-    </div>
-    <br>
+  </div>
+  
 
     <div class="slidecontainer">
       <input type="range" min="0" [max]="maxPrice" [(ngModel)]="selectedValue" class="slider" id="myRange" (input)="filterItemsByPrice()">

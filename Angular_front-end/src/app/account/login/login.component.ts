@@ -14,9 +14,6 @@ import { LoginService } from 'src/app/login.service';
 export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
-    // TODO: ADD USER INFO TO LOCALSTORAGE
-    // localStorage.setItem("AccountId", this.AccountId);
-    // localStorage.setItem("ItemList", <SET '[]' or saved shopping cart from DB>);
 
   }
 
@@ -40,7 +37,6 @@ export class LoginComponent implements OnInit {
 
     this.loginservice.login(AccountEmail, AccountPassword).subscribe(
       (response) => {
-        // Handle successful login, store token, etc.
         console.log('Login successful');
         console.log(response);
         const token = response.token;
@@ -53,7 +49,6 @@ export class LoginComponent implements OnInit {
 
       },
       (error) => {
-        // Handle login error
         console.error('Login failed', error);
         alert('Your e-mail or password was not correct. Please try again. ');
       }
@@ -63,12 +58,10 @@ export class LoginComponent implements OnInit {
   logout() {
     this.loginservice.logout().subscribe(
       () => {
-        // Handle successful logout, e.g., remove token from storage
         console.log('Logout successful');
         this.loginservice.removeTokenUser();
       },
       (error) => {
-        // Handle logout error
         console.error('Logout failed', error);
       }
     );
