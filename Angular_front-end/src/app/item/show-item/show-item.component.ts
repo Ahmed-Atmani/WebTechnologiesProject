@@ -14,8 +14,13 @@ export class ShowItemComponent implements OnInit {
   maxPrice: number = 0;
   sellerMap: Map<number, string> = new Map<number, string>();
   selectedValue: number = 0;
+  isCollapsed: boolean = true;
 
   constructor(public service: SharedService, private cdr: ChangeDetectorRef) {}
+
+  toggleMenu() {
+      this.isCollapsed = !this.isCollapsed;
+  }
 
   itemHasImage(item: any): boolean {
     return this.ImagesList[item.ItemId] !== null;
@@ -86,11 +91,10 @@ export class ShowItemComponent implements OnInit {
 
   filteredItemList(): any[] {
     let filteredItems = this.categorizedItemList();
-    if (this.selectedValue > 0) {
+    if (this.selectedValue >= 0) {
       filteredItems = filteredItems.filter((item: any) => item.ItemPrice <= this.selectedValue);
     }
     if (!this.service.searchedKeyword) {
-      this.ItemList = filteredItems;
       return filteredItems;
     }
   
