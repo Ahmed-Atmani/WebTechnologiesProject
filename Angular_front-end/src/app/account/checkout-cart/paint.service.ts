@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 
 
+/*
+  This service is based on the code from WPO8 of the course 
+*/
+
 @Injectable({
   providedIn: 'root',
 })

@@ -5,6 +5,10 @@ import { SharedService } from 'src/app/shared.service';
 import { Router } from '@angular/router';
 
 
+/*
+  This is the page in which the user has to fill in data to complete a purchase
+*/
+
 @Component({
   selector: 'app-checkout-cart',
   templateUrl: './checkout-cart.component.html',
@@ -44,9 +48,8 @@ export class CheckoutCartComponent implements OnInit, AfterViewInit{
   }
 
   // === SHOPPING CART ITEMS ===
+
   checkout(): void {
-    // get payment option
-    
     // get image
     var image = "";
     if (this.SelectedRadioChoice) {
@@ -97,6 +100,7 @@ export class CheckoutCartComponent implements OnInit, AfterViewInit{
     });
   }
 
+  // 10 euro == 1 point
   calcOmniPoints(): number {
     return Math.round(this.TotalPrice / 10);
   }
@@ -114,7 +118,6 @@ export class CheckoutCartComponent implements OnInit, AfterViewInit{
         )
       }
     )
-
   }
 
   getCartItems(): void {

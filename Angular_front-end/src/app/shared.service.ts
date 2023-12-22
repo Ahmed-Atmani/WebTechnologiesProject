@@ -6,6 +6,10 @@ import { BehaviorSubject } from 'rxjs';
 import { enc, MD5 } from 'crypto-js';
 
 
+/*
+  This is the main service used to fetch data from the back-end and the movie API's 
+*/
+
 @Injectable({
   providedIn: 'root'
 })
@@ -218,10 +222,6 @@ export class SharedService {
       data.CustomDrawing = image;
     }
 
-    // alert(JSON.stringify(data, null, 4));
-
-
-    // console.log(JSON.stringify(data, null, 4));  // Use console.log for debugging instead of alert
     return this.http.post(this.APIUrl + "/purchase/", data);
   }
 
@@ -236,6 +236,8 @@ export class SharedService {
     const apiUrl = `${omdbApiUrl}?s=${title}&apikey=${apiKey}`;
     // return this.http.get<any>("/omdbapi/?s=" + title + "&apikey=b152332e");
     return this.http.jsonp(apiUrl, "callback");
+
+    // Based on code written by ChatGPT
   }
 
   getMovieDetailsById(imdbId: string): Observable<any> {
@@ -243,6 +245,8 @@ export class SharedService {
     var omdbApiUrl = "http://www.omdbapi.com/";
     const apiUrl = `${omdbApiUrl}?i=${imdbId}&apikey=${apiKey}`;
     return this.http.jsonp(apiUrl, "callback");
+
+    // Based on code written by ChatGPT
   }
 
   getMovieDetailsByIdFromTMDB(imdbId: string): Observable<any> {
@@ -253,16 +257,17 @@ export class SharedService {
     const apiUrl = `${tmdbApiUrl}${endpoint}?${apiKeyParam}`;
 
     return this.http.get<any>(apiUrl);
+
+    // Based on code written by ChatGPT
   }
 
   generateMoviePrice(movieTitle: string): number {
-    // Use a hash function to create a deterministic mapping
-    // (deterministic = a movie will always get the same price)
+    // Use a hash function to create a deterministic mapping (title->price)
+    // (deterministic = the same movie will always get the same price)
     const hash = MD5(movieTitle).toString(enc.Hex);
 
     // Hash->[5, 30]
     const price = parseInt(hash, 16) % (30 - 5 + 1) + 5;
-
 
     const roundedPrice = Math.round(price * 100) / 100;
     return roundedPrice;

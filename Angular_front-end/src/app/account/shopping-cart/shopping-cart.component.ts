@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedService } from 'src/app/shared.service';
 
+
+/*
+  This page shows the contents of the shopping cart
+*/
+
 @Component({
   selector: 'app-shopping-cart',
   templateUrl: './shopping-cart.component.html',

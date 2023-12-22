@@ -84,6 +84,7 @@ export class ItemComponent implements OnInit {
                     (movie2) => {
                       this.ItemDetails = movie2.overview + "\nimdb rating: " + parseFloat(movie2.vote_average).toFixed(1) + "/10";
                       this.ItemPrice = this.service.generateMoviePrice(this.ItemName);
+                      
                       // alert((JSON.stringify(movie2, null, 4)));
                     }
                   )
