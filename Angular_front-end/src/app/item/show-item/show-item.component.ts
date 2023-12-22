@@ -89,7 +89,7 @@ export class ShowItemComponent implements OnInit {
 
   filteredItemList(): any[] {
     let filteredItems = this.categorizedItemList();
-    if (this.selectedValue > 0) {
+    if (this.selectedValue >= 0) {
       filteredItems = filteredItems.filter((item: any) => item.ItemPrice <= this.selectedValue);
       if (!this.sliderMoved) {
         this.ItemList = filteredItems;
