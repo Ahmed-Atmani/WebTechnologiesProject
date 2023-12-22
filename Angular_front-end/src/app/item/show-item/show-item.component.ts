@@ -29,7 +29,7 @@ export class ShowItemComponent implements OnInit {
   ngOnInit(): void {
     this.fillItemList();
     this.fillCategoryList();
-    this.calculateMaxPrice();;
+    this.calculateMaxPrice();
   }
 
   fillItemList() {
