@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedService } from 'src/app/shared.service';
 import { LoginService } from 'src/app/login.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-complaints',
@@ -8,7 +9,7 @@ import { LoginService } from 'src/app/login.service';
   styleUrls: ['./complaints.component.css']
 })
 export class ComplaintsComponent implements OnInit {
-  constructor(private service: SharedService, private loginservice: LoginService) {
+  constructor(private service: SharedService, private loginservice: LoginService, private location: Location) {
 
   }
 
@@ -38,13 +39,16 @@ export class ComplaintsComponent implements OnInit {
     const val: any = {
       Account: this.loginservice.getAccountId(),
       Description: this.ComplaintText,
+      Item: '',
+      Purchase: '',
     };
     if (this.ItemId !== undefined) {
       val["Item"] = this.ItemId;}
     if (this.PurchaseId !== undefined) {
       val["Purchase"] = this.PurchaseId;}
     this.service.addComplaint(val).subscribe(res => {
-      // alert(res.toString());
+      window.location.reload();
+      //alert(res.toString());
     })
 
   }
