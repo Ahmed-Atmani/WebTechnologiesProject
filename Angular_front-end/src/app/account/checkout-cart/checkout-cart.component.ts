@@ -38,7 +38,7 @@ export class CheckoutCartComponent implements OnInit, AfterViewInit{
   ngOnInit(): void {
     this.getCartItems();
     this.initLeafletMap();
-    this.goToGeocode("Brussels");
+    this.goToGeocode("Brussels", 5);
     this.initPostOffices();
   }
 
@@ -158,10 +158,10 @@ export class CheckoutCartComponent implements OnInit, AfterViewInit{
   }
 
   // === LEAFLET MAP ===
-  goToGeocode(query: string): void {
+  goToGeocode(query: string, zoom: number): void {
     this.geocode(query).then(
       (result) => {
-        this.goToCoordinates(result.latitude, result.longitude);
+        this.goToCoordinates(result.latitude, result.longitude, zoom);
       },
       (error) => {
         console.error(error);
@@ -189,12 +189,12 @@ export class CheckoutCartComponent implements OnInit, AfterViewInit{
     return marker;
   }
 
-  goToCoordinates(latitude: number, longitude: number): void {
-    this.map.setView([latitude, longitude], 5);
+  goToCoordinates(latitude: number, longitude: number, zoom: number): void {
+    this.map.setView([latitude, longitude], zoom);
   }
 
   goToLatestCoordinates(): void {
-    this.goToCoordinates(this.LatestCoordinates.latitude, this.LatestCoordinates.longitude);
+    this.goToCoordinates(this.LatestCoordinates.latitude, this.LatestCoordinates.longitude, 13);
   }
 
   addGeocodedMarker(query: string, goto: boolean): void {
@@ -252,7 +252,7 @@ export class CheckoutCartComponent implements OnInit, AfterViewInit{
 
     this.geocode(street + " " + streetNumber + ", " + postCode + " " + city + ", " + country).then(
       (result) => {
-        this.goToCoordinates(result.latitude, result.longitude);
+        this.goToCoordinates(result.latitude, result.longitude, 13);
 
         var office = result.results[0];
         this.setFormAddress(office);
